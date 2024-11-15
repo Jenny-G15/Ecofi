@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Bicolones.init({
-    cantidad_bicolones: DataTypes.INTEGER
+    cantidad_bicolones: {type: DataTypes.INTEGER,
+    allowNull: false,
+    } 
   }, {
     sequelize,
     modelName: 'Bicolones',

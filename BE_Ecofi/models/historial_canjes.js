@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Historial_Canjes',
+    tableName: "Historial_Canjes",
+    timestamps: true,
   });
   return Historial_Canjes;
 };

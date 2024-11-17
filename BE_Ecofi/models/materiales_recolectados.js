@@ -33,6 +33,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Materiales_Recolectados',
+    tableName: "Materiales_Recolectados",
+    timestamps: true,
   });
   return Materiales_Recolectados;
 };

@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Emprendedores extends Model {
     /**
@@ -14,12 +12,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Emprendedores.init({
-    Nombre_Emprendedor: DataTypes.STRING,
-    Descripcion: DataTypes.STRING,
-    Nombre_Contacto: DataTypes.STRING,
-    Producto_Ofrecido: DataTypes.STRING,
-    Correo_Emprendedor: DataTypes.STRING,
-    Telefono_Empresa: DataTypes.INTEGER
+    Nombre_Emprendedor:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Descripcion: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Nombre_Contacto: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Producto_Ofrecido: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Correo_Emprendedor: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Telefono_Empresa: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Emprendedores',

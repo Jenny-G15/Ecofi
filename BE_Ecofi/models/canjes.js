@@ -14,9 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Canjes.init({
-    ID_Usuario: DataTypes.INTEGER,
-    ID_Pcanje: DataTypes.INTEGER,
-    Fecha_Canje: DataTypes.DATE
+    ID_Usuario:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    ID_Pcanje:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    Fecha_Canje: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Canjes',

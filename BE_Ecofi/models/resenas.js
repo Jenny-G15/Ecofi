@@ -1,24 +1,42 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Resenas extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
+    
     static associate(models) {
-      // define association here
+      Resenas.belongsTo(models.Usuario, {
+        foreignKey: 'ID_Usuario',
+        as: 'resenaUsuario',
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      });
+      Resenas.belongsTo(models.Punto_Recoleccion, {
+        foreignKey: 'ID_Recofi',
+        as: 'resenaPunto',
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      });
     }
   }
   Resenas.init({
-    ID_Usuario: DataTypes.INTEGER,
-    ID_Recofi: DataTypes.INTEGER,
-    Calificacion: DataTypes.INTEGER,
+    ID_Usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    ID_Recofi: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    Calificacion: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     Comentario_Resena: DataTypes.STRING,
-    Fecha_Reseña: DataTypes.DATE
+    Fecha_Reseña: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Resenas',

@@ -9,7 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Direccion.hasMany(models.Punto_Recoleccion, {
+        foreignKey: 'ID_Direccion',
+        as: 'puntosRecoleccion',
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      });
     }
   }
   Direccion.init({

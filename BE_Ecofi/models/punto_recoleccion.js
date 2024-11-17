@@ -1,25 +1,56 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model} = require('sequelize');
+
+
 module.exports = (sequelize, DataTypes) => {
   class Punto_Recoleccion extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
-      // define association here
+      Punto_Recoleccion.belongsTo(models.Direccion, {
+        foreignKey: 'ID_Direccion',
+        as: 'puntoDireccion',
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      });
+      Punto_Recoleccion.belongsTo(models.Usuario, {
+        foreignKey: 'ID_Usuario',
+        as: 'puntoUsuario',
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      });
+      Punto_Recoleccion.hasMany(models.Materiales_Recolectados, {
+        foreignKey: 'ID_Materiales',
+        as: 'materialesRecolectados',
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      });
     }
   }
   Punto_Recoleccion.init({
-    ID_Direccion: DataTypes.INTEGER,
-    ID_Materiales: DataTypes.INTEGER,
-    ID_Usuario: DataTypes.INTEGER,
-    Horario: DataTypes.TIME,
-    Latitud: DataTypes.DECIMAL,
-    Longitud: DataTypes.DECIMAL
+    ID_Direccion: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    ID_Materiales: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    ID_Usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    Horario: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
+    Latitud: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
+    Longitud: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Punto_Recoleccion',

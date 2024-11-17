@@ -4,17 +4,17 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Historial_Canjes extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
+    
     static associate(models) {
       // define association here
     }
   }
   Historial_Canjes.init({
-    ID_Canje: DataTypes.INTEGER
+    ID_Canje: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Historial_Canjes',

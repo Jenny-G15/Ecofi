@@ -33,12 +33,6 @@ module.exports = (sequelize) => {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       });
-      Usuario.hasMany(models.Resenas, {
-        foreignKey: 'ID_Usuario',
-        as: 'usuarioResenas',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
 
     }
   }

@@ -1,12 +1,12 @@
 'use strict';
-const {Model, DataTypes} = require('sequelize');
+const {Model} = require('sequelize');
 
 
-module.exports = (sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   
   class Bicolones extends Model {
  
-    //Relaciones entre
+    // Relaciones entre modelos
     static associate(models) {
       Bicolones.hasMany(models.Usuario, {
         foreignKey: 'ID_Bicolones',
@@ -22,10 +22,10 @@ module.exports = (sequelize) => {
       });
     }
   }
+
   Bicolones.init({
-    cantidad_bicolones: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    cantidad_bicolones: {type: DataTypes.INTEGER,
+    allowNull: false,
     } 
   }, {
     sequelize,
@@ -33,5 +33,6 @@ module.exports = (sequelize) => {
     tableName: "bicolones",
     timestamps: true,
   });
+
   return Bicolones;
 };

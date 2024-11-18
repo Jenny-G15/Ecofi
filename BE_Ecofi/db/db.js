@@ -4,6 +4,4 @@ const { Sequelize } = require('sequelize');
             dialect: 'mysql'
     });
 
-module.exports = sequelize
-
-    
+module.exports = sequelize;

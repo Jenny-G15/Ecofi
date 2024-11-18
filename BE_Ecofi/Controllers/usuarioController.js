@@ -42,43 +42,47 @@ const obtenerUsuarios = async (req, res) => {
   
 
 
-  //Actualizar un Usuario existente
+  // Actualizar un Usuario existente
 
-  // const actualizarUsuario = async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const { Nombre_Usuario,Apellido } = req.body;
-  //     const Usuarios = await Usuario.findByPk(id);
-  //   if (!Usuarios) return res.status(404).json({ error: 'Usuarios no encontrado.' });
+  const actualizarUsuario = async (req, res) => {
+    try {
+      console.log(req.body); 
+      const { id } = req.params;
+      const  { Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
+        Telefono_Usuario} = req.body;
+      const Usuarios = await Usuario.findByPk(id);
+    if (!Usuarios) return res.status(404).json({ error: 'Usuarios no encontrado.' });
 
-  //   await Usuarios.update({ Nombre_Usuario,Apellido });
-  //   res.status(200).json(Usuarios);
+    await Usuarios.update({ Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
+      Telefono_Usuario});
+    res.status(200).json(Usuarios);
 
-  //   } catch (error) {
-  //   res.status(500).json({ error: 'Error al actualizar el Usuario.' });
+    } catch (error) {
+      console.error(error);
+    res.status(500).json({ error: 'Error al actualizar el Usuario.' });
 
-  //   }
+    }
 
-  // };
+  };
 
 
-  //Eliminar un Usuario
-  // const eliminarUsuario = async (req, res) => {
-  //   try {
-  //   const { id } = req.params;
-  //   const Usuarios = await Usuario.findByPk(id);
-  //   if (!Usuarios) return res.status(404).json({ error: 'Usuario no encontrado.' });
+  // Eliminar un Usuario
+  const eliminarUsuario = async (req, res) => {
+    try {
+    const { id } = req.params;
+    const Usuarios = await Usuario.findByPk(id);
+    if (!Usuarios) return res.status(404).json({ error: 'Usuario no encontrado.' });
 
-  //   await Usuarios.destroy();
-  //   res.status(204).send(); 
+    await Usuarios.destroy();
+    res.status(204).send(); 
     
-  //   } catch (error) {
-  //   console.error(error);    
-  //   res.status(500).json({ error: 'Ooops Error al eliminar al Usuario.' });
-  //   }
-  // };
+    } catch (error) {
+    console.error(error);    
+    res.status(500).json({ error: 'Ooops Error al eliminar al Usuario.' });
+    }
+  };
 
 
 
   
-  module.exports = { obtenerUsuarios, crearUsuario };
+  module.exports = { obtenerUsuarios, crearUsuario, actualizarUsuario, eliminarUsuario };

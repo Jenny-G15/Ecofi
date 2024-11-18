@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ID_Bicolones: {
+      Bicolones: {
         type: Sequelize.INTEGER
       },
       Nombre_Usuario: {

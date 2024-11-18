@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Bicolones',
-    tableName: "Bicolones",
+    tableName: "bicolones",
     timestamps: true,
   });
   return Bicolones;

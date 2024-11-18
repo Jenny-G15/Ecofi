@@ -1,8 +1,8 @@
 'use strict';
-const { Model} = require('sequelize');
+const { Model, DataTypes} = require('sequelize');
 
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
   class Tipo_Material extends Model {
 
     

@@ -2,7 +2,7 @@
 const { Model, DataTypes} = require('sequelize');
 
 
-module.exports = (sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   class Productos_Canje extends Model {
 
     static associate(models) {

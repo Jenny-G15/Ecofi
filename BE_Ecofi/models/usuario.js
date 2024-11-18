@@ -33,7 +33,6 @@ module.exports = (sequelize) => {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       });
-
     }
   }
 

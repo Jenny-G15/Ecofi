@@ -1,11 +1,12 @@
-const {usuario} = require ('../models');
+const { Usuario } = require ('../models');
 
 
-// Llamar al usuario:
+// Llamar al Usuario:
 const obtenerUsuarios = async (req, res) => {
     try {
-      const usuarios = await usuario.findAll(); 
+      const usuarios = await Usuario.findAll(); 
       res.status(200).json(usuarios);
+
     } catch (error) {
       console.error(error); // Imprimir error
       res.status(500).json({ error: 'Error al obtener los usuarios.' });
@@ -13,60 +14,71 @@ const obtenerUsuarios = async (req, res) => {
   };
 
 
-  //Crear nuevo usuario
 
   const crearUsuario = async (req, res) => {
     try {
       console.log(req.body); 
-      const { Nombre_usuario, Apellido } = req.body;
-      const usuario = await usuario.create({
-        Nombre_usuario,
-        Apellido,
+  
+      const { ID_Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario,
+        Telefono_Usuario} = req.body;
+  
+      const usuario = await Usuario.create({
+        ID_Bicolones,
+        Nombre_Usuario,
+        Apellido_Usuario,
+        Cedula,
+        Email_Usuario,
+        Contraseña_Usuario,
+        Telefono_Usuario
       });
+  
+      // Enviar la respuesta con el Usuario creado
       res.status(201).json(usuario);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Error al crear el usuario.' });
+      res.status(500).json({ error: 'Error al crear el Usuario.' });
     }
   };
   
 
 
-  const actualizarUsuario = async (req, res) => {
-    try {
-      const { id } = req.params;
-      const { Nombre_usuario,Apellido } = req.body;
-      const usuarios = await usuario.findByPk(id);
-    if (!usuarios) return res.status(404).json({ error: 'usuarios no encontrado.' });
+  //Actualizar un Usuario existente
 
-    await usuarios.update({ Nombre_usuario,Apellido });
-    res.status(200).json(usuarios);
+  // const actualizarUsuario = async (req, res) => {
+  //   try {
+  //     const { id } = req.params;
+  //     const { Nombre_Usuario,Apellido } = req.body;
+  //     const Usuarios = await Usuario.findByPk(id);
+  //   if (!Usuarios) return res.status(404).json({ error: 'Usuarios no encontrado.' });
 
-    } catch (error) {
-    res.status(500).json({ error: 'Error al actualizar el usuario.' });
+  //   await Usuarios.update({ Nombre_Usuario,Apellido });
+  //   res.status(200).json(Usuarios);
 
-    }
+  //   } catch (error) {
+  //   res.status(500).json({ error: 'Error al actualizar el Usuario.' });
 
-  };
+  //   }
+
+  // };
 
 
-  
-  const eliminarUsuario = async (req, res) => {
-    try {
-    const { id } = req.params;
-    const usuarios = await usuario.findByPk(id);
-    if (!usuarios) return res.status(404).json({ error: 'usuario no encontrado.' });
+  //Eliminar un Usuario
+  // const eliminarUsuario = async (req, res) => {
+  //   try {
+  //   const { id } = req.params;
+  //   const Usuarios = await Usuario.findByPk(id);
+  //   if (!Usuarios) return res.status(404).json({ error: 'Usuario no encontrado.' });
 
-    await usuarios.destroy();
-    res.status(204).send(); 
+  //   await Usuarios.destroy();
+  //   res.status(204).send(); 
     
-    } catch (error) {
-    console.error(error);    
-    res.status(500).json({ error: 'Ooops Error al eliminar al usuario.' });
-    }
-  };
+  //   } catch (error) {
+  //   console.error(error);    
+  //   res.status(500).json({ error: 'Ooops Error al eliminar al Usuario.' });
+  //   }
+  // };
 
 
 
   
-  module.exports = { obtenerUsuarios, crearUsuario, actualizarUsuario, eliminarUsuario };
+  module.exports = { obtenerUsuarios, crearUsuario };

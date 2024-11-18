@@ -33,6 +33,8 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Monedero',
+    tableName: "Monedero",
+    timestamps: true,
   });
   return Monedero;
 };

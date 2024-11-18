@@ -19,7 +19,7 @@ const obtenerUsuarios = async (req, res) => {
     try {
       console.log(req.body); 
   
-      const { Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario,
+      const { Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
         Telefono_Usuario} = req.body;
   
       const usuario = await Usuario.create({
@@ -27,7 +27,7 @@ const obtenerUsuarios = async (req, res) => {
         Nombre_Usuario,
         Apellido_Usuario,
         Cedula,
-        Email_Usuario,
+        Email_usuario,
         Contraseña_Usuario,
         Telefono_Usuario
       });

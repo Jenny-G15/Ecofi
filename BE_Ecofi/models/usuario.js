@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
 
 
   Usuario.init({
-    ID_Bicolones: {
+    Bicolones: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

@@ -13,16 +13,25 @@ const obtenerUsuarios = async (req, res) => {
   };
 
 
-  //Crear nuevo usuario
 
   const crearUsuario = async (req, res) => {
     try {
       console.log(req.body); 
-      const { Nombre_usuario, Apellido } = req.body;
+  
+      const { ID_Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
+        Telefono_Usuario} = req.body;
+  
       const usuario = await usuario.create({
-        Nombre_usuario,
-        Apellido,
+        ID_Bicolones,
+        Nombre_Usuario,
+        Apellido_Usuario,
+        Cedula,
+        Email_usuario,
+        Contraseña_Usuario,
+        Telefono_Usuario
       });
+  
+      // Enviar la respuesta con el usuario creado
       res.status(201).json(usuario);
     } catch (error) {
       console.error(error);
@@ -31,6 +40,12 @@ const obtenerUsuarios = async (req, res) => {
   };
   
 
+
+
+
+
+
+  //Actualizar un usuario existente
 
   const actualizarUsuario = async (req, res) => {
     try {
@@ -50,7 +65,7 @@ const obtenerUsuarios = async (req, res) => {
   };
 
 
-  
+  //Eliminar un usuario
   const eliminarUsuario = async (req, res) => {
     try {
     const { id } = req.params;

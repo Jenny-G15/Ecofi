@@ -1,8 +1,8 @@
 const express = require('express');
 const { sequelize } = require('./models'); // Importa la conexión a la base de datos
-const productosRoutes = require('./routes/productRoutes'); // Importa las rutas de productos
+const usuarioRoutes = require('./Routes/usuarioRoutes'); // Importa las rutas de usuarios
 
-
+//Token
 app.use('/auth', authRoutes);
 
 
@@ -20,7 +20,7 @@ sequelize.authenticate()
   .catch((error) => console.error('No se pudo conectar a la base de datos:', error));
 
 // Usar las rutas de productos
-app.use('/productos', productosRoutes);
+app.use('/usuarios', usuarioRoutes);
 
 
 

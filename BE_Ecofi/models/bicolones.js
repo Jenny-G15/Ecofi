@@ -1,8 +1,8 @@
 'use strict';
-const {Model} = require('sequelize');
+const {Model, DataTypes} = require('sequelize');
 
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
   
   class Bicolones extends Model {
  
@@ -23,8 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Bicolones.init({
-    cantidad_bicolones: {type: DataTypes.INTEGER,
-    allowNull: false,
+    cantidad_bicolones: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     } 
   }, {
     sequelize,

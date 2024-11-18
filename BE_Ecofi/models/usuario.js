@@ -9,12 +9,6 @@ module.exports = (sequelize) => {
 
     static associate(models) {
  
-      Usuario.belongsTo(models.Bicolones, {
-        foreignKey: 'ID_Bicolones',
-        as: 'usuarioBicolones',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
       Usuario.hasOne(models.Monedero, {
         foreignKey: 'ID_Usuario',
         as: 'usuarioMonedero',
@@ -82,7 +76,7 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Usuario',
-    tableName: "Usuario",
+    tableName: "Usuarios",
     timestamps: true,
   });
   return Usuario;

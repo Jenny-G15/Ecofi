@@ -21,6 +21,14 @@ module.exports = (sequelize) => {
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
   });
+
+    // Relación entre Canjes y Historial de Canje
+    Canjes.hasMany(models.Historial_Recoleccion, {
+    foreignKey: 'ID_Canje',
+    as: 'historialRecoleccion',
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
+  });
       
     }
   }

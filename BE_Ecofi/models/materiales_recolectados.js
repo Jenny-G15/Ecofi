@@ -19,6 +19,13 @@ module.exports = (sequelize) => {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       });
+    
+      Materiales_Recolectados.hasMany(models.Materiales_Recolectados, {
+        foreignKey: 'ID_Mrecolectados',
+        as: 'materialesRecolectados',
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      });
     }
   }
   Materiales_Recolectados.init({

@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model, DataTypes
-} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
+
 module.exports = (sequelize) => {
   class Historial_Canjes extends Model {
 
@@ -18,6 +17,8 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Historial_Canjes',
+    tableName: "Historial_Canjes",
+    timestamps: true,
   });
   return Historial_Canjes;
 };

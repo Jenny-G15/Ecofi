@@ -18,12 +18,6 @@ module.exports = (sequelize) => {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       });
-      Productos_Canje.belongsTo(models.Bicolones, {
-        foreignKey: 'ID_Bicolones',
-        as: 'productoBicolones',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
     }
   }
   Productos_Canje.init({
@@ -54,6 +48,8 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Productos_Canje',
+    tableName: "Productos_Canje",
+    timestamps: true,
   });
   return Productos_Canje;
 };

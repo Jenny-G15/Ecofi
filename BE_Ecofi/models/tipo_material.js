@@ -31,6 +31,8 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Tipo_Material',
+    tableName: "Tipo_Material",
+    timestamps: true,
   });
   return Tipo_Material;
 };

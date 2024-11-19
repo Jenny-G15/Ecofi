@@ -3,9 +3,9 @@ import "../Componentes/Contactenos"
 import ContactForm from '../Componentes/Contactenos'
 import Nav from '../Componentes/Nav'
 import Footer from '../Componentes/Footer'
-import "../Styles/inicio.css"
+import "../Styles/Contacto.css"
 
-function Inicio() {
+function ContactoForm() {
   return (
     <div>
       <Nav />
@@ -16,4 +16,4 @@ function Inicio() {
   )
 }
 
-export default Inicio
+export default ContactoForm

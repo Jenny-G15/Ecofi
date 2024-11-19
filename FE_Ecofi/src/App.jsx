@@ -1,4 +1,4 @@
-import Routing from '../src/Routes/Routing'
+import Rounting from "../src/routes/Routing"
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +13,7 @@ function App() {
     <>
       <div>
         <Router>
-        <Routing />
+        <Rounting />
         <ToastContainer/>
         </Router>
       </div>

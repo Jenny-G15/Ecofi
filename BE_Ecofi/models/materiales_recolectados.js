@@ -7,25 +7,13 @@ module.exports = (sequelize) => {
 
     
     static associate(models) {
-      Materiales_Recolectados.belongsTo(models.Tipo_Material, {
-        foreignKey: 'ID_Material',
-        as: 'materialTipo',
+      Materiales_Recolectados.belongsTo(models.Historial_Recoleccion, {
+        foreignKey: 'ID_Hrecoleccion',
+        as: 'HistorialRecoleccion',
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       });
-      Materiales_Recolectados.belongsTo(models.Punto_Recoleccion, {
-        foreignKey: 'ID_Materiales',
-        as: 'puntoRecoleccion',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
-    
-      Materiales_Recolectados.hasMany(models.Materiales_Recolectados, {
-        foreignKey: 'ID_Mrecolectados',
-        as: 'materialesRecolectados',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
+
     }
   }
   Materiales_Recolectados.init({

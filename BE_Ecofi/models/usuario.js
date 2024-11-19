@@ -21,18 +21,13 @@ module.exports = (sequelize) => {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       });
-      Usuario.hasMany(models.Productos_Canje, {
-        foreignKey: 'ID_Usuario',
-        as: 'usuarioProductosCanje',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
       Usuario.hasMany(models.Recolecciones, {
         foreignKey: 'ID_Usuario',
         as: 'usuarioRecolecciones',
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       });
+      
     }
   }
 

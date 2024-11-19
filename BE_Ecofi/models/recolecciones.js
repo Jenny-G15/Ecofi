@@ -5,12 +5,7 @@ module.exports = (sequelize) => {
   class Recolecciones extends Model {
 
     static associate(models) {
-      Recolecciones.belongsTo(models.Usuario, {
-        foreignKey: 'ID_Usuario',
-        as: 'recoleccionUsuario',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
+
       Recolecciones.belongsTo(models.Punto_Recoleccion, {
         foreignKey: 'ID_Recofi',
         as: 'recoleccionPunto',

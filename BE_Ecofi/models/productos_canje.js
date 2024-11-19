@@ -6,12 +6,6 @@ module.exports = (sequelize) => {
   class Productos_Canje extends Model {
 
     static associate(models) {
-      Productos_Canje.belongsTo(models.Usuario, {
-        foreignKey: 'ID_Usuario',
-        as: 'productoUsuario',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
       Productos_Canje.belongsTo(models.Emprendedores, {
         foreignKey: 'ID_Emprendedor',
         as: 'productoEmprendedor',
@@ -25,11 +19,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    ID_Usuario: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    ID_Bicolones: {
+    Bicolones: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

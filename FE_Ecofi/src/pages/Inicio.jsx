@@ -8,9 +8,8 @@ import "../Styles/inicio.css"
 function Inicio() {
   return (
     <div>
-      <Nav />
-      <ContactForm />
-      <Footer />
+
+
  
     </div>
   )

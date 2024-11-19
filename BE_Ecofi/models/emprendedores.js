@@ -7,9 +7,9 @@ module.exports = (sequelize) => {
 
     
     static associate(models) {
-      Emprendedores.hasMany(models.Punto_Recoleccion, {
-        foreignKey: 'ID_Direccion',
-        as: 'puntosRecoleccion',
+      Emprendedores.hasMany(models.Productos_Canje, {
+        foreignKey: 'ID_Pcanje',
+        as: 'ProductosCanje',
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       });

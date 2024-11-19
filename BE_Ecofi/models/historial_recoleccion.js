@@ -17,11 +17,6 @@ module.exports = (sequelize) => {
     }
   }
   Historial_Recoleccion.init({
-    ID_Canje: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-
     ID_Mrecolectados: {
       type: DataTypes.INTEGER,
       allowNull: false,

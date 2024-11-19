@@ -7,13 +7,6 @@ module.exports = (sequelize) => {
   class Monedero extends Model {
 
     static associate(models) {
-      
-      Monedero.belongsTo(models.Usuario, {
-        foreignKey: 'ID_Usuario',
-        as: 'monederoUsuario',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
 
     }
   }

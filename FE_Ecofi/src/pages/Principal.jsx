@@ -1,9 +1,9 @@
 import React from 'react'
 import Nav from '../Componentes/Nav'
 import Footer from '../Componentes/Footer'
-import "../Styles/Register.css"
+import "../Styles/Principal.css"
 
-function Register() {
+function Principal() {
   return (
     <div>
 
@@ -13,4 +13,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Principal

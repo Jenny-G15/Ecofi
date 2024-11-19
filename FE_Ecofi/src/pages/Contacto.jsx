@@ -5,14 +5,15 @@ import Nav from '../Componentes/Nav'
 import Footer from '../Componentes/Footer'
 import "../Styles/Contacto.css"
 
-function Login() {
+function ContactoForm() {
   return (
     <div>
-
-
+      <Nav />
+      <ContactForm />
+      <Footer />
  
     </div>
   )
 }
 
-export default Login
+export default ContactoForm

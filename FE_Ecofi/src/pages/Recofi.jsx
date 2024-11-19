@@ -1,9 +1,9 @@
 import React from 'react'
 import Nav from '../Componentes/Nav'
 import Footer from '../Componentes/Footer'
-import "../Styles/Register.css"
+import "../Styles/Recofi.css"
 
-function Register() {
+function Recofi() {
   return (
     <div>
 
@@ -13,4 +13,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Recofi

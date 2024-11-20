@@ -10,18 +10,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ID_Material: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+         references: {
+          model: "tipo_material",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       Cantidad_Mrecolectados: {
         type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE, 
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal( 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+
       }
     });
   },

@@ -8,7 +8,7 @@ const iniciarSesion = async (req, res) => {
     
     try {
     // Buscar el usuario por su nombre de usuario
-    const usuario = await Usuarios.findOne({ where: {  } });
+    const usuario = await Usuario.findOne({ where: {  } });
     
     if (!usuario) {
     return res.status(401).json({ message: 'Credenciales incorrectas.' });

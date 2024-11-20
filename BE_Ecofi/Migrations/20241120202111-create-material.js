@@ -2,21 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Historial_Canjes', {
+    await queryInterface.createTable('Materials', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ID_Canje: {
-        type: Sequelize.INTEGER,
-          references: {
-          model: "Canjes",
-          key: "id"
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+      Tipo_Material: {
+        type: Sequelize.STRING
+      },
+      Bicolones_Material: {
+        type: Sequelize.INTEGER
+      },
+      Descripcion_Material: {
+        type: Sequelize.STRING
+      },
+      Cantidad: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Historial_Canjes');
+    await queryInterface.dropTable('Materials');
   }
 };

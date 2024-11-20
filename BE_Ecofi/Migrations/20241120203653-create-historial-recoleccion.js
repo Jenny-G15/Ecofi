@@ -9,30 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ID_Canje: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "canjes",
-          key: "id"
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-        
-      },
-      ID_Mrecolectados: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "materiales_recolectados",
-          key: "id"
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      },
-      Cantidad_Total: {
+      ID_Formulario: {
         type: Sequelize.INTEGER
       },
-      Fecha_Recoleccion: {
-        type: Sequelize.DATE
+      Fecha_Hrecoleccion: {
+        type: Sequelize.INTEGER
+      },
+      Cantidad_Hrecoleccion: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

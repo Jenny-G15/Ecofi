@@ -2,21 +2,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Tipo_Materials', {
+    await queryInterface.createTable('Formularios', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Nombre_Material: {
-        type: Sequelize.STRING
-      },
-      Bicolones_Xunidad: {
+      ID_Recofi: {
         type: Sequelize.INTEGER
       },
-      Descripcion_Material: {
-        type: Sequelize.STRING
+      ID_Material: {
+        type: Sequelize.INTEGER
+      },
+      ID_Usuario: {
+        type: Sequelize.INTEGER
+      },
+      Bicolnes_Obtenidos: {
+        type: Sequelize.INTEGER
+      },
+      Fecha_Formulario: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Tipo_Materials');
+    await queryInterface.dropTable('Formularios');
   }
 };

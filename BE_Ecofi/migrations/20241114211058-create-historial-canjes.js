@@ -10,7 +10,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ID_Canje: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: "Canjes",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       createdAt: {
         allowNull: false,

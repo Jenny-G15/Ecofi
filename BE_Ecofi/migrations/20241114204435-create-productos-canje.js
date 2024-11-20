@@ -10,12 +10,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ID_Emprendedor: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+          references: {
+          model: "emprendedores",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'        
       },
       ID_Usuario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "usuario",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'  
       },
-      ID_Bicolones: {
+      Bicolones: {
         type: Sequelize.INTEGER
       },
       Imagen: {
@@ -29,11 +41,13 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal( 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       }
     });
   },

@@ -10,10 +10,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ID_Canje: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "canjes",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+        
       },
       ID_Mrecolectados: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "materiales_recolectados",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       Cantidad_Total: {
         type: Sequelize.INTEGER

@@ -28,9 +28,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Producto_Ofrecido: {
+    ID_Producto: {
       type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: "productos_canje",
+        key: "id"
+      },
     },
     Correo_Emprendedor: {
       type: DataTypes.STRING,

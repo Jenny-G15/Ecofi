@@ -18,7 +18,7 @@ module.exports = {
       Nombre_Contacto: {
         type: Sequelize.STRING
       },
-      Producto_Ofrecido: {
+      ID_Producto: {
         type: Sequelize.STRING
       },
       Correo_Emprendedor: {

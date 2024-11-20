@@ -18,6 +18,10 @@ module.exports = (sequelize) => {
     ID_Emprendedor: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "emprendedores",
+        key: "id"
+      },
     },
     Bicolones: {
       type: DataTypes.INTEGER,

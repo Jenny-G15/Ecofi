@@ -1,26 +1,50 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const {Model} = require('sequelize');
+
+
 module.exports = (sequelize, DataTypes) => {
+
   class Usuario extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
+    
     static associate(models) {
-      // define association here
+      Usuario.hasOne(models.Monedero, {
+        foreignKey: 'ID_Usuario',
+        as: 'monederoUsuario',
+        onUpdate:'CASCADE',
+        onDelete:'SET NULL',  
+      });
     }
   }
   Usuario.init({
-    Nombre_Usuario: DataTypes.STRING,
-    Apellido_Usuario: DataTypes.STRING,
-    Cedula: DataTypes.INTEGER,
-    Email_Usuario: DataTypes.STRING,
-    Contraseña_Usuario: DataTypes.STRING,
-    Telefono_Usuario: DataTypes.INTEGER,
-    Bicolones: DataTypes.INTEGER
+    Nombre_Usuario: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Apellido_Usuario: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Cedula: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    Email_Usuario: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Contraseña_Usuario: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Telefono_Usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    Bicolones: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Usuario',

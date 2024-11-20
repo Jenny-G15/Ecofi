@@ -1,9 +1,8 @@
 'use strict';
-const { Model, DataTypes } = require('sequelize');
-
-
-module.exports = (sequelize) => {
-
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
   class Historial_Recoleccion extends Model {
     /**
      * Helper method for defining associations.
@@ -11,24 +10,13 @@ module.exports = (sequelize) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-
-      
-    
+      // define association here
     }
   }
   Historial_Recoleccion.init({
-    ID_Mrecolectados: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    Cantidad_Total: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    Fecha_Recoleccion: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+    ID_Formulario: DataTypes.INTEGER,
+    Fecha_Hrecoleccion: DataTypes.INTEGER,
+    Cantidad_Hrecoleccion: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Historial_Recoleccion',

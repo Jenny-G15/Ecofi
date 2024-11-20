@@ -9,9 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Bicolones: {
-        type: Sequelize.INTEGER
-      },
       Nombre_Usuario: {
         type: Sequelize.STRING
       },
@@ -21,13 +18,16 @@ module.exports = {
       Cedula: {
         type: Sequelize.INTEGER
       },
-      Email_usuario: {
+      Email_Usuario: {
         type: Sequelize.STRING
       },
       Contraseña_Usuario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       Telefono_Usuario: {
+        type: Sequelize.INTEGER
+      },
+      Bicolones: {
         type: Sequelize.INTEGER
       },
       createdAt: {

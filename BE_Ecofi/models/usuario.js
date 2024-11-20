@@ -1,71 +1,29 @@
 'use strict';
-const { Model, DataTypes} = require('sequelize');
-
-
-module.exports = (sequelize) => {
-  
-  
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
-
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
- 
-      Usuario.hasOne(models.Monedero, {
-        foreignKey: 'ID_Usuario',
-        as: 'usuarioMonedero',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
-      Usuario.hasMany(models.Canjes, {
-        foreignKey: 'ID_Usuario',
-        as: 'usuarioCanjes',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
-      Usuario.hasMany(models.Recolecciones, {
-        foreignKey: 'ID_Usuario',
-        as: 'usuarioRecolecciones',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      });
-      
+      // define association here
     }
   }
-
-
   Usuario.init({
-    Bicolones: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    Nombre_Usuario: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    Apellido_Usuario: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    Cedula:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    Email_usuario: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    Contraseña_Usuario: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    Telefono_Usuario: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    Nombre_Usuario: DataTypes.STRING,
+    Apellido_Usuario: DataTypes.STRING,
+    Cedula: DataTypes.INTEGER,
+    Email_Usuario: DataTypes.STRING,
+    Contraseña_Usuario: DataTypes.STRING,
+    Telefono_Usuario: DataTypes.INTEGER,
+    Bicolones: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Usuario',
-    tableName: "Usuarios",
-    timestamps: true,
   });
   return Usuario;
 };

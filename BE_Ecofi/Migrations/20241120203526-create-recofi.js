@@ -1,6 +1,9 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+
+
 module.exports = {
+
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Recofis', {
       id: {
@@ -10,23 +13,29 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ID_Direccion: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       ID_Material: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       Horario: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
+        allowNull: false
       },
       Latitud: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL,
+        allowNull: false
       },
       Longitud: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       updatedAt: {
         allowNull: false,

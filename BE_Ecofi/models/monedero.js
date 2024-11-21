@@ -1,17 +1,17 @@
 'use strict';
-const {Model} = require('sequelize');
+const {Model, DataTypes } = require('sequelize');
 
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
 
   class Monedero extends Model {
     
     static associate(models) {
-      Monedero.hasOne(models.Usuario, {
+      Monedero.belongsTo(models.Usuario, {
         foreignKey: 'ID_Usuario',
         as: 'monedero',
         onUpdate:'CASCADE',
-        onDelete:'SET NULL',  
+        onDelete:'CASCADE',  
       });
     }
   }
@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     ID_Usuario: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'Usuarios',
+        key: 'id'
+      }
     },
     Saldo_Actual: {
       type: DataTypes.INTEGER,
@@ -31,6 +35,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Monedero',
+    tableName: 'monederos',
+    timestamps: true,
   });
   return Monedero;
 };

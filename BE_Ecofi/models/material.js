@@ -1,26 +1,41 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+const { Model, DataTypes} = require('sequelize');
+
+
+module.exports = (sequelize) => {
   class Material extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
-      // define association here
+      Material.hasMany(models.Formulario, {
+        foreignKey: 'ID_Material',
+        as: 'formulario',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
     }
   }
   Material.init({
-    Tipo_Material: DataTypes.STRING,
-    Bicolones_Material: DataTypes.INTEGER,
-    Descripcion_Material: DataTypes.STRING,
-    Cantidad: DataTypes.INTEGER
+    Tipo_Material: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Bicolones_Material: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Descripcion_Material: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Cantidad: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Material',
+    tableName: 'Materials',
+    timestamps: true,
   });
   return Material;
 };

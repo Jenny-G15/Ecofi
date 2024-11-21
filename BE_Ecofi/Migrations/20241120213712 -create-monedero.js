@@ -11,29 +11,28 @@ module.exports = {
       },
       ID_Usuario: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: "Usuario",
+          model: "Usuarios",
           key: "id"
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        onDelete: 'CASCADE'
         
       },
       Saldo_Actual: {
-        type: Sequelize.INTEGER
-      },
-      Ultima_Actualizacion: {
-        type: Sequelize.DATE
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
 
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE, 
+        allowNull: false,
         defaultValue: Sequelize.literal( 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
 
       }

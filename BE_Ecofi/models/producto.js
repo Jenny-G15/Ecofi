@@ -1,8 +1,8 @@
 'use strict';
 const {
-  Model
+  Model, DataTypes
 } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
   class Producto extends Model {
     /**
      * Helper method for defining associations.
@@ -10,18 +10,44 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Producto.belongsTo(models.Emprendedor, {
+        foreignKey: 'ID_Emprendedor',
+        as: 'emprendedor',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
     }
   }
   Producto.init({
-    ID_Emprendedor: DataTypes.INTEGER,
-    Bicolones_Producto: DataTypes.INTEGER,
-    Imagen: DataTypes.BLOB,
-    Stock: DataTypes.INTEGER,
-    Descripcion_Producto: DataTypes.STRING
+    ID_Emprendedor: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Emprendedors',
+        key: 'id'
+      }
+    },
+    Bicolones_Producto: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    Imagen: {
+      type: DataTypes.BLOB,
+      allowNull: false
+    },
+    Stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    Descripcion_Producto: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Producto',
+    tableName: 'Productos',
+    timestamps: true,
   });
   return Producto;
 };

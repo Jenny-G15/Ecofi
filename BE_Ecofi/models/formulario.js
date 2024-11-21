@@ -1,27 +1,70 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+const {Model, DataTypes} = require('sequelize');
+
+
+module.exports = (sequelize) => {
   class Formulario extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
+    
     static associate(models) {
-      // define association here
+      Formulario.hasMany(models.Recofi, {
+        foreignKey: 'ID_Recofi',
+        as: 'recofi',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
+      Formulario.hasMany(models.Material, {
+        foreignKey: 'ID_Material',
+        as: 'material',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
+      Formulario.belongsTo(models.Usuario, {
+        foreignKey: 'ID_Usuario',
+        as: 'usuario',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
     }
   }
   Formulario.init({
-    ID_Recofi: DataTypes.INTEGER,
-    ID_Material: DataTypes.INTEGER,
-    ID_Usuario: DataTypes.INTEGER,
-    Bicolnes_Obtenidos: DataTypes.INTEGER,
-    Fecha_Formulario: DataTypes.DATE
+    ID_Recofi: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Recofis',
+        key: 'id'
+      }
+    },
+    ID_Material: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Materials',
+        key: 'id'
+      }
+    },
+    ID_Usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Usuarios',
+        key: 'id'
+      }
+    },
+    Bicolnes_Obtenidos: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    Fecha_Formulario: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Formulario',
+    tableName: 'Formularios',
+    timestamps: true,
   });
   return Formulario;
 };

@@ -1,53 +1,81 @@
 'use strict';
-const {Model} = require('sequelize');
+const { Model, DataTypes} = require('sequelize');
 
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
 
   class Usuario extends Model {
 
-    
     static associate(models) {
       Usuario.hasOne(models.Monedero, {
         foreignKey: 'ID_Usuario',
-        as: 'monederoUsuario',
+        as: 'monedero',
         onUpdate:'CASCADE',
-        onDelete:'SET NULL',  
+        onDelete:'CASCADE',  
+      });
+
+      Usuario.hasOne(models.Direccion, {
+        foreignKey: 'ID_Usuario',
+        as: 'direccion',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
+      Usuario.hasMany(models.Canjes, {
+        foreignKey: 'ID_Usuario',
+        as: 'usuario',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
+      Usuario.hasMany(models.Formulario, {
+        foreignKey: 'ID_Usuario',
+        as: 'formulario',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
       });
     }
   }
   Usuario.init({
     Nombre_Usuario: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     Apellido_Usuario: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     Cedula: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     Email_Usuario: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     Contraseña_Usuario: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     Telefono_Usuario: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     Bicolones: {
       type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    ID_Direccion: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'Direccions',
+        key: 'id'
+      }
     },
   }, {
     sequelize,
     modelName: 'Usuario',
+    tableName: 'Usuarios',
+    timestamps: true,
   });
   return Usuario;
 };

@@ -1,4 +1,4 @@
 module.exports = {
-    jwtSecret: 'tu_clave_secreta_super_segura',
+    jwtSecret: 'ecofi2024',
     jwtExpiresIn: '1h',
     };

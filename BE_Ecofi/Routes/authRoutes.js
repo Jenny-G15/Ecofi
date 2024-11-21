@@ -1,11 +1,15 @@
 const express = require('express');
-const { iniciarSesion } = require('../Controllers/authControllers');
 const router = express.Router();
+const { iniciarSesion, registrarUsuario } = require('../Controllers/authControllers');
 
-// Ruta para iniciar sesión
+
 router.post('/login', iniciarSesion);
 
+
+router.post('/register', registrarUsuario);
+
 module.exports = router;
+
 
 
 // const express = require('express');

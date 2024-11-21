@@ -14,7 +14,6 @@ const obtenerUsuarios = async (req, res) => {
   };
 
 
-
   const crearUsuario = async (req, res) => {
     try {
       console.log(req.body); 

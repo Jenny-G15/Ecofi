@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     static associate(models) {
       Emprendedor.hasMany(models.Producto, {
         foreignKey: 'ID_Emprendedor',
-        as: 'emprendedor',
+        as: 'emprendedorProducto',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

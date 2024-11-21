@@ -8,13 +8,13 @@ module.exports = (sequelize) => {
     static associate(models) {
       Material.hasMany(models.Formulario, {
         foreignKey: 'ID_Material',
-        as: 'formulario',
+        as: 'formularioMaterial',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
       Material.hasMany(models.Recofi, {
         foreignKey: 'ID_Material',
-        as: 'recofi',
+        as: 'recofiMaterial',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

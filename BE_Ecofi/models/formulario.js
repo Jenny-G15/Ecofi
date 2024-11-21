@@ -7,27 +7,27 @@ module.exports = (sequelize) => {
 
     
     static associate(models) {
-      Formulario.hasMany(models.Recofi, {
+      Formulario.belongsTo(models.Recofi, {
         foreignKey: 'ID_Recofi',
-        as: 'recofi',
+        as: 'recofiFormulario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
-      Formulario.hasMany(models.Material, {
+      Formulario.belongsTo(models.Material, {
         foreignKey: 'ID_Material',
-        as: 'material',
+        as: 'materialFormulario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
       Formulario.belongsTo(models.Usuario, {
         foreignKey: 'ID_Usuario',
-        as: 'usuario',
+        as: 'usuarioFormulario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
       Formulario.belongsTo(models.Historial_Recoleccion, {
         foreignKey: 'ID_Formulario',
-        as: 'historialRecoleccion',
+        as: 'HRecoleccionForm',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

@@ -10,7 +10,14 @@ module.exports = (sequelize) => {
     static associate(models) {
       Producto.belongsTo(models.Emprendedor, {
         foreignKey: 'ID_Emprendedor',
-        as: 'emprendedor',
+        as: 'emprendedorPoducto',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
+
+      Producto.hasMany(models.Canjes, {
+        foreignKey: 'ID_Producto',
+        as: 'productoCanjes',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

@@ -25,6 +25,12 @@ module.exports = (sequelize) => {
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
+      Formulario.belongsTo(models.Historial_Recoleccion, {
+        foreignKey: 'ID_Formulario',
+        as: 'historialRecoleccion',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
     }
   }
   Formulario.init({

@@ -8,8 +8,8 @@ module.exports = (sequelize) => {
 
     static associate(models) {
       Historial_Recoleccion.hasMany(models.Formulario, {
-        foreignKey: 'ID_Canje',
-        as: 'Canjes',
+        foreignKey: 'ID_Formulario',
+        as: 'formulario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Recofis',
+        model: 'Formularios',
         key: 'id'
       }
     },

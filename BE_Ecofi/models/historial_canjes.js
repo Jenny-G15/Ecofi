@@ -7,9 +7,9 @@ module.exports = (sequelize) => {
   class Historial_Canjes extends Model {
 
     static associate(models) {
-      Historial_Canjes.hasMany(models.Canje, {
+      Historial_Canjes.hasMany(models.Canjes, {
         foreignKey: 'ID_Canje',
-        as: 'Canjes',
+        as: 'CanjesHistorialCanje',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Recofis',
+        model: 'Canjes',
         key: 'id'
       }
     },

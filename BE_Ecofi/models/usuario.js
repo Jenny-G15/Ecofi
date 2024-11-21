@@ -9,26 +9,26 @@ module.exports = (sequelize) => {
     static associate(models) {
       Usuario.hasOne(models.Monedero, {
         foreignKey: 'ID_Usuario',
-        as: 'monedero',
+        as: 'monederoUsuario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
 
       Usuario.hasOne(models.Direccion, {
         foreignKey: 'ID_Usuario',
-        as: 'direccion',
+        as: 'direccionUsuario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
       Usuario.hasMany(models.Canjes, {
         foreignKey: 'ID_Usuario',
-        as: 'usuario',
+        as: 'usuarioCanjes',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
       Usuario.hasMany(models.Formulario, {
         foreignKey: 'ID_Usuario',
-        as: 'formulario',
+        as: 'formularioUsuario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

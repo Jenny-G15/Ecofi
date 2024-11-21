@@ -7,21 +7,21 @@ module.exports = (sequelize) => {
   class Recofi extends Model {
 
     static associate(models) {
-      Recofi.hasOne(models.Direccion, {
+      Recofi.belongsTo(models.Direccion, {
         foreignKey: 'ID_Direccion',
-        as: 'direccion',
+        as: 'direccionRecofi',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
       Recofi.hasMany(models.Material, {
         foreignKey: 'ID_Material',
-        as: 'material',
+        as: 'materialrecofi',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
       Recofi.hasMany(models.Formulario, {
         foreignKey: 'ID_Recofi',
-        as: 'formulario',
+        as: 'formularioRecofi',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Direccion',
+        model: 'Direccions',
         key: 'id'
       }
     },
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Material',
+        model: 'Materials',
         key: 'id'
       }
     },

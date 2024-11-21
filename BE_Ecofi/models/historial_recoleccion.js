@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     static associate(models) {
       Historial_Recoleccion.hasMany(models.Formulario, {
         foreignKey: 'ID_Formulario',
-        as: 'formulario',
+        as: 'formularioHRecoleccion',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

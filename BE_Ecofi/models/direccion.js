@@ -10,21 +10,21 @@ module.exports = (sequelize) => {
     static associate(models) {
       Direccion.hasOne(models.Emprendedor, {
         foreignKey: 'ID_Direccion',
-        as: 'direccion',
+        as: 'direccionEmprendedor',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
 
       Direccion.hasOne(models.Recofi, {
         foreignKey: 'ID_Direccion',
-        as: 'direccion',
+        as: 'direccionRecofi',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
 
       Direccion.hasOne(models.Usuario, {
         foreignKey: 'ID_Direccion',
-        as: 'direccion',
+        as: 'direccionUsuario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

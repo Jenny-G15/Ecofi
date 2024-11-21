@@ -7,14 +7,23 @@ module.exports = (sequelize) => {
   class Historial_Recoleccion extends Model {
 
     static associate(models) {
-      // define association here
+      Historial_Recoleccion.hasMany(models.Formulario, {
+        foreignKey: 'ID_Canje',
+        as: 'Canjes',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
     }
   }
 
   Historial_Recoleccion.init({
     ID_Formulario: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'Recofis',
+        key: 'id'
+      }
     },
     Fecha_Hrecoleccion: {
       type: DataTypes.DATE,

@@ -20,7 +20,11 @@ module.exports = (sequelize) => {
   Historial_Canjes.init({
     ID_Canje: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'Recofis',
+        key: 'id'
+      }
     },
   }, {
     sequelize,

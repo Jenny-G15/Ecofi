@@ -12,8 +12,16 @@ module.exports = (sequelize) => {
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
+      Material.hasMany(models.Recofi, {
+        foreignKey: 'ID_Material',
+        as: 'recofi',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
     }
   }
+
+  
   Material.init({
     Tipo_Material: {
       type: DataTypes.STRING,

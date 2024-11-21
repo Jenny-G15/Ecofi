@@ -14,8 +14,8 @@ module.exports = (sequelize) => {
         onDelete:'CASCADE',  
       });
       Recofi.hasMany(models.Material, {
-        foreignKey: 'ID_Recofi',
-        as: 'recofi',
+        foreignKey: 'ID_Material',
+        as: 'material',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
@@ -30,11 +30,19 @@ module.exports = (sequelize) => {
   Recofi.init({
     ID_Direccion: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'Direccion',
+        key: 'id'
+      }
     },
     ID_Material: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'Material',
+        key: 'id'
+      }
     },
     Horario: {
       type: DataTypes.TIME,

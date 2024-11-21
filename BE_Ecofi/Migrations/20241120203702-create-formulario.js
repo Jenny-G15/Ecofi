@@ -10,13 +10,34 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ID_Recofi: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Recofis",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       ID_Material: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Materials",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       ID_Usuario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Usuarios",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       Bicolnes_Obtenidos: {
         type: Sequelize.INTEGER
@@ -25,12 +46,16 @@ module.exports = {
         type: Sequelize.DATE
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+
       },
       updatedAt: {
+        type: Sequelize.DATE, 
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal( 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+
       }
     });
   },

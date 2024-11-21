@@ -10,7 +10,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ID_Formulario: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Formularios",
+          key: "id"
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       Fecha_Hrecoleccion: {
         type: Sequelize.INTEGER
@@ -19,12 +26,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+
       },
       updatedAt: {
+        type: Sequelize.DATE, 
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal( 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       }
     });
   },

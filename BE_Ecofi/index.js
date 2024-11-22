@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 
 // Importar las rutas de autenticación
 const authRoutes = require('./Routes/authRoutes');
+const usuarioRoutes = require('./Routes/usuarioRoutes');
+
+
 
 // Middlewares
 app.use(cors());
@@ -12,6 +15,7 @@ app.use(bodyParser.json());
 
 // Definir las rutas de autenticación
 app.use('/auth', authRoutes);  
+app.use('/usuario', usuarioRoutes);
 
 
 const PORT = process.env.PORT || 3000;

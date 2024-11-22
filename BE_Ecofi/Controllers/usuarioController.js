@@ -22,7 +22,6 @@ const obtenerUsuarios = async (req, res) => {
         Telefono_Usuario} = req.body;
   
       const usuario = await Usuario.create({
-        Bicolones,
         Nombre_Usuario,
         Apellido_Usuario,
         Cedula,

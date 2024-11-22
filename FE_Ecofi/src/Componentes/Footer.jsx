@@ -1,121 +1,96 @@
+// src/components/Footer.js
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com'; 
-import "../styles/inicio.css";
-import Mapa from './Mapa';
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
+import emailjs from 'emailjs-com';
 
 const Footer = () => {
+  // State to handle form input values
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
 
-  const handleChange = (e) => {
+  const [status, setStatus] = useState(null); // Track status of the form submission
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value  //investigar
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // EmailJS
-    //https://www.npmjs.com/package/emailjs
-    //xcs4TCUIUkEEiDpMZ ID emailJs
+    // Email.js configuration
+    const serviceID = 'your_service_id';
+    const templateID = 'your_template_id';
+    const userID = 'your_user_id';
 
-    emailjs.send("service_456is9f", "template_okycsjp", formData, "xcs4TCUIUkEEiDpMZ")
-      .then((response) => {
-        console.log('Email sent successfully!', response.status, response.text);
-        resetForm();
-      })
-      .catch((error) => {
-        console.error('Failed to send email:', error);
-      });
-  };
-
-  const resetForm = () => {
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+    // Sending email with Email.js
+    emailjs
+      .sendForm(serviceID, templateID, e.target, userID)
+      .then(
+        (result) => {
+          console.log(result.text);
+          setStatus('Message sent successfully!');
+          setFormData({ name: '', email: '', message: '' }); // Clear form after success
+        },
+        (error) => {
+          console.error(error.text);
+          setStatus('Failed to send message. Please try again later.');
+        }
+      );
   };
 
   return (
-    <footer className="footer" id='contacto'>
-      <div className="footer-content">
-        
-        <div className="footer-contact">
-          <h2>Contacto</h2>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Nombre:
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Email:
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Mensaje:
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <button type="submit">Enviar</button>
-          </form>
-        </div>
-        <div className="footer-location">
-          <h2>Ubicación</h2>
-          <p>Puntarenas, Puntarenas, Costa Rica</p>
-          <Mapa/>
-        </div>
-        <div className="footer-social">
-          <h2>Síguenos</h2>
-          {/* Social media links */}
-          <a href="" target='_blank' rel='noopener noreferrer' className='icon-p' id='Facebook'>
-              <FaFacebookSquare className='facebook-icon'/>
-              <span className='fa-icon-text'>Facebook</span>
-          </a>
-          <a href="" target='_blank' rel='noopener noreferrer' className='icon-p' id='Instagram'>
-              <FaInstagramSquare className='Instagram-icon'/>
-              <span className='ins-icon-text'>Instagram</span>
-          </a>
-          <a href="https://wa.me/+50600000000" target='_blank' rel='noopener noreferrer' className='icon-p' id='Whatsapp'>
-              <FaWhatsapp className='Whatsapp-icon'/>
-              <span className='What-icon-text'>Whatsapp</span>
-          </a>
-          <p>Telefonos: +506 000-0000 <br />
-             Correo: ecofi@gmail.com
-          </p>
-          
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Ecofi. Todos los derechos reservados.</p>
+    <footer style={footerStyle}>
+      <div style={containerStyle}>
+        <h3>Contact Us</h3>
+        <form onSubmit={handleSubmit} style={formStyle}>
+          <div style={inputContainerStyle}>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+              style={inputStyle}
+            />
+          </div>
+          <div style={inputContainerStyle}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              style={inputStyle}
+            />
+          </div>
+          <div style={inputContainerStyle}>
+            <label htmlFor="message">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              required
+              style={{ ...inputStyle, height: '100px' }}
+            />
+          </div>
+          <button type="submit" style={buttonStyle}>Send Message</button>
+        </form>
+        {status && <p>{status}</p>}
       </div>
     </footer>
   );
 };
+
 
 export default Footer;

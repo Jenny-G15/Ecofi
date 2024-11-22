@@ -1,6 +1,8 @@
 const express = require('express');
 const { sequelize } = require('./models'); // Importa la conexión a la base de datos
 const usuarioRoutes = require('./Routes/usuarioRoutes'); // Importa las rutas de usuarios
+const canjesRoutes = require('./Routes/canjesRoutes');
+const direccionRoutes = require('./Routes/direccionRoutes');
 
 
 const app = express();
@@ -24,7 +26,8 @@ sequelize.authenticate()
         
 // Usar las rutas de usuarios
 app.use('/usuarios', usuarioRoutes);
-
+app.use('/canjes', canjesRoutes);
+app.use('/direccion', direccionRoutes);
 
 
 

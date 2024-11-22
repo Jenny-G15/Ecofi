@@ -14,12 +14,6 @@ module.exports = (sequelize) => {
         onDelete:'CASCADE',  
       });
 
-      Usuario.hasOne(models.Direccion, {
-        foreignKey: 'ID_Usuario',
-        as: 'direccionUsuario',
-        onUpdate:'CASCADE',
-        onDelete:'CASCADE',  
-      });
       Usuario.hasMany(models.Canjes, {
         foreignKey: 'ID_Usuario',
         as: 'usuarioCanjes',
@@ -62,14 +56,6 @@ module.exports = (sequelize) => {
     Bicolones: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
-    ID_Direccion: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Direccions',
-        key: 'id'
-      }
     },
   }, {
     sequelize,

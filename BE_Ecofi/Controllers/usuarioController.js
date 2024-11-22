@@ -1,9 +1,6 @@
 const { Usuario } = require ('../models');
 
 
-
-
-
 // Llamar al Usuario:
 const obtenerUsuarios = async (req, res) => {
   try {
@@ -20,90 +17,52 @@ const obtenerUsuarios = async (req, res) => {
 
 
 
-const crearUsuario = async (req, res) => {
-  try {
-    console.log(req.body); // Para verificar el contenido del cuerpo de la solicitud
-
-    // Extraer datos del cuerpo de la solicitud
-    const {
-      Nombre_Usuario,
-      Apellido_Usuario,
-      Cedula,
-      Email_Usuario,
-      Contraseña_Usuario,
-      Telefono_Usuario,
-      Bicolones,
-      ID_Direccion, // Agregado por la relación foránea
-    } = req.body;
-
-    // Crear el nuevo usuario
-    const usuario = await Usuario.create({
-      Nombre_Usuario,
-      Apellido_Usuario,
-      Cedula,
-      Email_Usuario,
-      Contraseña_Usuario,
-      Telefono_Usuario,
-      Bicolones,
-      ID_Direccion,
-    });
-
-    // Enviar respuesta con el usuario creado
-    res.status(201).json(usuario);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al crear el Usuario.', detalles: error.errors });
-  }
-};
-
-
-
-
-
-
-const actualizarUsuario = async (req, res) => {
-  try {
-    console.log(req.body); // Para depurar datos recibidos
-
-    const { id } = req.params;
-    const {
-      Nombre_Usuario,
-      Apellido_Usuario,
-      Cedula,
-      Email_Usuario,
-      Contraseña_Usuario,
-      Telefono_Usuario,
-      Bicolones,
-      ID_Direccion,
-    } = req.body;
-
-    // Buscar el usuario por su ID
-    const usuario = await Usuario.findByPk(id);
-
-    if (!usuario) {
-      return res.status(404).json({ error: 'Usuario no encontrado.' });
+  const crearUsuario = async (req, res) => {
+    try {
+      console.log(req.body); 
+  
+      const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
+        Telefono_Usuario} = req.body;
+  
+      const usuario = await Usuario.create({
+        Nombre_Usuario,
+        Apellido_Usuario,
+        Cedula,
+        Email_usuario,
+        Contraseña_Usuario,
+        Telefono_Usuario
+      });
+  
+      // Enviar la respuesta con el Usuario creado
+      res.status(201).json(usuario);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al crear el Usuario.' });
     }
+  };
+  
 
-    // Actualizar el usuario
-    await usuario.update({
-      Nombre_Usuario,
-      Apellido_Usuario,
-      Cedula,
-      Email_Usuario,
-      Contraseña_Usuario,
-      Telefono_Usuario,
-      Bicolones,
-      ID_Direccion,
-    });
 
-    res.status(200).json(usuario);
-  } catch (error) {
-    console.error(error);
+  // Actualizar un Usuario existente
+
+  const actualizarUsuario = async (req, res) => {
+    try {
+      console.log(req.body); 
+      const { id } = req.params;
+      const  { Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
+        Telefono_Usuario} = req.body;
+      const Usuarios = await Usuario.findByPk(id);
+    if (!Usuarios) return res.status(404).json({ error: 'Usuarios no encontrado.' });
+
+    await Usuarios.update({ Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
+      Telefono_Usuario});
+    res.status(200).json(Usuarios);
+
+    } catch (error) {
+      console.error(error);
     res.status(500).json({ error: 'Error al actualizar el Usuario.' });
   }
 };
-
-
 
 
   // Eliminar un Usuario
@@ -122,7 +81,4 @@ const actualizarUsuario = async (req, res) => {
     }
   };
 
-
-
-  
   module.exports = { obtenerUsuarios, crearUsuario, actualizarUsuario, eliminarUsuario };

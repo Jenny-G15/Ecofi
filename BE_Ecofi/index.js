@@ -1,38 +1,24 @@
 const express = require('express');
-const { sequelize } = require('./models'); // Importa la conexión a la base de datos
-const usuarioRoutes = require('./Routes/usuarioRoutes'); // Importa las rutas de usuarios
-const canjesRoutes = require('./Routes/canjesRoutes');
-const direccionRoutes = require('./Routes/direccionRoutes');
-
-
 const app = express();
-const PORT = 3000;
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+// Importar las rutas de autenticación
+const authRoutes = require('./Routes/authRoutes');
+const usuarioRoutes = require('./Routes/usuarioRoutes');
 
 
 
-//Token
-// app.use('/auth', authRoutes);
+// Middlewares
+app.use(cors());
+app.use(bodyParser.json());  
+
+// Definir las rutas de autenticación
+app.use('/auth', authRoutes);  
+app.use('/usuario', usuarioRoutes);
 
 
-
-
-
-app.use(express.json()); // Middleware para parsear JSON
-
-// Probar la conexión con la base de datos
-sequelize.authenticate()
-    		.then(() => console.log('Conexión con la base de datos exitosa.'))
-    		.catch((error) => console.error('No se pudo conectar a la base de datos: ', error))
-        
-// Usar las rutas de usuarios
-app.use('/usuarios', usuarioRoutes);
-app.use('/canjes', canjesRoutes);
-app.use('/direccion', direccionRoutes);
-
-
-
-// Iniciar el servidor
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
-

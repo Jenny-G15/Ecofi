@@ -27,6 +27,10 @@ module.exports = {
       Telefono_Empresa: {
         type: Sequelize.INTEGER
       },
+      Direccion_Exacta: {
+        type: Sequelize.STRING
+      },
+      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

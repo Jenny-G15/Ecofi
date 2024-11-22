@@ -45,6 +45,10 @@ module.exports = {
         type: Sequelize.DECIMAL,
         allowNull: false
       },
+      Direccion_Recofi: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

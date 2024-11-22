@@ -28,10 +28,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Ultima_Actualizacion: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
   }, {
     sequelize,
     modelName: 'Monedero',

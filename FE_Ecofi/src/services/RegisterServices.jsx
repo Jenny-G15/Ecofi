@@ -8,7 +8,7 @@ async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usuario,Co
         Contraseña_Usuario,
         Telefono_Usuario
       };
-      const response = await fetch("usuario", {
+      const response = await fetch("http://localhost:3000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,7 +17,7 @@ async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usuario,Co
       });
       return await response.json();
     } catch (error) {
-      console.error("usuario invalido:", error);
+      console.error("Error en el servidor", error);
       throw error;
     }
 }

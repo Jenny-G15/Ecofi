@@ -33,6 +33,8 @@ module.exports = (sequelize) => {
       });
     }
   }
+  
+  
   Formulario.init({
     ID_Recofi: {
       type: DataTypes.INTEGER,

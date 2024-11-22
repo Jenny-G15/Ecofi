@@ -13,6 +13,13 @@ module.exports = (sequelize) => {
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
+
+      Emprendedor.belongsTo(models.Direccion, {
+        foreignKey: 'ID_Direccion',
+        as: 'direccionEmprendedor',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      });
     }
   }
   Emprendedor.init({
@@ -39,6 +46,14 @@ module.exports = (sequelize) => {
     Telefono_Empresa: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    Direccion_Exacta: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Direccions',
+        key: 'id'
+      }
     },
     ID_Direccion: {
       type: DataTypes.INTEGER,

@@ -8,11 +8,12 @@ module.exports = (sequelize) => {
 
     static associate(models) {
       Recofi.belongsTo(models.Direccion, {
-        foreignKey: 'ID_Direccion',
-        as: 'direccionRecofi',
-        onUpdate:'CASCADE',
-        onDelete:'CASCADE',  
+        foreignKey: 'ID_Direccion', 
+        as: 'direccionRecofi', 
+        onUpdate: 'CASCADE', 
+        onDelete: 'CASCADE',
       });
+
       Recofi.hasMany(models.Material, {
         foreignKey: 'ID_Material',
         as: 'materialrecofi',
@@ -27,6 +28,10 @@ module.exports = (sequelize) => {
       });
     }
   }
+
+
+
+  
   Recofi.init({
     ID_Direccion: {
       type: DataTypes.INTEGER,

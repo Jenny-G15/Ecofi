@@ -3,15 +3,18 @@ const { Usuario } = require ('../models');
 
 // Llamar al Usuario:
 const obtenerUsuarios = async (req, res) => {
-    try {
-      const usuarios = await Usuario.findAll(); 
-      res.status(200).json(usuarios);
+  try {
+    const usuarios = await Usuario.findAll(); 
+    res.status(200).json(usuarios);
 
-    } catch (error) {
-      console.error(error); // Imprimir error
-      res.status(500).json({ error: 'Error al obtener los usuarios.' });
-    }
-  };
+  } catch (error) {
+    console.error(error); // Imprimir error
+    res.status(500).json({ error: 'Error al obtener los usuarios.' });
+  }
+};
+
+
+
 
 
   const crearUsuario = async (req, res) => {
@@ -58,10 +61,8 @@ const obtenerUsuarios = async (req, res) => {
     } catch (error) {
       console.error(error);
     res.status(500).json({ error: 'Error al actualizar el Usuario.' });
-
-    }
-
-  };
+  }
+};
 
 
   // Eliminar un Usuario
@@ -80,7 +81,4 @@ const obtenerUsuarios = async (req, res) => {
     }
   };
 
-
-
-  
   module.exports = { obtenerUsuarios, crearUsuario, actualizarUsuario, eliminarUsuario };

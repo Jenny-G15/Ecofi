@@ -23,13 +23,6 @@ module.exports = (sequelize) => {
         onDelete: 'CASCADE',
       });
 
-      // Relación opcional con Historial_Canjes (solo algunos Canjes pueden tener un Historial)
-      Canjes.belongsTo(models.Historial_Canjes, {
-        foreignKey: 'ID_Historial_Canje', // Usamos otro nombre para evitar ciclo
-        as: 'historialCanje',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',  // Si no hay historial, la referencia se pone en NULL
-        allowNull: true, // Permitir que no todos los canjes tengan historial
       });
     }
   }
@@ -39,8 +32,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Usuarios',
-        key: 'id',
+
+        model: 'Usuarios', 
+        key: 'id', 
+
       },
     },
     ID_Producto: {
@@ -61,6 +56,7 @@ module.exports = (sequelize) => {
       references: {
         model: 'Historial_Canjes', // Relacionamos con Historial_Canjes
         key: 'id', // ID del Historial_Canjes
+
       },
     }
   }, {

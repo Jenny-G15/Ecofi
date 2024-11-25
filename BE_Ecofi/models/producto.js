@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     Imagen: {
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING,
       allowNull: false
     },
     Stock: {

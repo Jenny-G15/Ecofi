@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       });
       
       Canjes.belongsTo(models.Producto, {
-        foreignKey: 'ID_Productos', 
+        foreignKey: 'ID_Producto', 
         as: 'productosCanjes',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',

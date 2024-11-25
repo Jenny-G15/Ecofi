@@ -14,12 +14,15 @@ const obtenerProductos = async (req, res) => {
 // Crear un nuevo producto
 const crearProducto = async (req, res) => {
   try {
-    console.log(req.body); // Para verificar el contenido del cuerpo de la solicitud
-
-    // Extraer datos del cuerpo de la solicitud
+    console.log(req.body); // Verifica los datos recibidos
+    
     const { ID_Emprendedor, Bicolones_Producto, Imagen, Stock, Descripcion_Producto } = req.body;
 
-    // Crear el nuevo producto
+    // Verifica si los campos son válidos
+    if (!ID_Emprendedor || !Bicolones_Producto || !Imagen || !Stock || !Descripcion_Producto) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios.' });
+    }
+
     const producto = await Producto.create({
       ID_Emprendedor,
       Bicolones_Producto,
@@ -28,13 +31,13 @@ const crearProducto = async (req, res) => {
       Descripcion_Producto,
     });
 
-    // Enviar respuesta con el producto creado
     res.status(201).json(producto);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al crear el producto.', detalles: error.errors });
+    console.error(error); // Ver los detalles completos del error
+    res.status(500).json({ error: 'Error al crear el producto.', detalles: error });
   }
 };
+
 
 // Actualizar un producto
 const actualizarProducto = async (req, res) => {

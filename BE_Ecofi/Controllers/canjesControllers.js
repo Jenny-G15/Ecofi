@@ -29,10 +29,15 @@ const crearCanje = async (req, res) => {
     // Enviar respuesta con el canje creado
     res.status(201).json(canje);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al crear el Canje.', detalles: error.errors });
+    console.error(error); // Imprimir error completo para depuración
+    // Devolver el error detallado en la respuesta
+    res.status(500).json({
+      error: 'Error al crear el Canje.',
+      detalles: error.errors ? error.errors : error.message,
+    });
   }
 };
+
 
 // Actualizar un Canje
 const actualizarCanje = async (req, res) => {

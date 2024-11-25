@@ -17,7 +17,7 @@ const crearRecofi = async (req, res) => {
     console.log(req.body); // Para depurar datos recibidos
 
     // Extraer datos del cuerpo de la solicitud
-    const { ID_Direccion, ID_Material, Horario, Latitud, Longitud } = req.body;
+    const { ID_Direccion, ID_Material, Horario, Latitud, Longitud, Direccion_Recofi } = req.body;
 
     // Crear el nuevo recofi
     const recofi = await Recofi.create({
@@ -26,6 +26,7 @@ const crearRecofi = async (req, res) => {
       Horario,
       Latitud,
       Longitud,
+      Direccion_Recofi
     });
 
     // Enviar respuesta con el recofi creado

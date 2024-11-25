@@ -23,12 +23,12 @@ const crearEmprendedor = async (req, res) => {
 
     // Extraer datos del cuerpo de la solicitud
     const { Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor,
-      Telefono_Empresa, ID_Direccion, } = req.body;
+      Telefono_Empresa, Direccion_Exacta, } = req.body;
 
     // Crear el nuevo emprendedor
     const emprendedor = await Emprendedor.create({
       Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor,
-      Telefono_Empresa, ID_Direccion, });
+      Telefono_Empresa, Direccion_Exacta, });
 
     // Enviar respuesta con el emprendedor creado
     res.status(201).json(emprendedor);
@@ -51,7 +51,7 @@ const actualizarEmprendedor = async (req, res) => {
       Producto_Ofrecido,
       Correo_Emprendedor,
       Telefono_Empresa,
-      ID_Direccion,
+      Direccion_Exacta,
     } = req.body;
 
     // Buscar el emprendedor por su ID
@@ -69,7 +69,7 @@ const actualizarEmprendedor = async (req, res) => {
       Producto_Ofrecido,
       Correo_Emprendedor,
       Telefono_Empresa,
-      ID_Direccion,
+      Direccion_Exacta,
     });
 
     res.status(200).json(emprendedor);

@@ -8,17 +8,11 @@ module.exports = (sequelize) => {
     
     
     static associate(models) {
-      
+
       // Relacionar Direccion con Recofi
       Direccion.hasMany(models.Recofi, {
         foreignKey: 'ID_Direccion',
         as: 'recofis',
-      });
-
-      // Relacionar Direccion con Emprendedor
-      Direccion.hasMany(models.Emprendedor, {
-        foreignKey: 'ID_Direccion',
-        as: 'emprendedores',
       });
     }
   }

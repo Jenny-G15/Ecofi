@@ -18,8 +18,37 @@ app.use('/auth', authRoutes);
 app.use('/usuario', usuarioRoutes);
 
 
+<<<<<<< HEAD
 const PORT = process.env.PORT || 3000;
+=======
+
+
+
+app.use(express.json()); // Middleware para parsear JSON
+
+// Probar la conexión con la base de datos
+sequelize.authenticate()
+    		.then(() => console.log('Conexión con la base de datos exitosa.'))
+    		.catch((error) => console.error('No se pudo conectar a la base de datos: ', error))
+        
+// Usar las rutas de usuarios
+app.use('/usuarios', usuarioRoutes);
+app.use('/canjes', canjesRoutes);
+app.use('/direccion', direccionRoutes);
+app.use('/emprendedores', emprendedorRoutes);
+app.use('/formularios', formularioRoutes);
+app.use('/historialC', HCanjeRoutes);
+app.use('/recoleccion', HRecoleccionesRoutes);
+app.use('/material', materialRoutes);
+app.use('/monedero', monederoRoutes );
+app.use('/producto', productosRoutes);
+app.use('/recofi', recofiRoutes);
+
+
+
+// Iniciar el servidor
+>>>>>>> 7691c9484147dacf91e49333ec5cca8ddb0e93de
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://192.168.1.246:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
     
 });

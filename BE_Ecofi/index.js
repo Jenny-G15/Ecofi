@@ -22,8 +22,6 @@ const PORT = 3000;
 
 
 
-
-
 app.use(express.json()); // Middleware para parsear JSON
 
 // Probar la conexión con la base de datos

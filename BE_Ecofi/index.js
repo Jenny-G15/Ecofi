@@ -18,8 +18,8 @@ app.use('/auth', authRoutes);
 app.use('/usuario', usuarioRoutes);
 
 
-<<<<<<< HEAD
 const PORT = process.env.PORT || 3000;
+<<<<<<< HEAD
 =======
 
 app.use(express.json()); // Middleware para parsear JSON
@@ -46,6 +46,8 @@ app.use('/recofi', recofiRoutes);
 
 // Iniciar el servidor
 >>>>>>> 7691c9484147dacf91e49333ec5cca8ddb0e93de
+=======
+>>>>>>> cdc6f70e6404195699a08b30e314ec3a14b30f15
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
     

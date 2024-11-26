@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
   class Historial_Canjes extends Model {
 
     static associate(models) {
-      Historial_Canjes.hasMany(models.Canjes, {
+      Historial_Canjes.belongsTo(models.Canjes, {
         foreignKey: 'ID_Canje',
         as: 'CanjesHistorialCanje',
         onUpdate:'CASCADE',

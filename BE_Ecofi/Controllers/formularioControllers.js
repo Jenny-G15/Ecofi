@@ -14,7 +14,7 @@ const obtenerFormularios = async (req, res) => {
 // Crear un nuevo Formulario
 const crearFormulario = async (req, res) => {
   try {
-    console.log(req.body); // Para verificar el contenido del cuerpo de la solicitud
+    console.log(req.body); 
 
     // Extraer datos del cuerpo de la solicitud
     const { ID_Recofi, ID_Material, ID_Usuario, Bicolnes_Obtenidos, Fecha_Formulario } = req.body;
@@ -28,7 +28,7 @@ const crearFormulario = async (req, res) => {
       Fecha_Formulario,
     });
 
-    // Enviar respuesta con el formulario creado
+    // Respuesta con el formulario creado
     res.status(201).json(formulario);
   } catch (error) {
     console.error(error);

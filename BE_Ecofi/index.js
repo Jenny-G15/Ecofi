@@ -1,26 +1,26 @@
 const express = require('express');
-const { sequelize } = require('./models'); // Importa la conexión a la base de datos
-const usuarioRoutes = require('./Routes/usuarioRoutes'); // Importa las rutas de usuarios
-const canjesRoutes = require('./Routes/canjesRoutes');
-const direccionRoutes = require('./Routes/direccionRoutes');
-const emprendedorRoutes = require('./Routes/emprendedorRoutes');
-const formularioRoutes = require('./Routes/formularioRoutes')
-const HCanjeRoutes= require('./Routes/HCanjeRoutes');
-const HRecoleccionesRoutes = require('.//Routes/HRecoleccionesRoutes');
-const materialRoutes= require('./Routes/materialRoutes');
-const monederoRoutes = require('./Routes/monederoRoutes');
-const productosRoutes = require('./Routes/productosRoutes');
-const recofiRoutes = require('./Routes/recofiRoutes');
-
 const app = express();
-const PORT = 3000;
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+// Importar las rutas de autenticación
+const authRoutes = require('./Routes/authRoutes');
+const usuarioRoutes = require('./Routes/usuarioRoutes');
 
 
 
-//Token
-// app.use('/auth', authRoutes);
+// Middlewares
+app.use(cors());
+app.use(bodyParser.json());  
+
+// Definir las rutas de autenticación
+app.use('/auth', authRoutes);  
+app.use('/usuario', usuarioRoutes);
 
 
+<<<<<<< HEAD
+const PORT = process.env.PORT || 3000;
+=======
 
 
 
@@ -47,6 +47,7 @@ app.use('/recofi', recofiRoutes);
 
 
 // Iniciar el servidor
+>>>>>>> 7691c9484147dacf91e49333ec5cca8ddb0e93de
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
     

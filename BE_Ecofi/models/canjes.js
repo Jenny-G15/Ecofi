@@ -22,8 +22,6 @@ module.exports = (sequelize) => {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       });
-
-      });
     }
   }
 
@@ -32,10 +30,8 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-
-        model: 'Usuarios', 
-        key: 'id', 
-
+        model: 'Usuarios',
+        key: 'id',
       },
     },
     ID_Producto: {
@@ -54,9 +50,8 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true, // Historial es opcional, un canje no necesariamente tiene que tener historial
       references: {
-        model: 'Historial_Canjes', // Relacionamos con Historial_Canjes
-        key: 'id', // ID del Historial_Canjes
-
+        model: 'Historial_Canjes', 
+        key: 'id', 
       },
     }
   }, {

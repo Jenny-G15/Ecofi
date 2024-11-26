@@ -39,7 +39,7 @@ app.use('/historialC', HCanjeRoutes);
 app.use('/recoleccion', HRecoleccionesRoutes);
 app.use('/material', materialRoutes);
 app.use('/monedero', monederoRoutes );
-app.use('/producto', productosRoutes);
+app.use('/producto', productosRoutes);``
 app.use('/recofi', recofiRoutes);
 
 

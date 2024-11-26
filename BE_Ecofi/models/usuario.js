@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       });
       Usuario.hasMany(models.Formulario, {
         foreignKey: 'ID_Usuario',
-        as: 'formularioUsuario',
+        as: 'usuarioFormulario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

@@ -35,11 +35,19 @@ sequelize.authenticate()
 app.use('/usuarios', usuarioRoutes);
 app.use('/canjes', canjesRoutes);
 app.use('/direccion', direccionRoutes);
+app.use('/emprendedores', emprendedorRoutes);
+app.use('/formularios', formularioRoutes);
+app.use('/historialC', HCanjeRoutes);
+app.use('/recoleccion', HRecoleccionesRoutes);
+app.use('/material', materialRoutes);
+app.use('/monedero', monederoRoutes );
+app.use('/producto', productosRoutes);
+app.use('/recofi', recofiRoutes);
 
 
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://192.168.1.246:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
     
 });

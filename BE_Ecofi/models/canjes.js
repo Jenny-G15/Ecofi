@@ -23,7 +23,14 @@ module.exports = (sequelize) => {
         onDelete: 'CASCADE',
       });
 
+      
+      Canjes.hasMany(models.Historial_Canjes, {
+        foreignKey: 'ID_Canje', 
+        as: 'historialCanje',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       });
+      
     }
   }
 
@@ -50,15 +57,7 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    ID_Historial_Canje: {
-      type: DataTypes.INTEGER,
-      allowNull: true, // Historial es opcional, un canje no necesariamente tiene que tener historial
-      references: {
-        model: 'Historial_Canjes', // Relacionamos con Historial_Canjes
-        key: 'id', // ID del Historial_Canjes
 
-      },
-    }
   }, {
     sequelize,
     modelName: 'Canjes',

@@ -18,16 +18,17 @@ const obtenerUsuarios = async (req, res) => {
     try {
       console.log(req.body); 
   
-      const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
-        Telefono_Usuario} = req.body;
+      const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario,
+        Telefono_Usuario, Bicolones} = req.body;
   
       const usuario = await Usuario.create({
         Nombre_Usuario,
         Apellido_Usuario,
         Cedula,
-        Email_usuario,
+        Email_Usuario,
         Contraseña_Usuario,
-        Telefono_Usuario
+        Telefono_Usuario,
+        Bicolones
       });
   
       // Enviar la respuesta con el Usuario creado
@@ -46,12 +47,12 @@ const obtenerUsuarios = async (req, res) => {
     try {
       console.log(req.body); 
       const { id } = req.params;
-      const  { Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
+      const  { Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario,
         Telefono_Usuario} = req.body;
       const Usuarios = await Usuario.findByPk(id);
     if (!Usuarios) return res.status(404).json({ error: 'Usuarios no encontrado.' });
 
-    await Usuarios.update({ Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_usuario, Contraseña_Usuario,
+    await Usuarios.update({ Bicolones, Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario,
       Telefono_Usuario});
     res.status(200).json(Usuarios);
 

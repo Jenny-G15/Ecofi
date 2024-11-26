@@ -23,7 +23,6 @@ module.exports = (sequelize) => {
         onDelete: 'CASCADE',
       });
 
-
       
       Canjes.hasMany(models.Historial_Canjes, {
         foreignKey: 'ID_Canje', 
@@ -40,8 +39,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Usuarios',
-        key: 'id',
+
+        model: 'Usuarios', 
+        key: 'id', 
+
       },
     },
     ID_Producto: {

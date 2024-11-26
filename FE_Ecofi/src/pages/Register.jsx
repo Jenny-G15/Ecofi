@@ -1,14 +1,11 @@
 import React from 'react'
-import Nav from '../Componentes/Nav'
-import Footer from '../Componentes/Footer'
 import "../Styles/Register.css"
+import FormularioRegistro from '../Componentes/FormRegister'
 
 function Register() {
   return (
     <div>
-
-
- 
+      <FormularioRegistro/>
     </div>
   )
 }

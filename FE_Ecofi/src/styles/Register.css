@@ -1,4 +1,168 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+/* Estilos generales */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9; /* Fondo neutro */
+}
+
+.containerRegistro {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  width: 400px;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  font-size: 22px;
+  color: #23DD23;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Barra de progreso */
+.barraProgresoRegistro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pasoRegistro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.pasoRegistro.activo {
+  color: #23DD23;
+}
+
+.balaRegistro {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #64D4D4;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.pasoRegistro.activo .balaRegistro {
+  background-color: #23DD23;
+}
+
+.checkRegistro {
+  display: none;
+}
+
+/* Formulario */
+.formularioExteriorRegistro {
+  width: 100%;
+}
+
+.paginaRegistro {
+  display: flex;
+  flex-direction: column;
+}
+
+.tituloRegistro {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #64D4D4;
+}
+
+.campoRegistro {
+  margin-bottom: 15px;
+}
+
+.etiquetaRegistro {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #64D4D4;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #23DD23;
+  box-shadow: 0 0 5px rgba(35, 221, 35, 0.3);
+}
+
+/* Botones */
+.botonesRegistro {
+  display: flex;
+  justify-content: space-between;
+}
+
+.botonRegistro {
+  background-color: #64D4D4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.botonRegistro:hover {
+  background-color: #23DD23;
+}
+
+.anteriorRegistro {
+  background-color: #999999;
+}
+
+.anteriorRegistro:hover {
+  background-color: #23DD23;
+}
+
+.enviarRegistro {
+  background-color: #23DD23;
+}
+
+.enviarRegistro:hover {
+  opacity: 0.9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -180,4 +344,4 @@ form .pageRegistro .btnsRegistro button.nextRegistro {
 .progressBarRegistro .stepRegistro .checkRegistro.active {
   display: block;
   color: #fff;
-}
+} */

@@ -6,7 +6,6 @@ module.exports = (sequelize) => {
   class Direccion extends Model {
     
     
-    
     static associate(models) {
 
       // Relacionar Direccion con Recofi

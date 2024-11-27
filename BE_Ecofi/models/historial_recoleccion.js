@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
   class Historial_Recoleccion extends Model {
 
     static associate(models) {
-      Historial_Recoleccion.hasMany(models.Formulario, {
+      Historial_Recoleccion.belongsTo(models.Formulario, {
         foreignKey: 'ID_Formulario',
         as: 'formularioHRecoleccion',
         onUpdate:'CASCADE',

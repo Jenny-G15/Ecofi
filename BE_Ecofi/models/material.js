@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
     static associate(models) {
       Material.hasMany(models.Formulario, {
         foreignKey: 'ID_Material',
-        as: 'formularioMaterial',
+        as: 'materialFormulario',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

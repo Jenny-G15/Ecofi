@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     static associate(models) {
       Formulario.belongsTo(models.Recofi, {
         foreignKey: 'ID_Recofi',
-        as: 'recofiFormulario',
+        as: 'formularioRecofi',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });
@@ -20,6 +20,12 @@ module.exports = (sequelize) => {
       Formulario.belongsTo(models.Usuario, {
         foreignKey: 'ID_Usuario',
         as: 'usuarioFormulario',
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE',  
+      });
+      Formulario.hasMany(models.Historial_Recoleccion, {
+        foreignKey: 'ID_Formulario',
+        as: 'formularioHRecoleccion',
         onUpdate:'CASCADE',
         onDelete:'CASCADE',  
       });

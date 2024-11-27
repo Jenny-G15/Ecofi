@@ -12,7 +12,8 @@ const registrarUsuario = async (req, res) => {
          Email_Usuario,
          Contraseña_Usuario,
          Telefono_Usuario,
-         Bicolones } = req.body; 
+         Bicolones,
+         Rol_Usuario } = req.body; 
 
     try {
         // Verifica si el usuario ya existe en la base de datos por su cédula
@@ -33,17 +34,21 @@ const registrarUsuario = async (req, res) => {
             Email_Usuario,
             Contraseña_Usuario: contrasenaUser, // Guardar la contraseña encriptada
             Telefono_Usuario,
-            Bicolones
+            Bicolones,
+            Rol_Usuario
         });
 
         // Retorna una respuesta exitosa
         res.status(201).json({ message: 'Usuario registrado exitosamente', usuario: nuevoUsuario });
     } catch (error) {
+
         // En caso de error, enviar respuesta con el código de estado 500
         console.error(error);
         res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
     }
 };
+
+
 
 // Función para iniciar sesión (login)
 const iniciarSesion = async (req, res) => {

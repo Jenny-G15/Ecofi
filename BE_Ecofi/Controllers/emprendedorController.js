@@ -25,6 +25,15 @@ const crearEmprendedor = async (req, res) => {
     const { Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor,
       Telefono_Empresa, Direccion_Exacta, } = req.body;
 
+       // Validar que no exista un emprendedor con el mismo nombre, correo o teléfono
+    const emprendedores = await Emprendedor.findAll();
+      for (let emprendedor of emprendedores) {
+        if (emprendedor.Nombre_Emprendedor === Nombre_Emprendedor || emprendedor.Correo_Emprendedor === Correo_Emprendedor ||
+            emprendedor.Telefono_Empresa === Telefono_Empresa) {
+          return res.status(400).json({ error: 'Ya existe un emprendedor con el mismo nombre, correo o teléfono.' });
+        }
+    }
+
     // Crear el nuevo emprendedor
     const emprendedor = await Emprendedor.create({
       Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor,

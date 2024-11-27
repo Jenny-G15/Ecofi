@@ -55,7 +55,11 @@ module.exports = (sequelize) => {
     },
     Bicolones: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
+    },
+    Rol_Usuario: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
   }, {
     sequelize,

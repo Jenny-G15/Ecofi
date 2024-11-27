@@ -1,0 +1,85 @@
+:root {
+  --backgroundImage: url('../img/fondo1.jpg');
+}
+
+body {
+  background-image: var(--backgroundImage);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} 
+  .ctn-principal {
+    background-color: #faf6f6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 5px 8px rgba(13, 114, 207, 0.897);
+    width: 400px !important;
+    height: 350px;
+  }
+  
+  .container h2 {
+    color: #3d3b3b;
+    font-size: 25px; 
+  }
+  
+  .container form {
+    color: #ffffff; 
+    border-radius: 15px;
+    width: 300px;
+    margin-left: -60px; 
+    
+     
+  }
+  
+  
+  .btn-primary:hover {
+    background-color: #1d1b1dab; 
+    border: none;
+  }
+  
+  .container label {
+    color: black;
+    font-weight: 600;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .ctn-principal {
+      width: 90%; 
+      height: auto; 
+      padding: 15px;
+    }
+  
+    .container h2 {
+      font-size: 28px; 
+    }
+  
+    .container form {
+      width: 100%;
+      margin-left: 0; 
+    }
+  
+    .container .button-register {
+      margin-left: 0; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .ctn-principal {
+      padding: 10px; 
+    }
+  
+    .container h2 {
+      font-size: 24px; 
+    }
+  
+    .container form {
+      width: 100%;
+    }
+  
+    .container .button-register {
+      width: 100%; 
+      margin-left: 0; 
+    }
+  }
+  

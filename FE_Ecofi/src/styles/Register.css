@@ -5,17 +5,23 @@
   outline: none;
   font-family: 'Poppins', sans-serif;
 }
+:root {
+  --backgroundImage: url('../img/fondo2.jpg');
+}
 body {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   overflow: hidden;
-  background: url("bg.png"), -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+  background-image: var(--backgroundImage);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 ::selection {
   color: #fff;
-  background: #d43f8d;
+  background: #42942e;
 }
 .containerRegistro {
   width: 330px;

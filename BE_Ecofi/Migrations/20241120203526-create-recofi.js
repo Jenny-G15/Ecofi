@@ -33,6 +33,10 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
+      Nombre_Recofi: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       Horario: {
         type: Sequelize.TIME,
         allowNull: false

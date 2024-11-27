@@ -17,11 +17,21 @@ const crearRecofi = async (req, res) => {
     console.log(req.body); // Para depurar datos recibidos
 
     // Extraer datos del cuerpo de la solicitud
-    const { ID_Direccion, ID_Material, Horario, Latitud, Longitud, Direccion_Recofi } = req.body;
+    const { ID_Direccion, ID_Material, Nombre_Recofi, Horario, Latitud, Longitud, Direccion_Recofi } = req.body;
+
+    
+    // Verificar si ya existe un Recofi con la misma descripción
+    const RecofiDB = await Recofi.findOne({
+      where: { Nombre_Recofi }
+    });
+
+    if (RecofiDB) {
+      return res.status(400).json({ error: 'Ya existe un Centro de Recolección con ese nombre.' });
+    }
+
 
     // Crear el nuevo recofi
-    const recofi = await Recofi.create({ ID_Direccion, ID_Material, Horario, Latitud, Longitud, Direccion_Recofi
-    });
+    const recofi = await Recofi.create({ ID_Direccion, ID_Material, Nombre_Recofi, Horario, Latitud, Longitud, Direccion_Recofi });
 
     // Enviar respuesta con el recofi creado
     res.status(201).json(recofi);

@@ -46,6 +46,10 @@ module.exports = (sequelize) => {
         key: 'id',
       }
     },
+    Nombre_Recofi: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     Horario: {
       type: DataTypes.TIME,
       allowNull: false,

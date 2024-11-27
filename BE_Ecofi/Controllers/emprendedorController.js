@@ -30,7 +30,7 @@ const crearEmprendedor = async (req, res) => {
       for (let emprendedor of emprendedores) {
         if (emprendedor.Nombre_Emprendedor === Nombre_Emprendedor || emprendedor.Correo_Emprendedor === Correo_Emprendedor ||
             emprendedor.Telefono_Empresa === Telefono_Empresa) {
-          return res.status(400).json({ error: 'Ya existe un emprendedor con el mismo nombre, correo o teléfono.' });
+          return res.status(400).json({ error: 'Ya existe un emprendedor con los mismos datos, comprueba e intenta otra vez' });
         }
     }
 
@@ -53,15 +53,8 @@ const actualizarEmprendedor = async (req, res) => {
     console.log(req.body); // Para depurar datos recibidos
 
     const { id } = req.params;
-    const {
-      Nombre_Emprendedor,
-      Descripcion,
-      Nombre_Contacto,
-      Producto_Ofrecido,
-      Correo_Emprendedor,
-      Telefono_Empresa,
-      Direccion_Exacta,
-    } = req.body;
+    const { Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor, Telefono_Empresa,
+    Direccion_Exacta, } = req.body;
 
     // Buscar el emprendedor por su ID
     const emprendedor = await Emprendedor.findByPk(id);
@@ -70,16 +63,27 @@ const actualizarEmprendedor = async (req, res) => {
       return res.status(404).json({ error: 'Emprendedor no encontrado.' });
     }
 
-    // Actualizar el emprendedor
-    await emprendedor.update({
-      Nombre_Emprendedor,
-      Descripcion,
-      Nombre_Contacto,
-      Producto_Ofrecido,
-      Correo_Emprendedor,
-      Telefono_Empresa,
-      Direccion_Exacta,
+    // Verificar si ya existe un emprendedor con el mismo nombre
+    const sameEmprendedor = await Emprendedor.findOne({
+      where: { Nombre_Emprendedor }
     });
+
+
+    // Verificar si ya existe un emprendedor con el mismo correo
+    const sameCorreo = await Emprendedor.findOne({
+      where: { Correo_Emprendedor }
+    });
+
+
+    // Si ya existe otro emprendedor con el mismo nombre o correo
+    if ((sameEmprendedor && sameEmprendedor.id !== id) || 
+        (sameCorreo && sameCorreo.id !== id)) {
+      return res.status(400).json({ error: 'El nombre o el correo ya están registrados en otro emprendedor.' });
+    }
+
+    // Actualizar el emprendedor
+    await emprendedor.update({Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor,
+      Telefono_Empresa, Direccion_Exacta, });
 
     res.status(200).json(emprendedor);
   } catch (error) {

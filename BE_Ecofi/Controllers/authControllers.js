@@ -6,14 +6,8 @@ const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 
 const registrarUsuario = async (req, res) => {
 
-    const { Nombre_Usuario,
-         Apellido_Usuario, 
-         Cedula, 
-         Email_Usuario,
-         Contraseña_Usuario,
-         Telefono_Usuario,
-         Bicolones,
-         Rol_Usuario } = req.body; 
+    const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario,
+         Bicolones, Rol_Usuario } = req.body; 
 
     try {
         // Verifica si el usuario ya existe en la base de datos por su cédula
@@ -85,7 +79,4 @@ const iniciarSesion = async (req, res) => {
     }
 };
 
-module.exports = {
-    registrarUsuario,
-    iniciarSesion,
-};
+module.exports = { registrarUsuario, iniciarSesion, };

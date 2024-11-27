@@ -20,13 +20,7 @@ const crearRecofi = async (req, res) => {
     const { ID_Direccion, ID_Material, Horario, Latitud, Longitud, Direccion_Recofi } = req.body;
 
     // Crear el nuevo recofi
-    const recofi = await Recofi.create({
-      ID_Direccion,
-      ID_Material,
-      Horario,
-      Latitud,
-      Longitud,
-      Direccion_Recofi
+    const recofi = await Recofi.create({ ID_Direccion, ID_Material, Horario, Latitud, Longitud, Direccion_Recofi
     });
 
     // Enviar respuesta con el recofi creado

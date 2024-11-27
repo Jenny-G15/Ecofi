@@ -4,7 +4,11 @@ const { iniciarSesion, registrarUsuario } = require('../Controllers/authControll
 
 
 router.post('/login', iniciarSesion);
-router.post('/register', registrarUsuario);
+router.post('/register', registrarUsuario)
+
+// router.post('/register', (req, res) => {
+//     res.status(200).send('Ruta activa');
+// });
 
 module.exports = router;
 

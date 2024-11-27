@@ -1,6 +1,8 @@
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
+const cors = require('cors');
 const { sequelize } = require('./models'); // Importa la conexión a la base de datos
-const usuarioRoutes = require('./Routes/usuarioRoutes'); // Importa las rutas de usuarios
+const authRoutes = require('./Routes/authRoutes'); // Importa las rutas de usuarios
 const canjesRoutes = require('./Routes/canjesRoutes');
 const direccionRoutes = require('./Routes/direccionRoutes');
 const emprendedorRoutes = require('./Routes/emprendedorRoutes');
@@ -13,14 +15,12 @@ const productosRoutes = require('./Routes/productosRoutes');
 const recofiRoutes = require('./Routes/recofiRoutes');
 
 const app = express();
-const PORT = 3000;
 
+app.use(cors())
+const PORT = process.env.PORT;
 
-
-//Token
+// Token
 // app.use('/auth', authRoutes);
-
-
 
 app.use(express.json()); // Middleware para parsear JSON
 
@@ -30,7 +30,7 @@ sequelize.authenticate()
     		.catch((error) => console.error('No se pudo conectar a la base de datos: ', error))
         
 // Usar las rutas de usuarios
-app.use('/usuarios', usuarioRoutes);
+app.use('/usuarios', authRoutes);
 app.use('/canjes', canjesRoutes);
 app.use('/direccion', direccionRoutes);
 app.use('/emprendedores', emprendedorRoutes);

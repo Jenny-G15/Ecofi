@@ -1,16 +1,18 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Usuario } = require('../models'); 
-const { jwtSecret, jwtExpiresIn } = require('../config'); 
+const jwtSecret = process.env.JWT_SECRET;
+const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 
 const registrarUsuario = async (req, res) => {
 
     const { Nombre_Usuario,
          Apellido_Usuario, 
          Cedula, 
-         Email_usuario,
+         Email_Usuario,
          Contraseña_Usuario,
-         Telefono_Usuario } = req.body; 
+         Telefono_Usuario,
+         Bicolones } = req.body; 
 
     try {
         // Verifica si el usuario ya existe en la base de datos por su cédula
@@ -28,9 +30,10 @@ const registrarUsuario = async (req, res) => {
             Nombre_Usuario,
             Apellido_Usuario,
             Cedula,
-            Email_usuario,
+            Email_Usuario,
             Contraseña_Usuario: contrasenaUser, // Guardar la contraseña encriptada
-            Telefono_Usuario
+            Telefono_Usuario,
+            Bicolones
         });
 
         // Retorna una respuesta exitosa
@@ -59,6 +62,7 @@ const iniciarSesion = async (req, res) => {
             return res.status(401).json({ message: 'Credenciales incorrectas.' });
         }
 
+        //Crear el token segun las credenciales digitadas
         const token = jwt.sign(
             {
                 id: usuario.id,

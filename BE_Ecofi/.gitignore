@@ -2,3 +2,6 @@ node_modules
 .env
 config.json
 index.js
+index.js
+config.js
+db.js

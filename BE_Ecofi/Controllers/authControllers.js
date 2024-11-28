@@ -4,6 +4,17 @@ const { Usuario } = require('../models');
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 
+const obtenerUsuarios = async (req, res) => {
+    try {
+      const usuario = await Usuario.findAll(); 
+      res.status(200).json(usuario);
+  
+    } catch (error) {
+      console.error(error); // Imprimir error
+      res.status(500).json({ error: 'Error al obtener la Dirección.' });
+    }
+  };
+
 const registrarUsuario = async (req, res) => {
 
     const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario,
@@ -79,4 +90,4 @@ const iniciarSesion = async (req, res) => {
     }
 };
 
-module.exports = { registrarUsuario, iniciarSesion, };
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, };

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../Styles/Register.css";
-import { getUsers } from "../Services/get";
 import { PostUsers } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
 
@@ -63,7 +62,7 @@ const FormularioRegistro = () => {
       setRol('usuario')
       await PostUsers(username, lastName, dni, email, password, userNumber, bicolones, rol);
       setMessage("¡Registro exitoso!");
-      navigate("/login");
+      navigate("/Login");
 
 
 

@@ -1,4 +1,7 @@
 'use strict';
+
+const usuario = require('../models/usuario');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -37,6 +40,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
+      },
+      Rol_Usuario: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: "usuario"
       },
       createdAt: {
         allowNull: false,

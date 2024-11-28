@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/Register.css";
 import { getUsers } from "../Services/get";
+import { PostUsers } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
 
 const FormularioRegistro = () => {
@@ -8,25 +9,30 @@ const FormularioRegistro = () => {
 
   // Estados para la lógica de registro
   const [username, setUsername] = useState("");
+  const [lastName, setLastName] = useState("")
+  const [dni, setDni] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [userNumber, setUserNumber] = useState("");
+  const [bicolones, setBicolones] = useState(0);
+  const [rol, setRol] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const data = await getUsers();
-        setUsers(data);
-      } catch (error) {
-        console.error("Error al obtener los usuarios:", error);
-      }
-    };
-    fetchUsers();
-  }, []);
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const data = await getUsers();
+  //       setUsers(data);
+  //     } catch (error) {
+  //       console.error("Error al obtener los usuarios:", error);
+  //     }
+  //   };
+  //   fetchUsers();
+  // }, []);
 
   const avanzarPaso = () => {
     if (currentStep < 3) setCurrentStep(currentStep + 1);
@@ -40,43 +46,41 @@ const FormularioRegistro = () => {
     e.preventDefault();
     setMessage("");
 
-    if (!username || !email || !password || !confirmPassword) {
+    if (!username || !lastName || !dni || !email || !password || !userNumber) {
       setMessage("No dejes campos en blanco");
       return;
     }
 
-    if (password !== confirmPassword) {
-      setMessage("Las contraseñas no coinciden");
-      return;
-    }
+    // const validarUser = username.find((user) => user.correo === email);
 
-    const validarUser = users.find((user) => user.correo === email);
-
-    if (validarUser) {
-      setMessage("El correo ya está registrado");
-      return;
-    }
+    // if (validarUser) {
+    //   setMessage("El correo ya está registrado");
+    //   return;
+    // }
 
     try {
-      const UsuarioFresa = {
-        nombre: username,
-        correo: email,
-        password: password,
-      };
-
-      await postUser(UsuarioFresa);
+      setBicolones(0)
+      setRol('usuario')
+      await PostUsers(username, lastName, dni, email, password, userNumber, bicolones, rol);
       setMessage("¡Registro exitoso!");
       navigate("/login");
+
+
 
       // Reinicia los campos del formulario
       setUsername("");
       setEmail("");
       setPassword("");
-      setConfirmPassword("");
+      setDni("");
+      setLastName("");
+      setUserNumber("");
+
+
     } catch (error) {
       console.error("Error en el Registro", error);
       setMessage("Error al registrar el usuario");
     }
+
   };
 
   return (
@@ -114,6 +118,22 @@ const FormularioRegistro = () => {
                 />
               </div>
               <div className="campoRegistro">
+                <label className="etiquetaRegistro">Apellido:</label>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+              <div className="campoRegistro">
+                <label className="etiquetaRegistro">DNI:</label>
+                <input
+                  type="text"
+                  value={dni}
+                  onChange={(e) => setDni(e.target.value)}
+                />
+              </div>
+              <div className="campoRegistro">
                 <button
                   type="button"
                   className="botonRegistro"
@@ -136,6 +156,14 @@ const FormularioRegistro = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
+              <div className="campoRegistro">
+                <label className="etiquetaRegistro">Teléfono:</label>
+                <input
+                  type="text"
+                  value={userNumber}
+                  onChange={(e) => setUserNumber(e.target.value)}
+                />
+              </div>
               <div className="campoRegistro botonesRegistro">
                 <button
                   type="button"
@@ -153,7 +181,7 @@ const FormularioRegistro = () => {
                 </button>
               </div>
             </div>
-          )}
+          )}       
           {/* Paso 3 */}
           {currentStep === 3 && (
             <div className="paginaRegistro">
@@ -166,14 +194,6 @@ const FormularioRegistro = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className="campoRegistro">
-                <label className="etiquetaRegistro">Confirmar Contraseña:</label>
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </div>
               <div className="campoRegistro botonesRegistro">
                 <button
                   type="button"
@@ -184,7 +204,7 @@ const FormularioRegistro = () => {
                 </button>
                 <button type="submit" className="botonRegistro enviarRegistro">
                   Enviar
-                </button>
+                  </button>
               </div>
             </div>
           )}

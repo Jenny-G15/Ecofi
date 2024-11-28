@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/Register.css";
+import { getUsers } from "../Services/get";
 import { PostUsers } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
 

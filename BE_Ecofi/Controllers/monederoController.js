@@ -19,6 +19,16 @@ const crearMonedero = async (req, res) => {
     // Extraer datos del cuerpo de la solicitud
     const { ID_Usuario, Saldo_Actual, Ultima_Actualizacion } = req.body;
 
+      // Validar que no exista un Monedero con el mismo nombre, correo o teléfono
+      const MonederoDB = await Monedero.findAll();
+      for (let Monedero of MonederoDB) {
+        if (Monedero.ID_Usuario === ID_Usuario) {
+          return res.status(400).json({ error: 'Ya existe un Monedero para ese Usaurio, por favor revisa los Datos' });
+        }
+    }
+
+
+
     // Crear el nuevo monedero
     const monedero = await Monedero.create({
       ID_Usuario,

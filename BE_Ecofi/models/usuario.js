@@ -59,7 +59,7 @@ module.exports = (sequelize) => {
     },
     Rol_Usuario: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
   }, {
     sequelize,

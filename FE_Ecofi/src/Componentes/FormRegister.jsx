@@ -15,7 +15,6 @@ const FormularioRegistro = () => {
   const [userNumber, setUserNumber] = useState("");
   const [bicolones, setBicolones] = useState(0);
   const [rol, setRol] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   // const [users, setUsers] = useState([]);
 

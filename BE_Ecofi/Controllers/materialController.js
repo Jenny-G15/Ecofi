@@ -27,13 +27,13 @@ const crearMaterial = async (req, res) => {
     const { Tipo_Material, Bicolones_Material, Descripcion_Material, Cantidad } = req.body;
 
 
-    // Verificar si ya existe un material con la misma descripción
+    // Verificar si ya existe un material con el mismo tipo
     const materialDB = await Material.findOne({
       where: { Tipo_Material }
     });
 
     if (materialDB) {
-      return res.status(400).json({ error: 'Ya existe un material con esa descripción.' });
+      return res.status(400).json({ error: 'Ya existe un material de ese Tipo.' });
     }
 
 

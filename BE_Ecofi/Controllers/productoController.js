@@ -54,6 +54,8 @@ const actualizarProducto = async (req, res) => {
       return res.status(404).json({ error: 'Producto no encontrado.' });
     }
 
+
+
     // Actualizar el producto
     await producto.update({
       Bicolones_Producto,

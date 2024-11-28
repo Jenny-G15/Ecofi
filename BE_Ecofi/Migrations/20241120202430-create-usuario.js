@@ -44,7 +44,6 @@ module.exports = {
       Rol_Usuario: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: "usuario"
       },
       createdAt: {
         allowNull: false,

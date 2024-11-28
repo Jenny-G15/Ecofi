@@ -20,7 +20,7 @@ const crearRecofi = async (req, res) => {
     const { ID_Direccion, ID_Material, Nombre_Recofi, Horario, Latitud, Longitud, Direccion_Recofi } = req.body;
 
     
-    // Verificar si ya existe un Recofi con la misma descripción
+    // Verificar si ya existe un Recofi con el mismo nombre
     const RecofiDB = await Recofi.findOne({
       where: { Nombre_Recofi }
     });
@@ -55,6 +55,17 @@ const actualizarRecofi = async (req, res) => {
     if (!recofi) {
       return res.status(404).json({ error: 'Recofi no encontrado.' });
     }
+
+      // Validar que no exista otro usuario con la misma cédula o email
+      const recofis = await Recofi.findAll();
+      for (let otroUsuario of recofis) {
+        if (
+          otroUsuario.id !== usuario.id && // Asegurarse de que no sea el mismo usuario
+          (otroUsuario.Cedula === Cedula || otroUsuario.Email_Usuario === Email_Usuario)
+        ) {
+          return res.status(400).json({ error: 'Ya existe otro usuario con la misma cédula o correo.' });
+        }
+      }
 
     // Actualizar el recofi
     await recofi.update({

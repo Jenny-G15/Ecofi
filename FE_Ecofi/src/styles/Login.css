@@ -34,7 +34,7 @@
 .container h2 {
   color: #2d302e;
   font-size: 30px;
-  text-align: center;
+  margin-left: 23%;
 }
 .container form {
   width: 300px;
@@ -49,5 +49,19 @@
   color: rgb(58, 56, 56);
   font-weight: 600;
 }
+.informativeContainer {
+  display: flex;
+  width: 410px;
+  height: 370px;
+  color: rgb(41, 39, 39);
+  font-weight: 700;
+  font-size: 16px;
+  position: absolute; /* Habilitar control de posición */
+  top: 45%; /* Ajusta hacia arriba */
+  right: 13%; /* Ajusta hacia la izquierda */
+  text-align: center;
+}
+
+
 
 

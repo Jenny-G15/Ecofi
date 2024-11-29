@@ -11,6 +11,12 @@ const obtenerProductos = async (req, res) => {
   }
 };
 
+
+
+
+
+
+
 // Crear un nuevo producto
 const crearProducto = async (req, res) => {
   try {
@@ -21,6 +27,14 @@ const crearProducto = async (req, res) => {
     // Verifica si los campos son válidos
     if (!ID_Emprendedor || !Bicolones_Producto || !Imagen || !Stock || !Descripcion_Producto) {
       return res.status(400).json({ error: 'Faltan datos obligatorios.' });
+    }
+
+    // Validar si ya existe un producto con el mismo ID_Emprendedor y Descripcion_Producto
+    const productos = await Producto.findAll();
+    for (let prod of productos) {
+      if (prod.ID_Emprendedor === ID_Emprendedor && prod.Descripcion_Producto === Descripcion_Producto) {
+        return res.status(400).json({ error: 'Ya existe un producto con esa descripción para este emprendedor.' });
+      }
     }
 
     const producto = await Producto.create({
@@ -38,14 +52,13 @@ const crearProducto = async (req, res) => {
   }
 };
 
-
 // Actualizar un producto
 const actualizarProducto = async (req, res) => {
   try {
     console.log(req.body); // Para depurar datos recibidos
 
     const { id } = req.params;
-    const { Bicolones_Producto, Imagen, Stock, Descripcion_Producto } = req.body;
+    const { Bicolones_Producto, Imagen, Stock, Descripcion_Producto, ID_Emprendedor } = req.body;
 
     // Buscar el producto por su ID
     const producto = await Producto.findByPk(id);
@@ -54,7 +67,13 @@ const actualizarProducto = async (req, res) => {
       return res.status(404).json({ error: 'Producto no encontrado.' });
     }
 
-
+    // Validar si ya existe otro producto con la misma Descripcion_Producto para el mismo ID_Emprendedor
+    const productos = await Producto.findAll();
+    for (let prod of productos) {
+      if (prod.id !== producto.id && prod.ID_Emprendedor === ID_Emprendedor && prod.Descripcion_Producto === Descripcion_Producto) {
+        return res.status(400).json({ error: 'Ya existe otro producto con esa descripción para este emprendedor.' });
+      }
+    }
 
     // Actualizar el producto
     await producto.update({
@@ -70,6 +89,10 @@ const actualizarProducto = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar el producto.' });
   }
 };
+
+
+
+
 
 // Eliminar un producto
 const eliminarProducto = async (req, res) => {

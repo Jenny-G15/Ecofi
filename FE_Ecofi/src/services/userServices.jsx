@@ -19,7 +19,7 @@ export async function getUsers() {
     }
 }
 
-export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usuario,Contraseña_Usuario,Telefono_Usuario, Bicolones, Rol_Usuario) {
+export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usuario,Contraseña_Usuario,Telefono_Usuario, Bicolones) {
     try {
       const userData = {
         Nombre_Usuario,
@@ -29,7 +29,6 @@ export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usu
         Contraseña_Usuario,
         Telefono_Usuario, 
         Bicolones, 
-        Rol_Usuario
       };
       const response = await fetch("http://localhost:3000/usuarios/register", {
         method: "POST",

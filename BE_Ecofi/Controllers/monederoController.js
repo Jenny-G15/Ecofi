@@ -11,6 +11,9 @@ const obtenerMonederos = async (req, res) => {
   }
 };
 
+
+
+
 // Crear un nuevo monedero
 const crearMonedero = async (req, res) => {
   try {
@@ -19,15 +22,17 @@ const crearMonedero = async (req, res) => {
     // Extraer datos del cuerpo de la solicitud
     const { ID_Usuario, Saldo_Actual, Ultima_Actualizacion } = req.body;
 
-      // Validar que no exista un Monedero con el mismo nombre, correo o teléfono
-      const MonederoDB = await Monedero.findAll();
-      for (let Monedero of MonederoDB) {
-        if (Monedero.ID_Usuario === ID_Usuario) {
-          return res.status(400).json({ error: 'Ya existe un Monedero para ese Usaurio, por favor revisa los Datos' });
-        }
+    // Verificar que todos los campos requeridos estén presentes
+    if (!ID_Usuario || Saldo_Actual == null || !Ultima_Actualizacion) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios.' });
     }
 
+    // Validar que no exista un Monedero con el mismo ID_Usuario
+    const existeMonedero = await Monedero.findOne({ where: { ID_Usuario } });
 
+    if (existeMonedero) {
+      return res.status(400).json({ error: 'Ya existe un monedero para este usuario.' });
+    }
 
     // Crear el nuevo monedero
     const monedero = await Monedero.create({
@@ -40,7 +45,7 @@ const crearMonedero = async (req, res) => {
     res.status(201).json(monedero);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al crear el monedero.', detalles: error.errors });
+    res.status(500).json({ error: 'Error al crear el monedero.', detalles: error });
   }
 };
 
@@ -51,6 +56,11 @@ const actualizarMonedero = async (req, res) => {
 
     const { id } = req.params;
     const { Saldo_Actual, Ultima_Actualizacion } = req.body;
+
+    // Verificar que todos los campos requeridos estén presentes
+    if (Saldo_Actual == null || !Ultima_Actualizacion) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el monedero.' });
+    }
 
     // Buscar el monedero por su ID
     const monedero = await Monedero.findByPk(id);
@@ -71,6 +81,17 @@ const actualizarMonedero = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar el monedero.' });
   }
 };
+
+
+
+
+
+
+
+
+
+
+
 
 // Eliminar un monedero
 const eliminarMonedero = async (req, res) => {

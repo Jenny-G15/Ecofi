@@ -33,11 +33,11 @@ export default function FormLogin() {
   };
 
   return (
-    <div>
+    <div className='parentContainer'>
       <Container className='ctn-principal'>
         <Row className="justify-content-md-center mt-5">
           <Col xs={12} md={6}>
-            <h2 className="text-center mb-4">Login</h2>
+            <h2 className="text-center mb-4">Ecofi</h2>
             <Form onSubmit={loguearUsuario}>
               <Form.Group className="mb-3">
                 <Form.Label>Correo Electrónico</Form.Label>
@@ -77,6 +77,13 @@ export default function FormLogin() {
         draggable 
         pauseOnHover 
       />
+
+      <div className='informativeContainer'>
+        <p>🌍 ¡Bienvenido a EcoFi! <br /> <br />
+          🌱¡Gracias por unirte a nuestra comunidad verde! <br />
+         🌿Ahora que eres parte de EcoFi, cada acción de reciclaje te acerca a un mundo más sostenible 💚 <br />
+         💰¡Empecemos a reciclar y a transformar el planeta juntos! 🌍✨</p>
+      </div>
     </div>
   );
 }

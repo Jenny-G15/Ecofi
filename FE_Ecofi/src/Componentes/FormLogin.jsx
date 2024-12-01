@@ -1,44 +1,43 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import getUsers from '../services/GetUsers';
-import "../styles/Login.css"
+import { PostLogin } from "../services/userServices";
+import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function FormLogin() {
   const navigate = useNavigate();
-  const [email,setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const loguearUsuario = async (event) => {
     event.preventDefault();
 
     try {
-      let users = await getUsers();
-      let userExist = users.find((user) => user.email ===  email && user.password === password);
-
-      if (userExist) {
-        toast.success("¡Inicio de sesión exitoso!"); 
+      const user = await PostLogin(email, password);
+     //const user = {success: true};
+      
+      if (user) {
+        // Si el backend responde con éxito, navega a la página principal
+        toast.success("¡Inicio de sesión exitoso!");
         navigate("/Principal");
       } else {
-        toast.error("Email o contraseña incorrectos"); 
+        // Si las credenciales no son válidas
+        toast.error(user.message || "Email o contraseña incorrectos");
       }
     } catch (error) {
-      console.log("Fallo el try", error);
-      toast.error("Ocurrió un error al iniciar sesión"); 
+      console.error("Error al iniciar sesión:", error);
+      toast.error("Ocurrió un error al iniciar sesión");
     }
-
-    console.log('Email:', email);
-    console.log('Password:',password, );
   };
 
   return (
-    <div>
+    <div className='parentContainer'>
       <Container className='ctn-principal'>
         <Row className="justify-content-md-center mt-5">
           <Col xs={12} md={6}>
-            <h2 className="text-center mb-4">Login</h2>
+            <h2 className="text-center mb-4">Ecofi</h2>
             <Form onSubmit={loguearUsuario}>
               <Form.Group className="mb-3">
                 <Form.Label>Correo Electrónico</Form.Label>
@@ -78,6 +77,13 @@ export default function FormLogin() {
         draggable 
         pauseOnHover 
       />
+
+      <div className='informativeContainer'>
+        <p>🌍 ¡Bienvenido a EcoFi! <br /> <br />
+          🌱¡Gracias por unirte a nuestra comunidad verde! <br />
+         🌿Ahora que eres parte de EcoFi, cada acción de reciclaje te acerca a un mundo más sostenible 💚 <br />
+         💰¡Empecemos a reciclar y a transformar el planeta juntos! 🌍✨</p>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,23 @@
   display: flex;
 
 }
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1* var(--bs-gutter-y));
+  margin-right: calc(-.5* var(--bs-gutter-x));
+  margin-left: calc(-.5* var(--bs-gutter-x));
+}
+.col-md-6 {
+  flex: 0 0 auto;
+  width: 80%; 
+}
+.col-12 {
+  flex: 0 0 auto;
+  width: 80%;
+}
 .ctn-principal {
   background-color: #92df6ec0;
   padding: 6px;
@@ -17,7 +34,7 @@
 .container h2 {
   color: #2d302e;
   font-size: 30px;
-  text-align: center;
+  margin-left: 23%;
 }
 .container form {
   width: 300px;
@@ -32,5 +49,19 @@
   color: rgb(58, 56, 56);
   font-weight: 600;
 }
+.informativeContainer {
+  display: flex;
+  width: 410px;
+  height: 370px;
+  color: rgb(41, 39, 39);
+  font-weight: 700;
+  font-size: 16px;
+  position: absolute; /* Habilitar control de posición */
+  top: 45%; /* Ajusta hacia arriba */
+  right: 13%; /* Ajusta hacia la izquierda */
+  text-align: center;
+}
+
+
 
 

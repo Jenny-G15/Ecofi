@@ -20,10 +20,10 @@ const crearMonedero = async (req, res) => {
     console.log(req.body); // Para verificar el contenido del cuerpo de la solicitud
 
     // Extraer datos del cuerpo de la solicitud
-    const { ID_Usuario, Saldo_Actual, Ultima_Actualizacion } = req.body;
+    const { ID_Usuario, Saldo_Actual, } = req.body;
 
     // Verificar que todos los campos requeridos estén presentes
-    if (!ID_Usuario || Saldo_Actual == null || !Ultima_Actualizacion) {
+    if (!ID_Usuario || Saldo_Actual == null) {
       return res.status(400).json({ error: 'Faltan datos obligatorios.' });
     }
 
@@ -38,7 +38,6 @@ const crearMonedero = async (req, res) => {
     const monedero = await Monedero.create({
       ID_Usuario,
       Saldo_Actual,
-      Ultima_Actualizacion,
     });
 
     // Enviar respuesta con el monedero creado
@@ -55,10 +54,10 @@ const actualizarMonedero = async (req, res) => {
     console.log(req.body); // Para depurar datos recibidos
 
     const { id } = req.params;
-    const { Saldo_Actual, Ultima_Actualizacion } = req.body;
+    const { Saldo_Actual } = req.body;
 
     // Verificar que todos los campos requeridos estén presentes
-    if (Saldo_Actual == null || !Ultima_Actualizacion) {
+    if (Saldo_Actual == null) {
       return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el monedero.' });
     }
 
@@ -72,7 +71,6 @@ const actualizarMonedero = async (req, res) => {
     // Actualizar el monedero
     await monedero.update({
       Saldo_Actual,
-      Ultima_Actualizacion,
     });
 
     res.status(200).json(monedero);

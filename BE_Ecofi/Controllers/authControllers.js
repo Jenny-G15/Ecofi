@@ -3,6 +3,13 @@ const jwt = require('jsonwebtoken');
 const { Usuario } = require('../models'); 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
+const emailjs = require('emailjs-com'); 
+
+
+
+
+
+
 
 const obtenerUsuarios = async (req, res) => {
     try {
@@ -90,4 +97,81 @@ const iniciarSesion = async (req, res) => {
     }
 };
 
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, };
+
+
+// Función para enviar el correo de recuperación
+const forgotPassword = async (req, res) => {
+    const { Email_Usuario } = req.body;
+
+    try {
+        const usuario = await Usuario.findOne({ where: { Email_Usuario } });
+
+        if (!usuario) {
+            return res.status(404).json({ message: 'El correo no está registrado.' });
+        }
+
+        const resetToken = jwt.sign({ email: usuario.Email_Usuario }, jwtSecret, { expiresIn: '1h' });
+
+        const resetURL = `http://localhost:3000/reset-password/${resetToken}`;
+
+        try {
+            await emailjs.send(
+                "TU_SERVICE_ID",
+                "TU_TEMPLATE_ID",
+                { to_email: usuario.Email_Usuario, reset_link: resetURL },
+                "TU_USER_ID"
+            );
+
+            res.status(200).json({ message: 'Correo de recuperación enviado.' });
+        } catch (error) {
+            console.error('Error al enviar el correo:', error);
+            res.status(500).json({ message: 'Error al enviar el correo.' });
+        }
+    } catch (error) {
+        console.error('Error al procesar la solicitud:', error);
+        res.status(500).json({ message: 'Error al procesar la solicitud.' });
+    }
+};
+
+
+
+
+// Función para restablecer la contraseña
+const resetPassword = async (req, res) => {
+
+    const { token, nuevaContraseña } = req.body;
+
+    try {
+        const decoded = jwt.verify(token, jwtSecret);
+
+        const usuario = await Usuario.findOne({ where: { Email_Usuario: decoded.email } });
+
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuario no encontrado.' });
+        }
+
+        const contrasenaEncriptada = await bcrypt.hash(nuevaContraseña, 10);
+
+        usuario.Contraseña_Usuario = contrasenaEncriptada;
+        await usuario.save();
+
+        res.status(200).json({ message: 'Contraseña restablecida exitosamente.' });
+    } catch (error) {
+        console.error('Error al restablecer la contraseña:', error);
+
+        
+        if (error.name === 'TokenExpiredError') {
+            return res.status(400).json({ message: 'El token ha expirado.' });
+        }
+
+        res.status(500).json({ message: 'Error al restablecer la contraseña.' });
+    }
+};
+
+
+
+
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion,forgotPassword, resetPassword };
+
+
+

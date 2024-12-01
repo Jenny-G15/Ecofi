@@ -19,6 +19,7 @@ export async function getUsers() {
     }
 }
 
+
 export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usuario,Contraseña_Usuario,Telefono_Usuario, Bicolones) {
     try {
       const userData = {
@@ -66,34 +67,29 @@ export async function PostLogin(Nombre_Usuario, Contraseña_Usuario) {
 }
 
 
+export async function PostProductos(Nombre_Producto, Descripcion_Producto, Precio_Producto, Stock_Producto, Categoria_Producto) {
+    try {
+        const productoData = {
+            Nombre_Producto,
+            Descripcion_Producto,
+            Precio_Producto,
+            Stock_Producto,
+            Categoria_Producto,
+        };
+        const response = await fetch(`http://localhost:3000/productos/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(productoData),
+        });
+        return await response.json();
+    } catch (error) {
+        console.error("Error en el servidor", error);
+        throw error;
+    }
+}
 
 
 
-// export const getProductos = async () => {
-//     try {
-//         const response = await fetch('http://localhost:3000/productos');
-//         if (!response.ok) {
-//             throw new Error("Error al obtener productos");
-//         }
-//         return await response.json();
-//     } catch (error) {
-//         console.error(error);
-//         throw error;
-//     }
-// };
 
-
-
-
-// export const getAdmins = async () => {
-//     try {
-//         const response = await fetch('http://localhost:3000/Admins');
-//         if (!response.ok) {
-//             throw new Error("Error al obtener la lista de Administradores");
-//         }
-//         return await response.json();
-//     } catch (error) {
-//         console.error(error);
-//         throw error;
-//     }
-// };

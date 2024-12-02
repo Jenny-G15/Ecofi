@@ -17,8 +17,12 @@ const obtenerMateriales = async (req, res) => {
 
 
 
-// Crear un nuevo material
 
+
+
+
+
+// Crear un nuevo material
 const crearMaterial = async (req, res) => {
   try {
     console.log(req.body); // Para verificar el contenido del cuerpo de la solicitud
@@ -26,16 +30,17 @@ const crearMaterial = async (req, res) => {
     // Extraer datos del cuerpo de la solicitud
     const { Tipo_Material, Bicolones_Material, Descripcion_Material, Cantidad } = req.body;
 
-
-    // Verificar si ya existe un material con la misma descripción
-    const materialDB = await Material.findOne({
-      where: { Tipo_Material }
-    });
-
-    if (materialDB) {
-      return res.status(400).json({ error: 'Ya existe un material con esa descripción.' });
+    // Verificar que todos los campos requeridos estén presentes
+    if (!Tipo_Material || Bicolones_Material == null || !Descripcion_Material || Cantidad == null) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios.' });
     }
 
+    // Verificar si ya existe un material con el mismo tipo
+    const materialExistente = await Material.findOne({ where: { Tipo_Material } });
+
+    if (materialExistente) {
+      return res.status(400).json({ error: 'Ya existe un material de ese tipo.' });
+    }
 
     // Crear el nuevo material
     const material = await Material.create({
@@ -48,12 +53,10 @@ const crearMaterial = async (req, res) => {
     // Enviar respuesta con el material creado
     res.status(201).json(material);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al crear el material.', detalles: error.errors });
+    console.error(error); // Log para detalles del error
+    res.status(500).json({ error: 'Error al crear el material.', detalles: error });
   }
 };
-
-
 
 // Actualizar un material
 const actualizarMaterial = async (req, res) => {
@@ -62,6 +65,11 @@ const actualizarMaterial = async (req, res) => {
 
     const { id } = req.params;
     const { Tipo_Material, Bicolones_Material, Descripcion_Material, Cantidad } = req.body;
+
+    // Verificar que todos los campos requeridos estén presentes
+    if (!Tipo_Material || Bicolones_Material == null || !Descripcion_Material || Cantidad == null) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el material.' });
+    }
 
     // Buscar el material por su ID
     const material = await Material.findByPk(id);
@@ -84,6 +92,17 @@ const actualizarMaterial = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar el material.' });
   }
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 

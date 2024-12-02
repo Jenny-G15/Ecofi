@@ -1,17 +1,16 @@
-import React from 'react'
-import "../Styles/Principal.css"
-
+import React from 'react';
+import "../Styles/inicio.css"
+import Nav from '../Componentes/Nav';
+import Footer from '../Componentes/Footer';
 
 function Principal() {
-  // const typeUser = 1;
-  
   return (
-    <div>
-    
-
- 
+    <div> 
+      <Nav/>
+      <Footer/> 
     </div>
+
   )
 }
 
-export default Principal
+export default Principal;

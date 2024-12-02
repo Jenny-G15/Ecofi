@@ -1,10 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 
-export default function BodyBackground({background}) {
+const BodyBackground = ({ background }) => {
+  useEffect(() => {
+    if (background) {
+      document.body.style.backgroundImage = `url(${background})`;
+    }
 
-    useEffect(() => {
-        document.documentElement.style.setProperty('--backgroundImage', `url(${background})`)
-    }, [background])
+    // Limpieza
+    return () => {
+      document.body.style.backgroundImage = './src/img/fondo3.jpeg';
+    };
+  }, [background]);
 
-    
-}
+  return null;
+};
+
+export default BodyBackground;

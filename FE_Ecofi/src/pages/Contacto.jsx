@@ -1,13 +1,13 @@
 import React from 'react'
 
 
-import "../Styles/Contacto.css"
-
 function ContactoForm() {
   return (
     <div>
 
+      <Footer/>
 
+  
  
     </div>
   )

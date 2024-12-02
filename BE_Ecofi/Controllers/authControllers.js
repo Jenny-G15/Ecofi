@@ -99,39 +99,56 @@ const iniciarSesion = async (req, res) => {
 
 
 
-// Función para enviar el correo de recuperación
-const forgotPassword = async (req, res) => {
+
+
+
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { Usuario } = require('./models'); // Ajusta según tu estructura
+const router = express.Router();
+
+
+
+// Enviar correo de recuperación
+router.post('/ForgotPassword', async (req, res) => {
     const { Email_Usuario } = req.body;
 
     try {
         const usuario = await Usuario.findOne({ where: { Email_Usuario } });
 
         if (!usuario) {
-            return res.status(404).json({ message: 'El correo no está registrado.' });
+            return res.status(404).json({ message: 'Correo no registrado.' });
         }
 
-        const resetToken = jwt.sign({ email: usuario.Email_Usuario }, jwtSecret, { expiresIn: '1h' });
+        // Generar token
+        const token = jwt.sign({ id: usuario.id }, SECRET_KEY, { expiresIn: '1h' });
 
-        const resetURL = `http://localhost:3000/reset-password/${resetToken}`;
+        // Aquí se configurará el envío del correo con EmailJS
+        const templateParams = {
+            to_email: Email_Usuario,
+            token_url: `http://localhost:3000/reset-password/${token}`,
+        };
 
-        try {
-            await emailjs.send(
-                "TU_SERVICE_ID",
-                "TU_TEMPLATE_ID",
-                { to_email: usuario.Email_Usuario, reset_link: resetURL },
-                "TU_USER_ID"
-            );
+        const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                service_id: 'your_service_id',
+                template_id: 'your_template_id',
+                user_id: 'your_user_id',
+                template_params: templateParams,
+            }),
+        });
 
-            res.status(200).json({ message: 'Correo de recuperación enviado.' });
-        } catch (error) {
-            console.error('Error al enviar el correo:', error);
-            res.status(500).json({ message: 'Error al enviar el correo.' });
-        }
+        if (!emailResponse.ok) throw new Error('Error al enviar el correo');
+
+        res.json({ message: 'Correo enviado con éxito.' });
     } catch (error) {
-        console.error('Error al procesar la solicitud:', error);
-        res.status(500).json({ message: 'Error al procesar la solicitud.' });
+        console.error(error);
+        res.status(500).json({ message: 'Error en el servidor.' });
     }
-};
+});
 
 
 

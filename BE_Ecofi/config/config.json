@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "marila",
-    "password": "Paz12",
+    "username": "root",
+    "password": "",
     "database": "Ecofi",
     "host": "127.0.0.1",
     "dialect": "mysql"

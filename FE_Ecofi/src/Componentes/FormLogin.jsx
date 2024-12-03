@@ -14,23 +14,49 @@ export default function FormLogin() {
   const loguearUsuario = async (event) => {
     event.preventDefault();
 
-    try {
-      const user = await PostLogin(email, password);
-     //const user = {success: true};
-      
-      if (user) {
-        // Si el backend responde con éxito, navega a la página principal
+    //Llama al servicio del Login
+    try { 
+      const response = await PostLogin({
+          Email_Usuario: email, 
+          Contraseña_Usuario: password
+      });
+
+
+      if (response && response.token) {
+        // Guardamos el token en el localStorage
+        sessionStorage.setItem("token", response.token);
+
+
+        // Extraemos el rol del usuario de la respuesta
+        const rolUsuario = response.rol_usuario;
+
+  
         toast.success("¡Inicio de sesión exitoso!");
-        navigate("/Principal");
+
+
+
+        // Redirigimos según el rol
+        if (rolUsuario === 'Administrador') {
+          navigate("/Administrador");
+        } else if (rolUsuario === 'usuario') {
+          navigate("/PerfilUsuario");
+        } else if (rolUsuario === 'Recofi') {
+          navigate("/Recofi");
+        } else {
+          toast.error("Rol de usuario no reconocido");
+        }
       } else {
-        // Si las credenciales no son válidas
-        toast.error(user.message || "Email o contraseña incorrectos");
+        toast.error(response.message || "Error en el inicio de sesión.");
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       toast.error("Ocurrió un error al iniciar sesión");
     }
   };
+
+
+
+
 
   return (
     <div className='parentContainer'>

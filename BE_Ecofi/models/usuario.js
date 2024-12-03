@@ -59,7 +59,8 @@ module.exports = (sequelize) => {
     },
     Rol_Usuario: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "usuario",
     },
   }, {
     sequelize,

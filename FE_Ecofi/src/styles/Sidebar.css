@@ -1,0 +1,27 @@
+.sidebar {
+    background-color: rgb(17, 231, 53);
+    height: 100vh;
+    padding: 20px; /* Agregar un poco de espacio */
+   
+  }
+  
+  #linkAdminUnique, #linkImagesUnique, #linkEditUnique, #linkCotizacionesUnique {
+    display: block;
+    padding: 10px;
+    margin: 20px 0;
+  
+    border: 2px solid rgb(213, 189, 240);
+    background-color: rgba(213, 189, 240, 0.2); /* Fondo ligero */
+    border-radius: 5px; /* Bordes redondeados */
+    color: rgb(213, 189, 240);
+    font-size: 1.5rem;
+    text-align: center; 
+    transition: background-color 0.3s; 
+    text-decoration: none; 
+  }
+  
+  #linkAdminUnique:hover, #linkImagesUnique:hover, #linkEditUnique:hover, #linkCotizacionesUnique:hover {
+    background-color: rgba(213, 189, 240, 0.5); /* Cambiar fondo al pasar el mouse */
+  }
+  
+  

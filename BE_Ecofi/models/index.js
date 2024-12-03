@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-// const sequelize = require('../db/db'); //User mi conexion existente
+const sequelize = require('../db/db'); 
 const basename = path.basename(__filename);
 const db = {};
 
@@ -17,7 +17,7 @@ fs.readdirSync(__dirname)
     );
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file)); /*(sequelize)*/
+    const model = require(path.join(__dirname, file))(sequelize); 
     db[model.name] = model;
   });
 
@@ -27,5 +27,5 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-// db.sequelize = sequelize;
+db.sequelize = sequelize;
 module.exports = db;

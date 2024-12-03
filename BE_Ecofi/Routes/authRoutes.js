@@ -13,8 +13,8 @@ router.post('/register', registrarUsuario)
 
 
 // Recuperación de contraseña
-router.post('/forgotPassword', forgotPassword);
-router.post('/resetPassword', resetPassword);
+// router.post('/forgotPassword', forgotPassword);
+// router.post('/resetPassword', resetPassword);
 
 module.exports = router;
 

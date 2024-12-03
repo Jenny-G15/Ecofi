@@ -4,6 +4,9 @@ const { Usuario } = require('../models');
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 const emailjs = require('emailjs-com'); 
+const express = require('express');
+const router = express.Router();
+
 
 
 
@@ -62,35 +65,55 @@ const registrarUsuario = async (req, res) => {
 
 
 
-// Función para iniciar sesión (login)
+
+
+
+
 const iniciarSesion = async (req, res) => {
-    const { Nombre_Usuario,  Contraseña_Usuario } = req.body;
+    console.log(req.body); // Verificar qué datos llegan
+
+    // Asegurarse de que los datos están en el formato correcto
+    const datos = req.body.Email_Usuario;
+    const Email_Usuario = datos?.Email_Usuario || req.body.Email_Usuario;
+    const Contraseña_Usuario = datos?.Contraseña_Usuario || req.body.Contraseña_Usuario;
+
+    // Verificar que ambos datos sean proporcionados
+    if (!Email_Usuario || !Contraseña_Usuario) {
+        return res.status(400).json({ message: 'Faltan datos de inicio de sesión.' });
+    }
 
     try {
-        
-        const usuario = await Usuario.findOne({ where: { Nombre_Usuario} });
+        // Buscar el usuario por su correo electrónico
+        const usuario = await Usuario.findOne({ where: { Email_Usuario } });
+
         if (!usuario) {
             return res.status(401).json({ message: 'Credenciales incorrectas.' });
         }
 
-        
-        const esContraseñaValida = await bcrypt.compare( Contraseña_Usuario, usuario.Contraseña_Usuario);
+        // Verificar la contraseña
+        const esContraseñaValida = await bcrypt.compare(Contraseña_Usuario, usuario.Contraseña_Usuario);
+
         if (!esContraseñaValida) {
             return res.status(401).json({ message: 'Credenciales incorrectas.' });
         }
 
-        //Crear el token segun las credenciales digitadas
+        // Generar el token
         const token = jwt.sign(
             {
                 id: usuario.id,
-                Nombre_Usuario: usuario.Nombre_Usuario,
-                Contraseña_Usuario: usuario.Contraseña_Usuario,
+                Email_Usuario: usuario.Email_Usuario,
+                Rol_Usuario: usuario.Rol_Usuario,
             },
             jwtSecret,
             { expiresIn: jwtExpiresIn }
         );
 
-        res.status(200).json({ message: 'Inicio de sesión exitoso', token });
+        // Responder con éxito
+        res.status(200).json({
+            message: 'Inicio de sesión exitoso',
+            token,
+            rol_usuario: usuario.Rol_Usuario
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error al iniciar sesión.' });
@@ -102,93 +125,140 @@ const iniciarSesion = async (req, res) => {
 
 
 
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const { Usuario } = require('./models'); // Ajusta según tu estructura
-const router = express.Router();
+// const iniciarSesion = async (req, res) => {
+//     console.log(req.body); // Verificar qué datos llegan
+//     const { Email_Usuario, Contraseña_Usuario } = req.body; // Cambia a Email_Usuario
+    
+    
 
+//     try {
+//         // Buscar el usuario por su correo electrónico
+//         const usuario = await Usuario.findOne({ where: { Email_Usuario } });
 
+//         if (!usuario) {
+//             return res.status(401).json({ message: 'Credenciales incorrectas.' });
+//         }
 
-// Enviar correo de recuperación
-router.post('/ForgotPassword', async (req, res) => {
-    const { Email_Usuario } = req.body;
+//         // Comparar la contraseña proporcionada con la almacenada
+//         const esContraseñaValida = await bcrypt.compare(Contraseña_Usuario, usuario.Contraseña_Usuario);
 
-    try {
-        const usuario = await Usuario.findOne({ where: { Email_Usuario } });
+//         if (!esContraseñaValida) {
+//             return res.status(401).json({ message: 'Credenciales incorrectas.' });
+//         }
 
-        if (!usuario) {
-            return res.status(404).json({ message: 'Correo no registrado.' });
-        }
+//         // Generar el token
+//         const token = jwt.sign(
+//             {
+//                 id: usuario.id,
+//                 Email_Usuario: usuario.Email_Usuario,
+//                 Rol_Usuario: usuario.Rol_Usuario,
+//             },
+//             jwtSecret,
+//             { expiresIn: jwtExpiresIn }
+//         );
 
-        // Generar token
-        const token = jwt.sign({ id: usuario.id }, SECRET_KEY, { expiresIn: '1h' });
-
-        // Aquí se configurará el envío del correo con EmailJS
-        const templateParams = {
-            to_email: Email_Usuario,
-            token_url: `http://localhost:3000/reset-password/${token}`,
-        };
-
-        const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                service_id: 'your_service_id',
-                template_id: 'your_template_id',
-                user_id: 'your_user_id',
-                template_params: templateParams,
-            }),
-        });
-
-        if (!emailResponse.ok) throw new Error('Error al enviar el correo');
-
-        res.json({ message: 'Correo enviado con éxito.' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error en el servidor.' });
-    }
-});
+//         res.status(200).json({
+//             message: 'Inicio de sesión exitoso',
+//             token,
+//             rol_usuario: usuario.Rol_Usuario
+//         });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Error al iniciar sesión.' });
+//     }
+// };
 
 
 
 
-// Función para restablecer la contraseña
-const resetPassword = async (req, res) => {
 
-    const { token, nuevaContraseña } = req.body;
 
-    try {
-        const decoded = jwt.verify(token, jwtSecret);
 
-        const usuario = await Usuario.findOne({ where: { Email_Usuario: decoded.email } });
 
-        if (!usuario) {
-            return res.status(404).json({ message: 'Usuario no encontrado.' });
-        }
 
-        const contrasenaEncriptada = await bcrypt.hash(nuevaContraseña, 10);
 
-        usuario.Contraseña_Usuario = contrasenaEncriptada;
-        await usuario.save();
 
-        res.status(200).json({ message: 'Contraseña restablecida exitosamente.' });
-    } catch (error) {
-        console.error('Error al restablecer la contraseña:', error);
+
+
+// // Enviar correo de recuperación
+// router.post('/ForgotPassword', async (req, res) => {
+//     const { Email_Usuario } = req.body;
+
+//     try {
+//         const usuario = await Usuario.findOne({ where: { Email_Usuario } });
+
+//         if (!usuario) {
+//             return res.status(404).json({ message: 'Correo no registrado.' });
+//         }
+
+//         // Generar token
+//         const token = jwt.sign({ id: usuario.id }, SECRET_KEY, { expiresIn: '1h' });
+
+//         // Aquí se configurará el envío del correo con EmailJS
+//         const templateParams = {
+//             to_email: Email_Usuario,
+//             token_url: `http://localhost:3000/reset-password/${token}`,
+//         };
+
+//         const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({
+//                 service_id: 'your_service_id',
+//                 template_id: 'your_template_id',
+//                 user_id: 'your_user_id',
+//                 template_params: templateParams,
+//             }),
+//         });
+
+//         if (!emailResponse.ok) throw new Error('Error al enviar el correo');
+
+//         res.json({ message: 'Correo enviado con éxito.' });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Error en el servidor.' });
+//     }
+// });
+
+
+
+
+// // Función para restablecer la contraseña
+// const resetPassword = async (req, res) => {
+
+//     const { token, nuevaContraseña } = req.body;
+
+//     try {
+//         const decoded = jwt.verify(token, jwtSecret);
+
+//         const usuario = await Usuario.findOne({ where: { Email_Usuario: decoded.email } });
+
+//         if (!usuario) {
+//             return res.status(404).json({ message: 'Usuario no encontrado.' });
+//         }
+
+//         const contrasenaEncriptada = await bcrypt.hash(nuevaContraseña, 10);
+
+//         usuario.Contraseña_Usuario = contrasenaEncriptada;
+//         await usuario.save();
+
+//         res.status(200).json({ message: 'Contraseña restablecida exitosamente.' });
+//     } catch (error) {
+//         console.error('Error al restablecer la contraseña:', error);
 
         
-        if (error.name === 'TokenExpiredError') {
-            return res.status(400).json({ message: 'El token ha expirado.' });
-        }
+//         if (error.name === 'TokenExpiredError') {
+//             return res.status(400).json({ message: 'El token ha expirado.' });
+//         }
 
-        res.status(500).json({ message: 'Error al restablecer la contraseña.' });
-    }
-};
-
-
+//         res.status(500).json({ message: 'Error al restablecer la contraseña.' });
+//     }
+// };
 
 
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion,forgotPassword, resetPassword };
+
+
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion};
 
 
 

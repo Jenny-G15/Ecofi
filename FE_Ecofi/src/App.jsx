@@ -7,12 +7,10 @@ import Routing from "./routes/Routing"; // Asegúrate de que la ruta esté bien
 
 function App() {
   return (
-    <>
       <div>
         <Routing />
         <ToastContainer />
       </div>
-    </>
   );
 }
 

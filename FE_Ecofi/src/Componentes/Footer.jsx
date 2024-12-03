@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com'; 
-import "../styles/inicio.css";
+import "../styles/Principal.css";
 import Mapa from './Mapa';
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";

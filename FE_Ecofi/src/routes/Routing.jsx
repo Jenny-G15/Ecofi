@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login';
 import Register from '../Pages/Register';
-import ResetPassword from '../Componentes/ResetPassword';
+import Administracion from '../pages/Administracion';
+import PerfilUsuario from '../pages/Perfil_Usuario';
 // import { route } from '../../../BE_Ecofi/Routes/authRoutes';
 
 
@@ -12,7 +13,9 @@ const Routing = () => {
       <Routes>
       <Route path='/Register' element= {<Register/>} /> 
        {<Route path="/Login" element={<Login/>} /> }
-       {<Route path="/resetPassword" element={<ResetPassword/>} /> }
+       {<Route path="/Administracion" element={<Administracion/>} /> }
+       {<Route path="/PerfilUsuario" element={<PerfilUsuario/>} /> }
+
 
      </Routes>
     </Router>    

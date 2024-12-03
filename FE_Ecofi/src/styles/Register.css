@@ -1,18 +1,5 @@
 /* Estilos generales */
 
-:root {
-  --backgroundImage: url('../img/freepik__upload__3725.jpeg');
-}
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  overflow: hidden;
-  background-image: var(--backgroundImage);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 .containerRegistro {
   background: rgba(255, 255, 255, 0.815);
@@ -150,20 +137,6 @@ input:focus, select:focus {
 .enviarRegistro:hover {
   opacity: 0.9;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

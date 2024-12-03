@@ -67,6 +67,30 @@ export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
 }
 
 
+<<<<<<< HEAD
+const PostProductos = async (formData) => {
+  try {
+    const response = await fetch('http://localhost:3000/upload', {
+      method: 'POST',
+      body: formData,  // Usamos FormData para enviar los datos
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al crear el producto');
+    }
+
+    const data = await response.json();
+    console.log('Producto creado con éxito:', data);
+    return data;
+  } catch (error) {
+    console.error('Error en PostProductos:', error);
+    throw error;
+  }
+};
+
+export default PostProductos;
+
+=======
 export async function PostProductos(Nombre_Producto, Descripcion_Producto, Precio_Producto, Stock_Producto, Categoria_Producto) {
     try {
         const productoData = {
@@ -89,6 +113,7 @@ export async function PostProductos(Nombre_Producto, Descripcion_Producto, Preci
         throw error;
     }
 }
+>>>>>>> 61aea061cef3bc5c6f0d95a8372c96dcfc57ff78
 
 
 

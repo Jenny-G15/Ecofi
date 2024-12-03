@@ -1,9 +1,5 @@
 const { Direccion } = require ('../models');
 
-
-
-
-
 // Llamar al Direccion:
 const obtenerDireccion = async (req, res) => {
   try {

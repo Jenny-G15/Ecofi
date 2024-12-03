@@ -1,27 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const { iniciarSesion, registrarUsuario, obtenerUsuarios } = require('../Controllers/authControllers');
+const {forgotPassword, resetPassword} = require('../Controllers/authControllers')
 
+
+//Rutas para Login y Register
 router.get('/', obtenerUsuarios)
 router.post('/login', iniciarSesion);
 router.post('/register', registrarUsuario)
 
-// router.post('/register', (req, res) => {
-//     res.status(200).send('Ruta activa');
-// });
+
+
+
+// Recuperación de contraseña
+// router.post('/forgotPassword', forgotPassword);
+// router.post('/resetPassword', resetPassword);
 
 module.exports = router;
 
-
-
-// const express = require('express');
-// const router = express.Router();
-// const { verificarToken } = require('../middlewares/authMiddleware');
-
-// // Ruta protegida, solo accesible si se tiene un token válido
-// router.get('/perfil', verificarToken, (req, res) => {
-//     // La solicitud llega aquí solo si el token es válido
-//     res.status(200).json({ message: 'Acceso autorizado', usuario: req.usuario });
-// });
-
-// module.exports = router;

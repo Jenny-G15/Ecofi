@@ -19,7 +19,8 @@ export async function getUsers() {
     }
 }
 
-export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usuario,Contraseña_Usuario,Telefono_Usuario, Bicolones, Rol_Usuario) {
+
+export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usuario,Contraseña_Usuario,Telefono_Usuario, Bicolones) {
     try {
       const userData = {
         Nombre_Usuario,
@@ -29,7 +30,6 @@ export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usu
         Contraseña_Usuario,
         Telefono_Usuario, 
         Bicolones, 
-        Rol_Usuario
       };
       const response = await fetch("http://localhost:3000/usuarios/register", {
         method: "POST",
@@ -45,10 +45,10 @@ export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usu
     }
 }
 
-export async function PostLogin(Nombre_Usuario, Contraseña_Usuario) {
+export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
     try {
       const userData = {
-        Nombre_Usuario,
+        Email_Usuario,
         Contraseña_Usuario
       };
 
@@ -67,6 +67,7 @@ export async function PostLogin(Nombre_Usuario, Contraseña_Usuario) {
 }
 
 
+<<<<<<< HEAD
 const PostProductos = async (formData) => {
   try {
     const response = await fetch('http://localhost:3000/upload', {
@@ -89,19 +90,31 @@ const PostProductos = async (formData) => {
 
 export default PostProductos;
 
+=======
+export async function PostProductos(Nombre_Producto, Descripcion_Producto, Precio_Producto, Stock_Producto, Categoria_Producto) {
+    try {
+        const productoData = {
+            Nombre_Producto,
+            Descripcion_Producto,
+            Precio_Producto,
+            Stock_Producto,
+            Categoria_Producto,
+        };
+        const response = await fetch(`http://localhost:3000/productos/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(productoData),
+        });
+        return await response.json();
+    } catch (error) {
+        console.error("Error en el servidor", error);
+        throw error;
+    }
+}
+>>>>>>> 61aea061cef3bc5c6f0d95a8372c96dcfc57ff78
 
 
 
 
-// export const getAdmins = async () => {
-//     try {
-//         const response = await fetch('http://localhost:3000/Admins');
-//         if (!response.ok) {
-//             throw new Error("Error al obtener la lista de Administradores");
-//         }
-//         return await response.json();
-//     } catch (error) {
-//         console.error(error);
-//         throw error;
-//     }
-// };

@@ -6,6 +6,7 @@ export default function Register() {
   return (
     <div>
       <FormularioRegistro/>
+      
     </div>
   )
 }

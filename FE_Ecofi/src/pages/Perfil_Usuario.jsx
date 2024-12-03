@@ -1,14 +1,16 @@
 import React from 'react'
 import "../Styles/Perfil_Usuario.css"
+import SideBar from '../Componentes/SideBar'
 
-function Perfil_Usuario() {
+function PerfilUsuario() {
   return (
     <div>
 
+     <SideBar/>
 
  
     </div>
   )
 }
 
-export default Perfil_Usuario
+export default PerfilUsuario

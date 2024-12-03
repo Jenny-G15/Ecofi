@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from '../pages/Login';
+import Login from '../Pages/Login';
 import Register from '../Pages/Register';
-import Administracion from '../pages/Administracion';
-import PerfilUsuario from '../pages/Perfil_Usuario';
-import Inicio from '../pages/Bienvenida';
+import Administracion from '../Pages/Administracion';
+import PerfilUsuario from '../Pages/Perfil_Usuario';
+import Inicio from '../Pages/Bienvenida';
 // import { route } from '../../../BE_Ecofi/Routes/authRoutes';
 
 

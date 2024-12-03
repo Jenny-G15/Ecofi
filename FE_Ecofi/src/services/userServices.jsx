@@ -45,10 +45,10 @@ export async function PostUsers(Nombre_Usuario,Apellido_Usuario,Cedula,Email_Usu
     }
 }
 
-export async function PostLogin(Nombre_Usuario, Contraseña_Usuario) {
+export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
     try {
       const userData = {
-        Nombre_Usuario,
+        Email_Usuario,
         Contraseña_Usuario
       };
 

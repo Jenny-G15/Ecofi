@@ -125,50 +125,6 @@ const iniciarSesion = async (req, res) => {
 
 
 
-// const iniciarSesion = async (req, res) => {
-//     console.log(req.body); // Verificar qué datos llegan
-//     const { Email_Usuario, Contraseña_Usuario } = req.body; // Cambia a Email_Usuario
-    
-    
-
-//     try {
-//         // Buscar el usuario por su correo electrónico
-//         const usuario = await Usuario.findOne({ where: { Email_Usuario } });
-
-//         if (!usuario) {
-//             return res.status(401).json({ message: 'Credenciales incorrectas.' });
-//         }
-
-//         // Comparar la contraseña proporcionada con la almacenada
-//         const esContraseñaValida = await bcrypt.compare(Contraseña_Usuario, usuario.Contraseña_Usuario);
-
-//         if (!esContraseñaValida) {
-//             return res.status(401).json({ message: 'Credenciales incorrectas.' });
-//         }
-
-//         // Generar el token
-//         const token = jwt.sign(
-//             {
-//                 id: usuario.id,
-//                 Email_Usuario: usuario.Email_Usuario,
-//                 Rol_Usuario: usuario.Rol_Usuario,
-//             },
-//             jwtSecret,
-//             { expiresIn: jwtExpiresIn }
-//         );
-
-//         res.status(200).json({
-//             message: 'Inicio de sesión exitoso',
-//             token,
-//             rol_usuario: usuario.Rol_Usuario
-//         });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'Error al iniciar sesión.' });
-//     }
-// };
-
-
 
 
 

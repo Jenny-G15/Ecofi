@@ -24,7 +24,7 @@ export default function FormLogin() {
 
       if (response && response.token) {
         // Guardamos el token en el localStorage
-        localStorage.setItem("token", response.token);
+        sessionStorage.setItem("token", response.token);
 
 
         // Extraemos el rol del usuario de la respuesta

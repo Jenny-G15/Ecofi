@@ -25,6 +25,8 @@ const obtenerUsuarios = async (req, res) => {
     }
   };
 
+
+  
 const registrarUsuario = async (req, res) => {
 
     const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario,

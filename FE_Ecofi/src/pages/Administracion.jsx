@@ -1,6 +1,6 @@
 import React from 'react'
 import {Row,Col} from 'react-bootstrap'
-import "../Styles/Administracion.css"
+import '../styles/Admin.css'
 import AdminSidebar from '../Componentes/SideBar'
 
 
@@ -13,7 +13,6 @@ function Administracion() {
       </Row>
       <Nav /> <CardsAdmin/>
   
-      <div id='footerConteiner'><Footer /> </div>
 
     </div>
   )

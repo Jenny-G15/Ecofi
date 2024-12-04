@@ -1,0 +1,6 @@
+/* Tamaño del Contenedor del Mapa */
+.leaflet-container {
+    height: 90vh;
+    width: 90%;
+    border-radius: 2rem;
+  }

@@ -13,6 +13,7 @@ export default function FormLogin() {
 
   const loguearUsuario = async (event) => {
     event.preventDefault();
+    
 
     //Llama al servicio del Login
     try { 
@@ -23,7 +24,7 @@ export default function FormLogin() {
 
 
       if (response && response.token) {
-        // Guardamos el token en el localStorage
+        // Guardamos el token en el SessionStorage
         sessionStorage.setItem("token", response.token);
 
 

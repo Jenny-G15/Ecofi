@@ -3,11 +3,11 @@ import "../Styles/Principal.css"
 
 function QuienesSomos() {
   return (
-    <div>
-
-
- 
-    </div>
+    <div id='AboutConteiner'>
+    <NavAbout />
+    <CarruselAbout />
+    <div id='footerConteiner'><Footer /> </div>
+  </div>
   )
 }
 

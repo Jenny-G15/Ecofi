@@ -1,21 +1,18 @@
 import React from 'react'
-import SideBar from '../Componentes/SideBar'
-import {Row,Col} from 'react-bootstrap'
-import "../Styles/Administracion.css"
-
-
-
-
-
+import "../styles/Principal.css"
+import Nav from '../Componentes/Nav';
+import Footer from '../Componentes/Footer';
+import CardsAdmin from '../Componentes/cardsAdmin';
 
 
 function Administracion() {
   return (
     <div className='AdminBack'>
-      <Row>
-        <Col sm={2} > <SideBar /></Col>
-      </Row>
       
+      <Nav />
+      <CardsAdmin/>
+  
+      <div id='footerConteiner'><Footer /> </div>
 
     </div>
   )

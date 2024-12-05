@@ -1,3 +1,6 @@
+
+import Inicio from '../pages/Principal';
+import QuienesSomos from '../pages/QuienesSomos';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../Pages/Register";
@@ -8,25 +11,26 @@ import PerfilUsuario from "../pages/Perfil_Usuario";
 
 
 
-
 const Routing = () => {
   // Definir el fondo para la página Principal
   const backgroundImage = "../src/img/fondo3.jpeg"; // Ajusta la ruta de la imagen según lo necesario
 
   return (
     <Router>
-      {/* Aplica el fondo solo en Principal */}
+     
       <BodyBackground background={backgroundImage} />
       
       <Routes>
-        <Route path="/Principal" element={<Principal />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/Login" element={<Login />} />
-        {<Route path="/Administracion" element={<Administracion/>} /> }
-        {<Route path="/PerfilUsuario" element={<PerfilUsuario/>} /> }
-      </Routes>
-    </Router>
-  );
-};
+       {<Route path="/Principal" element={<Inicio/>} /> }
+       {<Route path='/Register' element= {<Register/>} /> }
+       {<Route path="/Login" element={<Login/>} /> }
+       {<Route path="/Administracion" element={<Administracion/>} /> }
+       {<Route path="/PerfilUsuario" element={<PerfilUsuario/>} /> }
+       {<Route path="/QuienesSomos" element={<QuienesSomos/>} /> }
 
-export default Routing;
+
+     </Routes>
+    </Router>    
+   );
+};
+export default Routing

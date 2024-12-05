@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "emailjs-com": "^3.2.0",
+    "firebase": "^11.0.2",
     "leaflet": "^1.9.4",
     "mdb-react-ui-kit": "^9.0.0",
     "react": "^18.3.1",
@@ -23,7 +24,8 @@
     "react-sidebar": "^3.0.2",
     "react-slick": "^0.30.2",
     "react-toastify": "^10.0.6",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

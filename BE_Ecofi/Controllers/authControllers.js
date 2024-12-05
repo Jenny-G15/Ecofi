@@ -3,16 +3,8 @@ const jwt = require('jsonwebtoken');
 const { Usuario } = require('../models'); 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
-const emailjs = require('emailjs-com'); 
-const express = require('express');
-const router = express.Router();
-
-
-
-
-
-
-
+// const emailjs = require('emailjs-com'); 
+// const express = require('express');
 
 const obtenerUsuarios = async (req, res) => {
     try {
@@ -64,11 +56,6 @@ const registrarUsuario = async (req, res) => {
         res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
     }
 };
-
-
-
-
-
 
 
 const iniciarSesion = async (req, res) => {

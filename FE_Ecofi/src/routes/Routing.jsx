@@ -1,10 +1,8 @@
-
-import Inicio from '../pages/Principal';
 import QuienesSomos from '../pages/QuienesSomos';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../Pages/Register";
-import Principal from "../pages/Principal";
+import Principal from "../Pages/Principal";
 import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../pages/Administracion";
 import PerfilUsuario from "../pages/Perfil_Usuario";
@@ -21,7 +19,7 @@ const Routing = () => {
       <BodyBackground background={backgroundImage} />
       
       <Routes>
-       {<Route path="/Principal" element={<Inicio/>} /> }
+       {<Route path="/Principal" element={<Principal/>} /> }
        {<Route path='/Register' element= {<Register/>} /> }
        {<Route path="/Login" element={<Login/>} /> }
        {<Route path="/Administracion" element={<Administracion/>} /> }

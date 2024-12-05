@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../styles/Admin.css";
 
-function ProductEditForm({ product, onClose, onSave }) {
+function ProductEditForm({ product }) {
   if (!product) {
     return  toast.success("Producto no disponible");; // Mensaje si no se recibe el producto
   }

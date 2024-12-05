@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../styles/Admin.css";
 
-function ProductList({ productos, onEdit }) {
+function ProductList({ productos }) {
   const [isLoading, setIsLoading] = useState(false);
 
   if (!Array.isArray(productos)) {

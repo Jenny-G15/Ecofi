@@ -15,6 +15,8 @@ const EcofiProvider = ({children}) => {
       loadProductos()
   }, []);
 
+  console.log('Productos', Productos)
+  
   return <ContextoEcofi.Provider value={{Productos}}>{children}</ContextoEcofi.Provider>
 }
 

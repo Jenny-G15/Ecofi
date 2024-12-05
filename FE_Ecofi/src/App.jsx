@@ -10,7 +10,7 @@ function App() {
       <div>
         <EcofiProvider>
         <Routing />
-        <ToastContainer />
+        <ToastContainer/>
         </EcofiProvider>
         
       </div>

@@ -1,147 +1,96 @@
-import React, { useCallback, useEffect, useState } from "react";
-import cargarImagen from "../Firebase/config"; // Asegúrate de tener esta configuración
+import React, { useContext, useEffect, useState } from "react";
+import cargarImagen from "../Firebase/config"; 
 import "../styles/admin.css";
 import { getEmprendedores } from "../services/emprendedorServices";
-import { PostProductos } from "../services/productServices";
+import { PostProductos, getProductos } from "../services/productServices";
+import ContextoEcofi from './Context/EcofiContex';
+import ProductList from "./ProductList";
 
 function CardsAdmin() {
   const [emprendedor, setEmprendedor] = useState([]);
+  const [productos, setProductos] = useState([]); 
   const [Image, setImage] = useState("");
   const [stock, setStock] = useState("");
   const [bicolones, setBicolones] = useState("");
   const [description, setDescription] = useState("");
+  const [selectedProducto, setSelectedProducto] = useState(""); 
 
-  useEffect(() =>{
+  const { Productos } = useContext(ContextoEcofi); 
+
+  useEffect(() => {
     async function obtenerEmprendedores() {
-      const obtenerEmprendedores = await getEmprendedores()
-      setEmprendedor(obtenerEmprendedores)
+      const obtenerEmprendedores = await getEmprendedores();
+      setEmprendedor(obtenerEmprendedores);
     }
-    obtenerEmprendedores()
-  }, []) 
-  
-  // const [editando, setEditando] = useState(false);
-  // const [editData, setEditData] = useState(null);
+    obtenerEmprendedores();
 
-  // Función para cargar la imagen a Firebase Storage
-  // const cargarImagen = async (file) => {
-  //   const fileRef = ref(storage, `uploads/${file.name}`);
-  //   await uploadBytes(fileRef, file);
-  //   return getDownloadURL(fileRef);
-  // };
-
-  // Función para cargar productos desde Firestore
-  // const loadProductos = useCallback(async () => {
-  //   try {
-  //     const querySnapshot = await getDocs(collection(db, "productos"));
-  //     const productosData = querySnapshot.docs.map((doc) => ({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     }));
-  //     setProductos(productosData);
-  //   } catch (error) {
-  //     console.error("Error loading products:", error);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   loadProductos();
-  // }, [loadProductos]);
-
-  const cargarImagenFirebase =  async (e) =>{
-    console.log(e)
-    const obtenerImagen = e.target.files[0]
-    setImage(obtenerImagen)
-
-    if(obtenerImagen) {
-      const subirImagen = await cargarImagen(obtenerImagen)
-      setImage(subirImagen)
+    async function obtenerProductos() {
+      const obtenerProductos = await getProductos(); // Función para obtener los productos desde la base de datos
+      setProductos(obtenerProductos); // Guardar los productos en el estado
     }
-  }
+    obtenerProductos();
+  }, []);
 
-  const agregarProducto = async () =>{
-    await PostProductos(emprendedor, bicolones, Image, stock, description)
-  }
+  const cargarImagenFirebase = async (e) => {
+    const obtenerImagen = e.target.files[0];
+    setImage(obtenerImagen);
 
-  // Agregar un producto
-  // const addProduct = async (e) => {
-  //   e.preventDefault();
-  //   if (!Image) {
-  //     alert("Por favor selecciona una imagen");
-  //     return;
-  //   }
-  //   try {
-  //     // const imageURL = await cargarImagen(Image);
-  //     // await addDoc(collection(db, "productos"), {
-  //     //   nombre: name,
-  //     //   precio: price,
-  //     //   descripcion: description,
-  //     //   imagen: imageURL,
-  //     // });
-  //     // resetForm();
-  //     // loadProductos();
-  //   } catch (error) {
-  //     console.error("Error adding product:", error);
-  //   }
-  // };
+    if (obtenerImagen) {
+      const subirImagen = await cargarImagen(obtenerImagen);
+      setImage(subirImagen);
+    }
+  };
 
-  // Editar un producto
-  // const guardarEdicion = async () => {
-  //   if (!editData) return;
-  //   try {
-  //     const productRef = doc(db, "productos", editData.id);
-  //     await updateDoc(productRef, {
-  //       nombre: editData.nombre,
-  //       precio: editData.precio,
-  //       descripcion: editData.descripcion,
-  //       imagen: editData.imagen,
-  //     });
-  //     setEditando(false);
-  //     setEditData(null);
-  //     // loadProductos();
-  //   } catch (error) {
-  //     console.error("Error updating product:", error);
-  //   }
-  // };
+  const agregarProducto = async (e) => {
+    e.preventDefault();
+    if (!bicolones || !description || !stock || !Image || !selectedProducto) {
+      alert("Todos los campos son obligatorios");
+      return;
+    }
 
-  // Eliminar un producto
-  // const eliminarProducto = async (id, imagenUrl) => {
-  //   try {
-  //     // Elimina de Firestore
-  //     await deleteDoc(doc(db, "productos", id));
-  //     // Elimina de Storage
-  //     const imageRef = ref(storage, imagenUrl);
-  //     await deleteObject(imageRef);
-  //     // loadProductos();
-  //   } catch (error) {
-  //     console.error("Error deleting product:", error);
-  //   }
-  // };
+    // Aquí pasamos los datos al servicio para agregar el producto
+    await PostProductos(selectedProducto, bicolones, Image, stock, description);
+  };
 
-  // const resetForm = () => {
-  //   setName("");
-  //   setPrice("");
-  //   setDescription("");
-  //   setBaseImage(null);
-  // };
+  console.log('Productos en CardsAdmin:', Productos);
 
-  console.log('emprendedor', emprendedor)
   return (
     <div id="agregar-producto">
       <form id="form-agregar-producto" onSubmit={agregarProducto}>
         <input
+          id="imagen-producto"
           type="file"
           onChange={cargarImagenFirebase}
           required
         />
-        <select name="" id="">
+        
+        {/* Dropdown de emprendedores */}
+        <select id="seleccionar-emprendedor" required>
           <option value="">Seleccione un emprendedor</option>
-        {
-          emprendedor.map((emprendedor) => {
-            return <option key={emprendedor.id} value={emprendedor.id}>{emprendedor.Nombre_Emprendedor}</option>;
-          })
-        }
+          {emprendedor.map((emprendedor) => (
+            <option key={emprendedor.id} value={emprendedor.id}>
+              {emprendedor.Nombre_Emprendedor}
+            </option>
+          ))}
         </select>
+        
+        {/* Dropdown de productos */}
+        <select
+          id="seleccionar-producto"
+          value={selectedProducto}
+          onChange={(e) => setSelectedProducto(e.target.value)}
+          required
+        >
+          <option value="">Seleccione un producto</option>
+          {productos.map((producto) => (
+            <option key={producto.id} value={producto.id}>
+              {producto.Nombre_Producto}
+            </option>
+          ))}
+        </select>
+
         <input
+          id="precio-producto"
           type="text"
           value={bicolones}
           onChange={(e) => setBicolones(e.target.value)}
@@ -149,6 +98,7 @@ function CardsAdmin() {
           required
         />
         <input
+          id="descripcion-producto"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -156,69 +106,20 @@ function CardsAdmin() {
           required
         />
         <input
+          id="stock-producto"
           type="number"
           value={stock}
           onChange={(e) => setStock(e.target.value)}
           placeholder="Stock"
           required
         />
-        <button type="submit">Agregar producto</button>
+        <button id="btn-agregar-producto" type="submit">
+          Agregar producto
+        </button>
       </form>
 
-      {/* {editando && editData && (
-        <div id="editar-producto">
-          <h3>Editar Producto</h3>
-          <input
-            type="text"
-            value={editData.nombre}
-            onChange={(e) =>
-              setEditData({ ...editData, nombre: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            value={editData.precio}
-            onChange={(e) =>
-              setEditData({ ...editData, precio: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            value={editData.descripcion}
-            onChange={(e) =>
-              setEditData({ ...editData, descripcion: e.target.value })
-            }
-          />
-          <button onClick={guardarEdicion}>Guardar</button>
-          <button onClick={() => setEditando(false)}>Cancelar</button>
-        </div>
-      )}
-
-      <div className="cardProducts">
-        {productos.map((product) => (
-          <div key={product.id} className="product-card">
-            <img
-              src={product.imagen}
-              alt={product.nombre}
-              style={{ width: "100px", height: "100px" }}
-            />
-            <h3>{product.nombre}</h3>
-            <p>Precio: {product.precio}</p>
-            <p>{product.descripcion}</p>
-            <button onClick={() => eliminarProducto(product.id, product.imagen)}>
-              Eliminar
-            </button>
-            <button
-              onClick={() => {
-                setEditando(true);
-                setEditData(product);
-              }}
-            >
-              Editar
-            </button>
-          </div>
-        ))}
-      </div> */}
+      {/* Mostrar lista de productos si existen */}
+      <ProductList productos={Productos || []} />
     </div>
   );
 }

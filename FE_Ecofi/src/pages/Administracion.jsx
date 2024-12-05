@@ -1,18 +1,22 @@
 import React from 'react'
-import "../styles/Principal.css"
-import Nav from '../Componentes/Nav';
-import Footer from '../Componentes/Footer';
+import "../styles/Admin.css"
+import NavAdmin from '../Componentes/NavAdmin';
+// import Footer from '../Componentes/Footer';
 import CardsAdmin from '../Componentes/cardsAdmin';
+import ProductEditForm from '../Componentes/ProductEditForm';
+import ProductList from '../Componentes/ProductList';
 
 
 function Administracion() {
   return (
-    <div className='AdminBack'>
+    <div id='AdminBack'>
       
-      <Nav />
+      <NavAdmin />
       <CardsAdmin/>
+      <ProductEditForm/>
+      <ProductList/>
   
-      <div id='footerConteiner'><Footer /> </div>
+      {/* <div id='footerConteiner'><Footer /> </div> */}
 
     </div>
   )

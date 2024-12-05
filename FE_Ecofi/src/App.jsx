@@ -4,14 +4,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import 'leaflet/dist/leaflet.css';
 
-
 import Routing from "./routes/Routing"; // Asegúrate de que la ruta esté bien
+import EcofiProvider from "./Componentes/Context/EcofiProvider";
 
 function App() {
   return (
       <div>
+        <EcofiProvider>
         <Routing />
         <ToastContainer />
+        </EcofiProvider>
+        
       </div>
   );
 }

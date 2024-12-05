@@ -3,14 +3,16 @@ export async function PostProductos
         Bicolones_Producto, 
         Imagen,
         Stock,
-        Descripcion_Producto) {
+        Descripcion_Producto,
+        Nombre_Producto) {
     try {
         const productoData = {
             ID_Emprendedor, 
             Bicolones_Producto, 
             Imagen,
             Stock,
-            Descripcion_Producto
+            Descripcion_Producto,
+            Nombre_Producto
         };
         const response = await fetch('http://localhost:3000/productos/', {
             method: "POST",

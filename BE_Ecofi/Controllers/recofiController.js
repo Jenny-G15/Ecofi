@@ -1,15 +1,70 @@
-const { Recofi } = require('../models');
+const { Recofi, Material } = require("../models");
 
-// Obtener todos los Recofis
 const obtenerRecofis = async (req, res) => {
   try {
-    const recofis = await Recofi.findAll();
+    console.log("Iniciando la consulta de recofis...");
+
+    // Intenta realizar la consulta
+    const recofis = await Recofi.findAll({
+      include: [
+        {
+          model: Material,
+          as: 'materialRecofi', 
+          attributes: ['Tipo_Material'], 
+        },
+      ],
+    });
+
+    // Log para verificar la consulta ejecutada y los datos obtenidos
+    console.log("Datos obtenidos de la base de datos:", JSON.stringify(recofis, null, 2));
+
+    // Envía la respuesta al cliente
     res.status(200).json(recofis);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al obtener los recofis.' });
+    // Log para capturar errores
+    console.error("Error al obtener los recofis:", error);
+
+    // Respuesta de error al cliente
+    res.status(500).json({ error: "Error al obtener los recofis." });
   }
 };
+
+
+
+// // Obtener todos los Recofis
+// const obtenerRecofis = async (req, res) => {
+//   try {
+//     const recofis = await Recofi.findAll({
+//       include: [
+//         {
+//           model: Material,
+//           as: 'recofiMaterial', 
+//           attributes: ['Tipo_Material'] 
+//         }
+//       ]
+//     });
+//     res.status(200).json(recofis);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Error al obtener los recofis.' });
+//   }
+// };
+
+
+
+
+
+
+
+// const obtenerRecofis = async (req, res) => {
+//   try {
+//     const recofis = await Recofi.findAll();
+//     res.status(200).json(recofis);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Error al obtener los recofis.' });
+//   }
+// };
 
 
 

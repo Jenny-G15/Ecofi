@@ -1,11 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from '../pages/Login';
-import Register from '../Pages/Register';
-import Administracion from '../pages/Administracion';
-import PerfilUsuario from '../pages/Perfil_Usuario';
+
 import Inicio from '../pages/Principal';
-import BodyBackground from "../Componentes/BodyBackground"; // Importa el componente aquí
 import QuienesSomos from '../pages/QuienesSomos';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "../pages/Login";
+import Register from "../Pages/Register";
+import Principal from "../pages/Principal";
+import BodyBackground from "../Componentes/BodyBackground";
+import Administracion from "../pages/Administracion";
+import PerfilUsuario from "../pages/Perfil_Usuario";
+
 
 
 const Routing = () => {

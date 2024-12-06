@@ -15,6 +15,9 @@ function AdminSideBar() {
         <Link className="sidebarLink" to="/AgregarRecofi">
           Agregar Recofis
         </Link>
+        <Link className="sidebarLink" to="/AgregarEmpren">
+          Agregar Emprendedor
+        </Link>
       </nav>
     </div>
   );

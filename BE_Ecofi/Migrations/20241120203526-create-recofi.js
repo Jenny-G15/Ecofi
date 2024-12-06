@@ -42,11 +42,11 @@ module.exports = {
         allowNull: false
       },
       Latitud: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10.8),
         allowNull: false
       },
       Longitud: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10,8),
         allowNull: false
       },
       Direccion_Recofi: {

@@ -50,16 +50,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Horario: {
+    HorarioApertura: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
+    HorarioCierre: {
       type: DataTypes.TIME,
       allowNull: false,
     },
     Latitud: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,7),
       allowNull: false,
     },
     Longitud: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,7),
       allowNull: false,
     },
     Direccion_Recofi: {

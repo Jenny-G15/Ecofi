@@ -9,12 +9,15 @@ import ProductList from "./ProductList";
 function CardsAdmin() {
   const [emprendedor, setEmprendedor] = useState([]);
   const [guardarEmprendedor, setGuardarEmprendedor] = useState("");
+  const [Nombre_Producto, setProducto] = useState("");
   const [Image, setImage] = useState("");
   const [stock, setStock] = useState("");
   const [bicolones, setBicolones] = useState("");
   const [description, setDescription] = useState("");
 
-  const { Productos } = useContext(ContextoEcofi)
+  const { Productos, setProductoAgregado } = useContext(ContextoEcofi)
+
+  console.log("Estos productos vienen del contexto", Productos)
 
   useEffect(() => {
     async function obtenerEmprendedores() {
@@ -24,11 +27,12 @@ function CardsAdmin() {
     obtenerEmprendedores()
   }, []) 
 
-  const handleSelectChange = (event) => {
+  //Obtiene el id del emprendedor para guardarlo en la base de datos
+  const cargarIdEmprendedor = (event) => {
     const selectedId = event.target.value; 
     setGuardarEmprendedor(selectedId); 
   };
-
+  
   const cargarImagenFirebase =  async (e) => {
     console.log(e)
     const obtenerImagen = e.target.files[0]
@@ -41,9 +45,10 @@ function CardsAdmin() {
   }
 
   const agregarProducto = async () => {
-    console.log(guardarEmprendedor, bicolones, Image, stock, description);
+    console.log(guardarEmprendedor, Nombre_Producto, bicolones, Image, stock, description);
     
-    const respuesta = await PostProductos(guardarEmprendedor, bicolones, Image, stock, description)
+    const respuesta = await PostProductos(guardarEmprendedor, Nombre_Producto, bicolones, Image, stock, description)
+    setProductoAgregado(true)
     console.log(respuesta);
     
   }
@@ -51,13 +56,14 @@ function CardsAdmin() {
   console.log('emprendedor', emprendedor)
   return (
     <div id="agregar-producto">
+      <div>
         <input
           id="imagen-producto"
           type="file"
           onChange={cargarImagenFirebase}
           required
         />
-        <select id="seleccionar-emprendedor" required onChange={handleSelectChange}>
+        <select id="seleccionar-emprendedor" required onChange={cargarIdEmprendedor}>
         <option value="">Seleccione un emprendedor</option>
         {emprendedor.map((emprendedor) => (
         <option key={emprendedor.id} value={emprendedor.id}>
@@ -65,6 +71,14 @@ function CardsAdmin() {
         </option>
       ))}
     </select>
+        <input
+          id="nombre-producto"
+          type="text"
+          value={Nombre_Producto}
+          onChange={(e) => setProducto(e.target.value)}
+          placeholder="Nombre Producto"
+          required
+        />
 
         <input
           id="precio-producto"
@@ -91,9 +105,11 @@ function CardsAdmin() {
           required
         />
         <button id="btn-agregar-producto" onClick={agregarProducto}>Agregar producto</button>
-
-      <ProductList productos={Productos}/>
+      </div>
+        
+        <ProductList productos={Productos}/>
     </div>
+    
   );
 }
 

@@ -6,6 +6,8 @@ import Principal from "../Pages/Principal";
 import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../pages/Administracion";
 import PerfilUsuario from "../pages/Perfil_Usuario";
+import EcofiProvider from '../Componentes/Context/EcofiProvider';
+
 
 
 
@@ -19,6 +21,7 @@ const Routing = () => {
       <BodyBackground background={backgroundImage} />
       
       <Routes>
+       {<Route path="/" element={<EcofiProvider/>} /> }
        {<Route path="/Principal" element={<Principal/>} /> }
        {<Route path='/Register' element= {<Register/>} /> }
        {<Route path="/Login" element={<Login/>} /> }

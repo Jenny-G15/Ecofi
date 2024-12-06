@@ -8,13 +8,12 @@ function ProductList({ productos }) {
   const [isLoading, setIsLoading] = useState(false);
 
   if (!Array.isArray(productos)) {
-    return  toast.success("error");; // Mensaje si no hay productos
+    return  toast.success("error"); // Mensaje si no hay productos
   }
 
   const productDelete = async (id) => {
     const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
     if (!confirmDelete) return;
-
     setIsLoading(true);
     try {
       await deleteProducto(id);
@@ -30,25 +29,21 @@ function ProductList({ productos }) {
   return (
     <div id="product-list-container">
       {productos.map((product) => (
-        <div key={product.id} id={`product-card-${product.id}`} className="product-card">
+        <div key={product.id} className="product-card">
           <img
-            id={`product-image-${product.id}`}
-            src={product.imagen}
-            alt={product.nombre}
+            src={product.Imagen}
+            alt={product.Nombre_Producto}
             style={{ width: "100px", height: "100px" }}
           />
-          <h3 id={`product-name-${product.id}`}>{product.nombre}</h3>
-          <p id={`product-price-${product.id}`}>Precio: {product.precio}</p>
-          <p id={`product-description-${product.id}`}>{product.descripcion}</p>
+          <h3>{product.Nombre_Producto}</h3>
+          <p> {product.ID_Emprendedor.Nombre_Emprendedor}</p>
+          <p> {product.Bicolones_Producto}</p>
+          <p>{product.Descripcion_Producto}</p>
+          <p>{product.Stock}</p>
+
+          <button disabled={isLoading} onClick={() => productDelete(product.id)}>{isLoading ? "Eliminando..." : "Eliminar"}</button>
           <button
-            id={`delete-button-${product.id}`}
-            disabled={isLoading}
-            onClick={() => productDelete(product.id)}
-          >
-            {isLoading ? "Eliminando..." : "Eliminar"}
-          </button>
-          <button
-            id={`edit-button-${product.id}`}
+
             onClick={() => onEdit(product)}
           >
             Editar

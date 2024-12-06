@@ -1,0 +1,87 @@
+import React, { useState } from "react";
+import { updateProducto } from "../services/productServices";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "../styles/Admin.css";
+
+function ProductEditForm({ product, onClose, onSave }) {
+  if (!product) {
+    return  toast.success("Producto no disponible");; // Mensaje si no se recibe el producto
+  }
+
+  const [formData, setFormData] = useState({
+    Bicolones_Producto: product.Bicolones_Producto,
+    Imagen: product.imagen,
+    Stock: product.Stock,
+    Descripcion_Producto: product.Descripcion_Producto,
+  });
+
+  const productChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const productAct = async (e) => {
+    e.preventDefault();
+    try {
+      await updateProducto(product.id, ...Object.values(formData));
+      toast.success("Producto actualizado con éxito");
+      onSave(); // Callback para actualizar la lista de productos
+      onClose(); // Cierra el formulario
+    } catch (error) {
+      console.error("Error actualizando producto:", error);
+      toast.error("Hubo un error al actualizar el producto");
+    }
+  };
+
+  return (
+    <div id="edit-form-container">
+      <h3 id="edit-form-title">Editar Producto</h3>
+      <form id="edit-form" onSubmit={productAct}>
+        <input
+          id="input-bicolones"
+          type="text"
+          name="Bicolones_Producto"
+          value={formData.Bicolones_Producto}
+          onChange={productChange}
+          placeholder="Bicolones"
+          required
+        />
+        <input
+          id="input-descripcion"
+          type="text"
+          name="Descripcion_Producto"
+          value={formData.Descripcion_Producto}
+          onChange={productChange}
+          placeholder="Descripción"
+          required
+        />
+        <input
+          id="input-stock"
+          type="number"
+          name="Stock"
+          value={formData.Stock}
+          onChange={productChange}
+          placeholder="Stock"
+          required
+        />
+        <input
+          id="input-imagen"
+          type="text"
+          name="Imagen"
+          value={formData.Imagen}
+          onChange={productChange}
+          placeholder="URL Imagen"
+        />
+        <div id="form-buttons">
+          <button id="save-button" type="submit">Guardar cambios</button>
+          <button id="cancel-button" type="button" onClick={onClose}>
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default ProductEditForm;

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+
 export default function FormLogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -13,6 +15,7 @@ export default function FormLogin() {
 
   const loguearUsuario = async (event) => {
     event.preventDefault();
+    
 
     //Llama al servicio del Login
     try { 
@@ -53,9 +56,6 @@ export default function FormLogin() {
       toast.error("Ocurrió un error al iniciar sesión");
     }
   };
-
-
-
 
 
   return (

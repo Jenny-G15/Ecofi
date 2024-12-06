@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
+import { getProductos } from "../../services/productServices";
 import ContextoEcofi from './EcofiContex'
 
 const EcofiProvider = ({children}) => {
-    const [first, setFirst] = useState('Hola, prueba')
-  return <ContextoEcofi.Provider value={{first, setFirst}}>{children}</ContextoEcofi.Provider>
+    const [Productos, setProductos] = useState([]);
+    
+    const loadProductos = useCallback(async () => {
+      try {
+        const response = await getProductos();
+        setProductos(response);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+      loadProductos()
+  }, []);
+
+  return <ContextoEcofi.Provider value={{Productos}}>{children}</ContextoEcofi.Provider>
 }
 
 export default EcofiProvider

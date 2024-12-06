@@ -4,7 +4,7 @@ import "../styles/Principal.css";
 import Mapa from './Mapa';
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";;
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -119,3 +119,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+  

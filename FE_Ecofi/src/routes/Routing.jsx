@@ -1,6 +1,3 @@
-
-import Inicio from '../pages/Principal';
-import QuienesSomos from '../pages/QuienesSomos';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../Pages/Register";
@@ -8,6 +5,8 @@ import Principal from "../pages/Principal";
 import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../pages/Administracion";
 import PerfilUsuario from "../pages/Perfil_Usuario";
+import Recofi from "../Pages/Recofi";
+
 
 
 
@@ -17,20 +16,20 @@ const Routing = () => {
 
   return (
     <Router>
-     
+      {/* Aplica el fondo solo en Principal */}
       <BodyBackground background={backgroundImage} />
       
       <Routes>
-       {<Route path="/Principal" element={<Inicio/>} /> }
-       {<Route path='/Register' element= {<Register/>} /> }
-       {<Route path="/Login" element={<Login/>} /> }
-       {<Route path="/Administracion" element={<Administracion/>} /> }
-       {<Route path="/PerfilUsuario" element={<PerfilUsuario/>} /> }
-       {<Route path="/QuienesSomos" element={<QuienesSomos/>} /> }
-
-
-     </Routes>
-    </Router>    
-   );
+        <Route path="/Principal" element={<Principal />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/Login" element={<Login />} />
+        {<Route path="/Administracion" element={<Administracion/>} /> }
+        {<Route path="/PerfilUsuario" element={<PerfilUsuario/>} /> }
+        <Route path="/Recofi" element={<Recofi />} />
+      </Routes>
+    </Router>
+  );
 };
-export default Routing
+
+
+export default Routing;

@@ -3,7 +3,7 @@
 export async function getRecofis() {
     try {
         // Ajusta la URL si el backend está en otro puerto o dirección
-        const response = await fetch('http://localhost:3000/recofis', {
+        const response = await fetch('http://localhost:3000/recofi', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

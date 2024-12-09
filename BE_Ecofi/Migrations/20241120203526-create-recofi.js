@@ -37,7 +37,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      Horario: {
+      HorarioApertura: {
+        type: Sequelize.TIME,
+        allowNull: false
+      },
+      HorarioCierre: {
         type: Sequelize.TIME,
         allowNull: false
       },

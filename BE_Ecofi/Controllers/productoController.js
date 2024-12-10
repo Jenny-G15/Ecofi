@@ -15,12 +15,10 @@ const obtenerProductos = async (req, res) => {
 
 
 
-
-
 // Crear un nuevo producto
 const crearProducto = async (req, res) => {
   try {
-    console.log(req.body); // Verifica los datos recibidos
+    console.log(req.body); 
     
     const { ID_Emprendedor, Bicolones_Producto, Imagen, Stock, Descripcion_Producto, Nombre_Producto } = req.body;
 
@@ -33,16 +31,18 @@ const crearProducto = async (req, res) => {
     const productos = await Producto.findAll();
     for (let prod of productos) {
       if (prod.Nombre_Producto === Nombre_Producto && prod.Descripcion_Producto === Descripcion_Producto) {
-        return res.status(400).json({ error: 'Ya existe un producto el mismo Nombre' });
+        return res.status(400).json({ error: 'Ya existe un producto con el mismo Nombre.' });
       }
     }
 
+    // Aquí estaba el error: Faltaba incluir Nombre_Producto
     const producto = await Producto.create({
       ID_Emprendedor,
       Bicolones_Producto,
       Imagen,
       Stock,
       Descripcion_Producto,
+      Nombre_Producto, // Inclúyelo aquí
     });
 
     res.status(201).json(producto);
@@ -51,6 +51,15 @@ const crearProducto = async (req, res) => {
     res.status(500).json({ error: 'Error al crear el producto.', detalles: error });
   }
 };
+
+
+
+
+
+
+
+
+
 
 // Actualizar un producto
 const actualizarProducto = async (req, res) => {

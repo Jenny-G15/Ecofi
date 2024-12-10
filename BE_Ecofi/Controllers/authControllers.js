@@ -114,6 +114,66 @@ const iniciarSesion = async (req, res) => {
 
 
 
+const actualizarUsuario = async (req, res) => {
+    try {
+        
+      console.log(req.body);
+      const { id } = req.params;
+      const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario, Bicolones, Rol_Usuario } = req.body;
+  
+      // Buscar el usuario por su ID
+      const usuario = await Usuario.findByPk(id);
+      if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado.' });
+  
+      // Validar que no exista otro usuario con la misma cédula o email
+      const usuarios = await Usuario.findAll();
+      for (let otroUsuario of usuarios) {
+        if (
+          otroUsuario.id !== usuario.id && // Asegurarse de que no sea el mismo usuario
+          (otroUsuario.Cedula === Cedula || otroUsuario.Email_Usuario === Email_Usuario)
+        ) {
+          return res.status(400).json({ error: 'Ya existe otro usuario con la misma cédula o correo.' });
+        }
+      }
+  
+      // Actualizar los datos del usuario
+      await usuario.update({
+        Nombre_Usuario,
+        Apellido_Usuario,
+        Cedula,
+        Email_Usuario,
+        Contraseña_Usuario,
+        Telefono_Usuario,
+        Bicolones,
+        Rol_Usuario
+      });
+  
+      // Responder con el usuario actualizado
+      res.status(200).json(usuario);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al actualizar el usuario.' });
+    }
+  };
+  
+
+  // Eliminar un Usuario
+  const eliminarUsuario = async (req, res) => {
+    try {
+    const { id } = req.params;
+    const Usuarios = await Usuario.findByPk(id);
+    if (!Usuarios) return res.status(404).json({ error: 'Usuario no encontrado.' });
+
+    await Usuarios.destroy();
+    res.status(204).send(); 
+    
+    } catch (error) {
+    console.error(error);    
+    res.status(500).json({ error: 'Ooops Error al eliminar al Usuario.' });
+    }
+  };
+
+
 
 
 
@@ -203,7 +263,7 @@ const iniciarSesion = async (req, res) => {
 
 
 
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion};
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario};
 
 
 

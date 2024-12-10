@@ -37,16 +37,20 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      Horario: {
+      HorarioApertura: {
+        type: Sequelize.TIME,
+        allowNull: false
+      },
+      HorarioCierre: {
         type: Sequelize.TIME,
         allowNull: false
       },
       Latitud: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10.8),
         allowNull: false
       },
       Longitud: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10,8),
         allowNull: false
       },
       Direccion_Recofi: {

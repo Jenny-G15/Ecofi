@@ -3,8 +3,6 @@ const express = require('express');
     const usuarioController = require('../Controllers/usuarioController.js'); // Importar el controlador
 
     // Definir las rutas
-    router.get('/', usuarioController.obtenerUsuarios); // Obtener todos los clientes
-    router.post('/', usuarioController.crearUsuario);
     router.put('/:id', usuarioController.actualizarUsuario);
     router.delete('/:id', usuarioController.eliminarUsuario)
     

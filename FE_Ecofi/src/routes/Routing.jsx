@@ -6,8 +6,9 @@ import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../pages/Administracion";
 import PerfilUsuario from "../pages/Perfil_Usuario";
 import Recofi from "../Pages/Recofi";
-
-
+import Emprendedores from "../Pages/AgregarEmprendedores";
+import Recofis from "../Pages/AgregarRecofis";
+import RecofisPage from "../Pages/AgregarRecofis";
 
 
 const Routing = () => {
@@ -26,6 +27,8 @@ const Routing = () => {
         {<Route path="/Administracion" element={<Administracion/>} /> }
         {<Route path="/PerfilUsuario" element={<PerfilUsuario/>} /> }
         <Route path="/Recofi" element={<Recofi />} />
+        <Route path="/AgregarEmpren" element={<Emprendedores />} />
+        <Route path="/AgregarRecofi" element={<RecofisPage />} />
       </Routes>
     </Router>
   );

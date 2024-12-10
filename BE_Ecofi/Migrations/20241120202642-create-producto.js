@@ -24,7 +24,7 @@ module.exports = {
         allowNull: false
       },
       Imagen: {
-        type: Sequelize.BLOB,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       Stock: {

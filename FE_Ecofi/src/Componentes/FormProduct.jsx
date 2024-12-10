@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import cargarImagen from "../Firebase/config"; 
 import "../styles/admin.css";
 import { getEmprendedores } from "../services/emprendedorServices";
 import { PostProductos } from "../services/productServices";
-import ContextoEcofi from './Context/EcofiContex'
+// import ContextoEcofi from './Context/EcofiContex'
 import ProductList from "./ProductList";
 
-function CardsAdmin() {
+function CardsProduct() {
   const [emprendedor, setEmprendedor] = useState([]);
   const [guardarEmprendedor, setGuardarEmprendedor] = useState("");
   const [Nombre_Producto, setProducto] = useState("");
@@ -15,9 +15,9 @@ function CardsAdmin() {
   const [bicolones, setBicolones] = useState("");
   const [description, setDescription] = useState("");
 
-  const { Productos, setProductoAgregado } = useContext(ContextoEcofi)
+  // const { Productos } = useContext(ContextoEcofi)
 
-  console.log("Estos productos vienen del contexto", Productos)
+  // console.log("Estos productos vienen del contexto", Productos)
 
   useEffect(() => {
     async function obtenerEmprendedores() {
@@ -48,7 +48,7 @@ function CardsAdmin() {
     console.log(guardarEmprendedor, Nombre_Producto, bicolones, Image, stock, description);
     
     const respuesta = await PostProductos(guardarEmprendedor, Nombre_Producto, bicolones, Image, stock, description)
-    setProductoAgregado(true)
+    // setProductoAgregado(true)
     console.log(respuesta);
     
   }
@@ -107,10 +107,10 @@ function CardsAdmin() {
         <button id="btn-agregar-producto" onClick={agregarProducto}>Agregar producto</button>
       </div>
         
-        <ProductList productos={Productos}/>
+        <ProductList/>
     </div>
     
   );
 }
 
-export default CardsAdmin;
+export default CardsProduct;

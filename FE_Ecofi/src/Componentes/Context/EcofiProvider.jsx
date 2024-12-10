@@ -1,30 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { getProductos } from "../../services/productServices";
+import React, { useState } from 'react';
 import ContextoEcofi from './EcofiContex';
 
 const EcofiProvider = ({ children }) => {
-    const [Productos, setProductos] = useState([]);
-    const [productoAgregado, setProductoAgregado] = useState(false);
+    const [Productos, setProductos] = useState('Prueba');
 
-    useEffect(() => {
-        if (productoAgregado){
-            async function cargarProductosEcofi() {
-                try {
-                    const cargarProductos = await getProductos();
-                    console.log(cargarProductos);
-                    setProductos(cargarProductos);
-                } catch (error) {
-                    console.error("Error al cargar productos:", error);
-                }
-            }
-            cargarProductosEcofi();
-        }
-    }, [productoAgregado]); // Solo se ejecuta una vez al montar el componente.
-
-    console.log('Productos', Productos);
+   
 
     return (
-        <ContextoEcofi.Provider value={{ Productos, setProductoAgregado }}>
+        <ContextoEcofi.Provider value={{ Productos, setProductos }}>
             {children}
         </ContextoEcofi.Provider>
     );

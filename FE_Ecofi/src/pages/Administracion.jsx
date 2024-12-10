@@ -1,6 +1,5 @@
 import React from 'react'
 import "../styles/Admin.css"
-import NavAdmin from '../Componentes/NavAdmin';
 import FormProduct from '../Componentes/FormProduct';
 import {Row,Col} from 'react-bootstrap'
 import AdminSidebar from '../Componentes/SideBar'

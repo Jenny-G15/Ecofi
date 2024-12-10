@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../Pages/Register";
-import Principal from "../pages/Principal";
+import Principal from "../Pages/Principal";
 import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../pages/Administracion";
 import PerfilUsuario from "../pages/Perfil_Usuario";
 import Recofi from "../Pages/Recofi";
 import Emprendedores from "../Pages/AgregarEmprendedores";
-import Recofis from "../Pages/AgregarRecofis";
 import RecofisPage from "../Pages/AgregarRecofis";
 
 

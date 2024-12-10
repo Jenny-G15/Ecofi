@@ -121,16 +121,3 @@ export async function deleteEmprendedor(id) {
     }
 }
 
-// export const deleteAdmins = async (id) => {
-//     try {
-//         const response = await fetch(`http://localhost:3000/emprendedores/${id}`, {
-//             method: 'DELETE',
-//         });
-//         if (!response.ok) {
-//             throw new Error("Error al eliminar el Administrador");
-//         }
-//     } catch (error) {
-//         console.error(error);
-//         throw error;
-//     }
-// };

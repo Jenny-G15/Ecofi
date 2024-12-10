@@ -12,9 +12,12 @@ const obtenerProductos = async (req, res) => {
 };
 
 
+<<<<<<< HEAD
+=======
 
 
 
+>>>>>>> db9964960e5b7e0b4540a8495390b739e1032316
 // Crear un nuevo producto
 const crearProducto = async (req, res) => {
   try {
@@ -99,10 +102,6 @@ const actualizarProducto = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar el producto.' });
   }
 };
-
-
-
-
 
 // Eliminar un producto
 const eliminarProducto = async (req, res) => {

@@ -1,7 +1,7 @@
 // Obtener todos los productos
 export async function getProductos() {
     try {
-        const response = await fetch('http://localhost:3000/producto', {
+        const response = await fetch('http://192.168.1.246:3000/producto', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,22 +25,26 @@ export async function getProductos() {
 
 // Agregar un nuevo producto
 export async function PostProductos(
-    ID_Emprendedor,
-    Bicolones_Producto,
-    Imagen,
-    Stock,
+    ID_Emprendedor, 
+    Nombre_Producto,
+    Bicolones_Producto, 
+    Imagen, 
+    Stock, 
     Descripcion_Producto
 ) {
     try {
         const productoData = {
-            ID_Emprendedor,
-            Bicolones_Producto,
-            Imagen,
-            Stock,
-            Descripcion_Producto,
+            ID_Emprendedor, 
+            Nombre_Producto,
+            Bicolones_Producto, 
+            Imagen, 
+            Stock, 
+            Descripcion_Producto
         };
-        const response = await fetch('http://localhost:3000/producto', {
-            method: 'POST',
+        console.log(productoData);
+        
+        const response = await fetch('http://192.168.1.246:3000/producto', {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -51,7 +55,6 @@ export async function PostProductos(
             throw new Error('Error adding product');
         }
 
-        return await response.json();
     } catch (error) {
         console.error('Error adding product:', error);
         throw error;
@@ -62,23 +65,25 @@ export async function PostProductos(
 
 // Actualizar un producto existente
 export async function updateProducto(
-    id,
-    ID_Emprendedor,
-    Bicolones_Producto,
-    Imagen,
-    Stock,
+    id, 
+    ID_Emprendedor, 
+    Nombre_Producto,
+    Bicolones_Producto, 
+    Imagen, 
+    Stock, 
     Descripcion_Producto
 ) {
     try {
         const productoData = {
             ID_Emprendedor,
-            Bicolones_Producto,
-            Imagen,
-            Stock,
-            Descripcion_Producto,
+            Nombre_Producto, 
+            Bicolones_Producto, 
+            Imagen, 
+            Stock, 
+            Descripcion_Producto
         };
-        const response = await fetch(`http://localhost:3000/producto/${id}`, {
-            method: 'PUT',
+        const response = await fetch(`'http://192.168.1.246:3000/producto/${id}`, {
+            method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -91,7 +96,8 @@ export async function updateProducto(
 
         return await response.json();
     } catch (error) {
-        console.error('Error updating product:', error);
+        console.log(error);
+        console.error("Error updating product:", error);
         throw error;
     }
 }
@@ -103,20 +109,46 @@ export async function updateProducto(
 // Eliminar un producto
 export async function deleteProducto(id) {
     try {
-        const response = await fetch(`http://localhost:3000/producto/${id}`, {
-            method: 'DELETE',
+        const response = await fetch(`http://192.168.1.246:3000/producto/${id}`, {
+            method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
             },
         });
 
-        if (!response.ok) {
-            throw new Error('Error deleting product');
+        // Verifica si la respuesta es exitosa
+        if (response.ok) {
+            console.log('Producto eliminado con éxito');
+            return { message: 'Producto eliminado con éxito' }; // Devuelve un mensaje de éxito
+        } else {
+            console.error('No se pudo eliminar el producto');
+            throw new Error('No se pudo eliminar el producto');
         }
-
-        return await response.json();
     } catch (error) {
-        console.error('Error deleting product:', error);
-        throw error;
+        console.error("Error eliminando producto:", error);
+        throw error; // Relanza el error si es necesario manejarlo en otro lugar
     }
 }
+
+
+
+// // Eliminar un producto
+// export async function deleteProducto(id) {
+//     try {
+//         const response = await fetch(`http://192.168.100.121:3000/producto${id}`, {
+//             method: "DELETE",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//         });
+
+//         if (!response.ok) {
+//             throw new Error('Error deleting product');
+//         }
+
+//         return await response.json();
+//     } catch (error) {
+//         console.error("Error deleting product:", error);
+//         throw error;
+//     }
+// }

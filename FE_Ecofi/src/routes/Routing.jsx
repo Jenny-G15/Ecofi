@@ -8,6 +8,7 @@ import PerfilUsuario from "../pages/Perfil_Usuario";
 import Recofi from "../Pages/Recofi";
 import Emprendedores from "../Pages/AgregarEmprendedores";
 import RecofisPage from "../Pages/AgregarRecofis";
+import EditarUsuarios from "../Pages/EditarUsuarios";
 
 
 const Routing = () => {
@@ -28,6 +29,7 @@ const Routing = () => {
         <Route path="/Recofi" element={<Recofi />} />
         <Route path="/AgregarEmpren" element={<Emprendedores />} />
         <Route path="/AgregarRecofi" element={<RecofisPage />} />
+        <Route path="/EditarUsuarios" element={<EditarUsuarios />} />
       </Routes>
     </Router>
   );

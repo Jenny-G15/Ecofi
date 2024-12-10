@@ -1,52 +1,136 @@
+// Obtener todos los emprendedores
 export async function getEmprendedores() {
     try {
         const response = await fetch('http://localhost:3000/emprendedores', {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         });
 
         if (!response.ok) {
-            throw new Error('Error fetching users');
+            throw new Error('Error fetching emprendedores');
         }
 
-        const users = await response.json();
-        return users;
+        const emprendedores = await response.json();
+        return emprendedores;
     } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching emprendedores:', error);
         throw error;
     }
 }
 
+// Agregar un nuevo emprendedor
+export async function PostEmprendedores(
+    Nombre_Emprendedor,
+    Descripcion,
+    Nombre_Contacto,
+    Producto_Ofrecido,
+    Correo_Emprendedor,
+    Telefono_Empresa,
+    Direccion_Exacta
+) {
+    try {
+        const emprendedorData = {
+            Nombre_Emprendedor,
+            Descripcion,
+            Nombre_Contacto,
+            Producto_Ofrecido,
+            Correo_Emprendedor,
+            Telefono_Empresa,
+            Direccion_Exacta,
+        };
 
-// export async function PostUsers
-//       (Nombre_Usuario,
-//         Apellido_Usuario,
-//         Cedula,Email_Usuario,
-//         Contraseña_Usuario,
-//         Telefono_Usuario,
-//         Bicolones) {
+        const response = await fetch('http://localhost:3000/emprendedores', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emprendedorData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error adding emprendedor');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error adding emprendedor:', error);
+        throw error;
+    }
+}
+
+// Actualizar un emprendedor existente
+export async function updateEmprendedor(
+    id,
+    Nombre_Emprendedor,
+    Descripcion,
+    Nombre_Contacto,
+    Producto_Ofrecido,
+    Correo_Emprendedor,
+    Telefono_Empresa,
+    Direccion_Exacta
+) {
+    try {
+        const emprendedorData = {
+            Nombre_Emprendedor,
+            Descripcion,
+            Nombre_Contacto,
+            Producto_Ofrecido,
+            Correo_Emprendedor,
+            Telefono_Empresa,
+            Direccion_Exacta,
+        };
+
+        const response = await fetch(`http://localhost:3000/emprendedores/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emprendedorData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error updating emprendedor');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error updating emprendedor:', error);
+        throw error;
+    }
+}
+
+// Eliminar un emprendedor
+export async function deleteEmprendedor(id) {
+    try {
+        const response = await fetch(`http://localhost:3000/emprendedores/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error deleting emprendedor');
+        }
+
+    } catch (error) {
+        console.error('Error deleting emprendedor:', error);
+        throw error;
+    }
+}
+
+// export const deleteAdmins = async (id) => {
 //     try {
-//       const userData = {
-//         Nombre_Usuario,
-//         Apellido_Usuario,
-//         Cedula,
-//         Email_Usuario,
-//         Contraseña_Usuario,
-//         Telefono_Usuario, 
-//         Bicolones, 
-//       };
-//       const response = await fetch("http://localhost:3000/usuarios/register", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(userData),
-//       });
-//       return await response.json();
+//         const response = await fetch(`http://localhost:3000/emprendedores/${id}`, {
+//             method: 'DELETE',
+//         });
+//         if (!response.ok) {
+//             throw new Error("Error al eliminar el Administrador");
+//         }
 //     } catch (error) {
-//       console.error("Error en el servidor", error);
-//       throw error;
+//         console.error(error);
+//         throw error;
 //     }
-// }
+// };

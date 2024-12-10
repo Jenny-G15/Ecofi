@@ -4,21 +4,24 @@ export async function getProductos() {
         const response = await fetch('http://192.168.1.246:3000/producto', {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         });
 
         if (!response.ok) {
-            throw new Error('Error fetching Products');
+            throw new Error('Error fetching products');
         }
 
         const productos = await response.json();
         return productos;
     } catch (error) {
-        console.error('Error fetching Products:', error);
+        console.error('Error fetching products:', error);
         throw error;
     }
 }
+
+
+
 
 // Agregar un nuevo producto
 export async function PostProductos(
@@ -43,7 +46,7 @@ export async function PostProductos(
         const response = await fetch('http://192.168.1.246:3000/producto', {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(productoData),
         });
@@ -53,10 +56,12 @@ export async function PostProductos(
         }
 
     } catch (error) {
-        console.error("Error adding product:", error);
+        console.error('Error adding product:', error);
         throw error;
     }
 }
+
+
 
 // Actualizar un producto existente
 export async function updateProducto(
@@ -80,7 +85,7 @@ export async function updateProducto(
         const response = await fetch(`'http://192.168.1.246:3000/producto/${id}`, {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(productoData),
         });
@@ -97,13 +102,17 @@ export async function updateProducto(
     }
 }
 
+
+
+
+
 // Eliminar un producto
 export async function deleteProducto(id) {
     try {
         const response = await fetch(`http://192.168.1.246:3000/producto/${id}`, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
         });
 

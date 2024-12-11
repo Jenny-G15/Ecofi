@@ -5,7 +5,9 @@ import CardsInicio from '../Componentes/CardsPrincipal'
 
 function Pruebita() {
   return (
+    <div id='principalConteiner'>
     <CardsInicio/>
+    </div>
   )
 }
 

@@ -18,6 +18,9 @@ function AdminSideBar() {
         <Link className="sidebarLink" to="/AgregarEmpren">
           Agregar Emprendedor
         </Link>
+        <Link className="sidebarLink" to="/Editarusuarios">
+          Edición de Usuarios
+        </Link>
       </nav>
     </div>
   );

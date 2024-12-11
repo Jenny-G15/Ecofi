@@ -1,6 +1,6 @@
 /* Contenedor Principal del Sidebar */
 .sidebarContainer {
-  width: 240px; /* Ancho del Sidebar */
+  width: 200px; /* Ancho del Sidebar */
   height: 100vh; /* Altura completa de la pantalla */
   background: linear-gradient(135deg, #089103, #47ce42); /* Fondo degradado elegante */
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */

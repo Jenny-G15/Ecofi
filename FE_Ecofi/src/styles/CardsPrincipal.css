@@ -1,0 +1,57 @@
+.cards-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente las cards */
+    align-items: center; /* Centrar verticalmente las cards */
+    flex-wrap: wrap; /* Permitir que las cards se ajusten si es necesario */
+    gap: 30px; /* Espacio uniforme entre las cards */
+    height: 100vh; /* Altura completa de la ventana */
+    padding: 20px; /* Espaciado interno del contenedor */
+  }
+  
+  .custom-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asegura que el botón siempre quede en la parte inferior */
+    align-items: center; /* Centra horizontalmente el contenido dentro de la card */
+    height: 500px; /* Altura de las cards */
+    width: 350px; /* Ancho de las cards */
+    padding: 30px; /* Relleno interno */
+    background-color: #287573; /* Fondo base */
+    color: #fff;
+    border: none;
+    border-radius: 40px 0 40px 0; /* Esquinas redondeadas específicas */
+    background: linear-gradient(to left, teal 50%, black 50%);
+    background-size: 200%;
+    background-position: right;
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
+  .custom-card:hover {
+    transform: scale(1.05);
+    background-position: left;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Asegura que el contenido se mantenga centrado verticalmente */
+    flex-grow: 1; /* Hace que el cuerpo ocupe el espacio disponible */
+  }
+  
+  .custom-card .btn {
+    margin-top: auto; /* Empuja el botón hacia abajo dentro de la card */
+    padding: 15px 25px;
+    border-radius: 25px;
+    background-color: #fff;
+    color: teal;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+  }
+  
+  .custom-card .btn:hover {
+    background-color: teal;
+    color: #fff;
+  }
+  

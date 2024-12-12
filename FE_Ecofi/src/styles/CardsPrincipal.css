@@ -1,37 +1,45 @@
-.cards-container {
+#CardsPrincConteiner{
+    grid-row: 2;
+    grid-column: 1/3;
+    flex-wrap: wrap;
+    gap: 23rem;
     display: flex;
-    justify-content: center; /* Centrar horizontalmente las cards */
-    align-items: center; /* Centrar verticalmente las cards */
-    flex-wrap: wrap; /* Permitir que las cards se ajusten si es necesario */
-    gap: 30px; /* Espacio uniforme entre las cards */
-    height: 100vh; /* Altura completa de la ventana */
-    padding: 20px; /* Espaciado interno del contenedor */
-  }
+    justify-content: space-between;
+    margin-left: 12rem;
+    margin-right: auto
+}
+
   
   .custom-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Asegura que el botón siempre quede en la parte inferior */
-    align-items: center; /* Centra horizontalmente el contenido dentro de la card */
+
     height: 500px; /* Altura de las cards */
     width: 350px; /* Ancho de las cards */
     padding: 30px; /* Relleno interno */
-    background-color: #287573; /* Fondo base */
-    color: #fff;
+    margin-left: 20px ;
+    background-color: #0f940a; /* Fondo base */
+    color: #e8ebe8;
     border: none;
-    border-radius: 40px 0 40px 0; /* Esquinas redondeadas específicas */
-    background: linear-gradient(to left, teal 50%, black 50%);
+    border-radius: 60px 0 60px 0; /* Esquinas redondeadas específicas */
+    background: linear-gradient(to left, rgb(3, 189, 3) 50%, rgba(37, 146, 37, 0.534) 50%);
+    /* background: linear-gradient(to left, rgb(37, 146, 37, 0.678) 50%, rgba(3, 189, 3) 50%); */
     background-size: 200%;
     background-position: right;
     transition: all 0.5s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    box-shadow: 0 4px 8px rgba(0, 0, 9, 0.1);
+    
   }
   
   .custom-card:hover {
     transform: scale(1.05);
     background-position: left;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: #283f24;
+
   }
+
+  .custom-card:hover .card-title, .custom-card:hover .card-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra semitransparente */
+}
   
   .custom-card .card-body {
     display: flex;
@@ -45,13 +53,13 @@
     padding: 15px 25px;
     border-radius: 25px;
     background-color: #fff;
-    color: teal;
+    color: rgb(16, 247, 8);
     transition: background-color 0.3s ease, color 0.3s ease;
     text-align: center;
   }
   
   .custom-card .btn:hover {
-    background-color: teal;
+    background-color: rgb(68, 233, 68);
     color: #fff;
   }
   

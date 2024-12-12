@@ -19,7 +19,7 @@
     background-color: #0f940a; /* Fondo base */
     color: #e8ebe8;
     border: none;
-    border-radius: 40px 0 40px 0; /* Esquinas redondeadas específicas */
+    border-radius: 60px 0 60px 0; /* Esquinas redondeadas específicas */
     background: linear-gradient(to left, rgb(3, 189, 3) 50%, rgba(37, 146, 37, 0.534) 50%);
     /* background: linear-gradient(to left, rgb(37, 146, 37, 0.678) 50%, rgba(3, 189, 3) 50%); */
     background-size: 200%;
@@ -33,7 +33,13 @@
     transform: scale(1.05);
     background-position: left;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: #283f24;
+
   }
+
+  .custom-card:hover .card-title, .custom-card:hover .card-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra semitransparente */
+}
   
   .custom-card .card-body {
     display: flex;

@@ -8,11 +8,13 @@ const obtenerUsuarios = async (req, res) => {
 
     if (cedula) {
       const usuario = await Usuario.findOne({ where: { Cedula: cedula } }); // Asegúrate de que el campo en la base de datos se llama "Cedula"
+      
       if (!usuario) {
         return res.status(404).json({ error: 'Usuario no encontrado.' });
       } else {
         return res.status(200).json(usuario);
       }
+      
     }
     
     // const usuarios = await Usuario.findAll();

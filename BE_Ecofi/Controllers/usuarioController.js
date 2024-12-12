@@ -1,17 +1,43 @@
 const { Usuario } = require ('../models');
 
 
-// Llamar al Usuario:
+
 const obtenerUsuarios = async (req, res) => {
   try {
-    const usuarios = await Usuario.findAll(); 
-    res.status(200).json(usuarios);
+    const { cedula } = req.params; 
 
+    if (cedula) {
+      const usuario = await Usuario.findOne({ where: { Cedula: cedula } }); // Asegúrate de que el campo en la base de datos se llama "Cedula"
+      if (!usuario) {
+        return res.status(404).json({ error: 'Usuario no encontrado.' });
+      } else {
+        return res.status(200).json(usuario);
+      }
+    }
+    
+    // const usuarios = await Usuario.findAll();
+    // return res.status(200).json(usuarios);
   } catch (error) {
-    console.error(error); // Imprimir error
+    console.error(error);
     res.status(500).json({ error: 'Error al obtener los usuarios.' });
   }
 };
+
+
+
+
+
+// Llamar al Usuario:
+// const obtenerUsuarios = async (req, res) => {
+//   try {
+//     const usuarios = await Usuario.findAll(); 
+//     res.status(200).json(usuarios);
+
+//   } catch (error) {
+//     console.error(error); // Imprimir error
+//     res.status(500).json({ error: 'Error al obtener los usuarios.' });
+//   }
+// };
 
 
 

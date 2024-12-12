@@ -14,8 +14,8 @@ export async function getFormulario() {
         }
 
         // Convertimos la respuesta a JSON
-        const recofis = await response.json();
-        return recofis; 
+        const formularios = await response.json();
+        return formularios; 
     } catch (error) {
         console.error('Error al obtener los Formularios:', error);
         throw error; 

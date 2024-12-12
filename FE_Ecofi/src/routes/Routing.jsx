@@ -10,6 +10,7 @@ import Emprendedores from "../Pages/AgregarEmprendedores";
 import RecofisPage from "../Pages/AgregarRecofis";
 import EditarUsuarios from "../Pages/EditarUsuarios";
 import Pruebita from "../Pages/Prueba";
+import FormRecofis from "../Pages/Formulario";
 
 
 const Routing = () => {
@@ -32,6 +33,7 @@ const Routing = () => {
         <Route path="/AgregarRecofi" element={<RecofisPage />} />
         <Route path="/EditarUsuarios" element={<EditarUsuarios />} />
         <Route path="/Prueba" element={<Pruebita />} />
+        <Route path="/Formulario" element={<FormRecofis />} />
       </Routes>
     </Router>
   );

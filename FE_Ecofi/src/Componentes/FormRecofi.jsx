@@ -38,6 +38,7 @@ const FormularioMateriales = () => {
     cargarMateriales();
   }, []);
 
+
   const cargarFormularios = async () => {
     try {
       const datos = await getFormulario();
@@ -46,6 +47,7 @@ const FormularioMateriales = () => {
       console.error('Error al cargar formularios:', error);
     }
   };
+
 
   const cargarDirecciones = async () => {
     try {
@@ -83,17 +85,17 @@ const FormularioMateriales = () => {
       setUsuario(usuarioEncontrado)
 
       console.log('Respuesta de la API:', usuarioEncontrado); // Esto debería mostrar lo que devuelve la API
-      // if (usuarioEncontrado) {
-      //   setUsuario(usuarioEncontrado);
-      //   setDatosFormulario({
-      //     ...datosFormulario,
-      //     ID_Usuario: usuarioEncontrado.ID_Usuario,
-      //   });
-      //   setError(null);
-      // } else {
-      //   setUsuario(null);
-      //   setError('Usuario no encontrado');
-      // }
+      if (usuarioEncontrado) {
+        setUsuario(usuarioEncontrado);
+        setDatosFormulario({
+          ...datosFormulario,
+          ID_Usuario: usuarioEncontrado.ID_Usuario,
+        });
+        setError(null);
+      } else {
+        setUsuario(null);
+        setError('Usuario no encontrado');
+      }
     } catch (error) {
       setError('Error al buscar el usuario');
       console.error('Error al buscar el usuario:', error);
@@ -101,33 +103,6 @@ const FormularioMateriales = () => {
   };
   
 
-
-  // const buscarUsuario = async () => {
-  //   if (!cedula) {
-  //     setError('Por favor, ingrese una cédula');
-  //     return;
-  //   }
-  
-  //   console.log('Cédula a buscar:', cedula); // Aquí vemos qué cédula se está buscando
-  
-  //   try {
-  //     const usuarioEncontrado = await buscarPorCedula(cedula);
-  //     if (usuarioEncontrado) {
-  //       setUsuario(usuarioEncontrado);
-  //       setDatosFormulario({
-  //         ...datosFormulario,
-  //         ID_Usuario: usuarioEncontrado.ID_Usuario,
-  //       });
-  //       setError(null);
-  //     } else {
-  //       setUsuario(null);
-  //       setError('Usuario no encontrado');
-  //     }
-  //   } catch (error) {
-  //     setError('Error al buscar el usuario');
-  //     console.error('Error al buscar el usuario:', error);
-  //   }
-  // };
 
 
   
@@ -196,10 +171,12 @@ const FormularioMateriales = () => {
       {/* Mostrar Información del Usuario */}
       {usuario && (
         <div className="usuario-info">
-          <h3>Información del Usuario:</h3>
+          <h4>Información del Usuario:</h4>
           <p><strong>Nombre:</strong> {usuario.Nombre_Usuario} {usuario.Apellido_Usuario}</p>
           <p><strong>Cédula:</strong> {usuario.Cedula}</p>
-          <p><strong>Email:</strong> {usuario.Email}</p>
+          <p><strong>Email:</strong> {usuario.Email_Usuario}</p>
+          <p><strong>Cédula:</strong> {usuario.Bicolones}</p>
+
         </div>
       )}
 

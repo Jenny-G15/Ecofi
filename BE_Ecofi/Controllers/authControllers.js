@@ -32,14 +32,17 @@ const obtenerUsuarios = async (req, res) => {
       
     }
     
-    // const usuarios = await Usuario.findAll();
-    // return res.status(200).json(usuarios);
+    const usuarios = await Usuario.findAll();
+    return res.status(200).json(usuarios);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al obtener los usuarios.' });
   }
 };
   
+
+
+
 const registrarUsuario = async (req, res) => {
 
     const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario,
@@ -77,6 +80,9 @@ const registrarUsuario = async (req, res) => {
         res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
     }
 };
+
+
+
 
 
 const iniciarSesion = async (req, res) => {

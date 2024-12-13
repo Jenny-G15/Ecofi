@@ -91,27 +91,27 @@ const Footer = () => {
           <Mapa/>
         </div>
         <div className="footer-social">
-          <h2>Síguenos</h2>
+          <h2>Síguenos</h2><br />
           {/* Social media links */}
           <a href="https://www.facebook.com/naricreacionescr?mibextid=JRoKGi" target='_blank' rel='noopener noreferrer' className='icon-p' id='Facebook'>
               <FaFacebookSquare className='facebook-icon'/>
               <span className='fa-icon-text'>Facebook</span>
-          </a>
+          </a><br /> <br />
           <a href="https://www.instagram.com/naricreacionescr?igsh=dnhhZ2RqOWY0c250" target='_blank' rel='noopener noreferrer' className='icon-p' id='Instagram'>
               <FaInstagramSquare className='Instagram-icon'/>
               <span className='ins-icon-text'>Instagram</span>
-          </a>
+          </a><br /> <br />
           <a href="https://wa.me/+50685302622" target='_blank' rel='noopener noreferrer' className='icon-p' id='Whatsapp'>
               <FaWhatsapp className='Whatsapp-icon'/>
               <span className='What-icon-text'>Whatsapp</span>
-          </a>
-          <p>Telefonos: +506 80000-0000 <br />
+          </a><br /> <br />
+          <p>Telefonos: +506 80000-0000 <br /> <br />
              Correo: recofi@gmail.com
           </p>
           
         </div>
       </div>
-      <div className="footer-bottom">
+      <div className="footer-bottom"> <hr />
         <p>&copy; {new Date().getFullYear()} Ecofi. Todos los derechos reservados.</p>
       </div>
     </footer>

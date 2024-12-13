@@ -82,7 +82,7 @@ export async function updateProducto(
             Stock, 
             Descripcion_Producto
         };
-        const response = await fetch(`'http://192.168.1.246:3000/producto/${id}`, {
+        const response = await fetch(`http://192.168.1.246:3000/producto/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

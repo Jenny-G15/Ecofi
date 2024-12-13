@@ -1,5 +1,6 @@
 #principalConteiner{
     display: grid;
+    grid-template: 100px 1fr 500px/50% 50%;
     grid-template: 100px 1fr 400px/ 1fr 1fr;
     height: 100%;
     width: 100%;
@@ -65,97 +66,34 @@
     background-color: #83fd72af;
     justify-content: center;
     align-items: flex-end;
-
  }
-
-
+  
   .footer-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    max-width: 1000px;
+    justify-content: space-between; /* Espacio equitativo entre las secciones */
+    align-items: flex-start; /* Asegura que las secciones inicien desde arriba */
+    max-width: 900px;
     width: 100%;
-    margin-block-start: 3rem;
-    margin-left: 10%;
-    
+    gap: 20px; /* Agrega un espacio entre las secciones */
   }
   
-  .footer-contact {
-    flex: 1;
-    margin: 20px; 
-    min-width: 250px; 
-    max-width: 400px; 
-  }
-  
-  .footer-contact h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .footer-contact form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .footer-contact label {
-    margin-bottom: 5px;
-  }
-  
-  .footer-contact input,
-  .footer-contact textarea {
-    padding: 3px; 
-    margin-bottom: 10px; 
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px; 
-    width: 90%; 
-    box-sizing: border-box; 
-  }
-  
-  .footer-contact button {
-    padding: 8px;
-    background-color: #007bff; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .footer-contact button:hover {
-    background-color: #0056b3; 
-  }
-  
+  .footer-contact,
   .footer-location,
   .footer-social {
     flex: 1;
-    margin: 30px; 
-    min-width: 250px;
-  }
-  
-  .footer-social h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .footer-social a {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-    text-decoration: none;
-    color: #000;
-  }
-  
-  .footer-social a .fa-icon-text {
-    margin-left: 8px; 
+    margin: 0 15px; /* Espaciado lateral */
+    min-width: 100px;
+    text-align: center; /* Centra el texto dentro de las secciones */
   }
   
   .footer-bottom {
     margin-top: 20px;
     text-align: center;
-    font-size: 12px; 
+    font-size: 12px;
+    width: 100%;
   }
-
+  
   .carousel {
     max-width: 800px; /* Ancho del carrusel */
     margin: 40px auto; /* Margen superior e inferior */
@@ -171,8 +109,6 @@
     border-radius: 10px; /* Borde redondeado */
     margin: 10px; /* Margen entre imágenes */
   }
-   
-  
   
   
   

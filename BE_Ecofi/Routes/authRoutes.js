@@ -5,11 +5,11 @@ const { iniciarSesion, registrarUsuario, obtenerUsuarios, eliminarUsuario, actua
 
 
 //Rutas para Login y Register
-router.get('/', obtenerUsuarios)
+router.get('/:cedula', obtenerUsuarios);
 router.post('/login', iniciarSesion);
-router.post('/register', registrarUsuario)
-router.delete('/:id', eliminarUsuario)
-router.put('/:id', actualizarUsuario)
+router.post('/register', registrarUsuario);
+router.delete('/:id', eliminarUsuario);
+router.put('/:id', actualizarUsuario);
 
 
 

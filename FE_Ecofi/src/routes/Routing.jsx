@@ -9,6 +9,9 @@ import Recofi from "../Pages/Recofi";
 import Emprendedores from "../Pages/AgregarEmprendedores";
 import RecofisPage from "../Pages/AgregarRecofis";
 import QuienesSomos from "../pages/QuienesSomos";
+import EditarUsuarios from "../Pages/EditarUsuarios";
+import Pruebita from "../Pages/Prueba";
+import FormRecofis from "../Pages/Formulario";
 
 
 const Routing = () => {
@@ -29,7 +32,11 @@ const Routing = () => {
         <Route path="/Recofi" element={<Recofi />} />
         <Route path="/AgregarEmpren" element={<Emprendedores />} />
         <Route path="/AgregarRecofi" element={<RecofisPage />} />
-        <Route path="/QuienesSomos" element={<QuienesSomos />} />
+        <Route path="/QuienesSomos" element={<QuienesSomos />} /
+        <Route path="/EditarUsuarios" element={<EditarUsuarios />} />
+        <Route path="/Prueba" element={<Pruebita />} />
+        <Route path="/Formulario" element={<FormRecofis />} />
+
       </Routes>
     </Router>
   );

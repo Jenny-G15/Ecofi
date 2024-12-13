@@ -9,7 +9,7 @@ function AdminSideBar() {
   return (
     <div className="sidebarContainer">
       <nav className="sidebarNav">
-        <Link className="sidebarLink" to="/Productos">
+        <Link className="sidebarLink" to="/Administracion">
           Agregar Productos
         </Link>
         <Link className="sidebarLink" to="/AgregarRecofi">

@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/QuienesSomos.css";
-import imagen from "../img/1.jpeg"
-import escudo from "../img/escudo.jpeg"
+import imagen from "../img/1.png"
+import escudo from "../img/escudo.png"
 import ecofi from "../img/ecofi.jpeg"
 
 const CarruselAbout= () => {

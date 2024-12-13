@@ -1,6 +1,6 @@
-const express = require('express');
-    const router = express.Router();
-    const ProductosController = require('../Controllers/productoController.js'); // Importar el controlador
+ const express = require('express');
+ const router = express.Router();
+ const ProductosController = require('../Controllers/productoController.js'); // Importar el controlador
 
     // Definir las rutas
     router.get('/', ProductosController.obtenerProductos); 

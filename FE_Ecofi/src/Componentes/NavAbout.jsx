@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Principal.css';
+import '../styles/QuienesSomos.css';
 
-function Nav() {
+function NavAbout() {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -19,4 +19,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default NavAbout;

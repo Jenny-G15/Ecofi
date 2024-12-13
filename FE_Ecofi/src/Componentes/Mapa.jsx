@@ -69,7 +69,8 @@ export default function MapaRecofi() {
     });
 
   return (
-    <MapContainer center={[9.97691, -84.8379]} zoom={12}>
+    <MapContainer center={[9.97691, -84.8379]} zoom={12}  style={{ border: 'solid 2px #ffffff', padding: '5px', height: "200px", width: "100%"}}
+    >
       <TileLayer
         attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

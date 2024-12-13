@@ -4,7 +4,7 @@ import "../styles/admin.css";
 import { getEmprendedores } from "../services/emprendedorServices";
 import { PostProductos } from "../services/productServices";
 // import ContextoEcofi from './Context/EcofiContex'
-import ProductList from "./ProductList";
+import ProductListEdit from "./ProductListEdit";
 
 function CardsProduct() {
   const [emprendedor, setEmprendedor] = useState([]);
@@ -107,7 +107,7 @@ function CardsProduct() {
         <button id="btn-agregar-producto" onClick={agregarProducto}>Agregar producto</button>
       </div>
         
-        <ProductList/>
+        <ProductListEdit/>
     </div>
     
   );

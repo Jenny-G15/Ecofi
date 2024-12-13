@@ -6,19 +6,43 @@ const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 // const emailjs = require('emailjs-com'); 
 // const express = require('express');
 
+// const obtenerUsuarios = async (req, res) => {
+//     try {
+//       const usuario = await Usuario.findAll(); 
+//       res.status(200).json(usuario);
+  
+//     } catch (error) {
+//       console.error(error); // Imprimir error
+//       res.status(500).json({ error: 'Error al obtener la Dirección.' });
+//     }
+//   };
+
 const obtenerUsuarios = async (req, res) => {
-    try {
-      const usuario = await Usuario.findAll(); 
-      res.status(200).json(usuario);
-  
-    } catch (error) {
-      console.error(error); // Imprimir error
-      res.status(500).json({ error: 'Error al obtener la Dirección.' });
+  try {
+    const { cedula } = req.params; 
+
+    if (cedula) {
+      const usuario = await Usuario.findOne({ where: { Cedula: cedula } }); // Asegúrate de que el campo en la base de datos se llama "Cedula"
+      
+      if (!usuario) {
+        return res.status(404).json({ error: 'Usuario no encontrado.' });
+      } else {
+        return res.status(200).json(usuario);
+      }
+      
     }
-  };
-
-
+    
+    const usuarios = await Usuario.findAll();
+    return res.status(200).json(usuarios);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al obtener los usuarios.' });
+  }
+};
   
+
+
+
 const registrarUsuario = async (req, res) => {
 
     const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario,
@@ -56,6 +80,9 @@ const registrarUsuario = async (req, res) => {
         res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
     }
 };
+
+
+
 
 
 const iniciarSesion = async (req, res) => {

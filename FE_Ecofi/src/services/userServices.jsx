@@ -126,3 +126,32 @@ export async function deleteUser(id) {
   }
 }
 
+
+
+
+
+export const buscarPorCedula = async (cedula) => {
+  try {
+    const response = await fetch(`http://localhost:3000/usuarios/${cedula}`);
+    const data = await response.json();
+    
+    // Verificar que la API esté devolviendo el usuario correctamente
+    console.log('Datos obtenidos de la API:', data); // Esto te ayudará a ver qué devuelve la API
+
+    if (data && data.id) { // Verifica si el objeto tiene un campo "id" válido (o usa otro campo único que tenga sentido)
+      return data; // Devuelve el objeto completo del usuario
+    } else {
+      return null; // Si no se encuentra el usuario, devuelve null
+    }
+  } catch (error) {
+    console.error('Error en la búsqueda de usuario:', error);
+    throw error; // Lanzamos el error para capturarlo en el componente
+  }
+};
+
+
+
+
+
+
+

@@ -5,14 +5,9 @@ import NavAdmin from '../Componentes/NavAdmin'
 import AdminSideBar from '../Componentes/SideBar'
 import FormularioRecofi from '../Componentes/AgregarRecofis'
 
-
-
-
-
-
 function RecofisPage() {
   return (
-    <div>
+    <div id='principalConteiner'>
       <NavAdmin/>
       <Row>
         <Col sm={2} > <AdminSideBar /></Col>

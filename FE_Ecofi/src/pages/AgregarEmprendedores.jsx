@@ -5,14 +5,9 @@ import AgregarEmpren from '../Componentes/AgregarEmpren'
 import {Row,Col} from 'react-bootstrap'
 import NavAdmin from '../Componentes/NavAdmin'
 
-
-
-
-
-
 function Emprendedores() {
   return (
-    <div>
+    <div id='principalConteiner'>
       <NavAdmin/>
       <Row>
         <Col sm={2} > <AdminSideBar /></Col>

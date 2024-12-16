@@ -6,16 +6,7 @@ const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 // const emailjs = require('emailjs-com'); 
 // const express = require('express');
 
-// const obtenerUsuarios = async (req, res) => {
-//     try {
-//       const usuario = await Usuario.findAll(); 
-//       res.status(200).json(usuario);
-  
-//     } catch (error) {
-//       console.error(error); // Imprimir error
-//       res.status(500).json({ error: 'Error al obtener la Dirección.' });
-//     }
-//   };
+
 
 const obtenerUsuarios = async (req, res) => {
   try {
@@ -201,7 +192,33 @@ const actualizarUsuario = async (req, res) => {
   };
 
 
-
+  const actualizarBicolones = async (req, res) => {
+    try {
+      const { id } = req.params; 
+      const { nuevosBicolones } = req.body; // Nuevos bicolones desde el frontend
+  
+      // Verificar que los nuevos bicolones sean válidos
+      if (nuevosBicolones === undefined || typeof nuevosBicolones !== 'number' || nuevosBicolones < 0) {
+        return res.status(400).json({ error: 'Los bicolones deben ser un número válido.' });
+      }
+  
+      // Buscar el usuario en la base de datos
+      const usuario = await Usuario.findByPk(id);
+      if (!usuario) {
+        return res.status(404).json({ error: 'Usuario no encontrado.' });
+      }
+  
+      // Actualizar los bicolones del usuario
+      usuario.Bicolones = nuevosBicolones;
+      await usuario.save();
+  
+      res.status(200).json({ message: 'Bicolones actualizados exitosamente.', usuario });
+    } catch (error) {
+      console.error('Error al actualizar bicolones:', error);
+      res.status(500).json({ error: 'Error interno al actualizar los bicolones.' });
+    }
+  };
+  
 
 
 
@@ -290,7 +307,8 @@ const actualizarUsuario = async (req, res) => {
 
 
 
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario};
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario,
+  actualizarBicolones}
 
 
 

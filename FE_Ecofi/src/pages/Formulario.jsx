@@ -1,6 +1,6 @@
-import React from 'react'
-import FormularioMateriales from '../Componentes/FormRecofi'
-
+import React from "react";
+import FormularioMateriales from "../Componentes/FormRecofi";
+import TablaConversiones from "../Componentes/TablaConversiones";
 
 
 
@@ -9,12 +9,18 @@ import FormularioMateriales from '../Componentes/FormRecofi'
 
 function FormRecofis() {
   return (
-    <div id='FormulariosMaterialesRecofi'>
+    <div id="page-form-recofis">
+      {/* Contenedor del formulario */}
+      <div id="form-container">
+        <FormularioMateriales />
+      </div>
 
-    <FormularioMateriales/>      
-
+      {/* Contenedor del carrusel */}
+      <div id="carousel-unique-container">
+        <TablaConversiones />
+      </div>
     </div>
-  )
+  );
 }
 
-export default FormRecofis
+export default FormRecofis;

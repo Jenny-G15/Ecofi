@@ -24,7 +24,7 @@
     "react-leaflet-cluster": "^2.1.0",
     "react-router-dom": "^6.28.0",
     "react-sidebar": "^3.0.2",
-    "react-slick": "^0.30.2",
+    "react-slick": "^0.30.3",
     "react-toastify": "^10.0.6",
     "slick-carousel": "^1.8.1",
     "uuid": "^11.0.3"

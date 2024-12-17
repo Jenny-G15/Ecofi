@@ -1,5 +1,5 @@
 import React from 'react';
-import "../Styles/inicio.css"
+import "../Styles/Principal.css"
 import Nav from '../Componentes/Nav';
 import Footer from '../Componentes/Footer';
 import Carrusel from '../Componentes/Carrusel';

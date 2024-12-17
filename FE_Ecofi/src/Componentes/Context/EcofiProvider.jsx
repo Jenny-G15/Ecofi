@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ContextoEcofi from './EcofiContex';
 
+
+
 const EcofiProvider = ({ children }) => {
     const [Productos, setProductos] = useState('Prueba');
 
@@ -14,6 +16,16 @@ const EcofiProvider = ({ children }) => {
 };
 
 export default EcofiProvider;
+
+
+
+
+
+
+
+
+
+
 
 // import React, { useState, useCallback, useEffect } from 'react'
 // import { getProductos } from "../../services/productServices";

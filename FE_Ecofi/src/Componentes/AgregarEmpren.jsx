@@ -5,6 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 import '../styles/AgregarEmprendedores.css'
 import { Button } from 'react-bootstrap';
 
+
+
+
 const AgregarEmprendedores = () => {
 
     const [emprendedores, setEmprendedores] = useState([]); // Lista de emprendedores

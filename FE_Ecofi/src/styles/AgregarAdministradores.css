@@ -1,0 +1,111 @@
+/* Contenedor principal */
+.administradoresContainer {
+    background-color: #f2f7f3; /* Fondo verde muy claro */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2d4d32; /* Verde oscuro sofisticado */
+}
+
+/* Título */
+#admiTitulo {
+    font-size: 2rem;
+    color: #285c3a; /* Verde elegante */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Input Fields */
+.containerAdministradores input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #a3c4a7; /* Verde tenue */
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+    color: #2d4d32;
+    background-color: #f9fcfa; /* Fondo muy claro */
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.containerAdministradores input:focus {
+    border-color: #5a8f6e; /* Verde más intenso al enfocar */
+    box-shadow: 0 0 8px rgba(90, 143, 110, 0.4);
+}
+
+/* Botón de agregar */
+#btnAgregarAdministrador {
+    background-color: #5a8f6e; /* Verde elegante */
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#btnAgregarAdministrador:hover {
+    background-color: #4b7d5d; /* Verde más oscuro al pasar el mouse */
+    transform: scale(1.05);
+}
+
+/* Lista de Administradores */
+#contenedorAdministradores {
+    margin-top: 20px;
+}
+
+.administrador {
+    background-color: #e8f1e8; /* Verde claro */
+    border: 1px solid #c3dbc5; /* Borde suave */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.administrador:hover {
+    transform: translateY(-3px);
+}
+
+.administrador span {
+    color: #2d4d32; /* Verde oscuro */
+    font-weight: bold;
+}
+
+/* Botón de eliminar */
+.btnContainer button {
+    background-color: #d9534f; /* Rojo elegante para eliminar */
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btnContainer button:hover {
+    background-color: #c9302c; /* Rojo más oscuro al pasar el mouse */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .administradoresContainer {
+        padding: 15px;
+    }
+
+    #admiTitulo {
+        font-size: 1.5rem;
+    }
+
+    .containerAdministradores input {
+        font-size: 0.9rem;
+    }
+}

@@ -12,6 +12,9 @@ function AdminSideBar() {
         <Link className="sidebarLink" to="/Administracion">
           Agregar Productos
         </Link>
+        <Link className="sidebarLink" to="/AgregarAdmin">
+          Agregar Administradores
+        </Link>
         <Link className="sidebarLink" to="/AgregarRecofi">
           Agregar Recofis
         </Link>
@@ -21,6 +24,7 @@ function AdminSideBar() {
         <Link className="sidebarLink" to="/Editarusuarios">
           Edición de Usuarios
         </Link>
+        
       </nav>
     </div>
   );

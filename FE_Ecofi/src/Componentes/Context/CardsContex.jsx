@@ -5,8 +5,8 @@ export function ProductProvider({ children }) {
   
 
   return (
-    <ProductContext.Provider value={{ Productos, loadProductos, setProductos }}>
+    <ContextoEcofi.Provider value={{ Productos, loadProductos, setProductos }}>
       {children}
-    </ProductContext.Provider>
+    </ContextoEcofi.Provider>
   );
 }

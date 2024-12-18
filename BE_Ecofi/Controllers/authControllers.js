@@ -4,6 +4,7 @@ const { Usuario } = require('../models');
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 
+
 const obtenerUsuarios= async (req, res) => {
   try {
    
@@ -20,6 +21,7 @@ const obtenerUsuarios= async (req, res) => {
 
   res.status(200).json({});
 };
+
 
 const obtenerUsuariosxCedula = async (req, res) => {
   try {
@@ -192,6 +194,115 @@ const actualizarUsuario = async (req, res) => {
 
 
 module.exports = { obtenerUsuarios, obtenerUsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario};
+  const actualizarBicolones = async (req, res) => {
+    try {
+      const { id } = req.params; 
+      const { nuevosBicolones } = req.body; // Nuevos bicolones desde el frontend
+  
+      // Verificar que los nuevos bicolones sean válidos
+      if (nuevosBicolones === undefined || typeof nuevosBicolones !== 'number' || nuevosBicolones < 0) {
+        return res.status(400).json({ error: 'Los bicolones deben ser un número válido.' });
+      }
+  
+      // Buscar el usuario en la base de datos
+      const usuario = await Usuario.findByPk(id);
+      if (!usuario) {
+        return res.status(404).json({ error: 'Usuario no encontrado.' });
+      }
+  
+      // Actualizar los bicolones del usuario
+      usuario.Bicolones = nuevosBicolones;
+      await usuario.save();
+  
+      res.status(200).json({ message: 'Bicolones actualizados exitosamente.', usuario });
+    } catch (error) {
+      console.error('Error al actualizar bicolones:', error);
+      res.status(500).json({ error: 'Error interno al actualizar los bicolones.' });
+    }
+  };
+  
+
+
+// // Enviar correo de recuperación
+// router.post('/ForgotPassword', async (req, res) => {
+//     const { Email_Usuario } = req.body;
+
+//     try {
+//         const usuario = await Usuario.findOne({ where: { Email_Usuario } });
+
+//         if (!usuario) {
+//             return res.status(404).json({ message: 'Correo no registrado.' });
+//         }
+
+//         // Generar token
+//         const token = jwt.sign({ id: usuario.id }, SECRET_KEY, { expiresIn: '1h' });
+
+//         // Aquí se configurará el envío del correo con EmailJS
+//         const templateParams = {
+//             to_email: Email_Usuario,
+//             token_url: `http://localhost:3000/reset-password/${token}`,
+//         };
+
+//         const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({
+//                 service_id: 'your_service_id',
+//                 template_id: 'your_template_id',
+//                 user_id: 'your_user_id',
+//                 template_params: templateParams,
+//             }),
+//         });
+
+//         if (!emailResponse.ok) throw new Error('Error al enviar el correo');
+
+//         res.json({ message: 'Correo enviado con éxito.' });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Error en el servidor.' });
+//     }
+// });
+
+
+
+
+// // Función para restablecer la contraseña
+// const resetPassword = async (req, res) => {
+
+//     const { token, nuevaContraseña } = req.body;
+
+//     try {
+//         const decoded = jwt.verify(token, jwtSecret);
+
+//         const usuario = await Usuario.findOne({ where: { Email_Usuario: decoded.email } });
+
+//         if (!usuario) {
+//             return res.status(404).json({ message: 'Usuario no encontrado.' });
+//         }
+
+//         const contrasenaEncriptada = await bcrypt.hash(nuevaContraseña, 10);
+
+//         usuario.Contraseña_Usuario = contrasenaEncriptada;
+//         await usuario.save();
+
+//         res.status(200).json({ message: 'Contraseña restablecida exitosamente.' });
+//     } catch (error) {
+//         console.error('Error al restablecer la contraseña:', error);
+
+        
+//         if (error.name === 'TokenExpiredError') {
+//             return res.status(400).json({ message: 'El token ha expirado.' });
+//         }
+
+//         res.status(500).json({ message: 'Error al restablecer la contraseña.' });
+//     }
+// };
+
+
+
+
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario,
+  actualizarBicolones}
 
 
 

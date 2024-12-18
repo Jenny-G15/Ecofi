@@ -148,6 +148,25 @@ export async function deleteUser(id) {
 
 
 
+export const actualizarBicolones = async (id, Bicolones) => {
+
+  try {
+  
+    const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ Bicolones: Bicolones }),
+  
+    });
+  
+    if (!response.ok) throw new Error('Error al actualizar los bicolones');
+    return await response.json();
+  
+  } catch (error) {
+    console.error('Error al actualizar los bicolones:', error);
+    throw error;
+  }
+};
 
 
 

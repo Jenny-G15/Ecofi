@@ -41,8 +41,8 @@ const Historialrecolecciones = () => {
         <p>{error}</p>
       ) : (
         <div>
-          <p>Centro de recolección más activo: {estadisticas.recofiTop}</p>
-          <p>Material más intercambiado: {estadisticas.materialTop}</p>
+<p>Centro de recolección más activo: {estadisticas.recofiTop ? estadisticas.recofiTop.nombre : 'No hay datos disponibles'}</p>
+<p>Material más intercambiado: {estadisticas.materialTop ? estadisticas.materialTop.nombre : 'No hay datos disponibles'}</p>
         </div>
       )}
     </div>

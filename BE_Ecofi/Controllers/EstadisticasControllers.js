@@ -90,6 +90,9 @@ const eliminarHistorialRecoleccion = async (req, res) => {
 };
 
 
+
+
+
 const obtenerEstadisticas = async (req, res) => {
   try {
     // RECOFI con más intercambios
@@ -101,17 +104,15 @@ const obtenerEstadisticas = async (req, res) => {
       include: [
         {
           model: Recofi,
-          as: 'formularioRecofi',
-          attributes: ['Nombre_Recofi']
+          as: 'formularioRecofi', // Alias debe coincidir con el definido en las relaciones
+          attributes: ['id', 'Nombre_Recofi']
         }
       ],
-      group: ['ID_Recofi', 'Recofi.id'],
+      group: ['Formulario.ID_Recofi', 'formularioRecofi.id', 'formularioRecofi.Nombre_Recofi'],
       order: [[Sequelize.literal('totalIntercambios'), 'DESC']],
       limit: 1
     });
 
-
-    
     // Material más intercambiado
     const materialMasIntercambiado = await Formulario.findOne({
       attributes: [
@@ -121,11 +122,11 @@ const obtenerEstadisticas = async (req, res) => {
       include: [
         {
           model: Material,
-          as: 'materialFormulario',
-          attributes: ['Tipo_Material']
+          as: 'materialFormulario', // Alias debe coincidir con el definido en las relaciones
+          attributes: ['id', 'Tipo_Material']
         }
       ],
-      group: ['ID_Material', 'Material.id'],
+      group: ['Formulario.ID_Material', 'materialFormulario.id', 'materialFormulario.Tipo_Material'],
       order: [[Sequelize.literal('totalIntercambios'), 'DESC']],
       limit: 1
     });
@@ -134,13 +135,13 @@ const obtenerEstadisticas = async (req, res) => {
     res.json({
       recofiTop: recofiConMasIntercambios
         ? {
-            nombre: recofiConMasIntercambios.Recofi.Nombre_Recofi,
+            nombre: recofiConMasIntercambios.formularioRecofi.Nombre_Recofi,
             totalIntercambios: recofiConMasIntercambios.get('totalIntercambios')
           }
         : 'No hay datos disponibles',
       materialTop: materialMasIntercambiado
         ? {
-            nombre: materialMasIntercambiado.Material.Tipo_Material,
+            nombre: materialMasIntercambiado.materialFormulario.Tipo_Material,
             totalIntercambios: materialMasIntercambiado.get('totalIntercambios')
           }
         : 'No hay datos disponibles'
@@ -150,6 +151,78 @@ const obtenerEstadisticas = async (req, res) => {
     res.status(500).json({ error: 'Ocurrió un problema al obtener las estadísticas' });
   }
 };
+
+
+
+
+
+
+
+
+// const obtenerEstadisticas = async (req, res) => {
+//   try {
+//     // RECOFI con más intercambios
+//     const recofiConMasIntercambios = await Formulario.findOne({
+//       attributes: [
+//         'ID_Recofi',
+//         [Sequelize.fn('COUNT', Sequelize.col('ID_Recofi')), 'totalIntercambios']
+//       ],
+//       include: [
+//         {
+//           model: Recofi,
+//           as: 'formularioRecofi', // Alias debe coincidir con el definido en las relaciones
+//           attributes: ['id', 'Nombre_Recofi']
+//         }
+//       ],
+//       group: ['Formulario.ID_Recofi', 'formularioRecofi.id', 'formularioRecofi.Nombre_Recofi'], // Aquí se ajustan los campos agrupados
+//       order: [[Sequelize.literal('totalIntercambios'), 'DESC']],
+//       limit: 1
+//     });
+
+//     // Enviar la respuesta con los resultados
+//     res.json({
+//       recofiTop: recofiConMasIntercambios || 'No hay datos disponibles'
+//     });
+//   } catch (error) {
+//     console.error('Error al obtener las estadísticas:', error);const obtenerEstadisticas = async (req, res) => {
+  
+  
+//       try {
+//     // RECOFI con más intercambios
+//     const recofiConMasIntercambios = await Formulario.findOne({
+//       attributes: [
+//         'ID_Recofi',
+//         [Sequelize.fn('COUNT', Sequelize.col('ID_Recofi')), 'totalIntercambios']
+//       ],
+//       include: [
+//         {
+//           model: Recofi,
+//           as: 'formularioRecofi', // Alias debe coincidir con el definido en las relaciones
+//           attributes: ['id', 'Nombre_Recofi']
+//         }
+//       ],
+//       group: ['Formulario.ID_Recofi', 'formularioRecofi.id', 'formularioRecofi.Nombre_Recofi'], // Aquí se ajustan los campos agrupados
+//       order: [[Sequelize.literal('totalIntercambios'), 'DESC']],
+//       limit: 1
+//     });
+
+//     // Enviar la respuesta con los resultados
+//     res.json({
+//       recofiTop: recofiConMasIntercambios || 'No hay datos disponibles'
+//     });
+//   } catch (error) {
+//     console.error('Error al obtener las estadísticas:', error);
+//     res.status(500).json({ error: 'Ocurrió un problema al obtener las estadísticas' });
+//   }
+// };
+
+//     res.status(500).json({ error: 'Ocurrió un problema al obtener las estadísticas' });
+//   }
+// };
+
+
+
+
 
 
 module.exports = { obtenerHistorialesRecoleccion, crearHistorialRecoleccion, actualizarHistorialRecoleccion, eliminarHistorialRecoleccion,  obtenerEstadisticas };

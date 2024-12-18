@@ -3,21 +3,25 @@ const jwt = require('jsonwebtoken');
 const { Usuario } = require('../models'); 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
-// const emailjs = require('emailjs-com'); 
-// const express = require('express');
 
-// const obtenerUsuarios = async (req, res) => {
-//     try {
-//       const usuario = await Usuario.findAll(); 
-//       res.status(200).json(usuario);
-  
-//     } catch (error) {
-//       console.error(error); // Imprimir error
-//       res.status(500).json({ error: 'Error al obtener la Dirección.' });
-//     }
-//   };
+const obtenerUsuarios= async (req, res) => {
+  try {
+   
+      const usuarios = await Usuario.findAll(); 
+      if (!usuarios) {
+        return res.status(404).json({ error: 'Usuario no encontrado.' });
+      } else {
+        return res.status(200).json(usuarios);
+      }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al obtener los usuarios.' });
+  }
 
-const obtenerUsuarios = async (req, res) => {
+  res.status(200).json({});
+};
+
+const obtenerUsuariosxCedula = async (req, res) => {
   try {
     const { cedula } = req.params; 
 
@@ -29,19 +33,13 @@ const obtenerUsuarios = async (req, res) => {
       } else {
         return res.status(200).json(usuario);
       }
-      
     }
-    
-    const usuarios = await Usuario.findAll();
-    return res.status(200).json(usuarios);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al obtener los usuarios.' });
   }
 };
   
-
-
 
 const registrarUsuario = async (req, res) => {
 
@@ -80,9 +78,6 @@ const registrarUsuario = async (req, res) => {
         res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
     }
 };
-
-
-
 
 
 const iniciarSesion = async (req, res) => {
@@ -135,11 +130,6 @@ const iniciarSesion = async (req, res) => {
         res.status(500).json({ message: 'Error al iniciar sesión.' });
     }
 };
-
-
-
-
-
 
 const actualizarUsuario = async (req, res) => {
     try {
@@ -201,96 +191,7 @@ const actualizarUsuario = async (req, res) => {
   };
 
 
-
-
-
-
-
-
-
-
-
-
-
-// // Enviar correo de recuperación
-// router.post('/ForgotPassword', async (req, res) => {
-//     const { Email_Usuario } = req.body;
-
-//     try {
-//         const usuario = await Usuario.findOne({ where: { Email_Usuario } });
-
-//         if (!usuario) {
-//             return res.status(404).json({ message: 'Correo no registrado.' });
-//         }
-
-//         // Generar token
-//         const token = jwt.sign({ id: usuario.id }, SECRET_KEY, { expiresIn: '1h' });
-
-//         // Aquí se configurará el envío del correo con EmailJS
-//         const templateParams = {
-//             to_email: Email_Usuario,
-//             token_url: `http://localhost:3000/reset-password/${token}`,
-//         };
-
-//         const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify({
-//                 service_id: 'your_service_id',
-//                 template_id: 'your_template_id',
-//                 user_id: 'your_user_id',
-//                 template_params: templateParams,
-//             }),
-//         });
-
-//         if (!emailResponse.ok) throw new Error('Error al enviar el correo');
-
-//         res.json({ message: 'Correo enviado con éxito.' });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'Error en el servidor.' });
-//     }
-// });
-
-
-
-
-// // Función para restablecer la contraseña
-// const resetPassword = async (req, res) => {
-
-//     const { token, nuevaContraseña } = req.body;
-
-//     try {
-//         const decoded = jwt.verify(token, jwtSecret);
-
-//         const usuario = await Usuario.findOne({ where: { Email_Usuario: decoded.email } });
-
-//         if (!usuario) {
-//             return res.status(404).json({ message: 'Usuario no encontrado.' });
-//         }
-
-//         const contrasenaEncriptada = await bcrypt.hash(nuevaContraseña, 10);
-
-//         usuario.Contraseña_Usuario = contrasenaEncriptada;
-//         await usuario.save();
-
-//         res.status(200).json({ message: 'Contraseña restablecida exitosamente.' });
-//     } catch (error) {
-//         console.error('Error al restablecer la contraseña:', error);
-
-        
-//         if (error.name === 'TokenExpiredError') {
-//             return res.status(400).json({ message: 'El token ha expirado.' });
-//         }
-
-//         res.status(500).json({ message: 'Error al restablecer la contraseña.' });
-//     }
-// };
-
-
-
-
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario};
+module.exports = { obtenerUsuarios, obtenerUsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario};
 
 
 

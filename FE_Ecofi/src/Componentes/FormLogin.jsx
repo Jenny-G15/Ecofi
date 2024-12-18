@@ -1,62 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { PostLogin } from "../services/userServices";
-import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import ContextoEcofi from './Context/EcofiContex';
 
 
 
 export default function FormLogin() {
+  // const { setUserData } = useContext(ContextoEcofi); // Usar el contexto
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const loguearUsuario = async (event) => {
     event.preventDefault();
-    
 
-    //Llama al servicio del Login
-    try { 
+    try {
       const response = await PostLogin({
-          Email_Usuario: email, 
-          Contraseña_Usuario: password
+        Email_Usuario: email,
+        Contraseña_Usuario: password
       });
-
-
-      if (response && response.token) {
-        // Guardamos el token en el SessionStorage
-        sessionStorage.setItem("token", response.token);
-
-
-        // Extraemos el rol del usuario de la respuesta
-        const rolUsuario = response.rol_usuario;
-
-  
-        toast.success("¡Inicio de sesión exitoso!");
-
-
-
-        // Redirigimos según el rol
-        if (rolUsuario === 'Administrador') {
-          navigate("/Administrador");
-        } else if (rolUsuario === 'usuario') {
-          navigate("/PerfilUsuario");
-        } else if (rolUsuario === 'Recofi') {
-          navigate("/Recofi");
+      sessionStorage.setItem("token", response.token); 
+      console.log('RESPUESTA: ', response);
+      
+        // // Establecer el estado con la información correcta
+        // setUserData({ 
+        //   token: response.token,          // Guardar el token en el estado
+        //   // rol_usuario: response.rol_usuario // Si necesitas el rol también
+        // });
+        
+        // Redirigir según el rol
+        if (response.rol_usuario === 'usuario') {
+          navigate("/Perfil");
         } else {
           toast.error("Rol de usuario no reconocido");
         }
-      } else {
-        toast.error(response.message || "Error en el inicio de sesión.");
-      }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       toast.error("Ocurrió un error al iniciar sesión");
     }
   };
-
 
   return (
     <div className='parentContainer'>
@@ -68,7 +53,6 @@ export default function FormLogin() {
               <Form.Group className="mb-3">
                 <Form.Label>Correo Electrónico</Form.Label>
                 <Form.Control
-                  id="email"
                   type="email"
                   placeholder="Enter email"
                   value={email}
@@ -86,13 +70,14 @@ export default function FormLogin() {
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit" className="button-register">
+              <Button variant="primary" type="submit">
                 Iniciar sesión
               </Button>
             </Form>
           </Col>
         </Row>
       </Container>
+
       <ToastContainer 
         position="top-right" 
         autoClose={5000} 
@@ -103,13 +88,6 @@ export default function FormLogin() {
         draggable 
         pauseOnHover 
       />
-
-      <div className='informativeContainer'>
-        <p>🌍 ¡Bienvenido a EcoFi! <br /> <br />
-          🌱¡Gracias por unirte a nuestra comunidad verde! <br />
-         🌿Ahora que eres parte de EcoFi, cada acción de reciclaje te acerca a un mundo más sostenible 💚 <br />
-         💰¡Empecemos a reciclar y a transformar el planeta juntos! 🌍✨</p>
-      </div>
     </div>
   );
 }

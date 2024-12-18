@@ -1,3 +1,13 @@
+#principalConteiner {
+    display: grid;
+    grid-template-rows: 100px auto auto auto; /* Cada sección tiene su propia fila */
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 1rem; /* Espaciado entre filas */
+    width: 100%; /* Ancho completo */
+    background-color: #fdfdfdb7;
+  }
+  
+
 /* Contenedor principal para Recofis */
 .recofi-container {
     padding: 20px;

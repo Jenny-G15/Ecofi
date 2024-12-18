@@ -12,6 +12,8 @@ import QuienesSomos from "../pages/QuienesSomos";
 import EditarUsuarios from "../Pages/EditarUsuarios";
 import Pruebita from "../Pages/Prueba";
 import FormRecofis from "../Pages/Formulario";
+import Monedero from "../pages/Monedero";
+
 
 
 const Routing = () => {
@@ -28,15 +30,18 @@ const Routing = () => {
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         {<Route path="/Administracion" element={<Administracion/>} /> }
-        {<Route path="/PerfilUsuario" element={<PerfilUsuario/>} /> }
         <Route path="/Recofi" element={<Recofi />} />
         <Route path="/AgregarEmpren" element={<Emprendedores />} />
         <Route path="/AgregarRecofi" element={<RecofisPage />} />
-        <Route path="/QuienesSomos" element={<QuienesSomos />} /
+        <Route path="/QuienesSomos" element={<QuienesSomos />} />
         <Route path="/EditarUsuarios" element={<EditarUsuarios />} />
         <Route path="/Prueba" element={<Pruebita />} />
         <Route path="/Formulario" element={<FormRecofis />} />
 
+        <Route path="/Perfil" element={<PerfilUsuario />}>
+          <Route path="/Perfil/Monedero" element={<Monedero />} />
+        </Route>
+        
       </Routes>
     </Router>
   );

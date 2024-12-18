@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/CardsPrincipal.css"; // Importa estilos personalizados
+import "../styles/Principal.css"; // Importa estilos personalizados
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Descuentos from '../IMG/Descuentos.jpeg'

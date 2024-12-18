@@ -2,11 +2,6 @@ import React from "react";
 import FormularioMateriales from "../Componentes/FormRecofi";
 import TablaConversiones from "../Componentes/TablaConversiones";
 
-
-
-
-
-
 function FormRecofis() {
   return (
     <div id="page-form-recofis">

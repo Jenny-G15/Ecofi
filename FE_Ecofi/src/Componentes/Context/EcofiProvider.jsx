@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import ContextoEcofi from './EcofiContex';
 
 
 
 const EcofiProvider = ({ children }) => {
-    const [Productos, setProductos] = useState('Prueba');
+  const [Productos, setProductos] = useState('Prueba'); // Estado para productos
+  const [userData, setUserData] = useState({token: null});
 
-   
-
-    return (
-        <ContextoEcofi.Provider value={{ Productos, setProductos }}>
-            {children}
-        </ContextoEcofi.Provider>
-    );
+  return (
+    <ContextoEcofi.Provider value={{ Productos, setProductos, userData, setUserData }}>
+      {children}
+    </ContextoEcofi.Provider>
+  );
 };
 
 export default EcofiProvider;

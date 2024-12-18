@@ -3,14 +3,14 @@ import "../Styles/Principal.css"
 import Nav from '../Componentes/Nav';
 import Footer from '../Componentes/Footer';
 import Carrusel from '../Componentes/Carrusel';
-import CardsInicio from '../Componentes/CardsPrincipal';
+import CardsPrincipal from '../Componentes/CardsPrincipal';
 
 function Principal() {
   return (
     <div id='principalConteiner'>
       <Nav />
       <Carrusel />
-      <CardsInicio/>
+      <CardsPrincipal/>
       <div id='footerConteiner'><Footer /> </div>
     </div>
 

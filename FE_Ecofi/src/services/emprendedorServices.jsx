@@ -1,8 +1,7 @@
 // Obtener todos los emprendedores
 export async function getEmprendedores() {
     try {
-        const response = await fetch('http://192.168.1.246:3000/emprendedores', {
-            method: 'GET',
+        const response = await fetch('http://192.168.1.246:3000/emprendedores ', { 
             headers: {
                 'Content-Type': 'application/json',
             },

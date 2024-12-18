@@ -3,12 +3,27 @@ const jwt = require('jsonwebtoken');
 const { Usuario } = require('../models'); 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
-// const emailjs = require('emailjs-com'); 
-// const express = require('express');
 
 
+const obtenerUsuarios= async (req, res) => {
+  try {
+   
+      const usuarios = await Usuario.findAll(); 
+      if (!usuarios) {
+        return res.status(404).json({ error: 'Usuario no encontrado.' });
+      } else {
+        return res.status(200).json(usuarios);
+      }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al obtener los usuarios.' });
+  }
 
-const obtenerUsuarios = async (req, res) => {
+  res.status(200).json({});
+};
+
+
+const obtenerUsuariosxCedula = async (req, res) => {
   try {
     const { cedula } = req.params; 
 
@@ -20,19 +35,13 @@ const obtenerUsuarios = async (req, res) => {
       } else {
         return res.status(200).json(usuario);
       }
-      
     }
-    
-    const usuarios = await Usuario.findAll();
-    return res.status(200).json(usuarios);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al obtener los usuarios.' });
   }
 };
   
-
-
 
 const registrarUsuario = async (req, res) => {
 
@@ -71,9 +80,6 @@ const registrarUsuario = async (req, res) => {
         res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
     }
 };
-
-
-
 
 
 const iniciarSesion = async (req, res) => {
@@ -126,11 +132,6 @@ const iniciarSesion = async (req, res) => {
         res.status(500).json({ message: 'Error al iniciar sesión.' });
     }
 };
-
-
-
-
-
 
 const actualizarUsuario = async (req, res) => {
     try {
@@ -192,6 +193,7 @@ const actualizarUsuario = async (req, res) => {
   };
 
 
+module.exports = { obtenerUsuarios, obtenerUsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario};
   const actualizarBicolones = async (req, res) => {
     try {
       const { id } = req.params; 
@@ -219,14 +221,6 @@ const actualizarUsuario = async (req, res) => {
     }
   };
   
-
-
-
-
-
-
-
-
 
 
 // // Enviar correo de recuperación

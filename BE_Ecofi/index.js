@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { sequelize } = require('./models'); // Importa la conexión a la base de datos
-const authRoutes = require('./Routes/authRoutes'); // Importa las rutas de usuarios
+const { sequelize } = require('./models'); 
+const authRoutes = require('./Routes/authRoutes'); 
 const canjesRoutes = require('./Routes/canjesRoutes');
 const direccionRoutes = require('./Routes/direccionRoutes');
 const emprendedorRoutes = require('./Routes/emprendedorRoutes');
@@ -47,6 +47,6 @@ app.use('/recofi', recofiRoutes);
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://192.168.1.246:${PORT}`);
     
 });

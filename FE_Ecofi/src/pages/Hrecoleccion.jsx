@@ -1,17 +1,17 @@
 import React from 'react'
-import AdminSideBar from '../Componentes/SideBar'
-import AgregarAdministradores from '../Componentes/AgregarAdmin'
 import {Row,Col} from 'react-bootstrap'
 import NavAdmin from '../Componentes/NavAdmin'
+import AdminSideBar from '../Componentes/SideBar'
+import Historialrecolecciones from '../Componentes/HistorialRecoleccion'
 
 
-function Emprendedores() {
+function Recolecciones() {
   return (
     <div id='principalConteiner'>
       <NavAdmin/>
       <Row>
         <Col sm={2} > <AdminSideBar /></Col>
-        <Col sm={10}><AgregarAdministradores /></Col>
+        <Col sm={10}><Historialrecolecciones /></Col>
       </Row>
       
 
@@ -19,4 +19,4 @@ function Emprendedores() {
   )
 }
 
-export default Emprendedores
+export default Recolecciones

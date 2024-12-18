@@ -3,16 +3,17 @@ import Login from "../pages/Login";
 import Register from "../Pages/Register";
 import Principal from "../Pages/Principal";
 import BodyBackground from "../Componentes/BodyBackground";
-import Administracion from "../pages/Administracion";
-import PerfilUsuario from "../pages/Perfil_Usuario";
+import Administracion from "../Pages/Administracion";
+import PerfilUsuario from "../Pages/Perfil_Usuario";
 import Recofi from "../Pages/Recofi";
 import Emprendedores from "../Pages/AgregarEmprendedores";
 import RecofisPage from "../Pages/AgregarRecofis";
-import QuienesSomos from "../pages/QuienesSomos";
+import QuienesSomos from "../Pages/QuienesSomos";
 import EditarUsuarios from "../Pages/EditarUsuarios";
 import Pruebita from "../Pages/Prueba";
 import FormRecofis from "../Pages/Formulario";
 import AgregarAdministradores from "../Componentes/AgregarAdmin";
+import Recolecciones from "../Pages/Hrecoleccion";
 
 
 const Routing = () => {
@@ -37,6 +38,7 @@ const Routing = () => {
         <Route path="/EditarUsuarios" element={<EditarUsuarios />} />
         <Route path="/Prueba" element={<Pruebita />} />
         <Route path="/Formulario" element={<FormRecofis />} />
+        <Route path="/HRecoleccion" element={<Recolecciones />} />
         <Route path="/AgregarAdmin" element={<AgregarAdministradores />} />
 
       </Routes>

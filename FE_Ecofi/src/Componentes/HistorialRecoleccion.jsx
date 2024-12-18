@@ -3,6 +3,8 @@ import { getHrecoleccion } from '../services/HrecoleccionServices';
 
 
 
+
+
 const Historialrecolecciones = () => {
   const [estadisticas, setEstadisticas] = useState({
     recofiTop: null,

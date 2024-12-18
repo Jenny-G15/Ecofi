@@ -101,7 +101,7 @@ const obtenerEstadisticas = async (req, res) => {
       include: [
         {
           model: Recofi,
-          as: 'Recofi',
+          as: 'formularioRecofi',
           attributes: ['Nombre_Recofi']
         }
       ],
@@ -121,7 +121,7 @@ const obtenerEstadisticas = async (req, res) => {
       include: [
         {
           model: Material,
-          as: 'Material',
+          as: 'materialFormulario',
           attributes: ['Tipo_Material']
         }
       ],

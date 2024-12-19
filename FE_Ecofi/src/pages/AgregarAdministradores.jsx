@@ -7,7 +7,7 @@ import NavAdmin from '../Componentes/NavAdmin'
 
 function Admin() {
   return (
-    <div id='principalConteiner'>
+    <div>
       <NavAdmin/>
       <Row>
         <Col sm={2} > <AdminSideBar /></Col>

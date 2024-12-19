@@ -14,6 +14,8 @@ import FormRecofis from "../Pages/Formulario";
 import Monedero from "../pages/Monedero";
 import AgregarAdministradores from "../Componentes/AgregarAdmin";
 import Recolecciones from "../Pages/Hrecoleccion";
+import Admin from "../Pages/AgregarAdministradores";
+import Testimonios from "../Componentes/Testimonios";
 
 
 const Routing = () => {
@@ -27,6 +29,7 @@ const Routing = () => {
       
       <Routes>
         <Route path="/Principal" element={<Principal />} />
+        <Route path="/Testimonios" element={<Testimonios/>} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         {<Route path="/Administracion" element={<Administracion/>} /> }
@@ -37,9 +40,7 @@ const Routing = () => {
         <Route path="/EditarUsuarios" element={<EditarUsuarios />} />
         <Route path="/Formulario" element={<FormRecofis />} />
         <Route path="/HRecoleccion" element={<Recolecciones />} />
-        <Route path="/AgregarAdmin" element={<AgregarAdministradores />} />
-
-
+        <Route path="/AgregarAdmin" element={<Admin />} />
         <Route path="/Perfil" element={<PerfilUsuario />}>
           <Route path="/Perfil/Monedero" element={<Monedero />} />
         </Route>

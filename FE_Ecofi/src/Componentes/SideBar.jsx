@@ -24,6 +24,9 @@ function AdminSideBar() {
         <Link className="sidebarLink" to="/Editarusuarios">
           Edición de Usuarios
         </Link>
+        <Link className="sidebarLink" to="/Hrecoleccion">
+          Estadísticas de Recolección
+        </Link>
         
       </nav>
     </div>

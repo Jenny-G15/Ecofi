@@ -5,7 +5,7 @@ import {Row,Col} from 'react-bootstrap'
 import NavAdmin from '../Componentes/NavAdmin'
 
 
-function Emprendedores() {
+function Admin() {
   return (
     <div id='principalConteiner'>
       <NavAdmin/>
@@ -19,4 +19,4 @@ function Emprendedores() {
   )
 }
 
-export default Emprendedores
+export default Admin

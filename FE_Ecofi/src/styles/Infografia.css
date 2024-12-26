@@ -1,0 +1,14 @@
+.infografia-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .infografia {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Opcional: esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: sombra */
+  }
+  

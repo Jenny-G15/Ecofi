@@ -4,14 +4,14 @@ import { PostLogin } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import ContextoEcofi from './Context/EcofiContex';
+import ContextoEcofi from './Context/EcofiContex';
 
 
 
 
 
 export default function FormLogin() {
-  // const { setUserData } = useContext(ContextoEcofi); // Usar el contexto
+  const { login } = useContext(ContextoEcofi); // Usar el contexto
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,7 +35,9 @@ export default function FormLogin() {
         
         // Redirigir según el rol
         if (response.rol_usuario === 'usuario') {
+          login(response.rol_usuario)
           navigate("/Perfil");
+        
         } else {
           toast.error("Rol de usuario no reconocido");
         }

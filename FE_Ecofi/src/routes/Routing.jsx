@@ -16,6 +16,7 @@ import AgregarAdministradores from "../Componentes/AgregarAdmin";
 import Recolecciones from "../Pages/Hrecoleccion";
 import Admin from "../Pages/AgregarAdministradores";
 import Testimonios from "../Componentes/Testimonios";
+import PrivateRoute from "./PrivateRoute";
 
 
 const Routing = () => {
@@ -41,7 +42,7 @@ const Routing = () => {
         <Route path="/Formulario" element={<FormRecofis />} />
         <Route path="/HRecoleccion" element={<Recolecciones />} />
         <Route path="/AgregarAdmin" element={<Admin />} />
-        <Route path="/Perfil" element={<PerfilUsuario />}>
+        <Route path="/Perfil" element={ <PrivateRoute><PerfilUsuario /></PrivateRoute>}>
           <Route path="/Perfil/Monedero" element={<Monedero />} />
         </Route>
         

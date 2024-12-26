@@ -4,6 +4,8 @@ import Nav from '../Componentes/Nav';
 import Footer from '../Componentes/Footer';
 import Carrusel from '../Componentes/Carrusel';
 import CardsPrincipal from '../Componentes/CardsPrincipal';
+import InfografiaEcofi from '../Componentes/Infografia';
+
 
 function Principal() {
   return (
@@ -11,6 +13,7 @@ function Principal() {
       <Nav />
       <Carrusel />
       <CardsPrincipal/>
+      <InfografiaEcofi/>
       <div id='footerConteiner'><Footer /> </div>
     </div>
 

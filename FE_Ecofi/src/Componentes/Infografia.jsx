@@ -1,16 +1,17 @@
 import React from 'react';
-import './Infografia.css'; // Opcional: estilos personalizados para la imagen
+import '../Styles/Infografia.css'; 
+import Infografia from "../IMG/Infografía.png"
 
-const Infografia = () => {
+const InfografiaEcofi = () => {
   return (
     <div className="infografia-container">
       <img 
-        src="/path/to/tu-imagen.jpg" 
-        alt="Descripción de la infografía" 
+        src= {Infografia}
+        alt="Infografía" 
         className="infografia"
       />
     </div>
   );
 };
 
-export default Infografia;
+export default InfografiaEcofi;

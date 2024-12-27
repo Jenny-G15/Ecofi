@@ -6,7 +6,7 @@ import Beneficio from "../IMG/Beneficio.png"
 
 const BeneficioReciclar = () => {
   return (
-    <div id='PrincBeneficio'>
+
         <div className="beneficio-container">
         <img 
             src= {Beneficio}
@@ -14,7 +14,7 @@ const BeneficioReciclar = () => {
             className="Beneficio"
         />
         </div>
-    </div>
+
   );
 };
 

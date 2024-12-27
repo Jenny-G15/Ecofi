@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getHrecoleccion } from '../services/HrecoleccionServices';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
+import "../Styles/Estadisticas.css"
 
 const Historialrecolecciones = () => {
   const [estadisticas, setEstadisticas] = useState({
@@ -55,19 +56,21 @@ const Historialrecolecciones = () => {
   };
 
   return (
-    <div>
-      <h2>Estadísticas</h2>
+    <div id="EstadisticasContainer">
+      <h2 id="GraficaH2">Estadísticas</h2>
       {loading ? (
-        <p>Cargando estadísticas...</p>
+        <p id="GraficaLoadingLabel">Cargando estadísticas...</p>
       ) : error ? (
-        <p>{error}</p>
+        <p id="GraficaErrorLabel">{error}</p>
       ) : (
-        <div>
-          <div style={{ width: '60%', margin: '0 auto' }}>
-            <h3>Centros de Recolección</h3>
+        <div id="GraficasContainer">
+          <div id="RecofiChartContainer">
+            <h3 id="GraficaRecofiLabel">Centros de Recolección</h3>
             <Bar data={dataRecofi} options={{ responsive: true }} />
+          </div>
 
-            <h3>Materiales</h3>
+          <div id="MaterialesChartContainer">
+            <h3 id="GraficaMaterialesLabel">Materiales</h3>
             <Bar data={dataMateriales} options={{ responsive: true }} />
           </div>
         </div>
@@ -85,16 +88,32 @@ export default Historialrecolecciones;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React, { useEffect, useState } from 'react';
 // import { getHrecoleccion } from '../services/HrecoleccionServices';
-// import { Bar } from 'react-chartjs-2'; // Importa el componente de gráfica de barras
-// import 'chart.js/auto'; // Necesario para que funcione Chart.js
-
+// import { Bar } from 'react-chartjs-2';
+// import 'chart.js/auto';
 
 // const Historialrecolecciones = () => {
 //   const [estadisticas, setEstadisticas] = useState({
-//     recofiTop: null,
-//     materialTop: null,
+//     recofiIntercambios: [],
+//     materialesIntercambios: []
 //   });
 //   const [loading, setLoading] = useState(true);
 //   const [error, setError] = useState(null);
@@ -104,8 +123,8 @@ export default Historialrecolecciones;
 //       try {
 //         const data = await getHrecoleccion();
 //         setEstadisticas({
-//           recofiTop: data.recofiTop,
-//           materialTop: data.materialTop,
+//           recofiIntercambios: data.recofiIntercambios,
+//           materialesIntercambios: data.materialesIntercambios
 //         });
 //       } catch (error) {
 //         setError('Error al cargar las estadísticas');
@@ -118,27 +137,28 @@ export default Historialrecolecciones;
 //     fetchEstadisticas();
 //   }, []);
 
-//   // Configuración de datos para las gráficas
+//   // Datos para la gráfica de centros de recolección
 //   const dataRecofi = {
-//     labels: estadisticas.recofiTop ? [estadisticas.recofiTop.nombre] : [],
+//     labels: estadisticas.recofiIntercambios.map(recofi => recofi.nombre),
 //     datasets: [
 //       {
 //         label: 'Intercambios por Centro de Recolección',
-//         data: estadisticas.recofiTop ? [estadisticas.recofiTop.totalIntercambios] : [],
-//         backgroundColor: 'rgba(75, 192, 192, 0.6)',
-//       },
-//     ],
+//         data: estadisticas.recofiIntercambios.map(recofi => recofi.totalIntercambios),
+//         backgroundColor: 'rgba(75, 192, 192, 0.6)'
+//       }
+//     ]
 //   };
 
-//   const dataMaterial = {
-//     labels: estadisticas.materialTop ? [estadisticas.materialTop.nombre] : [],
+//   // Datos para la gráfica de materiales
+//   const dataMateriales = {
+//     labels: estadisticas.materialesIntercambios.map(material => material.nombre),
 //     datasets: [
 //       {
 //         label: 'Intercambios por Material',
-//         data: estadisticas.materialTop ? [estadisticas.materialTop.totalIntercambios] : [],
-//         backgroundColor: 'rgba(153, 102, 255, 0.6)',
-//       },
-//     ],
+//         data: estadisticas.materialesIntercambios.map(material => material.totalIntercambios),
+//         backgroundColor: 'rgba(153, 102, 255, 0.6)'
+//       }
+//     ]
 //   };
 
 //   return (
@@ -150,16 +170,12 @@ export default Historialrecolecciones;
 //         <p>{error}</p>
 //       ) : (
 //         <div>
-//           <p>Centro de recolección más activo: {estadisticas.recofiTop ? estadisticas.recofiTop.nombre : 'No hay datos disponibles'}</p>
-//           <p>Material más intercambiado: {estadisticas.materialTop ? estadisticas.materialTop.nombre : 'No hay datos disponibles'}</p>
-
-//           {/* Gráficas */}
 //           <div style={{ width: '60%', margin: '0 auto' }}>
-//             <h3>Centro de Recolección Más Activo</h3>
+//             <h3>Centros de Recolección</h3>
 //             <Bar data={dataRecofi} options={{ responsive: true }} />
 
-//             <h3>Material Más Intercambiado</h3>
-//             <Bar data={dataMaterial} options={{ responsive: true }} />
+//             <h3>Materiales</h3>
+//             <Bar data={dataMateriales} options={{ responsive: true }} />
 //           </div>
 //         </div>
 //       )}
@@ -168,5 +184,9 @@ export default Historialrecolecciones;
 // };
 
 // export default Historialrecolecciones;
+
+
+
+
 
 

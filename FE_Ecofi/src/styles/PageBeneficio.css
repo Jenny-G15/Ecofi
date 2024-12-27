@@ -1,12 +1,4 @@
-/* Contenedor principal */
-#PrincBeneficio {
-    display: grid;
-    grid-template-rows: auto 1fr auto; /* Nav, contenido central, Footer */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    margin: 0;
-    overflow: hidden; /* Evita que elementos se desborden */
-  }
-  
+
   /* Nav: Parte superior */
   #Nav {
     grid-row: 1;
@@ -29,6 +21,7 @@
 /* Imagen de la infografía */
 .Beneficio {
     max-width: 100%; /* Escala proporcionalmente al ancho disponible */
+    grid-column: 1/2;
     max-height: 100%; /* Escala proporcionalmente al alto disponible */
     object-fit: contain; /* Asegura que la imagen completa sea visible */
     display: block;

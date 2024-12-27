@@ -17,6 +17,7 @@ import Recolecciones from "../Pages/Hrecoleccion";
 import Admin from "../Pages/AgregarAdministradores";
 import Testimonios from "../Componentes/Testimonios";
 import PrivateRoute from "./PrivateRoute";
+import Beneficio from "../Pages/Beneficio";
 
 
 const Routing = () => {
@@ -31,6 +32,7 @@ const Routing = () => {
       <Routes>
         <Route path="/Principal" element={<Principal />} />
         <Route path="/Testimonios" element={<Testimonios/>} />
+        <Route path="/Beneficios" element={<Beneficio/>} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         {<Route path="/Administracion" element={<Administracion/>} /> }

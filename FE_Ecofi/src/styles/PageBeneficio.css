@@ -1,0 +1,56 @@
+/* Contenedor principal */
+#PrincBeneficio {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Nav, contenido central, Footer */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    margin: 0;
+    overflow: hidden; /* Evita que elementos se desborden */
+  }
+  
+  /* Nav: Parte superior */
+  #Nav {
+    grid-row: 1;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  /* Beneficio: Contenido central */
+  #DivBeneficio {
+    grid-row: 2;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco para destacar */
+    overflow: hidden; /* Evita desbordamiento */
+  }
+  
+/* Imagen de la infografía */
+.Beneficio {
+    max-width: 100%; /* Escala proporcionalmente al ancho disponible */
+    max-height: 100%; /* Escala proporcionalmente al alto disponible */
+    object-fit: contain; /* Asegura que la imagen completa sea visible */
+    display: block;
+    margin: auto; /* Centra la imagen dentro de su contenedor */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agrega una sombra para destacar */
+  }
+  
+  /* Footer: Parte inferior */
+  #footerConteiner {
+    grid-row: 3;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    z-index: 5;
+  }
+  
+  /* Ajustes para evitar solapamientos */
+  #footerConteiner,
+  #DivBeneficio {
+    position: relative; /* Asegura que cada sección respete su espacio */
+    z-index: 1;
+  }
+  

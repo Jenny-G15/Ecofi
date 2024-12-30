@@ -5,43 +5,39 @@ const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 
 
-const obtenerUsuarios= async (req, res) => {
+const obtenerUsuarios = async (req, res) => {
   try {
-   
-      const usuarios = await Usuario.findAll(); 
-      if (!usuarios) {
-        return res.status(404).json({ error: 'Usuario no encontrado.' });
-      } else {
-        return res.status(200).json(usuarios);
-      }
+    const usuarios = await Usuario.findAll();
+    return res.status(200).json(usuarios);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener los usuarios.' });
+    return res.status(500).json({ error: 'Error al obtener los usuarios.' });
   }
-
-  res.status(200).json({});
 };
 
 
-const obtenerUsuariosxCedula = async (req, res) => {
-  try {
-    const { cedula } = req.params; 
 
-    if (cedula) {
-      const usuario = await Usuario.findOne({ where: { Cedula: cedula } }); // Asegúrate de que el campo en la base de datos se llama "Cedula"
-      
-      if (!usuario) {
-        return res.status(404).json({ error: 'Usuario no encontrado.' });
-      } else {
-        return res.status(200).json(usuario);
-      }
+const UsuariosxCedula = async (req, res) => {
+  try {
+    const { cedula } = req.params;
+
+    if (!cedula) {
+      return res.status(400).json({ error: 'Cédula es requerida.' });
     }
+
+    const usuario = await Usuario.findOne({ where: { Cedula: cedula } });
+
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado.' });
+    }
+
+    return res.status(200).json(usuario);
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener los usuarios.' });
+    return res.status(500).json({ error: 'Error al obtener el usuario por cédula.' });
   }
-};
-  
+}
 
 const registrarUsuario = async (req, res) => {
 
@@ -193,7 +189,6 @@ const actualizarUsuario = async (req, res) => {
   };
 
 
-module.exports = { obtenerUsuarios, obtenerUsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario};
   const actualizarBicolones = async (req, res) => {
     try {
       const { id } = req.params; 
@@ -222,6 +217,9 @@ module.exports = { obtenerUsuarios, obtenerUsuariosxCedula, registrarUsuario, in
   };
   
 
+module.exports = { obtenerUsuarios, UsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario, actualizarBicolones};
+
+
 
 // // Enviar correo de recuperación
 // router.post('/ForgotPassword', async (req, res) => {
@@ -240,7 +238,7 @@ module.exports = { obtenerUsuarios, obtenerUsuariosxCedula, registrarUsuario, in
 //         // Aquí se configurará el envío del correo con EmailJS
 //         const templateParams = {
 //             to_email: Email_Usuario,
-//             token_url: `http://localhost:3000/reset-password/${token}`,
+//             token_url: http://localhost:3000/reset-password/${token},
 //         };
 
 //         const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
@@ -297,12 +295,3 @@ module.exports = { obtenerUsuarios, obtenerUsuariosxCedula, registrarUsuario, in
 //         res.status(500).json({ message: 'Error al restablecer la contraseña.' });
 //     }
 // };
-
-
-
-
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario,
-  actualizarBicolones}
-
-
-

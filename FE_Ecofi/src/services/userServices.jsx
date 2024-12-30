@@ -19,7 +19,6 @@ export async function getUsers() {
     }
 }
 
-
 export async function PostUsers
       (Nombre_Usuario,
         Apellido_Usuario,
@@ -72,26 +71,24 @@ export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
     }
 }
 
-
-
-export async function updateUser(id, Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario, Bicolones) {
+export async function updateUser(id, data) {
   try {
-      const userData = {
-          Nombre_Usuario,
-          Apellido_Usuario,
-          Cedula,
-          Email_Usuario,
-          Contraseña_Usuario,
-          Telefono_Usuario,
-          Bicolones
-      };
+      // const userData = {
+      //     Nombre_Usuario,
+      //     Apellido_Usuario,
+      //     Cedula,
+      //     Email_Usuario,
+      //     Contraseña_Usuario,
+      //     Telefono_Usuario,
+      //     Bicolones
+      // };
 
       const response = await fetch(`http://192.168.1.246:3000/usuarios/${id}`, {
           method: "PUT",
           headers: {
               "Content-Type": "application/json",
           },
-          body: JSON.stringify(userData),
+          body: JSON.stringify(data),
       });
 
       if (!response.ok) {
@@ -127,24 +124,24 @@ export async function deleteUser(id) {
 }
 
 
-// export const buscarPorCedula = async (cedula) => {
-//   try {
-//     const response = await fetch(`http://192.168.100.121:3000/usuarios/${cedula}`);
-//     const data = await response.json();
+export const buscarPorCedula = async (cedula) => {
+  try {
+    const response = await fetch(`http://192.168.1.246:3000/usuarios/${cedula}`);
+    const data = await response.json();
     
-//     // Verificar que la API esté devolviendo el usuario correctamente
-//     console.log('Datos obtenidos de la API:', data); // Esto te ayudará a ver qué devuelve la API
+    // Verificar que la API esté devolviendo el usuario correctamente
+    console.log('Datos obtenidos de la API:', data); // Esto te ayudará a ver qué devuelve la API
 
-//     if (data && data.id) { // Verifica si el objeto tiene un campo "id" válido (o usa otro campo único que tenga sentido)
-//       return data; // Devuelve el objeto completo del usuario
-//     } else {
-//       return null; // Si no se encuentra el usuario, devuelve null
-//     }
-//   } catch (error) {
-//     console.error('Error en la búsqueda de usuario:', error);
-//     throw error; // Lanzamos el error para capturarlo en el componente
-//   }
-// };
+    if (data && data.id) { // Verifica si el objeto tiene un campo "id" válido (o usa otro campo único que tenga sentido)
+      return data; // Devuelve el objeto completo del usuario
+    } else {
+      return null; // Si no se encuentra el usuario, devuelve null
+    }
+  } catch (error) {
+    console.error('Error en la búsqueda de usuario:', error);
+    throw error; // Lanzamos el error para capturarlo en el componente
+  }
+};
 
 
 
@@ -152,7 +149,7 @@ export const actualizarBicolones = async (id, Bicolones) => {
 
   try {
   
-    const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+    const response = await fetch(`http://192.168.1.246:3000/usuarios/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ Bicolones: Bicolones }),
@@ -167,6 +164,8 @@ export const actualizarBicolones = async (id, Bicolones) => {
     throw error;
   }
 };
+
+
 
 
 

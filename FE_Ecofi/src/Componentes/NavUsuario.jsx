@@ -10,9 +10,9 @@ function NavUsuario() {
       </div>
       <ul className="navbar-menu">
         <li><Link to="/Principal">Inicio</Link></li>
-        <li><Link to="/Perfil/Monedero">monedero</Link></li>
-        <li><Link to="/">Productos</Link></li>
-        <li><Link to="/Contacto">Contactenos</Link></li>
+        <li><Link to="/Perfil">Monedero</Link></li> 
+        <li><Link to="/ProductosCanje">Productos</Link></li>
+        <li><a href="#contacto">Contactenos</a></li>
         <li><Link to="/Principal">Cerrar Sesion</Link></li>
       </ul>
     </nav>

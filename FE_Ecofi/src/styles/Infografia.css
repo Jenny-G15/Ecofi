@@ -1,8 +1,12 @@
 .infografia-container {
+    grid-column: 1/3 !important;
+    grid-row: 2 !important;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
   }
   
   .infografia {

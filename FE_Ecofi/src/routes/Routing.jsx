@@ -12,12 +12,12 @@ import QuienesSomos from "../Pages/QuienesSomos";
 import EditarUsuarios from "../Pages/EditarUsuarios";
 import FormRecofis from "../Pages/Formulario";
 import Monedero from "../pages/Monedero";
-import AgregarAdministradores from "../Componentes/AgregarAdmin";
 import Recolecciones from "../Pages/Hrecoleccion";
 import Admin from "../Pages/AgregarAdministradores";
 import Testimonios from "../Componentes/Testimonios";
 import PrivateRoute from "./PrivateRoute";
 import Beneficio from "../Pages/Beneficio";
+
 
 
 const Routing = () => {

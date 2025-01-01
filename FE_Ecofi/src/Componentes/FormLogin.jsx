@@ -11,7 +11,7 @@ import ContextoEcofi from './Context/EcofiContex';
 
 
 export default function FormLogin() {
-  const { login } = useContext(ContextoEcofi); // Usar el contexto
+  const { login, setUserData } = useContext(ContextoEcofi); // Usar el contexto
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,18 +27,24 @@ export default function FormLogin() {
       sessionStorage.setItem("token", response.token); 
       console.log('RESPUESTA: ', response);
       
-        // // Establecer el estado con la información correcta
-        // setUserData({ 
-        //   token: response.token,          // Guardar el token en el estado
-        //   // rol_usuario: response.rol_usuario // Si necesitas el rol también
-        // });
+        // Establecer el estado con la información correcta
+        setUserData({ 
+          token: response.token,          // Guardar el token en el estado
+          // rol_usuario: response.rol_usuario // Si necesitas el rol también
+        });
         
         // Redirigir según el rol
         if (response.rol_usuario === 'usuario') {
           login(response.rol_usuario)
           navigate("/Perfil");
         
-        } else {
+        
+        } 
+        if (response.rol_usuario === 'Administrador') {
+          login(response.rol_usuario)
+          navigate("/Administracion");
+        }
+        else {
           toast.error("Rol de usuario no reconocido");
         }
     } catch (error) {

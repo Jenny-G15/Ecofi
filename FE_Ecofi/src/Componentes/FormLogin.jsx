@@ -30,7 +30,7 @@ export default function FormLogin() {
         // Establecer el estado con la información correcta
         setUserData({ 
           token: response.token,          // Guardar el token en el estado
-          // rol_usuario: response.rol_usuario // Si necesitas el rol también
+          rol_usuario: response.rol_usuario // Si necesitas el rol también
         });
         
         // Redirigir según el rol

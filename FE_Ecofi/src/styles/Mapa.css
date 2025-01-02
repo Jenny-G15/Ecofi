@@ -1,6 +1,28 @@
-/* Tamaño del Contenedor del Mapa */
-.leaflet-container {
-    height: 90vh;
-    width: 90%;
-    border-radius: 2rem;
+  .popup-container {
+    font-family: Arial, sans-serif;
+    text-align: left;
+    line-height: 1.5;
+    background: linear-gradient(135deg, #31e637, #81c784); /* Degradado verde */
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffffff; /* Texto blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltarlo */
   }
+  
+  
+  .popup-container h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+    color: #ffffff; /* Asegura que el título sea blanco */
+  }
+  
+  .popup-container p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+  }
+  
+  .popup-container strong {
+    font-weight: bold;
+    color: #f1f8e9; /* Un verde más claro para destacar */
+  }
+   

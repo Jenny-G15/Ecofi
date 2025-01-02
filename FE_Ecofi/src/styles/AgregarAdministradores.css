@@ -2,10 +2,16 @@
 .administradoresContainer {
     background-color: #f2f7f3; /* Fondo verde muy claro */
     padding: 20px;
-    border-radius: 12px;
+    border-radius: 23px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #2d4d32; /* Verde oscuro sofisticado */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    margin-top: 8rem;
+
 }
 
 /* Título */

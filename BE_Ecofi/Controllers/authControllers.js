@@ -39,43 +39,55 @@ const UsuariosxCedula = async (req, res) => {
   }
 }
 
+
+
+
 const registrarUsuario = async (req, res) => {
+  const { 
+      Nombre_Usuario, 
+      Apellido_Usuario, 
+      Cedula, 
+      Email_Usuario, 
+      Contraseña_Usuario, 
+      Telefono_Usuario, 
+      Bicolones, 
+      Rol_Usuario 
+  } = req.body; 
 
-    const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario,
-         Bicolones, Rol_Usuario } = req.body; 
+  try {
+      // Verifica si el usuario ya existe en la base de datos por su cédula
+      const usuarioExistente = await Usuario.findOne({ where: { Cedula } });
 
-    try {
-        // Verifica si el usuario ya existe en la base de datos por su cédula
-        const usuarioExistente = await Usuario.findOne({ where: { Cedula } });
+      if (usuarioExistente) {
+          return res.status(400).json({ message: 'El número de cédula asociado ya existe.' });
+      }
 
-        if (usuarioExistente) {
-            return res.status(400).json({ message: 'El número de cédula asociado ya existe.' });
-        }
+      // Encripta la contraseña antes de guardarla
+      const contrasenaUser = await bcrypt.hash(Contraseña_Usuario, 10);
 
-        // Encripta la contraseña antes de guardarla
-        const contrasenaUser = await bcrypt.hash(Contraseña_Usuario, 10);
+      // Si no se pasa un Rol_Usuario, asigna el valor por defecto
+      const rolUsuario = Rol_Usuario || 'usuario'; // Aquí asignamos 'usuario' por defecto
 
-        // Crea un nuevo usuario
-        const nuevoUsuario = await Usuario.create({
-            Nombre_Usuario,
-            Apellido_Usuario,
-            Cedula,
-            Email_Usuario,
-            Contraseña_Usuario: contrasenaUser, // Guardar la contraseña encriptada
-            Telefono_Usuario,
-            Bicolones,
-            Rol_Usuario
-        });
+      // Si el Rol_Usuario es 'administrador', aseguramos que se guarde de esta manera
+      const nuevoUsuario = await Usuario.create({
+          Nombre_Usuario,
+          Apellido_Usuario,
+          Cedula,
+          Email_Usuario,
+          Contraseña_Usuario: contrasenaUser,
+          Telefono_Usuario,
+          Bicolones,
+          Rol_Usuario: rolUsuario, // Usamos el valor manipulado
+      });
 
-        // Retorna una respuesta exitosa
-        res.status(201).json({ message: 'Usuario registrado exitosamente', usuario: nuevoUsuario });
-    } catch (error) {
-
-        // En caso de error, enviar respuesta con el código de estado 500
-        console.error(error);
-        res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
-    }
+      // Retorna una respuesta exitosa
+      res.status(201).json({ message: 'Usuario registrado exitosamente', usuario: nuevoUsuario });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
+  }
 };
+
 
 
 const iniciarSesion = async (req, res) => {
@@ -218,3 +230,7 @@ const actualizarUsuario = async (req, res) => {
   
 
 module.exports = { obtenerUsuarios, UsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario, actualizarBicolones};
+<<<<<<< HEAD
+=======
+
+>>>>>>> 10300ddf719c889b3cd6c5369ff3393587510d64

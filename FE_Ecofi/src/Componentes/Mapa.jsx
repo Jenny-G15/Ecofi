@@ -13,43 +13,32 @@ import "../styles/Mapa.css";
 export default function MapaRecofi() {
   const [markers, setMarkers] = useState([]); // Estado para almacenar los marcadores
 
-
   // Llamada al servicio para obtener los recofis
   useEffect(() => {
     const fetchMarkers = async () => {
       try {
         const recofis = await getRecofis(); // Llama al servicio
         console.log("Recofis obtenidos:", recofis); // Verifica los datos recibidos
+
         const formattedMarkers = recofis.map((recofi) => {
-          console.log(`Recofi: ${recofi.Nombre_Recofi}, Latitud: ${recofi.Latitud}, Longitud: ${recofi.Longitud}`);
           return {
             geocode: [recofi.Latitud, recofi.Longitud],
-            popUp: `${recofi.Nombre_Recofi}. Horario: ${recofi.Horario}. Material: ${recofi.materialRecofi.Tipo_Material}`,
+            popUp: `
+              <div class="popup-container">
+                <h3>${recofi.Nombre_Recofi}</h3>
+                <p><strong>Horario:</strong> ${recofi.HorarioApertura} - ${recofi.HorarioCierre}</p>
+                <p><strong>Material:</strong> ${recofi.materialRecofi.Tipo_Material}</p>
+              </div>
+            `,
           };
         });
-        // const formattedMarkers = recofis.map((recofi) => ({
-        //   geocode: [recofi.Latitud, recofi.Longitud],
-        //   popUp: `${recofi.Nombre_Recofi}. Horario: ${recofi.Horario}. Material: ${recofi.materialRecofi.Tipo_Material}`,
-        // }));
+
         console.log("Marcadores formateados:", formattedMarkers); // Verifica los marcadores
         setMarkers(formattedMarkers);
       } catch (error) {
         console.error("Error al obtener los marcadores:", error);
       }
     };
-    
-    // const fetchMarkers = async () => {
-    //   try {
-    //     const recofis = await getRecofis(); // Llama al servicio
-    //     const formattedMarkers = recofis.map((recofi) => ({
-    //       geocode: [recofi.Latitud, recofi.Longitud],
-    //       popUp: `${recofi.Nombre_Recofi}. Horario: ${recofi.Horario}. Material: ${recofi.materialRecofi.Tipo_Material}`, // Construye el popUp
-    //     }));
-    //     setMarkers(formattedMarkers); // Actualiza el estado con los datos de los recofis
-    //   } catch (error) {
-    //     console.error("Error al obtener los marcadores:", error);
-    //   }
-    // };
 
     fetchMarkers(); // Ejecuta la función al montar el componente
   }, []);
@@ -69,7 +58,15 @@ export default function MapaRecofi() {
     });
 
   return (
-    <MapContainer center={[9.97691, -84.8379]} zoom={12}  style={{ border: 'solid 2px #ffffff', padding: '5px', height: "200px", width: "100%"}}
+    <MapContainer
+      center={[9.97691, -84.8379]}
+      zoom={12}
+      style={{
+        border: "solid 2px #ffffff",
+        padding: "5px",
+        height: "200px",
+        width: "100%",
+      }}
     >
       <TileLayer
         attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -77,18 +74,22 @@ export default function MapaRecofi() {
       />
 
       {/* Conjunto de Marcadores */}
-      <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIcon}>
+      <MarkerClusterGroup
+        chunkedLoading
+        iconCreateFunction={createClusterCustomIcon}
+      >
         {markers.map((marker, index) => (
           <Marker key={index} position={marker.geocode} icon={customIcon}>
-            <Popup>{marker.popUp}</Popup>
+            <Popup>
+              {/* Aquí se usa dangerouslySetInnerHTML para interpretar el HTML */}
+              <div dangerouslySetInnerHTML={{ __html: marker.popUp }} />
+            </Popup>
           </Marker>
         ))}
       </MarkerClusterGroup>
     </MapContainer>
   );
 }
-
-
 
 
 

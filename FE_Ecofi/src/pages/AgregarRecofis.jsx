@@ -1,20 +1,16 @@
 import React from 'react'
-
-import {Row,Col} from 'react-bootstrap'
 import NavAdmin from '../Componentes/NavAdmin'
 import AdminSideBar from '../Componentes/SideBar'
 import FormularioRecofi from '../Componentes/AgregarRecofis'
+import AgregarAdminRecofis from '../Componentes/AgregarAdminRecofis'
 
 function RecofisPage() {
   return (
     <div id='principalConteiner'>
       <NavAdmin/>
-      <Row>
-        <Col sm={2} > <AdminSideBar /></Col>
-        <Col sm={10}><FormularioRecofi /></Col>
-      </Row>
-      
-
+        <AdminSideBar />
+        <FormularioRecofi/>
+        <AgregarAdminRecofis/>
     </div>
   )
 }

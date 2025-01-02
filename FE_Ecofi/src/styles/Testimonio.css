@@ -1,0 +1,99 @@
+/* Contenedor principal */
+#Card-Testimonios {
+  max-width: 1200px;
+  margin: 100px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 25px;
+  background-color: #ddddddc0;
+}
+
+/* Tarjetas */
+[id^="Card-Testimonio-"] {
+  position: relative;
+  margin: 70px 0;
+  width: 370px;
+  height: 470px;
+  background: #0e9602;
+  transform-style: preserve-3d;
+  transform: perspective(2000px);
+  box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5), 0 20px 20px rgba(0, 0, 0, 0.5);
+  transition: 1s;
+  margin-left: 1rem;
+}
+
+[id^="Card-Testimonio-"]:hover {
+  z-index: 10000;
+  transform: perspective(2000px) rotate(-10deg);
+  box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5), 0 10px 100px rgba(0, 0, 0, 0.5);
+}
+
+/* Imagen */
+[id^="Box-Testimonio-"] {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  transform-origin: left;
+  z-index: 1;
+  transition: 1s cubic-bezier(0.15, 1.7, 0.84, 0.58);
+  background: #111;
+}
+
+[id^="Box-Testimonio-"] img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+[id^="Card-Testimonio-"]:hover [id^="Box-Testimonio-"] {
+  transform: rotateY(-135deg);
+}
+
+/* Detalles */
+[id^="Details-Testimonio-"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 20px;
+  z-index: -1;
+}
+
+/* Título */
+[id^="Title-Testimonio-"] {
+  color: #fff;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Texto del testimonio */
+[id^="Text-Testimonio-"] {
+
+  color: #ddd;
+  margin-top: 2.5rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-style: normal;
+  margin-bottom: 10px;
+}
+
+/* Nombre del autor */
+[id^="Author-Testimonio-"] {
+  color: #fcf8f8;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: right; /* Alineado a la derecha */
+  margin-top: 5px;
+}
+
+
+
+
+
+

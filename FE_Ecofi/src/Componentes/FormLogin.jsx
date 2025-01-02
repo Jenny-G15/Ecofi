@@ -24,6 +24,7 @@ export default function FormLogin() {
         Email_Usuario: email,
         Contraseña_Usuario: password
       });
+
       sessionStorage.setItem("token", response.token); 
       console.log('RESPUESTA: ', response);
       
@@ -45,6 +46,29 @@ export default function FormLogin() {
           navigate("/Administracion");
         }
         else {
+
+      if (response && response.token) {
+        // Guardamos el token en el SessionStorage
+        sessionStorage.setItem("token", response.token);
+
+
+        // Extraemos el rol del usuario de la respuesta
+        const rolUsuario = response.rol_usuario;
+
+  
+        toast.success("¡Inicio de sesión exitoso!");
+
+
+
+        // Redirigimos según el rol
+        if (rolUsuario === 'Administrador') {
+          navigate("/Administrador");
+        } else if (rolUsuario === 'usuario') {
+          navigate("/PerfilUsuario");
+        } else if (rolUsuario === 'Recofi') {
+          navigate("/Recofi");
+        } else {
+
           toast.error("Rol de usuario no reconocido");
         }
     } catch (error) {

@@ -4,14 +4,14 @@ import { PostLogin } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import ContextoEcofi from './Context/EcofiContex';
+import ContextoEcofi from './Context/EcofiContex';
 
 
 
 
 
 export default function FormLogin() {
-  // const { setUserData } = useContext(ContextoEcofi); // Usar el contexto
+  const { login, setUserData } = useContext(ContextoEcofi); // Usar el contexto
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,19 +24,51 @@ export default function FormLogin() {
         Email_Usuario: email,
         Contraseña_Usuario: password
       });
+
       sessionStorage.setItem("token", response.token); 
       console.log('RESPUESTA: ', response);
       
-        // // Establecer el estado con la información correcta
-        // setUserData({ 
-        //   token: response.token,          // Guardar el token en el estado
-        //   // rol_usuario: response.rol_usuario // Si necesitas el rol también
-        // });
+        // Establecer el estado con la información correcta
+        setUserData({ 
+          token: response.token,          // Guardar el token en el estado
+          rol_usuario: response.rol_usuario // Si necesitas el rol también
+        });
         
         // Redirigir según el rol
         if (response.rol_usuario === 'usuario') {
+          login(response.rol_usuario)
           navigate("/Perfil");
+        
+        
+        } 
+        if (response.rol_usuario === 'Administrador') {
+          login(response.rol_usuario)
+          navigate("/Administracion");
+        }
+        else {
+
+      if (response && response.token) {
+        // Guardamos el token en el SessionStorage
+        sessionStorage.setItem("token", response.token);
+
+
+        // Extraemos el rol del usuario de la respuesta
+        const rolUsuario = response.rol_usuario;
+
+  
+        toast.success("¡Inicio de sesión exitoso!");
+
+
+
+        // Redirigimos según el rol
+        if (rolUsuario === 'Administrador') {
+          navigate("/Administrador");
+        } else if (rolUsuario === 'usuario') {
+          navigate("/PerfilUsuario");
+        } else if (rolUsuario === 'Recofi') {
+          navigate("/Recofi");
         } else {
+
           toast.error("Rol de usuario no reconocido");
         }
     } catch (error) {

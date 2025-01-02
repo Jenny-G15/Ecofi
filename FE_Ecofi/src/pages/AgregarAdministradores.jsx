@@ -5,9 +5,9 @@ import {Row,Col} from 'react-bootstrap'
 import NavAdmin from '../Componentes/NavAdmin'
 
 
-function Emprendedores() {
+function Admin() {
   return (
-    <div id='principalConteiner'>
+    <div>
       <NavAdmin/>
       <Row>
         <Col sm={2} > <AdminSideBar /></Col>
@@ -19,4 +19,4 @@ function Emprendedores() {
   )
 }
 
-export default Emprendedores
+export default Admin

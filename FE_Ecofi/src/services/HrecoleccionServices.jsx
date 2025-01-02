@@ -1,6 +1,6 @@
 export async function getHrecoleccion() {
   try {
-      const response = await fetch('http://localhost:3000/recoleccion', {
+      const response = await fetch('http://localhost:3000/recoleccion/estadisticas', {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',

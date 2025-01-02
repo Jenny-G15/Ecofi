@@ -1,20 +1,17 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Container, Button, Card } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getProductos } from "../services/productServices";
 import { actualizarBicolones } from "../services/userServices";
-import { useContext } from "react";  
-import ContextoEcofi from "../Componentes/Context/EcofiContex";  
+import ContextoEcofi from "../Componentes/Context/EcofiContex";
 import "../styles/ProductosT.css";
 
 function TiendaProductos() {
   const [productos, setProductos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const { userData } = useContext(ContextoEcofi);  // Acceder a userData desde el contexto
-
-  // Comprobar si el usuario tiene un token (o ID_Usuario) en userData
-  const userId = userData.token; // Asumimos que el token es el ID del usuario
+  const [loadingProduct, setLoadingProduct] = useState(null);
+  const { userData, setUserData } = useContext(ContextoEcofi);
+  const userId = userData?.token;
 
   const loadProductos = useCallback(() => {
     const fetchProductos = async () => {
@@ -37,22 +34,31 @@ function TiendaProductos() {
         return;
       }
 
-      setIsLoading(true);
-      try {
-        // Actualizar los bicolones después de canje
-        const bicolonesRestantes = producto.Bicolones - producto.Costo_Bicolones;
+      const bicolonesRestantes = userData.Bicolones - producto.Bicolones_Producto;
 
-        // Actualizamos los bicolones en el perfil del usuario usando el ID de usuario
+      if (bicolonesRestantes < 0) {
+        toast.error("No tienes suficientes bicolones para canjear este producto.");
+        return;
+      }
+
+      setLoadingProduct(producto.id);
+
+      try {
         await actualizarBicolones(userId, bicolonesRestantes);
+        setUserData((prevData) => ({ ...prevData, Bicolones: bicolonesRestantes }));
+        setProductos((prevProductos) =>
+          prevProductos.map((p) =>
+            p.id === producto.id ? { ...p, Stock: p.Stock - 1 } : p
+          )
+        );
 
         toast.success(`Producto "${producto.Nombre_Producto}" canjeado exitosamente.`);
-        onCanjear(bicolonesRestantes);
-
       } catch (error) {
         toast.error("Hubo un error al canjear el producto.");
         console.error(error);
+      } finally {
+        setLoadingProduct(null);
       }
-      setIsLoading(false);
     } else {
       toast.error(`El producto "${producto.Nombre_Producto}" no tiene stock disponible.`);
     }
@@ -60,38 +66,33 @@ function TiendaProductos() {
 
   return (
     <Container className="ctn-productos py-5" id="productosContainer">
-      {productos.map((producto) => (
-        <Card key={producto.id} className="productEco col-md-3" id={`producto-${producto.id}`}>
-          <Card.Img
-            src={producto.Imagen}
-            alt={producto.Nombre_Producto}
-            variant="top"
-            className="product-image"
-            id={`imagen-${producto.id}`}
-          />
-          <Card.Body>
-            <Card.Title id={`titulo-${producto.id}`}>{producto.Nombre_Producto}</Card.Title>
-            <Card.Text className="price" id={`precio-${producto.id}`}>
-              <strong>Bicolones:</strong> {producto.Bicolones}
-            </Card.Text>
-            <Card.Text className="description" id={`descripcion-${producto.id}`}>
-              {producto.Descripcion_Producto}
-            </Card.Text>
-            <Card.Text id={`stock-${producto.id}`}>
-              <strong>Stock:</strong> {producto.Stock}
-            </Card.Text>
-            <Button
-              variant="primary"
-              className="w-100 d-block"
-              onClick={() => FuncionCanje(producto)}
-              disabled={isLoading || producto.Stock === 0}
-              id={`boton-canje-${producto.id}`}
-            >
-              {isLoading ? "Procesando..." : "Canjear"}
-            </Button>
-          </Card.Body>
-        </Card>
-      ))}
+      <div className="row">
+        {productos.map((producto) => (
+          <Card key={producto.id} className="productEco col-md-3 mb-4">
+            <Card.Img
+              src={producto.Imagen}
+              alt={producto.Nombre_Producto}
+              className="product-image"
+            />
+            <Card.Body>
+              <Card.Title>{producto.Nombre_Producto}</Card.Title>
+              <Card.Text>
+                <strong>Bicolones:</strong> {producto.Bicolones_Producto}
+              </Card.Text>
+              <Card.Text>
+                <strong>Stock:</strong> {producto.Stock}
+              </Card.Text>
+              <Button
+                variant="primary"
+                onClick={() => FuncionCanje(producto)}
+                disabled={loadingProduct === producto.id || producto.Stock === 0}
+              >
+                {loadingProduct === producto.id ? "Procesando..." : "Canjear"}
+              </Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
     </Container>
   );
 }

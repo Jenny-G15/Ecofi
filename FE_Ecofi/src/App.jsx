@@ -5,6 +5,7 @@ import "./App.css";
 import 'leaflet/dist/leaflet.css';
 import './Componentes/Context/EcofiProvider';
 import Routing from "./routes/Routing"; // Asegúrate de que la ruta esté bien
+import TiendaProductos from './Componentes/TiendaProductos';
 import  EcofiProvider  from "./Componentes/Context/EcofiProvider";
 
 

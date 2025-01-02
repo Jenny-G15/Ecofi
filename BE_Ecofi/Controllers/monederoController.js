@@ -6,41 +6,33 @@ const obtenerMonederos = async (req, res) => {
     const monederos = await Monedero.findAll();
     res.status(200).json(monederos);
   } catch (error) {
-    console.error(error); // Imprimir error
+    console.error(error);
     res.status(500).json({ error: 'Error al obtener los monederos.' });
   }
 };
 
-
-
-
 // Crear un nuevo monedero
 const crearMonedero = async (req, res) => {
   try {
-    console.log(req.body); // Para verificar el contenido del cuerpo de la solicitud
+    console.log(req.body);
 
-    // Extraer datos del cuerpo de la solicitud
-    const { ID_Usuario, Saldo_Actual, } = req.body;
+    const { ID_Usuario, Saldo_Actual } = req.body;
 
-    // Verificar que todos los campos requeridos estén presentes
     if (!ID_Usuario || Saldo_Actual == null) {
       return res.status(400).json({ error: 'Faltan datos obligatorios.' });
     }
 
-    // Validar que no exista un Monedero con el mismo ID_Usuario
     const existeMonedero = await Monedero.findOne({ where: { ID_Usuario } });
 
     if (existeMonedero) {
       return res.status(400).json({ error: 'Ya existe un monedero para este usuario.' });
     }
 
-    // Crear el nuevo monedero
     const monedero = await Monedero.create({
       ID_Usuario,
       Saldo_Actual,
     });
 
-    // Enviar respuesta con el monedero creado
     res.status(201).json(monedero);
   } catch (error) {
     console.error(error);
@@ -51,24 +43,21 @@ const crearMonedero = async (req, res) => {
 // Actualizar un monedero
 const actualizarMonedero = async (req, res) => {
   try {
-    console.log(req.body); // Para depurar datos recibidos
+    console.log(req.body);
 
     const { id } = req.params;
     const { Saldo_Actual } = req.body;
 
-    // Verificar que todos los campos requeridos estén presentes
     if (Saldo_Actual == null) {
       return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el monedero.' });
     }
 
-    // Buscar el monedero por su ID
     const monedero = await Monedero.findByPk(id);
 
     if (!monedero) {
       return res.status(404).json({ error: 'Monedero no encontrado.' });
     }
 
-    // Actualizar el monedero
     await monedero.update({
       Saldo_Actual,
     });
@@ -79,17 +68,6 @@ const actualizarMonedero = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar el monedero.' });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
 
 // Eliminar un monedero
 const eliminarMonedero = async (req, res) => {
@@ -109,4 +87,4 @@ const eliminarMonedero = async (req, res) => {
   }
 };
 
-module.exports = { obtenerMonederos, crearMonedero, actualizarMonedero, eliminarMonedero};
+module.exports = { obtenerMonederos, crearMonedero, actualizarMonedero, eliminarMonedero };

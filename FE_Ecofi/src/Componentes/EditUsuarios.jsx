@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getUsers, updateUser, deleteUser } from "../services/userServices"; 
 import '../styles/Editusuarios.css';
 
-const TablaUsuariosAdmin = () => {
+const TablaUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [editandoUsuarioId, setEditandoUsuarioId] = useState(null);
   const [formularioEditarUsuario, setFormularioEditarUsuario] = useState({});
@@ -127,7 +127,7 @@ const TablaUsuariosAdmin = () => {
   );
 };
 
-export default TablaUsuariosAdmin;
+export default TablaUsuarios;
 
 
 

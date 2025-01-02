@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getUsers, PostUsers, deleteUser } from '../services/userServices'; 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import '../styles/AgregarAdministradores.css'
+import '../styles/AgregarAdministradores.css';
 import { Button } from 'react-bootstrap';
 
 
@@ -19,7 +19,7 @@ const AgregarAdministradores = () => {
         Email_Usuario: '',
         Contraseña_Usuario: '',
         Telefono_Usuario: '',
-        Bicolones: 0, // Valor por defecto
+        Bicolones: 0,
         Rol_Usuario: 'Administrador' // Rol fijo como Administrador
     });
 
@@ -39,9 +39,9 @@ const AgregarAdministradores = () => {
     };
 
     const agregarAdministrador = async () => {
-        const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario, Bicolones } = formData;
+        const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario, Rol_Usuario, Bicolones } = formData;
 
-        if (!Nombre_Usuario || !Apellido_Usuario || !Cedula || !Email_Usuario || !Contraseña_Usuario || !Telefono_Usuario) {
+        if (!Nombre_Usuario || !Apellido_Usuario || !Cedula || !Email_Usuario || !Contraseña_Usuario || !Telefono_Usuario || !Rol_Usuario) {
             toast.error("Por favor, completa todos los campos.");
             return;
         }
@@ -55,11 +55,12 @@ const AgregarAdministradores = () => {
                 Email_Usuario,
                 Contraseña_Usuario,
                 Telefono_Usuario,
+                Rol_Usuario,
                 Bicolones,
                 "Administrador" // Asegurar el rol de Administrador
             );
 
-            setAdministradores([...administradores, nuevoAdministrador]);
+            setAdministradores([...administradores, nuevoAdministrador.usuario]); // Actualizar con el nuevo administrador
             setFormData({
                 Nombre_Usuario: '',
                 Apellido_Usuario: '',
@@ -67,8 +68,8 @@ const AgregarAdministradores = () => {
                 Email_Usuario: '',
                 Contraseña_Usuario: '',
                 Telefono_Usuario: '',
+                Rol_Usuario: 'Administrador',
                 Bicolones: 0,
-                Rol_Usuario: 'Administrador'
             });
             toast.success("Administrador agregado exitosamente.");
         } catch (error) {
@@ -95,7 +96,7 @@ const AgregarAdministradores = () => {
 
     return (
         <div className="administradoresContainer">
-            <h2 id="h2Titulo">Administradores</h2>
+            <h2 id="h2Titulo">Agregar Administradores</h2>
             <div className="administradoresContainer2">
                 <div className="containerAdministradores">
                     <input
@@ -151,23 +152,34 @@ const AgregarAdministradores = () => {
                     </Button>
                 </div>
                 <div id="contenedorAdministradores">
-                    {administradores.map((admin) => (
-                        <div key={admin.id} className="administrador">
-                            {`Administrador: ${admin.Nombre_Usuario} ${admin.Apellido_Usuario} - Cédula: ${admin.Cedula}`}
-                            <div className="btnContainer">
-                                <Button
-                                    id="btnAdministradorDelete"
-                                    onClick={() => eliminarAdministrador(admin.id)}
-                                >
-                                    Eliminar
-                                </Button>
-                            </div>
-                        </div>
-                    ))}
+    {administradores && administradores.length > 0 ? (
+        administradores.map((admin) => (
+            <div key={admin.id} className="administrador">
+                {admin.Nombre_Usuario && admin.Apellido_Usuario && admin.Cedula ? (
+                    `Administrador: ${admin.Nombre_Usuario} ${admin.Apellido_Usuario} - Cédula: ${admin.Cedula}`
+                ) : (
+                    <p>Administrador con datos incompletos</p>
+                )}
+                <div className="btnContainer">
+                    <Button
+                        id="btnAdministradorDelete"
+                        onClick={() => eliminarAdministrador(admin.id)}
+                    >
+                        Eliminar
+                    </Button>
                 </div>
+            </div>
+        ))
+    ) : (
+        <p>No hay administradores disponibles</p>
+    )}
+</div>
             </div>
         </div>
     );
 };
 
 export default AgregarAdministradores;
+
+
+

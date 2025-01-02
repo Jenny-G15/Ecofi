@@ -97,7 +97,7 @@ const FormularioRecofi = () => {
     return (
         <div className="recofi-container">
             <h2>{modoEdicion ? 'Editar Recofi' : 'Agregar Recofi'}</h2>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form id='FormRecofi2' onSubmit={(e) => e.preventDefault()}>
                 <input
                     type="number"
                     name="ID_Direccion"

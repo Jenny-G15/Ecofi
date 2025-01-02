@@ -15,14 +15,35 @@
   flex-direction: column;
   margin-top: 8rem;
   gap: 10px; /* Espaciado entre enlaces */
+
 }
+
+#tituloSideBar{
+
+  font-family: 'Lucida Sans';
+  font-size: 2rem;
+  font-weight: 800;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: #e5ece5;
+  margin-bottom: 0px;
+  margin-top: 0px;
+
+}
+
+#hrSideBar{
+  border: 4px solid rgb(2, 54, 2);
+
+}
+
 
 /* Enlaces del Sidebar */
 .sidebarLink {
   text-decoration: none; /* Sin subrayado */
-  color: #34495e; /* Color del texto */
+  color: #eff4f8; /* Color del texto */
   padding: 15px 20px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de texto */
+  font-size: 20px; /* Tamaño de texto */
   font-weight: 500; /* Peso del texto */
   display: block; /* Ocupa todo el ancho */
   border-left: 4px solid transparent; /* Indicador inactivo */
@@ -33,7 +54,7 @@
 .sidebarLink:hover,
 .sidebarLink:focus {
   background-color: #eaf0f6; /* Fondo claro al pasar el cursor */
-  color: #2d98da; /* Texto azul elegante */
+  color: #06581b; /* Texto azul elegante */
   border-left: 4px solid #6ab04c; /* Indicador verde lateral */
 }
 
@@ -50,37 +71,3 @@
 
 
 
-
-
-
-
-
-
-
-/* .sidebar {
-    background-color: rgb(17, 231, 53);
-    height: 100vh;
-    padding: 20px; 
-   
-  }
-  
-  #linkAdminUnique, #linkImagesUnique, #linkEditUnique, #linkCotizacionesUnique {
-    display: block;
-    padding: 10px;
-    margin: 20px 0;
-  
-    border: 2px solid rgb(213, 189, 240);
-    background-color: rgba(213, 189, 240, 0.2); 
-    border-radius: 5px; 
-    color: rgb(213, 189, 240);
-    font-size: 1.5rem;
-    text-align: center; 
-    transition: background-color 0.3s; 
-    text-decoration: none; 
-  }
-  
-  #linkAdminUnique:hover, #linkImagesUnique:hover, #linkEditUnique:hover, #linkCotizacionesUnique:hover {
-    background-color: rgba(213, 189, 240, 0.5); 
-  }
-  
-   */

@@ -22,9 +22,11 @@ export async function getUsers() {
 export async function PostUsers
       (Nombre_Usuario,
         Apellido_Usuario,
-        Cedula,Email_Usuario,
+        Cedula,
+        Email_Usuario,
         Contraseña_Usuario,
         Telefono_Usuario,
+        Rol_Usuario,
         Bicolones) {
     try {
       const userData = {
@@ -34,6 +36,7 @@ export async function PostUsers
         Email_Usuario,
         Contraseña_Usuario,
         Telefono_Usuario, 
+        Rol_Usuario,
         Bicolones, 
       };
       const response = await fetch("http://192.168.8.105:3000/usuarios/register", {

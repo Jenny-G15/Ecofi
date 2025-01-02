@@ -8,7 +8,7 @@ const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 
 
 // Obtener todos los administradores
-const obtenerAdminRecofis = async (req, res) => {
+const getAdminRecofis = async (req, res) => {
   try {
     const administradores = await AdminRecofis.findAll();
     return res.status(200).json(administradores);
@@ -41,8 +41,10 @@ const AdminRecofisPorCorreo = async (req, res) => {
   }
 };
 
+
+
 // Registrar un nuevo administrador
-const registrarAdminRecofis = async (req, res) => {
+const postAdminRecofis = async (req, res) => {
   const { 
     Nombre_AdminRecofis, 
     Apellido_AdminRecofis, 
@@ -171,9 +173,9 @@ const eliminarAdminRecofis = async (req, res) => {
 };
 
 module.exports = {
-  obtenerAdminRecofis,
+  getAdminRecofis,
   AdminRecofisPorCorreo,
-  registrarAdminRecofis,
+  postAdminRecofis,
   iniciarSesionAdminRecofis,
   actualizarAdminRecofis,
   eliminarAdminRecofis,

@@ -13,6 +13,7 @@ const materialRoutes= require('./Routes/materialRoutes');
 const monederoRoutes = require('./Routes/monederoRoutes');
 const productosRoutes = require('./Routes/productosRoutes');
 const recofiRoutes = require('./Routes/recofiRoutes');
+const AdminRecofiRoutes = require('./Routes/AdminRecofiRoutes');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use('/material', materialRoutes);
 app.use('/monedero', monederoRoutes );
 app.use('/producto', productosRoutes);``
 app.use('/recofi', recofiRoutes);
+app.use('/adminRecofi', AdminRecofiRoutes)
 
 
 

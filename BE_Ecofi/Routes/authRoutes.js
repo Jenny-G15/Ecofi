@@ -16,12 +16,5 @@ router.put('/usuarios/:id/bicolones', controladorUsuarios.actualizarBicolones);
 
 
 
-
-
-// Recuperación de contraseña
-// router.post('/forgotPassword', forgotPassword);
-// router.post('/resetPassword', resetPassword);
-
-
 module.exports = router;
 

@@ -4,16 +4,17 @@ import Register from "../Pages/Register";
 import Principal from "../Pages/Principal";
 import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../Pages/Administracion";
-import PerfilUsuario from "../Pages/Perfil_Usuario";
 import Recofi from "../Pages/Recofi";
 import Emprendedores from "../Pages/AgregarEmprendedores";
 import RecofisPage from "../Pages/AgregarRecofis";
 import QuienesSomos from "../Pages/QuienesSomos";
 import EditarUsuarios from "../Pages/EditarUsuarios";
 import FormRecofis from "../Pages/Formulario";
-import Monedero from "../pages/Monedero";
+// import Monedero from "../pages/Monedero";
 import AgregarAdministradores from "../Componentes/AgregarAdmin";
 import Recolecciones from "../Pages/Hrecoleccion";
+import PerfilUsuario from "../pages/Perfil_Usuario"
+import ProductosT from "../pages/ProductosT";
 
 
 const Routing = () => {
@@ -29,7 +30,7 @@ const Routing = () => {
         <Route path="/Principal" element={<Principal />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
-        {<Route path="/Administracion" element={<Administracion/>} /> }
+        <Route path="/Administracion" element={<Administracion/>} /> 
         <Route path="/Recofi" element={<Recofi />} />
         <Route path="/AgregarEmpren" element={<Emprendedores />} />
         <Route path="/AgregarRecofi" element={<RecofisPage />} />
@@ -40,9 +41,9 @@ const Routing = () => {
         <Route path="/AgregarAdmin" element={<AgregarAdministradores />} />
 
 
-        <Route path="/Perfil" element={<PerfilUsuario />}>
-          <Route path="/Perfil/Monedero" element={<Monedero />} />
-        </Route>
+        <Route path="/Perfil" element={<PerfilUsuario />}/>
+        <Route path="/ProductosCanje" element={<ProductosT/>} />
+
         
       </Routes>
     </Router>

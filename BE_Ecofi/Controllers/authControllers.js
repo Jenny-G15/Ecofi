@@ -230,7 +230,4 @@ const actualizarUsuario = async (req, res) => {
   
 
 module.exports = { obtenerUsuarios, UsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario, actualizarBicolones};
-<<<<<<< HEAD
-=======
 
->>>>>>> 10300ddf719c889b3cd6c5369ff3393587510d64

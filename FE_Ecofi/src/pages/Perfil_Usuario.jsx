@@ -1,16 +1,17 @@
 import React from 'react'
 import "../Styles/Perfil_Usuario.css"
-import SideBar from '../Componentes/SideBar'
+import NavUsuario from '../Componentes/NavUsuario'
+import Monedero from '../Componentes/ComMonedero'
 
-function PerfilUsuario() {
+function Perfil_Usuario() {
   return (
-    <div>
+    <div id='principalConteiner'>
 
-     <SideBar/>
-
+    <NavUsuario/>
+    <Monedero/>
  
     </div>
   )
 }
 
-export default PerfilUsuario
+export default Perfil_Usuario

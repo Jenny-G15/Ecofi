@@ -47,6 +47,8 @@ const crearEmprendedor = async (req, res) => {
   }
 };
 
+
+
 // Actualizar un Emprendedor
 const actualizarEmprendedor = async (req, res) => {
   try {

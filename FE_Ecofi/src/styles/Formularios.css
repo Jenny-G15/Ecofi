@@ -1,0 +1,157 @@
+/* #FormulariosMaterialesRecofi{
+  
+  background: #1de90ab4;
+
+} */
+
+.formulario-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #65e959b4;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Arial', sans-serif;
+
+}
+
+
+#BuscarForm {
+  background-color: #0a6d21; /* Color de fondo principal */
+  color: #ffffff; /* Color del texto */
+  border: none; /* Sin bordes */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 1rem; /* Tamaño del texto */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Animaciones suaves */
+  font-family: 'Poppins', sans-serif; /* Fuente moderna (opcional) */
+}
+
+#BuscarForm:hover {
+  background-color: #1de90a; /* Color más claro al hacer hover */
+  transform: translateY(-3px); /* Efecto de elevación */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); /* Sombra más intensa */
+}
+
+#BuscarForm:active {
+  transform: translateY(1px); /* Presión hacia abajo al hacer clic */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra más pequeña */
+}
+
+
+#imgRecofi{
+  display: block; /* Necesario para que margin auto funcione en imágenes */
+  margin: 8px auto; /* Combina los márgenes arriba/abajo y auto para centrar */
+  max-width: 100%; /* Opcional: Asegura que la imagen no sea más grande que su contenedor */
+  height: auto;
+  margin-bottom:20px;
+}
+
+h2 {
+  color: #0a6d21;
+  text-align: center;
+  font-weight: bold;
+  font-size: 3rem; /* Un poco más grande */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  transition: transform 0.3s ease, color 0.3s ease; /* Animación suave */
+  font-family: 'Poppins', sans-serif; /* Cambia la fuente para un toque moderno */
+}
+
+h2:hover {
+  transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+  color: #75f169; /* Cambia el color al pasar el mouse */
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); /* Sombra más intensa */
+}
+
+
+.buscador-cedula {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.buscador-cedula input {
+  flex: 1;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.usuario-info {
+  background: #58e470;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.usuario-info h4 {
+  color: #6c757d;
+}
+
+.usuario-info p {
+  margin: 0.5rem 0;
+  color: #343a40;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: #218837a8;
+}
+
+form select, form input {
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background: #28a745;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #218838;
+}
+
+.error {
+  color: #dc3545;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-usuario {
+  background-color: #1c311d;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+#cardFormulario{
+  background-color: #a6ebb5ad;
+}
+
+.card-usuario h4 {
+  color: #df3019;
+  margin-bottom: 0.5rem;
+}
+
+.card-usuario p {
+  color: #495057;
+  margin: 0.3rem 0;
+}

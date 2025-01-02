@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     Imagen: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     Stock: {
@@ -45,6 +45,10 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     Descripcion_Producto: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Nombre_Producto: {
       type: DataTypes.STRING,
       allowNull: false
     },

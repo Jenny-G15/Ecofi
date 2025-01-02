@@ -1,27 +1,73 @@
-.sidebar {
-    background-color: rgb(17, 231, 53);
-    height: 100vh;
-    padding: 20px; /* Agregar un poco de espacio */
-   
-  }
-  
-  #linkAdminUnique, #linkImagesUnique, #linkEditUnique, #linkCotizacionesUnique {
-    display: block;
-    padding: 10px;
-    margin: 20px 0;
-  
-    border: 2px solid rgb(213, 189, 240);
-    background-color: rgba(213, 189, 240, 0.2); /* Fondo ligero */
-    border-radius: 5px; /* Bordes redondeados */
-    color: rgb(213, 189, 240);
-    font-size: 1.5rem;
-    text-align: center; 
-    transition: background-color 0.3s; 
-    text-decoration: none; 
-  }
-  
-  #linkAdminUnique:hover, #linkImagesUnique:hover, #linkEditUnique:hover, #linkCotizacionesUnique:hover {
-    background-color: rgba(213, 189, 240, 0.5); /* Cambiar fondo al pasar el mouse */
-  }
-  
-  
+/* Contenedor Principal del Sidebar */
+.sidebarContainer {
+  width: 200px; /* Ancho del Sidebar */
+  height: 100vh; /* Altura completa de la pantalla */
+  background: linear-gradient(135deg, #089103, #47ce42); /* Fondo degradado elegante */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  padding-top: 20px; /* Espaciado superior */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navegación dentro del Sidebar */
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8rem;
+  gap: 10px; /* Espaciado entre enlaces */
+
+}
+
+#tituloSideBar{
+
+  font-family: 'Lucida Sans';
+  font-size: 2rem;
+  font-weight: 800;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: #e5ece5;
+  margin-bottom: 0px;
+  margin-top: 0px;
+
+}
+
+#hrSideBar{
+  border: 4px solid rgb(2, 54, 2);
+
+}
+
+
+/* Enlaces del Sidebar */
+.sidebarLink {
+  text-decoration: none; /* Sin subrayado */
+  color: #eff4f8; /* Color del texto */
+  padding: 15px 20px; /* Espaciado interno */
+  font-size: 20px; /* Tamaño de texto */
+  font-weight: 500; /* Peso del texto */
+  display: block; /* Ocupa todo el ancho */
+  border-left: 4px solid transparent; /* Indicador inactivo */
+  transition: all 0.3s ease; /* Animación suave */
+}
+
+/* Hover y Enfoque */
+.sidebarLink:hover,
+.sidebarLink:focus {
+  background-color: #eaf0f6; /* Fondo claro al pasar el cursor */
+  color: #06581b; /* Texto azul elegante */
+  border-left: 4px solid #6ab04c; /* Indicador verde lateral */
+}
+
+/* Enlace Activo */
+.sidebarLink.active {
+  background-color: #d40808; /* Fondo del enlace activo */
+  color: #2d98da; /* Texto azul elegante */
+  border-left: 4px solid #6ab04c; /* Indicador lateral */
+}
+
+
+
+
+
+
+

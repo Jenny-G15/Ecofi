@@ -24,7 +24,7 @@ module.exports = {
         allowNull: false
       },
       Imagen: {
-        type: Sequelize.BLOB,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       Stock: {
@@ -32,6 +32,10 @@ module.exports = {
         allowNull: false
       },
       Descripcion_Producto: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      Nombre_Producto: {
         type: Sequelize.STRING,
         allowNull: false
       },

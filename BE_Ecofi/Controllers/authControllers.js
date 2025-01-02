@@ -3,57 +3,91 @@ const jwt = require('jsonwebtoken');
 const { Usuario } = require('../models'); 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
-// const emailjs = require('emailjs-com'); 
-// const express = require('express');
+
 
 const obtenerUsuarios = async (req, res) => {
-    try {
-      const usuario = await Usuario.findAll(); 
-      res.status(200).json(usuario);
-  
-    } catch (error) {
-      console.error(error); // Imprimir error
-      res.status(500).json({ error: 'Error al obtener la Dirección.' });
+  try {
+    const usuarios = await Usuario.findAll();
+    return res.status(200).json(usuarios);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Error al obtener los usuarios.' });
+  }
+};
+
+
+
+const UsuariosxCedula = async (req, res) => {
+  try {
+    const { cedula } = req.params;
+
+    if (!cedula) {
+      return res.status(400).json({ error: 'Cédula es requerida.' });
     }
-  };
+
+    const usuario = await Usuario.findOne({ where: { Cedula: cedula } });
+
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado.' });
+    }
+
+    return res.status(200).json(usuario);
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Error al obtener el usuario por cédula.' });
+  }
+}
+
+
+
 
 const registrarUsuario = async (req, res) => {
+  const { 
+      Nombre_Usuario, 
+      Apellido_Usuario, 
+      Cedula, 
+      Email_Usuario, 
+      Contraseña_Usuario, 
+      Telefono_Usuario, 
+      Bicolones, 
+      Rol_Usuario 
+  } = req.body; 
 
-    const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario,
-         Bicolones, Rol_Usuario } = req.body; 
+  try {
+      // Verifica si el usuario ya existe en la base de datos por su cédula
+      const usuarioExistente = await Usuario.findOne({ where: { Cedula } });
 
-    try {
-        // Verifica si el usuario ya existe en la base de datos por su cédula
-        const usuarioExistente = await Usuario.findOne({ where: { Cedula } });
+      if (usuarioExistente) {
+          return res.status(400).json({ message: 'El número de cédula asociado ya existe.' });
+      }
 
-        if (usuarioExistente) {
-            return res.status(400).json({ message: 'El número de cédula asociado ya existe.' });
-        }
+      // Encripta la contraseña antes de guardarla
+      const contrasenaUser = await bcrypt.hash(Contraseña_Usuario, 10);
 
-        // Encripta la contraseña antes de guardarla
-        const contrasenaUser = await bcrypt.hash(Contraseña_Usuario, 10);
+      // Si no se pasa un Rol_Usuario, asigna el valor por defecto
+      const rolUsuario = Rol_Usuario || 'usuario'; // Aquí asignamos 'usuario' por defecto
 
-        // Crea un nuevo usuario
-        const nuevoUsuario = await Usuario.create({
-            Nombre_Usuario,
-            Apellido_Usuario,
-            Cedula,
-            Email_Usuario,
-            Contraseña_Usuario: contrasenaUser, // Guardar la contraseña encriptada
-            Telefono_Usuario,
-            Bicolones,
-            Rol_Usuario
-        });
+      // Si el Rol_Usuario es 'administrador', aseguramos que se guarde de esta manera
+      const nuevoUsuario = await Usuario.create({
+          Nombre_Usuario,
+          Apellido_Usuario,
+          Cedula,
+          Email_Usuario,
+          Contraseña_Usuario: contrasenaUser,
+          Telefono_Usuario,
+          Bicolones,
+          Rol_Usuario: rolUsuario, // Usamos el valor manipulado
+      });
 
-        // Retorna una respuesta exitosa
-        res.status(201).json({ message: 'Usuario registrado exitosamente', usuario: nuevoUsuario });
-    } catch (error) {
-
-        // En caso de error, enviar respuesta con el código de estado 500
-        console.error(error);
-        res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
-    }
+      // Retorna una respuesta exitosa
+      res.status(201).json({ message: 'Usuario registrado exitosamente', usuario: nuevoUsuario });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error al registrar el usuario.', error: error.message });
+  }
 };
+
 
 
 const iniciarSesion = async (req, res) => {
@@ -107,101 +141,93 @@ const iniciarSesion = async (req, res) => {
     }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Enviar correo de recuperación
-// router.post('/ForgotPassword', async (req, res) => {
-//     const { Email_Usuario } = req.body;
-
-//     try {
-//         const usuario = await Usuario.findOne({ where: { Email_Usuario } });
-
-//         if (!usuario) {
-//             return res.status(404).json({ message: 'Correo no registrado.' });
-//         }
-
-//         // Generar token
-//         const token = jwt.sign({ id: usuario.id }, SECRET_KEY, { expiresIn: '1h' });
-
-//         // Aquí se configurará el envío del correo con EmailJS
-//         const templateParams = {
-//             to_email: Email_Usuario,
-//             token_url: `http://localhost:3000/reset-password/${token}`,
-//         };
-
-//         const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify({
-//                 service_id: 'your_service_id',
-//                 template_id: 'your_template_id',
-//                 user_id: 'your_user_id',
-//                 template_params: templateParams,
-//             }),
-//         });
-
-//         if (!emailResponse.ok) throw new Error('Error al enviar el correo');
-
-//         res.json({ message: 'Correo enviado con éxito.' });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'Error en el servidor.' });
-//     }
-// });
-
-
-
-
-// // Función para restablecer la contraseña
-// const resetPassword = async (req, res) => {
-
-//     const { token, nuevaContraseña } = req.body;
-
-//     try {
-//         const decoded = jwt.verify(token, jwtSecret);
-
-//         const usuario = await Usuario.findOne({ where: { Email_Usuario: decoded.email } });
-
-//         if (!usuario) {
-//             return res.status(404).json({ message: 'Usuario no encontrado.' });
-//         }
-
-//         const contrasenaEncriptada = await bcrypt.hash(nuevaContraseña, 10);
-
-//         usuario.Contraseña_Usuario = contrasenaEncriptada;
-//         await usuario.save();
-
-//         res.status(200).json({ message: 'Contraseña restablecida exitosamente.' });
-//     } catch (error) {
-//         console.error('Error al restablecer la contraseña:', error);
-
+const actualizarUsuario = async (req, res) => {
+    try {
         
-//         if (error.name === 'TokenExpiredError') {
-//             return res.status(400).json({ message: 'El token ha expirado.' });
-//         }
+      console.log(req.body);
+      const { id } = req.params;
+      const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario, Bicolones, Rol_Usuario } = req.body;
+  
+      // Buscar el usuario por su ID
+      const usuario = await Usuario.findByPk(id);
+      if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado.' });
+  
+      // Validar que no exista otro usuario con la misma cédula o email
+      const usuarios = await Usuario.findAll();
+      for (let otroUsuario of usuarios) {
+        if (
+          otroUsuario.id !== usuario.id && // Asegurarse de que no sea el mismo usuario
+          (otroUsuario.Cedula === Cedula || otroUsuario.Email_Usuario === Email_Usuario)
+        ) {
+          return res.status(400).json({ error: 'Ya existe otro usuario con la misma cédula o correo.' });
+        }
+      }
+  
+      // Actualizar los datos del usuario
+      await usuario.update({
+        Nombre_Usuario,
+        Apellido_Usuario,
+        Cedula,
+        Email_Usuario,
+        Contraseña_Usuario,
+        Telefono_Usuario,
+        Bicolones,
+        Rol_Usuario
+      });
+  
+      // Responder con el usuario actualizado
+      res.status(200).json(usuario);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al actualizar el usuario.' });
+    }
+  };
+  
 
-//         res.status(500).json({ message: 'Error al restablecer la contraseña.' });
-//     }
-// };
+  // Eliminar un Usuario
+  const eliminarUsuario = async (req, res) => {
+    try {
+    const { id } = req.params;
+    const Usuarios = await Usuario.findByPk(id);
+    if (!Usuarios) return res.status(404).json({ error: 'Usuario no encontrado.' });
+
+    await Usuarios.destroy();
+    res.status(204).send(); 
+    
+    } catch (error) {
+    console.error(error);    
+    res.status(500).json({ error: 'Ooops Error al eliminar al Usuario.' });
+    }
+  };
 
 
+  const actualizarBicolones = async (req, res) => {
+    try {
+      const { id } = req.params; 
+      const { nuevosBicolones } = req.body; // Nuevos bicolones desde el frontend
+  
+      // Verificar que los nuevos bicolones sean válidos
+      if (nuevosBicolones === undefined || typeof nuevosBicolones !== 'number' || nuevosBicolones < 0) {
+        return res.status(400).json({ error: 'Los bicolones deben ser un número válido.' });
+      }
+  
+      // Buscar el usuario en la base de datos
+      const usuario = await Usuario.findByPk(id);
+      if (!usuario) {
+        return res.status(404).json({ error: 'Usuario no encontrado.' });
+      }
+  
+      // Actualizar los bicolones del usuario
+      usuario.Bicolones = nuevosBicolones;
+      await usuario.save();
+  
+      res.status(200).json({ message: 'Bicolones actualizados exitosamente.', usuario });
+    } catch (error) {
+      console.error('Error al actualizar bicolones:', error);
+      res.status(500).json({ error: 'Error interno al actualizar los bicolones.' });
+    }
+  };
+  
 
-
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion};
-
-
+module.exports = { obtenerUsuarios, UsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario, actualizarBicolones};
 

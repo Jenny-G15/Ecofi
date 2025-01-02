@@ -1,0 +1,31 @@
+#tabla-conversiones-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto; /* Centrado horizontal */
+  padding: 20px;
+  text-align: center; /* Centra el título */
+}
+
+#tabla-conversiones-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.conversion-image {
+  margin-bottom: 20px; /* Espacio entre imágenes */
+}
+
+.conversion-image img {
+  width: 100%; /* Imágenes ocupan el ancho del contenedor */
+  max-height: 800px; /* Altura máxima para evitar imágenes gigantes */
+  object-fit: contain; /* Escala la imagen sin deformarla */
+  border: 2px solid #ddd; /* Borde sutil */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease-in-out;
+}
+
+.conversion-image img:hover {
+  transform: scale(1.03); /* Pequeño zoom al pasar el cursor */
+}

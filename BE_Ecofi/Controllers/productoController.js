@@ -12,37 +12,34 @@ const obtenerProductos = async (req, res) => {
 };
 
 
-
-
-
-
-
 // Crear un nuevo producto
 const crearProducto = async (req, res) => {
   try {
-    console.log(req.body); // Verifica los datos recibidos
+    console.log(req.body); 
     
-    const { ID_Emprendedor, Bicolones_Producto, Imagen, Stock, Descripcion_Producto } = req.body;
+    const { ID_Emprendedor, Bicolones_Producto, Imagen, Stock, Descripcion_Producto, Nombre_Producto } = req.body;
 
     // Verifica si los campos son válidos
-    if (!ID_Emprendedor || !Bicolones_Producto || !Imagen || !Stock || !Descripcion_Producto) {
+    if (!ID_Emprendedor || !Bicolones_Producto || !Imagen || !Stock || !Descripcion_Producto || !Nombre_Producto) {
       return res.status(400).json({ error: 'Faltan datos obligatorios.' });
     }
 
     // Validar si ya existe un producto con el mismo ID_Emprendedor y Descripcion_Producto
     const productos = await Producto.findAll();
     for (let prod of productos) {
-      if (prod.ID_Emprendedor === ID_Emprendedor && prod.Descripcion_Producto === Descripcion_Producto) {
-        return res.status(400).json({ error: 'Ya existe un producto con esa descripción para este emprendedor.' });
+      if (prod.Nombre_Producto === Nombre_Producto && prod.Descripcion_Producto === Descripcion_Producto) {
+        return res.status(400).json({ error: 'Ya existe un producto con el mismo Nombre.' });
       }
     }
 
+    // Aquí estaba el error: Faltaba incluir Nombre_Producto
     const producto = await Producto.create({
       ID_Emprendedor,
       Bicolones_Producto,
       Imagen,
       Stock,
       Descripcion_Producto,
+      Nombre_Producto, // Inclúyelo aquí
     });
 
     res.status(201).json(producto);
@@ -52,13 +49,22 @@ const crearProducto = async (req, res) => {
   }
 };
 
+
+
+
+
+
+
+
+
+
 // Actualizar un producto
 const actualizarProducto = async (req, res) => {
   try {
     console.log(req.body); // Para depurar datos recibidos
 
     const { id } = req.params;
-    const { Bicolones_Producto, Imagen, Stock, Descripcion_Producto, ID_Emprendedor } = req.body;
+    const { Bicolones_Producto, Imagen, Stock, Descripcion_Producto, ID_Emprendedor, Nombre_Producto } = req.body;
 
     // Buscar el producto por su ID
     const producto = await Producto.findByPk(id);
@@ -70,8 +76,8 @@ const actualizarProducto = async (req, res) => {
     // Validar si ya existe otro producto con la misma Descripcion_Producto para el mismo ID_Emprendedor
     const productos = await Producto.findAll();
     for (let prod of productos) {
-      if (prod.id !== producto.id && prod.ID_Emprendedor === ID_Emprendedor && prod.Descripcion_Producto === Descripcion_Producto) {
-        return res.status(400).json({ error: 'Ya existe otro producto con esa descripción para este emprendedor.' });
+      if (prod.id !== producto.id && prod.Nombre_Producto === Nombre_Producto && prod.Descripcion_Producto === Descripcion_Producto) {
+        return res.status(400).json({ error: 'Ya existe otro producto con ese Nombre' });
       }
     }
 
@@ -81,6 +87,7 @@ const actualizarProducto = async (req, res) => {
       Imagen,
       Stock,
       Descripcion_Producto,
+      Nombre_Producto,
     });
 
     res.status(200).json(producto);
@@ -89,10 +96,6 @@ const actualizarProducto = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar el producto.' });
   }
 };
-
-
-
-
 
 // Eliminar un producto
 const eliminarProducto = async (req, res) => {

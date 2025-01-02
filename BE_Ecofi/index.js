@@ -47,6 +47,6 @@ app.use('/recofi', recofiRoutes);
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://192.168.1.246:${PORT}`);
+    console.log(`Servidor corriendo en http://192.168.8.114:${PORT}`);
     
 });

@@ -7,7 +7,6 @@ import { getMateriales } from '../services/materialServices';
 import { buscarPorCedula } from '../services/userServices';
 import { actualizarBicolones } from '../services/userServices';
 import { toast } from 'react-toastify';
-import RECOFI from '../IMG/RECOFI.png'
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Formularios.css'
 
@@ -18,7 +17,6 @@ import '../styles/Formularios.css'
 
 
 const FormularioMateriales = () => {
-  const [formularios, setFormularios] = useState([]);
   const [direcciones, setDirecciones] = useState([]);
   const [materiales, setMateriales] = useState([]);
   const [datosFormulario, setDatosFormulario] = useState({

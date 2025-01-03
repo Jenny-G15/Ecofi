@@ -7,7 +7,10 @@
   padding-top: 20px; /* Espaciado superior */
   display: flex;
   flex-direction: column;
+  position: sticky; /* Se queda visible mientras haces scroll */
+  top: 0; /* El punto superior donde se 'pega' al hacer scroll */
 }
+
 
 /* Navegación dentro del Sidebar */
 .sidebarNav {
@@ -21,7 +24,7 @@
 #tituloSideBar{
 
   font-family: 'Lucida Sans';
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 800;
   display: block;
   margin-left: auto;
@@ -43,7 +46,7 @@
   text-decoration: none; /* Sin subrayado */
   color: #eff4f8; /* Color del texto */
   padding: 15px 20px; /* Espaciado interno */
-  font-size: 20px; /* Tamaño de texto */
+  font-size: 23px; /* Tamaño de texto */
   font-weight: 500; /* Peso del texto */
   display: block; /* Ocupa todo el ancho */
   border-left: 4px solid transparent; /* Indicador inactivo */

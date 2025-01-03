@@ -8,8 +8,6 @@ import Routing from "./routes/Routing"; // Asegúrate de que la ruta esté bien
 import EcofiProvider from "./Componentes/Context/EcofiProvider";
 
 
-import TiendaProductos from './Componentes/TiendaProductos';
-import  EcofiProvider  from "./Componentes/Context/EcofiProvider";
 
 
 
@@ -18,7 +16,6 @@ function App() {
       <div>
           <EcofiProvider>
           <Routing />
-          <TiendaProductos/>
           <ToastContainer/>
           </EcofiProvider>
       </div>

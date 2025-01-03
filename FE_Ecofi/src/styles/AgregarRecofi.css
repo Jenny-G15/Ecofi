@@ -9,14 +9,14 @@
 
 /* Contenedor principal para Recofis */
 .recofi-container {
-    grid-column: 2 !important;
-    grid-row: 3 !important;
+    grid-column: 2/3 !important;
+    grid-row: 2 !important;
     padding: 20px;
     font-family: Arial, sans-serif;
     max-width: 100%;
     margin: 0 auto;
     margin-top: 5rem;
-
+    width: 60% !important;
 }
 
 /* Título principal */

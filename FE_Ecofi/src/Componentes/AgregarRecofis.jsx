@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { getRecofis, agregarRecofi, actualizarRecofi, eliminarRecofi } from '../services/recofiServices';
+import { getMateriales } from '../services/materialServices';
+import { getDireccion } from '../services/direccionServices';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../styles/AgregarRecofi.css'
+import '../styles/AgregarRecofi.css';
+
 
 
 
 const FormularioRecofi = () => {
-
     const [recofis, setRecofis] = useState([]);
+    const [direcciones, setDirecciones] = useState([]);
+    const [materiales, setMateriales] = useState([]);
     const [datosFormulario, setDatosFormulario] = useState({
         ID_Direccion: '',
         ID_Material: '',
@@ -25,21 +29,36 @@ const FormularioRecofi = () => {
 
     useEffect(() => {
         cargarRecofis();
+        cargarDirecciones();
+        cargarMateriales();
     }, []);
-
-
-
 
     const cargarRecofis = async () => {
         try {
             const datos = await getRecofis();
             setRecofis(datos);
         } catch (error) {
-            console.error('Error al cargar los recofis tigre:', error);
+            console.error('Error al cargar los recofis:', error);
         }
     };
 
+  const cargarDirecciones = async () => {
+    try {
+      const datos = await getDireccion();
+      setDirecciones(datos);
+    } catch (error) {
+      console.error('Error al cargar direcciones:', error);
+    }
+  };
 
+    const cargarMateriales = async () => {
+        try {
+            const datos = await getMateriales();
+            setMateriales(datos); // Aquí se asume que devuelve un array de objetos con `id` y `nombre`.
+        } catch (error) {
+            console.error('Error al cargar los materiales:', error);
+        }
+    };
 
     const manejarCambio = (e) => {
         setDatosFormulario({
@@ -50,7 +69,6 @@ const FormularioRecofi = () => {
 
     const manejarEnvio = async () => {
         try {
-            console.log('Datos enviados:', datosFormulario);
             if (modoEdicion) {
                 await actualizarRecofi(idRecofiActual, datosFormulario);
                 toast.success('Recofi actualizado exitosamente');
@@ -95,26 +113,38 @@ const FormularioRecofi = () => {
         }
     };
 
+
     return (
         <div className="recofi-container">
             <h2>{modoEdicion ? 'Editar Recofi' : 'Agregar Recofi'}</h2>
             <form id='FormRecofi2' onSubmit={(e) => e.preventDefault()}>
-                <input
-                    type="number"
+            <select
                     name="ID_Direccion"
-                    placeholder="ID Dirección"
                     value={datosFormulario.ID_Direccion}
                     onChange={manejarCambio}
                     required
-                />
-                <input
-                    type="number"
+                >
+                    <option value="">Selecciona una Dirección</option>
+                    {direcciones.map((direccion) => (
+                        <option key={direccion.id} value={direccion.id}>
+                            {`${direccion.Canton} - ${direccion.Distrito}`}
+                        </option>
+                    ))}
+                </select>
+
+                <select
                     name="ID_Material"
-                    placeholder="ID Material"
                     value={datosFormulario.ID_Material}
                     onChange={manejarCambio}
                     required
-                />
+                >
+                    <option value="">Selecciona un Material</option>
+                    {materiales.map((material) => (
+                     <option key={material.id} value={material.id}>
+                     {material.Tipo_Material}
+                   </option>
+                    ))}
+                </select>
                 <input
                     type="text"
                     name="Nombre_Recofi"
@@ -181,3 +211,7 @@ const FormularioRecofi = () => {
 };
 
 export default FormularioRecofi;
+
+
+
+

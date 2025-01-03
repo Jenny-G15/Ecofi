@@ -152,7 +152,7 @@ export const actualizarBicolones = async (id, Bicolones) => {
 
   try {
   
-    const response = await fetch(`http://192.168.8.114:3000/usuarios/${id}`, {
+    const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ Bicolones: Bicolones }),

@@ -17,6 +17,7 @@ import '../styles/Formularios.css'
 
 
 const FormularioMateriales = () => {
+  const [formularios, setFormularios] = useState([]);
   const [direcciones, setDirecciones] = useState([]);
   const [materiales, setMateriales] = useState([]);
   const [datosFormulario, setDatosFormulario] = useState({
@@ -184,22 +185,6 @@ const FormularioMateriales = () => {
     doc.save('Comprobante.pdf');
   };
   
-
-
-  // const generarPDF = () => {
-  //   const doc = new jsPDF();
-  //   doc.setFontSize(14);
-  //   doc.text('Comprobante de Canje', 20, 20);
-  //   doc.text(`Nombre del Usuario: ${usuario.Nombre_Usuario} ${usuario.Apellido_Usuario}`, 20, 30);
-  //   doc.text(`RECOFI: ${materiales.find((m) => m.id === datosFormulario.ID_Material)?.Tipo_Material || 'N/A'}`, 20, 40);
-  //   doc.text(`Dirección: ${direcciones.find((d) => d.id === datosFormulario.ID_Recofi)?.Nombre_Recofi || 'N/A'}`, 20, 50);
-  //   doc.text(`Fecha: ${datosFormulario.Fecha_Formulario}`, 20, 60);
-  //   doc.text(`Bicolones Obtenidos: ${datosFormulario.Bicolnes_Obtenidos}`, 20, 70);
-
-  //   doc.save('Comprobante.pdf');
-  // };
-
-
 
 
 

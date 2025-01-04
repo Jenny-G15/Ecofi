@@ -20,8 +20,7 @@ const app = express();
 app.use(cors())
 const PORT = process.env.PORT;
 
-// Token
-// app.use('/auth', authRoutes);
+
 
 app.use(express.json()); // Middleware para parsear JSON
 

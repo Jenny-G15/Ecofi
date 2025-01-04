@@ -53,6 +53,8 @@ export async function PostUsers
     }
 }
 
+
+
 export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
     try {
       const userData = {
@@ -74,36 +76,62 @@ export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
     }
 }
 
-export async function updateUser(id, data) {
+
+
+
+
+
+export async function updateUser(
+  id,
+  Nombre_Usuario,
+  Apellido_Usuario,
+  Cedula,
+  Email_Usuario,
+  Contraseña_Usuario,
+  Telefono_Usuario,
+  Bicolones
+) {
   try {
-      // const userData = {
-      //     Nombre_Usuario,
-      //     Apellido_Usuario,
-      //     Cedula,
-      //     Email_Usuario,
-      //     Contraseña_Usuario,
-      //     Telefono_Usuario,
-      //     Bicolones
-      // };
+      const userData = {
+        Nombre_Usuario,
+        Apellido_Usuario,
+        Cedula,
+        Email_Usuario,
+        Contraseña_Usuario,
+        Telefono_Usuario,
+        Bicolones
+      };
 
       const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
-          method: "PUT",
+          method: 'PUT',
           headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(userData),
       });
 
       if (!response.ok) {
-          throw new Error('Error al actualizar el Usuario');
+          throw new Error('Error updating Usuario');
       }
 
       return await response.json();
   } catch (error) {
-      console.error("Error al actualizar el Usuario", error);
+      console.error('Error updating Usuario:', error);
       throw error;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export async function deleteUser(id) {

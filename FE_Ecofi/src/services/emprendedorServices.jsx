@@ -59,6 +59,7 @@ export async function PostEmprendedores(
     }
 }
 
+
 // Actualizar un emprendedor existente
 export async function updateEmprendedor(
     id,
@@ -90,7 +91,8 @@ export async function updateEmprendedor(
         });
 
         if (!response.ok) {
-            throw new Error('Error updating emprendedor');
+            const errorDetails = await response.json();
+            throw new Error(`Error updating emprendedor: ${errorDetails.message}`);
         }
 
         return await response.json();
@@ -99,6 +101,10 @@ export async function updateEmprendedor(
         throw error;
     }
 }
+
+
+
+
 
 // Eliminar un emprendedor
 export async function deleteEmprendedor(id) {

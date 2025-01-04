@@ -141,6 +141,15 @@ const iniciarSesion = async (req, res) => {
     }
 };
 
+
+
+
+
+
+
+
+
+
 const actualizarUsuario = async (req, res) => {
     try {
         

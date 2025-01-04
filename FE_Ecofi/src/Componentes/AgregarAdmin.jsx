@@ -197,6 +197,7 @@ const AgregarAdministradores = () => {
                     </Button>
                 </div>
                 <div id="contenedorAdministradores">
+                    <h3 className='ListaAdminText'>Lista de Administradores</h3>
                     {administradores.length > 0 ? (
                         administradores.map((admin) => (
                             <div key={admin.id} className="administrador">
@@ -220,7 +221,7 @@ const AgregarAdministradores = () => {
                                             value={editData.Cedula}
                                             onChange={manejarCambioEdicion}
                                         />
-                                        <Button onClick={guardarEdicion}>Guardar</Button>
+                                        <Button id='ButtonAdmin' onClick={guardarEdicion}>Guardar</Button>
                                         <Button onClick={() => setEditMode(null)}>Cancelar</Button>
                                     </>
                                 ) : (

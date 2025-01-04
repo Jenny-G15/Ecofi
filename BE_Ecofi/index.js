@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const xss = require('xss-clean');
 const { sequelize } = require('./models'); 
 const authRoutes = require('./Routes/authRoutes'); 
 const canjesRoutes = require('./Routes/canjesRoutes');
@@ -23,6 +24,9 @@ const PORT = process.env.PORT;
 
 
 app.use(express.json()); // Middleware para parsear JSON
+app.use(xss()); // Middleware de xss-clean para prevenir ataques XSS
+
+
 
 // Probar la conexión con la base de datos
 sequelize.authenticate()

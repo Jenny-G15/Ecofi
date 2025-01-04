@@ -1,6 +1,6 @@
 .infografia-container {
     grid-column: 1/3 !important;
-    grid-row: 2 !important;
+    grid-row: 3 !important;
     display: flex;
     justify-content: center;
     align-items: center;

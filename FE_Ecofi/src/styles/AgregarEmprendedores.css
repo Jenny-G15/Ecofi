@@ -1,33 +1,37 @@
 /* AgregarEmprendedores.css */
 
-
-
-
-
-
-
+#principalConteiner {
+    display: grid;
+    grid-template-rows: auto auto auto auto; /* Cada sección tiene su propia fila */
+    grid-template-columns: 1fr 1fr; /* Sidebar y contenido principal */
+    gap: 1rem; /* Espaciado entre filas */
+    width: 100%; /* Ancho completo */
+    background-color: #fdfdfdb7;
+}
 
 .emprendedoresContainer {
-    grid-column: 2/3 !important;
-    grid-row: 2 !important;
+    grid-column: 1 / 2; /* Ocupa la segunda columna, que es el contenido principal */
+    grid-row: 3 ;
     background: linear-gradient(to right, #054d11, #78b87b);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #fff;
     display: block;
-    margin-left: auto;
+    width: 100%;
+    display: block;
+    margin-left: 22rem;
     margin-right: auto;
 }
 
 .emprendedoresContainer2 {
-    display: flex;
+    display: inline;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .containerEmprendedores {
-    width: 45%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../Pages/Register";
 import Principal from "../Pages/Principal";
-import BodyBackground from "../Componentes/BodyBackground";
+// import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../Pages/Administracion";
 import Recofi from "../Pages/Recofi";
 import Emprendedores from "../Pages/AgregarEmprendedores";
@@ -18,13 +18,11 @@ import Beneficio from "../Pages/Beneficio";
 import Perfil_Usuario from  "../Pages/Perfil_Usuario"
 
 const Routing = () => {
-  // Definir el fondo para la página Principal
-  const backgroundImage = "../src/img/fondo3.jpeg"; // Ajusta la ruta de la imagen según lo necesario
+
 
   return (
     <Router>
-      {/* Aplica el fondo solo en Principal */}
-      <BodyBackground background={backgroundImage} />
+      
       
       <Routes>
         <Route path="/Principal" element={<Principal />} />

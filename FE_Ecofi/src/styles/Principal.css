@@ -5,7 +5,8 @@
   gap: 1rem; /* Espaciado entre filas */
   height: 100vh; /* Altura de la pantalla */
   width: 100%; /* Ancho completo */
-  background-color: #fdfdfdb7;
+  background: rgb(25,212,40);
+background: radial-gradient(circle, rgba(2, 255, 23, 0.936) 0%, rgba(71,232,247,0.7091211484593838) 100%);
 }
   /* General navbar styling */
   .navbar {

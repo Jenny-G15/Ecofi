@@ -1,76 +1,86 @@
-/* Contenedor Principal del Sidebar */
+/* Estilo básico */
 .sidebarContainer {
-  width: 200px; /* Ancho del Sidebar */
-  height: 100vh; /* Altura completa de la pantalla */
-  background: linear-gradient(135deg, #089103, #47ce42); /* Fondo degradado elegante */
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  padding-top: 20px; /* Espaciado superior */
-  display: flex;
-  flex-direction: column;
-  position: sticky; /* Se queda visible mientras haces scroll */
-  top: 0; /* El punto superior donde se 'pega' al hacer scroll */
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #16e227;
+  color: white;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
 }
 
+.sidebarContainer.open {
+  left: 0;
+}
 
-/* Navegación dentro del Sidebar */
 .sidebarNav {
   display: flex;
   flex-direction: column;
-  margin-top: 8rem;
-  gap: 10px; /* Espaciado entre enlaces */
-
+  padding: 20px;
 }
 
-#tituloSideBar{
-
-  font-family: 'Lucida Sans';
-  font-size: 2.5rem;
-  font-weight: 800;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  color: #e5ece5;
-  margin-bottom: 0px;
-  margin-top: 0px;
-
-}
-
-#hrSideBar{
-  border: 4px solid rgb(2, 54, 2);
-
-}
-
-
-/* Enlaces del Sidebar */
 .sidebarLink {
-  text-decoration: none; /* Sin subrayado */
-  color: #eff4f8; /* Color del texto */
-  padding: 15px 20px; /* Espaciado interno */
-  font-size: 23px; /* Tamaño de texto */
-  font-weight: 500; /* Peso del texto */
-  display: block; /* Ocupa todo el ancho */
-  border-left: 4px solid transparent; /* Indicador inactivo */
-  transition: all 0.3s ease; /* Animación suave */
-}
-
-/* Hover y Enfoque */
-.sidebarLink:hover,
-.sidebarLink:focus {
-  background-color: #eaf0f6; /* Fondo claro al pasar el cursor */
-  color: #06581b; /* Texto azul elegante */
-  border-left: 4px solid #6ab04c; /* Indicador verde lateral */
-}
-
-/* Enlace Activo */
-.sidebarLink.active {
-  background-color: #d40808; /* Fondo del enlace activo */
-  color: #2d98da; /* Texto azul elegante */
-  border-left: 4px solid #6ab04c; /* Indicador lateral */
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
 }
 
 
 
+/* Botones */
+/* Botones */
+.menuButton {
+  position: fixed;
+  top: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 5px;
+  border-radius: 50%;
+  display: none; /* Oculto por defecto */
+}
 
+.closeButton {
+  display: none;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  align-self: flex-end;
+}
 
+.sidebarContainer.open .closeButton {
+  display: block;
+}
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menuButton {
+    position: fixed; /* Asegurando que esté fijo en la esquina superior izquierda */
+    top: 10px; /* Ajuste para mantenerlo en la esquina superior */
+    left: 10px; /* Ajuste para mantenerlo en la esquina izquierda */
+    display: block; /* Muestra el botón en pantallas pequeñas */
+  }
 
+  .sidebarContainer {
+    width: 250px;
+  }
+}
+
+@media (min-width: 769px) {
+  .menuButton {
+    display: none;
+  }
+
+  .sidebarContainer {
+    left: 0;
+    width: 250px;
+  }
+}

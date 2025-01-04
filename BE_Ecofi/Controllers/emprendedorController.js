@@ -42,6 +42,7 @@ const crearEmprendedor = async (req, res) => {
 
 
 
+
 // Actualizar un Emprendedor
 const actualizarEmprendedor = async (req, res) => {
   try {
@@ -56,19 +57,6 @@ const actualizarEmprendedor = async (req, res) => {
           return res.status(404).json({ error: 'Emprendedor no encontrado.' });
       }
 
-      const sameEmprendedor = await Emprendedor.findOne({
-          where: { Nombre_Emprendedor }
-      });
-
-      const sameCorreo = await Emprendedor.findOne({
-          where: { Correo_Emprendedor }
-      });
-
-      if ((sameEmprendedor && sameEmprendedor.id !== id) || 
-          (sameCorreo && sameCorreo.id !== id)) {
-          return res.status(400).json({ error: 'El nombre o el correo ya están registrados en otro emprendedor.' });
-      }
-
       await emprendedor.update({
           Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor, Telefono_Empresa, Direccion_Exacta
       });
@@ -79,7 +67,6 @@ const actualizarEmprendedor = async (req, res) => {
       res.status(500).json({ error: 'Error al actualizar el emprendedor.', detalles: error.message });
   }
 };
-
 
 
 

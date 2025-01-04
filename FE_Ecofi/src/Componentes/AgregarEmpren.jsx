@@ -5,9 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import '../styles/AgregarEmprendedores.css';
 import { Button } from 'react-bootstrap';
 
-
-
-
 const AgregarEmprendedores = () => {
     const [emprendedores, setEmprendedores] = useState([]);
     const [formData, setFormData] = useState({
@@ -81,7 +78,6 @@ const AgregarEmprendedores = () => {
         }
     };
 
-
     const editarEmprendedor = (emprendedor) => {
         setFormData({
             Nombre_Emprendedor: emprendedor.Nombre_Emprendedor,
@@ -97,6 +93,10 @@ const AgregarEmprendedores = () => {
     };
     
 
+    const manejarCambio = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
 
     return (
         <div className="emprendedoresContainer">
@@ -184,7 +184,6 @@ const AgregarEmprendedores = () => {
 };
 
 export default AgregarEmprendedores;
-
 
 
 

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/SideBar.css";
@@ -11,14 +12,16 @@ function AdminSideBar() {
 
   return (
     <>
-      <button
-        className="menuButton"
-        onClick={toggleSidebar}
-      >
-        ☰
-      </button>
+      {!isOpen && (
+        <button
+          className="menuButton1"
+          onClick={toggleSidebar}
+        >
+          ☰
+        </button>
+      )}
       <div className={`sidebarContainer ${isOpen ? "open" : ""}`}>
-        <button className="closeButton" onClick={toggleSidebar}>
+        <button className="closeButton1" onClick={toggleSidebar}>
           ✖
         </button>
         <nav className="sidebarNav">
@@ -45,8 +48,8 @@ function AdminSideBar() {
         </nav>
       </div>
     </>
+
   );
 }
 
 export default AdminSideBar;
-

@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../Pages/Register";
 import Principal from "../Pages/Principal";
-// import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../Pages/Administracion";
 import Recofi from "../Pages/Recofi";
 import Emprendedores from "../Pages/AgregarEmprendedores";
@@ -16,6 +15,9 @@ import Testimonios from "../Componentes/Testimonios";
 import PrivateRoute from "./PrivateRoute";
 import Beneficio from "../Pages/Beneficio";
 import Perfil_Usuario from  "../Pages/Perfil_Usuario"
+import ClasificarEcofi from "../Componentes/ClasificarResiduos";
+import TestimonioPage from "../Pages/Testimonios";
+import ClasificarPage from "../Pages/ClasificarResiduos";
 
 const Routing = () => {
 
@@ -28,7 +30,8 @@ const Routing = () => {
       
       <Routes>
         <Route path="/Principal" element={<Principal />} />
-        <Route path="/Testimonios" element={<Testimonios/>} />
+        <Route path="/Testimonios" element={<TestimonioPage/>} />
+        <Route path="/Clasificar" element={<ClasificarPage/>} />
         <Route path="/Beneficios" element={<Beneficio/>} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />

@@ -38,7 +38,7 @@ export default function FormLogin() {
         const rolUsuario = response.rol_usuario;
         if (rolUsuario === 'Administrador') {
           login(rolUsuario);
-          navigate("/Administrador");
+          navigate("/Administracion");
         } else if (rolUsuario === 'usuario') {
           login(rolUsuario);
           navigate("/PerfilUsuario");

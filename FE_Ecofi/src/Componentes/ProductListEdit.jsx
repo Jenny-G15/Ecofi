@@ -3,39 +3,40 @@ import { deleteProducto, updateProducto, getProductos } from "../services/produc
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getEmprendedores } from "../services/emprendedorServices";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import cargarImagen from "../Firebase/config";
 // uploadBytesResumable para cargar el archivo al almacenamiento.
 //getDownloadURL para obtener la URL del archivo cargado.
 
 function ProductListEdit() {
   const [isLoading, setIsLoading] = useState(false);
+  const [eliminacion, setEliminacion] = useState(null);
   const [productos, setProductos] = useState([]);
   const [emprendedores, setEmprendedores] = useState([]);
-  const [editarProducto, setEditarProducto] = useState(null);
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [guardarEmprendedor, setGuardarEmprendedor] = useState(null);
-  const [formData, setFormData] = useState({
-    Bicolones_Producto: "",
-    Imagen: "",
-    Stock: "",
-    Descripcion_Producto: "",
-  });
-  const [previewImage, setPreviewImage] = useState(null); // Para previsualizar la imagen
+  // const [editarProducto, setEditarProducto] = useState(null);
+  // const [mostrarModal, setMostrarModal] = useState(false);
+  // const [guardarEmprendedor, setGuardarEmprendedor] = useState(null);
+  // // const [formData, setFormData] = useState({
+  //   Bicolones_Producto: "",
+  //   Imagen: "",
+  //   Stock: "",
+  //   Descripcion_Producto: "",
+  // });
+  // const [previewImage, setPreviewImage] = useState(null); // Para previsualizar la imagen
 
-  useEffect(() => {
-    async function cargarDatos() {
-      try {
-        const [productosData, emprendedoresData] = await Promise.all([
-          getProductos(),
-          getEmprendedores(),
-        ]);
-        setProductos(productosData);
-        setEmprendedores(emprendedoresData);
-      } catch (error) {
-        console.error("Error al cargar datos:", error);
-      }
+  async function cargarDatos() {
+    try {
+      const [productosData, emprendedoresData] = await Promise.all([
+        getProductos(),
+        getEmprendedores(),
+      ]);
+      setProductos(productosData);
+      setEmprendedores(emprendedoresData);
+    } catch (error) {
+      console.error("Error al cargar datos:", error);
     }
+  }
+  useEffect(() => {
     cargarDatos();
   }, []);
 
@@ -44,21 +45,34 @@ function ProductListEdit() {
     return emprendedor ? emprendedor.Nombre_Emprendedor : "Desconocido";
   };
 
-  const cargarIdEmprendedor = (event) => {
-    const selectedId = event.target.value;
-    setGuardarEmprendedor(selectedId);
-  };
+  // const cargarIdEmprendedor = (event) => {
+  //   const selectedId = event.target.value;
+  //   setGuardarEmprendedor(selectedId);
+  // };
 
-  const manejarCambio = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "Imagen" && files.length > 0) {
-      const file = files[0];
-      setPreviewImage(URL.createObjectURL(file)); // Previsualizar imagen
-      setFormData({ ...formData, Imagen: file }); // Guardar archivo en el estado
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
+  // const abrirEdicion = (producto) => {
+  //   setEditarProducto(producto);
+  //   setFormData({
+  //     Bicolones_Producto: producto.Bicolones_Producto,
+  //     Imagen: producto.Imagen,
+  //     Stock: producto.Stock,
+  //     Descripcion_Producto: producto.Descripcion_Producto,
+  //   });
+  //   setGuardarEmprendedor(producto.ID_Emprendedor);
+  //   setPreviewImage(producto.Imagen); // Mostrar imagen existente como vista previa
+  //   setMostrarModal(true);
+  // };
+
+  // const manejarCambio = (e) => {
+  //   const { name, value, files } = e.target;
+  //   if (name === "Imagen" && files.length > 0) {
+  //     const file = files[0];
+  //     setPreviewImage(URL.createObjectURL(file)); // Previsualizar imagen
+  //     setFormData({ ...formData, Imagen: file }); // Guardar archivo en el estado
+  //   } else {
+  //     setFormData({ ...formData, [name]: value });
+  //   }
+  // };
 
   // const subirImagenAFirebase = async (file) => {
   //   const storage = getStorage();
@@ -78,87 +92,69 @@ function ProductListEdit() {
   //   });
   // };
 
-  const guardarCambios = async (e) => {
-    e.preventDefault();
-    try {
-      let imagenUrl = formData.Imagen;
+  // const cerrarModal = () => {
+  //   setEditarProducto(null);
+  //   setMostrarModal(false);
+  //   setPreviewImage(null);
+  // };
 
-      // Subir imagen si es un archivo nuevo
-      if (formData.Imagen instanceof File) { //para validar el archivo antes de cargarlo.
-        toast.info("Subiendo imagen...");
-        imagenUrl = await cargarImagen(formData.Imagen);
-        toast.success("Imagen subida con éxito");
-      }
+  // const guardarCambios = async (e) => {
+  //   e.preventDefault();
+  //   try {
 
-      const datosActualizados = {
-        ...formData,
-        Imagen: imagenUrl,
-        ID_Emprendedor: guardarEmprendedor,
-      };
-      await updateProducto(editarProducto.id, datosActualizados);
-      toast.success("Producto actualizado con éxito");
-      setProductos((prevProductos) =>
-        prevProductos.map((p) => (p.id === editarProducto.id ? { ...p, ...datosActualizados } : p))
-      );
-      cerrarModal();
-    } catch (error) {
-      console.error("Error al guardar cambios:", error);
-      toast.error("Hubo un error al guardar los cambios");
-    }
-  };
+  //     // Subir imagen si es un archivo nuevo
+  //     if (formData.Imagen instanceof File) { //para validar el archivo antes de cargarlo.
+  //       toast.info("Subiendo imagen...");
+  //       await cargarImagen(formData.Imagen);
+  //       toast.success("Imagen modificada con éxito");
+  //     }
 
-  // Confirmar y eliminar producto
+  //     const datosActualizados = {
+  //       ...formData,
+  //       Imagen: formData.Imagen,
+  //       ID_Emprendedor: guardarEmprendedor,
+  //     };
+  //     console.log("Datos a actualizar:", datosActualizados);
+  //     await updateProducto(editarProducto.id, datosActualizados);
+  //     toast.success("Producto actualizado con éxito");
+  //     setProductos((prevProductos) =>
+  //       prevProductos.map((p) => (p.id === editarProducto.id ? { ...p, ...datosActualizados } : p))
+  //     );
+  //     cerrarModal();
+  //   } catch (error) {
+  //     console.error("Error al guardar cambios:", error);
+  //     toast.error("Hubo un error al guardar los cambios");
+  //   }
+  // };
+
+  // Confirmar eliminacion enviando el id por un hook 
   const confirmarEliminacion = (id) => {
-    toast.info(
-      <div>
-        <p>¿Estás seguro de que deseas eliminar este producto?</p>
-        <button onClick={() => eliminarProducto(id)} style={{ marginRight: "10px" }}>
-          Sí
-        </button>
-        <button onClick={() => toast.dismiss()}>No</button>
-      </div>,
-      {
-        position: "top-center",
-        autoClose: false,
-        closeOnClick: false,
-        draggable: false,
+    setEliminacion(id)
+  };
+
+  //Eliminar el producto seleccionado 
+  const eliminarProducto = async () => {
+    if (eliminacion) {
+      setIsLoading(true);
+      try {
+        console.log("Eliminando producto con ID:", eliminacion);
+        await deleteProducto(eliminacion);
+        toast.success("Producto eliminado con éxito");
+        setEliminacion(null);
+        cargarDatos();
+      } catch (error) {
+        console.error("Error al eliminar producto:", error);
+        toast.error("Hubo un error al eliminar el producto");
+      } finally {
+        setIsLoading(false);
       }
-    );
-  };
+    };
+  }
 
-  const eliminarProducto = async (id) => {
-    setIsLoading(true);
-    try {
-      await deleteProducto(id);
-      toast.success("Producto eliminado con éxito");
-      cargarDatos()
-      // setProductos((prevProductos) => prevProductos.filter((p) => p.id !== id));
-    } catch (error) {
-      console.error("Error al eliminar producto:", error);
-      toast.error("Hubo un error al eliminar el producto");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const abrirEdicion = (producto) => {
-    setEditarProducto(producto);
-    setFormData({
-      Bicolones_Producto: producto.Bicolones_Producto,
-      Imagen: producto.Imagen,
-      Stock: producto.Stock,
-      Descripcion_Producto: producto.Descripcion_Producto,
-    });
-    setGuardarEmprendedor(producto.ID_Emprendedor);
-    setPreviewImage(producto.Imagen); // Mostrar imagen existente como vista previa
-    setMostrarModal(true);
-  };
-
-  const cerrarModal = () => {
-    setEditarProducto(null);
-    setMostrarModal(false);
-    setPreviewImage(null);
-  };
+  //Setear el hook a null para quitar el modal de confirmacion  de eliminacion
+  const cancelarEliminacion = () => {
+    setEliminacion(null)
+  }
 
   return (
     <div id="product-list-container">
@@ -174,13 +170,23 @@ function ProductListEdit() {
           <p>Bicolones: {product.Bicolones_Producto}</p>
           <p>Descripción: {product.Descripcion_Producto}</p>
           <p>Stock: {product.Stock}</p>
-          <button disabled={isLoading} onClick={() =>confirmarEliminacion(product.id)}>
-            {isLoading ? "Eliminando..." : "Eliminar"}
-          </button>
+          {console.log(product.id)}
+          <button onClick={() => confirmarEliminacion(product.id)}>Eliminar</button>
+          {/* Mostrar modal para confirmar la eliminacion */}
+          {eliminacion && (
+            <div className="modal">
+                <div className="modal-content">
+                    <h3>Confirmar Eliminación</h3>
+                    <p>¿Estás seguro de que deseas eliminar este producto?</p>
+                    <button onClick={eliminarProducto}>Sí</button>
+                    <button onClick={cancelarEliminacion}>No</button>
+                </div>
+            </div>
+        )};
           <button onClick={() => abrirEdicion(product)}>Editar</button>
         </div>
       ))}
-      {mostrarModal && (
+      {/* {mostrarModal && (
         <div className="modal">
           <div id="edit-form-container">
             <h3>Editar Producto</h3>
@@ -230,7 +236,7 @@ function ProductListEdit() {
             </form>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

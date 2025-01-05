@@ -1,73 +1,123 @@
-/* Contenedor Principal del Sidebar */
-.sidebarContainer {
-  width: 200px; /* Ancho del Sidebar */
-  height: 100vh; /* Altura completa de la pantalla */
-  background: linear-gradient(135deg, #089103, #47ce42); /* Fondo degradado elegante */
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  padding-top: 20px; /* Espaciado superior */
-  display: flex;
-  flex-direction: column;
+
+/* Estilo básico */
+.AdminSidebarContainer {
+  margin-top: 1rem;
 }
 
-/* Navegación dentro del Sidebar */
+.sidebarContainer {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Posición inicial fuera de la vista */
+  width: 8rem;
+  height: 100%;
+  background:  rgba(10, 168, 142, 0.855);
+  color: white;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+  margin-top: 3.8rem;
+}
+
+.sidebarContainer.open {
+  left: 0;
+}
+
 .sidebarNav {
   display: flex;
   flex-direction: column;
-  margin-top: 8rem;
-  gap: 10px; /* Espaciado entre enlaces */
-
+  padding: 20px;
+  font-size: 1rem;
 }
 
-#tituloSideBar{
-
-  font-family: 'Lucida Sans';
-  font-size: 2rem;
-  font-weight: 800;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  color: #e5ece5;
-  margin-bottom: 0px;
-  margin-top: 0px;
-
-}
-
-#hrSideBar{
-  border: 4px solid rgb(2, 54, 2);
-
-}
-
-
-/* Enlaces del Sidebar */
+/* Enlaces de la barra lateral */
 .sidebarLink {
-  text-decoration: none; /* Sin subrayado */
-  color: #eff4f8; /* Color del texto */
-  padding: 15px 20px; /* Espaciado interno */
-  font-size: 20px; /* Tamaño de texto */
-  font-weight: 500; /* Peso del texto */
-  display: block; /* Ocupa todo el ancho */
-  border-left: 4px solid transparent; /* Indicador inactivo */
-  transition: all 0.3s ease; /* Animación suave */
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  transition: color 0.3s ease-in-out, background-image 0.3s ease-in-out;
 }
 
-/* Hover y Enfoque */
-.sidebarLink:hover,
-.sidebarLink:focus {
-  background-color: #eaf0f6; /* Fondo claro al pasar el cursor */
-  color: #06581b; /* Texto azul elegante */
-  border-left: 4px solid #6ab04c; /* Indicador verde lateral */
+.sidebarLink:hover {
+  color: white;
+  background-image: linear-gradient(45deg, #07eb1a, #09a799, #65e470);
+  background-size: 200% 200%;
+  animation: gradientAnimation 2s infinite;
 }
 
-/* Enlace Activo */
-.sidebarLink.active {
-  background-color: #d40808; /* Fondo del enlace activo */
-  color: #2d98da; /* Texto azul elegante */
-  border-left: 4px solid #6ab04c; /* Indicador lateral */
+/* Animación de gradiente */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
+/* Botones */
+.menuButton1 {
+  position: fixed;
+  top: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #06ff12;
+  cursor: pointer;
+  padding: 5px;
+  display: none; /* Oculto por defecto */
+}
 
+.menuButton1:hover {
+  background-color: #1cffec69;
+}
 
+#tituloSideBar {
+  justify-self: center;
+}
 
+.closeButton1 {
+  display: none;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  align-self: flex-end;
+}
 
+.sidebarContainer.open .closeButton1 {
+  display: block;
+}
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menuButton1 {
+    display: block; 
+  }
 
+  .sidebarContainer {
+    width: 250px;
+    margin-top: 0; /* Ajustar el margen superior para pantallas pequeñas */
+  }
+
+  .sidebarContainer.open {
+    left: 0; /* Mostrar la barra lateral en pantallas pequeñas */
+  }
+}
+
+@media (min-width: 769px) {
+  .menuButton1 {
+    display: none;
+  }
+
+  .sidebarContainer {
+    left: 0;
+    width: 250px;
+    margin-top: 3.8rem;
+  }
+}

@@ -12,7 +12,7 @@ function NavAbout() {
         <li><Link to="/Principal">Inicio</Link></li>
         <li><Link to="/Login">INICIAR SESION</Link></li>
         <li><Link to="/Register">Registrarme</Link></li>
-        <li><Link to="/Contacto">Contactenos</Link></li>
+        <li><a href="#contacto">Contactenos</a></li>
         <li><Link to="/Recofi">Recofi</Link></li>
       </ul>
     </nav>

@@ -1,19 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const controladorUsuarios = require('../Controllers/authControllers')
-// const {forgotPassword, resetPassword} = require('../Controllers/authControllers')
-// const {forgotPassword, resetPassword} = require('../Controllers/authControllers')
+const { obtenerUsuarios, UsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario, actualizarBicolones } = require('../controllers/authControllers');
 
 
-router.get('/', controladorUsuarios.obtenerUsuarios); 
-router.get('/:cedula', controladorUsuarios.UsuariosxCedula)
-router.post('/login', controladorUsuarios.iniciarSesion); 
-router.post('/register', controladorUsuarios.registrarUsuario);
-router.delete('/:id', controladorUsuarios.eliminarUsuario); 
-router.put('/:id', controladorUsuarios.actualizarUsuario); 
-router.put('/usuarios/:id/bicolones', controladorUsuarios.actualizarBicolones);
 
 
+router.get('/', obtenerUsuarios); 
+router.get('/:cedula', UsuariosxCedula);
+router.post('/login', iniciarSesion); 
+router.post('/register', registrarUsuario);
+router.delete('/:id', eliminarUsuario); 
+router.put('/:id', actualizarUsuario); 
+router.put('/usuarios/:id/bicolones', actualizarBicolones);
 
 
 module.exports = router;

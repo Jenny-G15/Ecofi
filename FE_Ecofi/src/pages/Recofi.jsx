@@ -7,7 +7,7 @@ import Footer from '../Componentes/Footer'
 function Recofi() {
   return (
     <div>
-    <Nav />
+     <Nav />
     <MapaRecofi/>
     <div id='footerConteiner'><Footer /> </div>
     </div>

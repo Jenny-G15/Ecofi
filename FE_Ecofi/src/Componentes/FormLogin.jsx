@@ -7,9 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContextoEcofi from './Context/EcofiContex';
 
 
-
-
-
 export default function FormLogin() {
   const { login, setUserData } = useContext(ContextoEcofi); // Usar el contexto
   const navigate = useNavigate();
@@ -58,7 +55,7 @@ export default function FormLogin() {
   
         toast.success("¡Inicio de sesión exitoso!");
 
-
+      
 
         // Redirigimos según el rol
         if (rolUsuario === 'Administrador') {
@@ -71,6 +68,7 @@ export default function FormLogin() {
 
           toast.error("Rol de usuario no reconocido");
         }
+      }};
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       toast.error("Ocurrió un error al iniciar sesión");

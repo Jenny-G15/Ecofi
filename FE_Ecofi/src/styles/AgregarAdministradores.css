@@ -1,80 +1,106 @@
 /* Contenedor principal */
 .administradoresContainer {
-    background-color: #f2f7f3; /* Fondo verde muy claro */
-    padding: 20px;
-    border-radius: 23px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #14da24, #51eec7) !important; /* Gradiente verde claro */
+    padding: 25px;
+    border-radius: 15px;
+    border: 8px solid #013803; /* Borde externo */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #2d4d32; /* Verde oscuro sofisticado */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    margin-top: 8rem;
-
+    color: #2d4d32;
+    width: 60%;
+    margin: 8rem auto;
+    box-shadow: rgba(1, 48, 16, 0.63) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    background-color: rgba(255, 255, 255, 0.788);
 }
 
 /* Título */
 #admiTitulo {
-    font-size: 2rem;
-    color: #285c3a; /* Verde elegante */
+    font-size: 2.2rem;
+    color: #285c3a;
     text-align: center;
-    margin-bottom: 1.5rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
 }
 
 /* Input Fields */
 .containerAdministradores input {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #a3c4a7; /* Verde tenue */
-    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 2px solid #012c01; /* Borde más marcado */
+    border-radius: 12px;
     outline: none;
     font-size: 1rem;
     color: #2d4d32;
-    background-color: #f9fcfa; /* Fondo muy claro */
+    background: #ffffff;
     transition: border 0.3s, box-shadow 0.3s;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .containerAdministradores input:focus {
-    border-color: #5a8f6e; /* Verde más intenso al enfocar */
-    box-shadow: 0 0 8px rgba(90, 143, 110, 0.4);
+    border-color: #63af7e;
+    box-shadow: 0 0 10px rgba(99, 175, 126, 0.5);
 }
 
 /* Botón de agregar */
-#btnAgregarAdministrador {
-    background-color: #5a8f6e; /* Verde elegante */
-    color: #ffffff;
-    border: none;
-    padding: 12px 20px;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
 
-#btnAgregarAdministrador:hover {
-    background-color: #4b7d5d; /* Verde más oscuro al pasar el mouse */
-    transform: scale(1.05);
-}
+
+#btnAgregarAdministrador  {
+    text-decoration: none;
+    border: 1px solid rgb(4, 134, 15);
+    background-color: #14da24;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.4rem;
+  }
+  
+  #btnAgregarAdministrador:hover {
+    box-shadow: 1px 1px 25px 10px rgba(3, 172, 14, 0.692);
+  }
+  
+  #btnAgregarAdministrador:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(2, 66, 11, 0.4),
+      transparent
+    );
+    transition: all 650ms;
+  }
+  
+  #btnAgregarAdministrador :hover:before {
+    left: 100%;
+  }
+
+
 
 /* Lista de Administradores */
 #contenedorAdministradores {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .administrador {
-    background-color: #e8f1e8; /* Verde claro */
-    border: 1px solid #c3dbc5; /* Borde suave */
-    border-radius: 8px;
+    background: linear-gradient(135deg, #03690bcc, #025e0798);
+    border: 2px solid #b7e0b8;
+    border-radius: 12px;
     margin-bottom: 15px;
-    padding: 10px 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: transform 0.2s;
+    font-size: 1.2rem;
+    color: #b7e0b8;
 }
 
 .administrador:hover {
@@ -82,36 +108,44 @@
 }
 
 .administrador span {
-    color: #2d4d32; /* Verde oscuro */
+    color: #285c3a;
     font-weight: bold;
 }
 
 /* Botón de eliminar */
 .btnContainer button {
-    background-color: #d9534f; /* Rojo elegante para eliminar */
+    background: linear-gradient(135deg, #28dbbdd5, #74ec64c7);
     color: #ffffff;
     border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 10px 15px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s, transform 0.2s;
+    margin-left: 0.5rem;
 }
 
 .btnContainer button:hover {
-    background-color: #c9302c; /* Rojo más oscuro al pasar el mouse */
+    background: linear-gradient(135deg, #2ceea3, #70ebc2);
+    transform: scale(1.1);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .administradoresContainer {
-        padding: 15px;
+        padding: 20px;
     }
 
     #admiTitulo {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .containerAdministradores input {
-        font-size: 0.9rem;
+        font-size: 1rem;
+    }
+
+    #btnAgregarAdministrador {
+        font-size: 1rem;
+        padding: 12px 20px;
     }
 }
+

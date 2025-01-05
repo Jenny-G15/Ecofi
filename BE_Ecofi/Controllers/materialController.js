@@ -98,14 +98,6 @@ const actualizarMaterial = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
 // Eliminar un material
 const eliminarMaterial = async (req, res) => {
   try {

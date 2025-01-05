@@ -1,7 +1,6 @@
 import React from 'react'
 import AdminSideBar from '../Componentes/SideBar'
 import AgregarEmpren from '../Componentes/AgregarEmpren' 
-
 import {Row,Col} from 'react-bootstrap'
 import NavAdmin from '../Componentes/NavAdmin'
 

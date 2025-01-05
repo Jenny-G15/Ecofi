@@ -10,12 +10,12 @@ import RecofisPage from "../Pages/AgregarRecofis";
 import QuienesSomos from "../Pages/QuienesSomos";
 import EditarUsuarios from "../Pages/EditarUsuarios";
 import FormRecofis from "../Pages/Formulario";
-import Monedero from "../pages/Monedero";
 import Recolecciones from "../Pages/Hrecoleccion";
 import Admin from "../Pages/AgregarAdministradores";
 import Testimonios from "../Componentes/Testimonios";
 import PrivateRoute from "./PrivateRoute";
 import Beneficio from "../Pages/Beneficio";
+import Perfil_Usuario from "../pages/Perfil_Usuario";
 
 const Routing = () => {
   // Definir el fondo para la página Principal
@@ -41,11 +41,13 @@ const Routing = () => {
         <Route path="/HRecoleccion" element={<Recolecciones />} />
         <Route path="/AgregarAdmin" element={<Admin />} />
         <Route path="/Perfil" element={ 
-          <PrivateRoute>
-            <PerfilUsuario />
-          </PrivateRoute>
+        
+
+         <Perfil_Usuario />
+    
+           
         }>
-          <Route path="/Perfil/Monedero" element={<Monedero />} />
+       
         </Route>
         <Route path="/Administracion" element={ 
           <PrivateRoute>

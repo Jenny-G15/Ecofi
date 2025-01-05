@@ -1,60 +1,111 @@
-.container {
+/* Contenedor principal del login */
+#login-container {
   display: flex;
-
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  height: 100vh;
+  padding: 20px;
 }
 
-.col-md-6 {
-  flex: 0 0 auto;
-  width: 80%; 
-
-}
-.col-12 {
-  flex: 0 0 auto;
-  width: 80%;
-}
-.ctn-principal {
-  background-color: #92df6ec0;
-  padding: 6px;
+/* Caja del formulario */
+#login-box {
+  background: rgb(255, 255, 255);
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 2px 5px 8px rgba(4, 78, 148, 0.897);
-  width: 380px;
-  height: 330px;
-  position: absolute; /* Habilitar control de posición */
-  top: 10%; /* Ajusta hacia arriba */
-  left: 18%; /* Ajusta hacia la izquierda */
+  box-shadow: 0px 4px 10px rgba(26, 11, 233, 0.884);
+  width: 400px;
   text-align: center;
 }
-.container h2 {
-  color: #2d302e;
-  font-size: 30px;
-  margin-left: 23%;
+
+/* Encabezado del login */
+ #login-subtitle {
+  color: #4CAF50;
+  font-weight: bold;
 }
-.container form {
-  width: 300px;
-  text-align: center;
-  
+
+/* Formulario */
+#login-form{
+  background-color: rgb(255, 255, 255);
 }
-.buttonInicio {
-  background-color: #2d8518;
-  
-}
-.container label {
-  color: rgb(58, 56, 56);
-  font-weight: 600;
-}
-.informativeContainer {
-  display: flex;
-  width: 410px;
-  height: 370px;
-  color: rgb(41, 39, 39);
-  font-weight: 700;
+#login-form .form-control {
+  width: 100%;
+  border-radius: 10px;
+  padding: 6px;
   font-size: 16px;
-  position: absolute; /* Habilitar control de posición */
-  top: 45%; /* Ajusta hacia arriba */
-  right: 13%; /* Ajusta hacia la izquierda */
-  text-align: center;
+
+}
+
+/* Botón de inicio de sesión */
+#login-button {
+  background-color: #2049ff;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  width: 100%;
+  transition: background 0.3s ease-in-out;
+}
+
+#login-button:hover {
+  background-color: #388E3C;
+}
+
+/* Contenedor de información */
+#login-info {
+  width: 400px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(1, 82, 255, 0.514);
+  background: rgba(255, 255, 255, 0.61);
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: center ;
+ margin-left: 15%;
+ margin-block-start: 12rem;
+}
+/* Estilos para los inputs */
+.login-form-input {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #4CAF50; /* Borde verde */
+  background-color: #ffffff !important; /* Fondo blanco */
+  color: #333; /* Texto oscuro */
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Cambios cuando el usuario hace clic en el input */
+.login-form-input:focus {
+  border-color: #388E3C; /* Verde más oscuro */
+  box-shadow: 0px 0px 5px rgba(56, 142, 60, 0.5);
+}
+/* Estilos para los labels del formulario */
+.login-form-label {
+  color: #5c6f5c; /* Verde suave */
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+
 }
 
 
+/* Diseño responsivo */
+@media (max-width: 768px) {
+  #login-container {
+    flex-direction: column;
+    align-items: center;
+  }
 
-
+  #login-info {
+    width: 100%;
+    padding: 15px;
+  }
+}

@@ -148,14 +148,14 @@ export const buscarPorCedula = async (cedula) => {
 
 
 
-export const actualizarBicolones = async (id, Bicolones) => {
+export const actualizarBicolones = async (id, restarBicolones) => {
 
   try {
   
     const response = await fetch(`http://192.168.8.105:3000/usuarios/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Bicolones: Bicolones }),
+      body: JSON.stringify({ Bicolones: restarBicolones }),
   
     });
   
@@ -167,7 +167,6 @@ export const actualizarBicolones = async (id, Bicolones) => {
     throw error;
   }
 };
-
 
 
 

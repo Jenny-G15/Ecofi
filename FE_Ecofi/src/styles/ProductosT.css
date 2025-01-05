@@ -1,12 +1,3 @@
-#principalConteiner {
-  display: grid;
-  grid-template-rows: 100px auto auto auto; /* Cada sección tiene su propia fila */
-  grid-template-columns: 1fr 1fr; /* Dos columnas */
-  gap: 1rem; /* Espaciado entre filas */
-  height: 100vh; /* Altura de la pantalla */
-  width: 100%; /* Ancho completo */
-  background-color: #fdfdfdb7;
-}
 
 /* Footer */
 #footerConteiner {
@@ -36,9 +27,11 @@
 /* Contenedor principal */
 #productosContainer {
   display: flex;
-  flex-wrap: wrap; /* Permite que las tarjetas sean responsivas */
+  flex-wrap: wrap-reverse; 
+  grid-row: 3; /* Asigna el footer a la cuarta fila */
+  grid-column: 2/3;/* Permite que las tarjetas sean responsivas */
   justify-content: center; /* Centra las tarjetas en el contenedor */
-  gap: 20px; /* Espacio entre las tarjetas */
+  gap: 30%;  /* Espacio entre las tarjetas */
 }
 
 /* Estilo de cada tarjeta */
@@ -53,6 +46,8 @@
   flex-direction: column; /* Acomoda el contenido verticalmente */
   justify-content: space-between; /* Espacio uniforme entre elementos */
   transition: transform 0.3s, box-shadow 0.3s;
+  margin: 15px; /* Espaciado entre tarjetas */
+
 }
 
 .productEco:hover {

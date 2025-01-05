@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getUsers, updateUser } from "../services/userServices";
 import "../styles/Perfil_Usuario.css";
+import { jwtDecode } from "jwt-decode";
+
 
 const ComMonedero = () => {
   const [IdEditando, setIdEditando] = useState("");
@@ -14,33 +16,18 @@ const ComMonedero = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   const token = sessionStorage.getItem("token");
-  
-  //Funcion decodificacion del token 
-  const decodeToken = (token) => {
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      return JSON.parse(jsonPayload);
-    } catch (error) {
-      console.error('Error al decodificar el token:', error);
-      return null;
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (!token) {
-          setError("No se encontró un token válido en sessionStorage.");
+          setError("No se encontró un inicio de sesión valido, inicie sesión.");
           setIsLoading(false);
           return;
         }
 
         const userData = await getUsers();
-        const decodedToken = decodeToken(token);
+        const decodedToken =  jwtDecode(token);
         const usuario = userData.find((user) => user.id === decodedToken.id);
 
         if (usuario) {

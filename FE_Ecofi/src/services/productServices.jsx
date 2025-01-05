@@ -1,7 +1,7 @@
 // Obtener todos los productos
 export async function getProductos() {
     try {
-        const response = await fetch('http://192.168.8.105:3000/producto', {
+        const response = await fetch('http://192.168.8.105:3000/producto/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export async function PostProductos(
         };
         console.log(productoData);
         
-        const response = await fetch('http://192.168.8.105:3000/producto', {
+        const response = await fetch('http://192.168.8.105:3000/producto/', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -100,10 +100,6 @@ export async function updateProducto(
     }
 }
 
-
-
-
-
 // Eliminar un producto
 export async function deleteProducto(id) {
     try {
@@ -128,25 +124,42 @@ export async function deleteProducto(id) {
     }
 }
 
+export const stockActualizado = async (id, nuevoStock) => {
+    try {
+      const response = await fetch( `http://192.168.8.105:3000/producto/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ Stock: nuevoStock }),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json(); // Try to get error details from server
+        throw new Error( `Error al actualizar el stock: ${response.status} - ${errorData.message} - ${errorData.details}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error('Error al actualizar el stock:', error);
+      throw error; 
+    }
+  };
 
-
-// // Eliminar un producto
-// export async function deleteProducto(id) {
+// export const stockActualizado = async (id, nuevoStock) => { 
+  
 //     try {
-//         const response = await fetch(`http://192.168.100.121:3000/producto${id}`, {
-//             method: "DELETE",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Error deleting product');
-//         }
-
-//         return await response.json();
-//     } catch (error) {
-//         console.error("Error deleting product:", error);
-//         throw error;
-//     }
-// }
+      
+//       const response = await fetch(`http://192.168.8.105:3000/producto/${id}`, { 
+//         method: 'PUT', headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ Stock: nuevoStock }), 
+        
+//       });
+      
+//        if (!response.ok) throw new Error('Error al actualizar el stock'); 
+//        return await response.json();
+      
+//     } catch (error) { console.error('Error al actualizar el stock:', error); 
+//       throw error; 
+//     } 
+//   };
+  
+  

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getEmprendedores } from "../services/emprendedorServices";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import cargarImagen from "../Firebase/config";
 // uploadBytesResumable para cargar el archivo al almacenamiento.
 //getDownloadURL para obtener la URL del archivo cargado.
 
@@ -59,23 +60,23 @@ function ProductListEdit() {
     }
   };
 
-  const subirImagenAFirebase = async (file) => {
-    const storage = getStorage();
-    const storageRef = ref(storage, `imagenes/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+  // const subirImagenAFirebase = async (file) => {
+  //   const storage = getStorage();
+  //   const storageRef = ref(storage, `imagenes/${file.name}`);
+  //   const uploadTask = uploadBytesResumable(storageRef, file);
 
-    return new Promise((resolve, reject) => {
-      uploadTask.on(
-        "state_changed",
-        null,
-        (error) => reject(error),
-        async () => {
-          const url = await getDownloadURL(uploadTask.snapshot.ref);
-          resolve(url);
-        }
-      );
-    });
-  };
+  //   return new Promise((resolve, reject) => {
+  //     uploadTask.on(
+  //       "state_changed",
+  //       null,
+  //       (error) => reject(error),
+  //       async () => {
+  //         const url = await getDownloadURL(uploadTask.snapshot.ref);
+  //         resolve(url);
+  //       }
+  //     );
+  //   });
+  // };
 
   const guardarCambios = async (e) => {
     e.preventDefault();
@@ -85,7 +86,7 @@ function ProductListEdit() {
       // Subir imagen si es un archivo nuevo
       if (formData.Imagen instanceof File) { //para validar el archivo antes de cargarlo.
         toast.info("Subiendo imagen...");
-        imagenUrl = await subirImagenAFirebase(formData.Imagen);
+        imagenUrl = await cargarImagen(formData.Imagen);
         toast.success("Imagen subida con éxito");
       }
 
@@ -130,7 +131,8 @@ function ProductListEdit() {
     try {
       await deleteProducto(id);
       toast.success("Producto eliminado con éxito");
-      setProductos((prevProductos) => prevProductos.filter((p) => p.id !== id));
+      cargarDatos()
+      // setProductos((prevProductos) => prevProductos.filter((p) => p.id !== id));
     } catch (error) {
       console.error("Error al eliminar producto:", error);
       toast.error("Hubo un error al eliminar el producto");

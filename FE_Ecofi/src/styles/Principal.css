@@ -1,11 +1,11 @@
 #principalConteiner {
   display: grid;
-  grid-template-rows: auto auto auto auto auto; /* Cada sección tiene su propia fila */
-  grid-template-columns: auto auto; /* Dos columnas */
+  grid-template-rows: 100px auto auto auto; /* Cada sección tiene su propia fila */
+  grid-template-columns: 1fr 1fr; /* Dos columnas */
   gap: 1rem; /* Espaciado entre filas */
-  height: 100vh; /* Altura de la pantalla */
+  min-height: 100vh; /* Asegura que el contenedor abarque toda la pantalla */
   width: 100%; /* Ancho completo */
-  background-color: #fdfdfdb7;
+  background-color: #fdfdfd;
 }
   /* General navbar styling */
   .navbar {
@@ -121,7 +121,6 @@
     justify-content: center; 
     margin: 0 auto; 
 }
-
   
   .custom-card {
 

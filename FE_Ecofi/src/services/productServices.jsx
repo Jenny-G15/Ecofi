@@ -21,8 +21,6 @@ export async function getProductos() {
 }
 
 
-
-
 // Agregar un nuevo producto
 export async function PostProductos(
     ID_Emprendedor, 

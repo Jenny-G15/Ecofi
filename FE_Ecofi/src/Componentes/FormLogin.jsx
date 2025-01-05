@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ContextoEcofi from './Context/EcofiContex';
 
+
 export default function FormLogin() {
   const { login, setUserData } = useContext(ContextoEcofi); // Usar el contexto
   const navigate = useNavigate();
@@ -103,4 +104,4 @@ export default function FormLogin() {
       />
     </div>
   );
-}
+

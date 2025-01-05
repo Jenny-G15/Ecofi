@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../Pages/Register";
 import Principal from "../Pages/Principal";
-import BodyBackground from "../Componentes/BodyBackground";
+// import BodyBackground from "../Componentes/BodyBackground";
 import Administracion from "../Pages/Administracion";
 import PerfilUsuario from "../Pages/Perfil_Usuario";
 import Recofi from "../Pages/Recofi";
@@ -25,7 +25,7 @@ const Routing = () => {
   return (
     <Router>
       {/* Aplica el fondo solo en Principal */}
-      <BodyBackground background={backgroundImage} />
+
       
       <Routes>
         <Route path="/Principal" element={<Principal />} />

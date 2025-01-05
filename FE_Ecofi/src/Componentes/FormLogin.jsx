@@ -6,10 +6,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ContextoEcofi from './Context/EcofiContex';
 
-
-
-
-
 export default function FormLogin() {
   const { login, setUserData } = useContext(ContextoEcofi); // Usar el contexto
   const navigate = useNavigate();
@@ -22,55 +18,38 @@ export default function FormLogin() {
     try {
       const response = await PostLogin({
         Email_Usuario: email,
-        Contraseña_Usuario: password
+        Contraseña_Usuario: password,
       });
-
-      sessionStorage.setItem("token", response.token); 
-      console.log('RESPUESTA: ', response);
-      
-        // Establecer el estado con la información correcta
-        setUserData({ 
-          token: response.token,          // Guardar el token en el estado
-          rol_usuario: response.rol_usuario // Si necesitas el rol también
-        });
-        
-        // Redirigir según el rol
-        if (response.rol_usuario === 'usuario') {
-          login(response.rol_usuario)
-          navigate("/Perfil");
-        
-        
-        } 
-        if (response.rol_usuario === 'Administrador') {
-          login(response.rol_usuario)
-          navigate("/Administracion");
-        }
-        else {
 
       if (response && response.token) {
         // Guardamos el token en el SessionStorage
         sessionStorage.setItem("token", response.token);
 
+        // Establecer el estado con la información correcta
+        setUserData({
+          token: response.token,          // Guardar el token en el estado
+          rol_usuario: response.rol_usuario, // Si necesitas el rol también
+        });
 
-        // Extraemos el rol del usuario de la respuesta
-        const rolUsuario = response.rol_usuario;
-
-  
         toast.success("¡Inicio de sesión exitoso!");
 
-
-
-        // Redirigimos según el rol
+        // Redirigir según el rol
+        const rolUsuario = response.rol_usuario;
         if (rolUsuario === 'Administrador') {
+          login(rolUsuario);
           navigate("/Administrador");
         } else if (rolUsuario === 'usuario') {
+          login(rolUsuario);
           navigate("/PerfilUsuario");
         } else if (rolUsuario === 'Recofi') {
+          login(rolUsuario);
           navigate("/Recofi");
         } else {
-
           toast.error("Rol de usuario no reconocido");
         }
+      } else {
+        toast.error("Inicio de sesión fallido: token no recibido.");
+      }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       toast.error("Ocurrió un error al iniciar sesión");
@@ -112,15 +91,15 @@ export default function FormLogin() {
         </Row>
       </Container>
 
-      <ToastContainer 
-        position="top-right" 
-        autoClose={5000} 
-        hideProgressBar={false} 
-        closeOnClick 
-        rtl={false} 
-        pauseOnFocusLoss 
-        draggable 
-        pauseOnHover 
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
       />
     </div>
   );

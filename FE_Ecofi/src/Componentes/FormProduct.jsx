@@ -56,6 +56,7 @@ function CardsProduct() {
   console.log('emprendedor', emprendedor)
   return (
     <div id="agregar-producto">
+      <h3 >Agregar Producto</h3>
       <div>
         <input
           id="imagen-producto"

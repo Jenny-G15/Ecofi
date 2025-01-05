@@ -4,6 +4,7 @@
   display: grid;
   grid-template: 120px 2fr 300px;
   background-color: #fdfdfdcc;
+  margin-top: 7rem;
 }
 
 .navbar {

@@ -5,7 +5,7 @@ import MapaRecofi from '../Componentes/Mapa'
 function Recofi() {
   return (
     <div>
-
+      
     <MapaRecofi/>
  
     </div>

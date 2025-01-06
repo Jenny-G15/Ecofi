@@ -4,6 +4,8 @@ import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import "../Styles/Estadisticas.css"
 
+
+
 const Historialrecolecciones = () => {
   const [estadisticas, setEstadisticas] = useState({
     recofiIntercambios: [],
@@ -50,7 +52,7 @@ const Historialrecolecciones = () => {
       {
         label: 'Intercambios por Material',
         data: estadisticas.materialesIntercambios.map(material => material.totalIntercambios),
-        backgroundColor: 'rgba(153, 102, 255, 0.6)'
+        backgroundColor: 'rgba(17, 184, 53, 0.6)'
       }
     ]
   };

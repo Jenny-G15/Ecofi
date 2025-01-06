@@ -1,0 +1,24 @@
+.pagina-contenedor {
+    display: flex;
+    flex-direction: row; /* SideBar al lado de los formularios */
+    height: 100vh;
+}
+
+
+.formularios-contenedor {
+    flex: 1; /* Ocupa el resto del espacio */
+    display: flex;
+    flex-wrap: wrap; /* Coloca los formularios lado a lado */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.recofi-container,
+.administradoresContainer {
+
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}

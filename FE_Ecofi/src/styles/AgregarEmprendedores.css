@@ -1,119 +1,165 @@
-#principalConteiner {
-    display: grid;
-    grid-template-rows: 100px auto auto auto; /* Cada sección tiene su propia fila */
-    grid-template-columns: 1fr 1fr; /* Dos columnas */
-    gap: 1rem; /* Espaciado entre filas */
-    width: 100%; /* Ancho completo */
-    background-color: #fdfdfdb7;
-  }
-  
-/* Contenedor principal para emprendedores */
+/* Contenedor principal */
 .emprendedoresContainer {
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    background-color: rgba(136, 238, 110, 0.726) !important; /* Fondo translúcido */
+    padding: 25px;
+    border-radius: 15px;
+    border: 8px solid #4CAF50; /* Verde brillante */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40; /* Texto oscuro */
+    width: 100%;
+    display: block;
+    margin-left: 22rem;
+    margin-right: auto;
+    margin-top: 6rem;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Sombra intensa */
+}
+
+/* Título */
+#h2Titulo {
+    font-size: 2.2rem;
+    color: #1caa21; /* Verde inspirador */
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    font-weight: bold;
 }
 
 .emprendedoresContainer2 {
-    margin-top: 20px;
-    font-size: medium;
-    background-color: #048b16;
+    margin-top: 30px;
 }
 
-/* Estilo del formulario de agregar emprendedores */
-.containerEmprendedores {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    align-items: center;
-    justify-content: flex-start;
+/* Campos de entrada */
+.containerEmprendedores input {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    border: 2px solid #4CAF50; /* Verde brillante */
+    border-radius: 12px;
+    outline: none;
+    font-size: 1rem;
+    color: #343a40; /* Texto oscuro */
+    background: #def5f3a6; /* Blanco suave */
+    transition: border 0.3s, box-shadow 0.3s;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para los campos de entrada */
-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 300px;
+.containerEmprendedores input:focus {
+    border-color: #4CAF50; /* Verde al enfocar */
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
-/* Botón de agregar emprendedor */
+/* Botón de agregar */
 #btnAgregarEmprendedor {
-    padding: 10px 15px;
-    background-color: #28a745;
+    text-decoration: none;
+    border: 1px solid #4CAF50; /* Verde brillante */
+    background-color: #4CAF50;
     color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s;
 }
 
 #btnAgregarEmprendedor:hover {
-    background-color: #218838;
+    background-color: #388E3C; /* Verde más oscuro */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
 }
 
-/* Contenedor de la lista de emprendedores */
+/* Lista de Emprendedores */
 #contenedorEmprendedores {
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    margin-top: 30px;
 }
 
-/* Tarjeta individual de emprendedor */
 .emprendedor {
-    padding: 0.8rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    width: 100%;
-    max-width: 600px;
-    background-color: #f8f9fa;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background: #c0e0c0c5; /* Fondo translúcido */
+    border: 2px solid #4CAF50; /* Verde brillante */
+    border-radius: 12px;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Sombra intensa */
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     justify-content: space-between;
-    gap: 0.5rem;
+    align-items: center;
+    transition: transform 0.2s;
+    font-size: 1.2rem;
+    color: #343a40; /* Texto oscuro */
 }
 
-/* Botón para eliminar emprendedor */
-#btnEmprendedorDelete {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
-    cursor: pointer;
+.emprendedor:hover {
+    transform: translateY(-3px);
 }
 
-#btnEmprendedorDelete:hover {
-    background-color: #c82333;
-}
-
-/* Contenedor de botones */
-.btnContainer {
-    align-self: flex-end;
-    margin-top: 0.5rem;
-}
-
-/* Título principal */
-#h2Titulo {
-    font-size: 1.8rem;
+.emprendedor span {
+    color: #1caa21; /* Verde inspirador */
     font-weight: bold;
-    color: #343a40;
-    text-align: center;
-    margin-bottom: 20px;
 }
 
-/* Responsive */
+/* Contenedor de los botones */
+.btnContainer {
+    display: flex;
+    flex-direction: row; /* Por defecto, los botones están uno al lado del otro */
+}
+
+.btnContainer button {
+    background: #8cee83; /* Verde claro */
+    color: #212529;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+    margin-left: 0.5rem;
+}
+
+.btnContainer button:first-child:hover {
+    background-color: #e0a800; /* Amarillo oscuro */
+    transform: scale(1.1);
+}
+
+.btnContainer button:last-child {
+    background: #20af97d8; /* Verde oscuro */
+    color: white;
+}
+
+.btnContainer button:last-child:hover {
+    background-color: #c82333; /* Rojo intenso */
+    transform: scale(1.1);
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
-    .containerEmprendedores {
-        justify-content: center;
-    }
-
-    .emprendedor {
+    .emprendedoresContainer {
+        padding: 20px;
+        margin-left: 1rem;
         width: 90%;
     }
 
-    input {
-        width: 90%;
+    #h2Titulo {
+        font-size: 1.2rem;
+    }
+
+    .containerEmprendedores input {
+        font-size: 1rem;
+    }
+
+    #btnAgregarEmprendedor {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .btnContainer {
+        flex-direction: column; /* Botones uno debajo del otro */
+        align-items: center;
+    }
+
+    .btnContainer button {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        padding: 8px 12px;
     }
 }

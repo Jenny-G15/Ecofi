@@ -2,7 +2,6 @@ export async function getDireccion() {
     try {
         const response = await fetch('http://localhost:3000/direccion', {
             method: 'GET',
-            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json'
             }

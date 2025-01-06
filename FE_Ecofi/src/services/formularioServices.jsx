@@ -2,9 +2,7 @@ export async function getFormulario() {
     try {
         // Ajusta la URL si el backend está en otro puerto o dirección
         const response = await fetch('http://localhost:3000/formularios', {  //http://192.168.1.246  //http://192.168.100.121
-        const response = await fetch('http://192.168.1.246:3000/formularios', {  //http://192.168.1.246  //http://192.168.100.121
             method: 'GET',
-            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -30,9 +28,7 @@ export async function getFormulario() {
 export async function agregarFormulario(data) {
     try {
         const response = await fetch('http://localhost:3000/formularios', {
-        const response = await fetch('http://192.168.1.246:3000/formularios', {
             method: 'POST',
-            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -54,9 +50,8 @@ export async function agregarFormulario(data) {
 export async function actualizaFormulario(id, data) {
     try {
         const response = await fetch(`http://localhost:3000/formularios/${id}`, {
-        const response = await fetch(`http://192.168.1.246:3000/formularios/${id}`, {
             method: 'PUT',
-            credentials: "include", // Importante para manejar sesiones
+
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -78,9 +73,7 @@ export async function actualizaFormulario(id, data) {
 export async function eliminarFormulario(id) {
     try {
         const response = await fetch(`http://localhost:3000/formularios/${id}`, {
-        const response = await fetch(`http://192.168.1.246:3000/formularios/${id}`, {
             method: 'DELETE',
-            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },

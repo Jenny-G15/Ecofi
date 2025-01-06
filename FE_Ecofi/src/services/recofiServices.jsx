@@ -3,9 +3,8 @@
 export async function getRecofis() {
     try {
         // Ajusta la URL si el backend está en otro puerto o dirección
-        const response = await fetch('http://192.168.1.246:3000/recofi', {
+        const response = await fetch('http://localhost:3000/recofi', {
             method: 'GET',
-            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -30,9 +29,8 @@ export async function getRecofis() {
 // Agregar un nuevo Recofi
 export async function agregarRecofi(data) {
     try {
-        const response = await fetch('http://192.168.1.246:3000/recofi', {
+        const response = await fetch('http://localhost:3000/recofi', {
             method: 'POST',
-            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -53,9 +51,8 @@ export async function agregarRecofi(data) {
 // Actualizar un Recofi existente
 export async function actualizarRecofi(id, data) {
     try {
-        const response = await fetch(`http://192.168.1.246:3000/recofi/${id}`, {
+        const response = await fetch(`http://localhost:3000/recofi/${id}`, {
             method: 'PUT',
-            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -76,9 +73,8 @@ export async function actualizarRecofi(id, data) {
 // Eliminar un Recofi
 export async function eliminarRecofi(id) {
     try {
-        const response = await fetch(`http://192.168.1.246:3000/recofi/${id}`, {
+        const response = await fetch(`http://localhost:3000/recofi/${id}`, {
             method: 'DELETE',
-            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },

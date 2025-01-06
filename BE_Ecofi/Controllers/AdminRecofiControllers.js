@@ -8,7 +8,7 @@ const jwtExpiresIn = process.env.JWT_EXPIRES_IN;
 
 
 // Obtener todos los administradores
-const obtenerAdminRecofis = async (req, res) => {
+const getAdminRecofis = async (req, res) => {
   try {
     const administradores = await AdminRecofis.findAll();
     return res.status(200).json(administradores);
@@ -41,8 +41,10 @@ const AdminRecofisPorCorreo = async (req, res) => {
   }
 };
 
+
+
 // Registrar un nuevo administrador
-const registrarAdminRecofis = async (req, res) => {
+const postAdminRecofis = async (req, res) => {
   const { 
     Nombre_AdminRecofis, 
     Apellido_AdminRecofis, 
@@ -130,7 +132,7 @@ const actualizarAdminRecofis = async (req, res) => {
       return res.status(404).json({ error: 'Administrador no encontrado.' });
     }
 
-    const datosActualizados = {
+    const UpdateData = {
       Nombre_AdminRecofis,
       Apellido_AdminRecofis,
       Correo_AdminRecofis,
@@ -138,10 +140,10 @@ const actualizarAdminRecofis = async (req, res) => {
     };
 
     if (Contraseña_AdminRecofis) {
-      datosActualizados.Contraseña_AdminRecofis = await bcrypt.hash(Contraseña_AdminRecofis, 10);
+      UpdateData.Contraseña_AdminRecofis = await bcrypt.hash(Contraseña_AdminRecofis, 10);
     }
 
-    await admin.update(datosActualizados);
+    await admin.update(UpdateData);
 
     return res.status(200).json({ message: 'Administrador actualizado exitosamente.', administrador: admin });
   } catch (error) {
@@ -171,9 +173,9 @@ const eliminarAdminRecofis = async (req, res) => {
 };
 
 module.exports = {
-  obtenerAdminRecofis,
+  getAdminRecofis,
   AdminRecofisPorCorreo,
-  registrarAdminRecofis,
+  postAdminRecofis,
   iniciarSesionAdminRecofis,
   actualizarAdminRecofis,
   eliminarAdminRecofis,

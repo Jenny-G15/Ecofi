@@ -1,4 +1,4 @@
-const { Producto } = require('../models');
+const { Producto, sequelize } = require('../models');
 
 // Obtener todos los productos
 const obtenerProductos = async (req, res) => {
@@ -6,83 +6,30 @@ const obtenerProductos = async (req, res) => {
     const productos = await Producto.findAll();
     res.status(200).json(productos);
   } catch (error) {
-    console.error(error); // Imprimir error
+    console.error(error);
     res.status(500).json({ error: 'Error al obtener los productos.' });
   }
 };
 
-
 // Crear un nuevo producto
 const crearProducto = async (req, res) => {
   try {
-    console.log(req.body); 
-    
     const { ID_Emprendedor, Bicolones_Producto, Imagen, Stock, Descripcion_Producto, Nombre_Producto } = req.body;
 
-    // Verifica si los campos son válidos
     if (!ID_Emprendedor || !Bicolones_Producto || !Imagen || !Stock || !Descripcion_Producto || !Nombre_Producto) {
       return res.status(400).json({ error: 'Faltan datos obligatorios.' });
     }
 
-    // Validar si ya existe un producto con el mismo ID_Emprendedor y Descripcion_Producto
-    const productos = await Producto.findAll();
-    for (let prod of productos) {
-      if (prod.Nombre_Producto === Nombre_Producto && prod.Descripcion_Producto === Descripcion_Producto) {
-        return res.status(400).json({ error: 'Ya existe un producto con el mismo Nombre.' });
-      }
-    }
-
-    // Aquí estaba el error: Faltaba incluir Nombre_Producto
-    const producto = await Producto.create({
-      ID_Emprendedor,
-      Bicolones_Producto,
-      Imagen,
-      Stock,
-      Descripcion_Producto,
-      Nombre_Producto, // Inclúyelo aquí
+    const productoExistente = await Producto.findOne({
+      where: { Nombre_Producto, Descripcion_Producto },
     });
 
-    res.status(201).json(producto);
-  } catch (error) {
-    console.error(error); // Ver los detalles completos del error
-    res.status(500).json({ error: 'Error al crear el producto.', detalles: error });
-  }
-};
-
-
-
-
-
-
-
-
-
-
-// Actualizar un producto
-const actualizarProducto = async (req, res) => {
-  try {
-    console.log(req.body); // Para depurar datos recibidos
-
-    const { id } = req.params;
-    const { Bicolones_Producto, Imagen, Stock, Descripcion_Producto, ID_Emprendedor, Nombre_Producto } = req.body;
-
-    // Buscar el producto por su ID
-    const producto = await Producto.findByPk(id);
-
-    if (!producto) {
-      return res.status(404).json({ error: 'Producto no encontrado.' });
+    if (productoExistente) {
+      return res.status(400).json({ error: 'Ya existe un producto con ese Nombre y Descripción.' });
     }
 
-    // Validar si ya existe otro producto con la misma Descripcion_Producto para el mismo ID_Emprendedor
-    const productos = await Producto.findAll();
-    for (let prod of productos) {
-      if (prod.id !== producto.id && prod.Nombre_Producto === Nombre_Producto && prod.Descripcion_Producto === Descripcion_Producto) {
-        return res.status(400).json({ error: 'Ya existe otro producto con ese Nombre' });
-      }
-    }
-
-    // Actualizar el producto
-    await producto.update({
+    const producto = await Producto.create({
+      ID_Emprendedor,
       Bicolones_Producto,
       Imagen,
       Stock,
@@ -90,9 +37,45 @@ const actualizarProducto = async (req, res) => {
       Nombre_Producto,
     });
 
-    res.status(200).json(producto);
+    res.status(201).json(producto);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: 'Error al crear el producto.' });
+  }
+};
+
+
+
+// Actualizar un producto existente
+const actualizarProducto = async (req, res) => {
+  try {
+    console.log("Datos recibidos:", req.body); // Para depuración
+
+    const { id } = req.params;
+    const datosActualizados = req.body; // Acceder directamente a req.body
+
+    // Verificar que se hayan enviado datos para actualizar
+    if (!datosActualizados) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el producto.' });
+    }
+
+    // Buscar el producto por ID
+    const producto = await Producto.findByPk(id);
+
+    // Verificar si el producto existe
+    if (!producto) {
+      return res.status(404).json({ error: 'Producto no encontrado.' });
+    }
+
+    console.log("Datos a actualizar:", datosActualizados);
+    
+    // Actualizar el producto con los datos proporcionados
+    await producto.update(datosActualizados); // Pasar datosActualizados directamente
+
+    // Devolver el producto actualizado
+    res.status(200).json(producto);
+  } catch (error) {
+    console.error("Error al actualizar el producto:", error);
     res.status(500).json({ error: 'Error al actualizar el producto.' });
   }
 };

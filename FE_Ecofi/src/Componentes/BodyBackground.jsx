@@ -8,7 +8,7 @@ const BodyBackground = ({ background }) => {
 
     // Limpieza
     return () => {
-      document.body.style.backgroundImage = './src/img/fondo3.jpeg';
+      document.body.style.backgroundImage = './src/img/fondo2.jpg';
     };
   }, [background]);
 

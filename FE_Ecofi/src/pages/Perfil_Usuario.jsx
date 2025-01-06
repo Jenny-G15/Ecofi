@@ -1,16 +1,21 @@
 import React from 'react'
 import "../Styles/Perfil_Usuario.css"
-import NavUsuario from '../Componentes/NavUsuario'
-import Monedero from '../Componentes/ComMonedero'
+import NavUsuario from '../Componentes/NavUsuario';
+import Footer from '../Componentes/Footer'
+import ComMonedero from '../Componentes/ComMonedero';
+import TiendaProductos from '../Componentes/TiendaProductos';
+
 
 function Perfil_Usuario() {
   return (
     <div id='principalConteiner'>
-
     <NavUsuario/>
-    <Monedero/>
- 
+    <ComMonedero/>
+    <TiendaProductos/>
+    <div id='footerConteiner'><Footer /> </div>
     </div>
+ 
+  
   )
 }
 

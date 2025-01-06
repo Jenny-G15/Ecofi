@@ -30,20 +30,4 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agrega una sombra para destacar */
   }
   
-  /* Footer: Parte inferior */
-  #footerConteiner {
-    grid-row: 3;
-    background-color: #f8f9fa;
-    text-align: center;
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
-    z-index: 5;
-  }
-  
-  /* Ajustes para evitar solapamientos */
-  #footerConteiner,
-  #DivBeneficio {
-    position: relative; /* Asegura que cada sección respete su espacio */
-    z-index: 1;
-  }
   

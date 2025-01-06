@@ -51,9 +51,9 @@ const Routing = () => {
           <Route path="/Perfil/Monedero"/>
         </Route>
         <Route path="/Administracion" element={ 
-          <PrivateRoute>
+          
             <Administracion />
-          </PrivateRoute>
+         
         } />
       </Routes>
     </Router>

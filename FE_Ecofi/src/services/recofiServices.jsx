@@ -5,6 +5,7 @@ export async function getRecofis() {
         // Ajusta la URL si el backend está en otro puerto o dirección
         const response = await fetch('http://localhost:3000/recofi', {
             method: 'GET',
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -31,6 +32,7 @@ export async function agregarRecofi(data) {
     try {
         const response = await fetch('http://localhost:3000/recofi', {
             method: 'POST',
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -53,6 +55,7 @@ export async function actualizarRecofi(id, data) {
     try {
         const response = await fetch(`http://localhost:3000/recofi/${id}`, {
             method: 'PUT',
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -75,6 +78,7 @@ export async function eliminarRecofi(id) {
     try {
         const response = await fetch(`http://localhost:3000/recofi/${id}`, {
             method: 'DELETE',
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },

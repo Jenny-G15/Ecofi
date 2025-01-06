@@ -17,11 +17,11 @@ const recofiRoutes = require('./Routes/recofiRoutes');
 const AdminRecofiRoutes = require('./Routes/AdminRecofiRoutes');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 
 // Configuración de CORS para permitir cookies
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://192.168.8.108:3000',
     credentials: true, // Permite el envío de cookies
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
@@ -49,10 +49,7 @@ app.use('/producto', productosRoutes);
 app.use('/recofi', recofiRoutes);
 app.use('/adminRecofi', AdminRecofiRoutes);
 
-
-
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-    
+    console.log(`Servidor corriendo en http://192.168.8.108:${PORT}`);
 });

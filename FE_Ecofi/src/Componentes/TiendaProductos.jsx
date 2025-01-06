@@ -116,7 +116,7 @@ function TiendaProductos() {
       to_email: usuario.email,
     };
 
-    emailjs.send("service_56xi5wh", "template_99rzmgs", emailParams, "rV7wVdf0tWzRA66hT")
+    emailjs.send("service_56xi5wh", "template_hofgqw8", emailParams, "rV7wVdf0tWzRA66hT")
       .then(() => {
         toast.success("Comprobante enviado con éxito.");
       })
@@ -159,12 +159,13 @@ function TiendaProductos() {
         toast.success(`Producto "${producto.Nombre_Producto}" canjeado exitosamente.`);
 
         const usuario = {
-          nombre: encontrarBicolonesxUsuario.Apellido_Usuario ?? "Sin nombre",
+          nombre: encontrarBicolonesxUsuario.Nombre_Usuario ?? "Sin nombre",
           email: encontrarBicolonesxUsuario.Correo_Usuario ?? "No email",
         };
 
         generarPDF(producto, usuario);
         enviarCorreoComprobante(producto, usuario);
+
       } catch (error) {
         toast.error("Hubo un error al canjear el producto.");
         console.error(error);

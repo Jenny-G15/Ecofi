@@ -8,7 +8,7 @@ import TiendaProductos from '../Componentes/TiendaProductos';
 
 function Perfil_Usuario() {
   return (
-    <div id='principalConteiner'>
+    <div id='perfilContainer'>
     <NavUsuario/>
     <ComMonedero/>
     <TiendaProductos/>

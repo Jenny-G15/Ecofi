@@ -5,8 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { getEmprendedores } from "../services/emprendedorServices";
 import cargarImagen from "../Firebase/config";
 
+
+
 function ProductListEdit({ actualizarLista }) { // 🔄 Recibe actualizarLista como prop
   const [eliminacion, setEliminacion] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); 
   const [productos, setProductos] = useState([]);
   const [emprendedores, setEmprendedores] = useState([]);
   const [editarProducto, setEditarProducto] = useState(null);

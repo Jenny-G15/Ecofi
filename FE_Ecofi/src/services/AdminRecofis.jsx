@@ -19,6 +19,8 @@ export async function getAdminRecofis() {
     }
 }
 
+
+
 export async function postAdminRecofis(Nombre_AdminRecofis, Apellido_AdminRecofis, Correo_AdminRecofis, Contraseña_AdminRecofis, Telefono_AdminRecofis) {
     try {
       const adminData = {

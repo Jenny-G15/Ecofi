@@ -18,31 +18,9 @@ export default function FormLogin() {
     try {
       const response = await PostLogin({
         Email_Usuario: email,
-        Contraseña_Usuario: password,
+        Contraseña_Usuario: password
       });
 
-      if (response && response.token) {
-        // Guardamos el token en el SessionStorage
-        sessionStorage.setItem("token", response.token);
-
-        // Establecer el estado con la información correcta
-        setUserData({
-          token: response.token,          // Guardar el token en el estado
-          rol_usuario: response.rol_usuario, // Si necesitas el rol también
-        });
-
-        toast.success("¡Inicio de sesión exitoso!");
-
-        // Redirigir según el rol
-        const rolUsuario = response.rol_usuario;
-        if (rolUsuario === 'Administrador') {
-          login(rolUsuario);
-          navigate("/Administracion");
-        } else if (rolUsuario === 'usuario') {
-          login(rolUsuario);
-          navigate("/PerfilUsuario");
-        } else if (rolUsuario === 'Recofi') {
-          login(rolUsuario);
       if (response && response.token) {
         sessionStorage.setItem("token", response.token);
         console.log('RESPUESTA: ', response);
@@ -59,9 +37,6 @@ export default function FormLogin() {
         } else {
           toast.error("Rol de usuario no reconocido");
         }
-      } else {
-        toast.error("Inicio de sesión fallido: token no recibido.");
-      }
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
@@ -121,17 +96,7 @@ export default function FormLogin() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
       />
     </div>
   );
-
 }

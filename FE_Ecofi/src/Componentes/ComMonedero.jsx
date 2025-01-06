@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getUsers, updateUser } from "../services/userServices";
 import "../styles/Perfil_Usuario.css";
 import { jwtDecode } from "jwt-decode";
-
+import Cookies from 'js-cookie'; // Importar js-cookie
 
 const ComMonedero = () => {
   const [IdEditando, setIdEditando] = useState("");
@@ -15,19 +15,19 @@ const ComMonedero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
 
-  const token = sessionStorage.getItem("token");
+  const token = Cookies.get("auth_token"); // Obtener el token desde las cookies
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (!token) {
-          setError("No se encontró un inicio de sesión valido, inicie sesión.");
+          setError("No se encontró un inicio de sesión válido, inicie sesión.");
           setIsLoading(false);
           return;
         }
 
         const userData = await getUsers();
-        const decodedToken =  jwtDecode(token);
+        const decodedToken = jwtDecode(token);
         const usuario = userData.find((user) => user.id === decodedToken.id);
 
         if (usuario) {

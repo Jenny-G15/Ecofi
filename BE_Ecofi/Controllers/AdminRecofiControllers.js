@@ -110,14 +110,21 @@ const iniciarSesionAdminRecofis = async (req, res) => {
       { expiresIn: jwtExpiresIn }
     );
 
-    return res.status(200).json({ message: 'Inicio de sesión exitoso', token });
+    // Guardar el token en una cookie
+    res.cookie('token', token, {
+      httpOnly: true, // Evita que el token sea accesible desde JavaScript del lado del cliente
+      maxAge: parseInt(jwtExpiresIn) * 1000, // La duración de la cookie (expira igual que el token)
+      secure: process.env.NODE_ENV === 'production', // Asegura la cookie en producción (requiere HTTPS)
+      sameSite: 'Strict', // Opcional, agrega protección contra CSRF
+    });
+
+    return res.status(200).json({ message: 'Inicio de sesión exitoso' });
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Error al iniciar sesión.' });
   }
 };
-
-
 
 
 // Actualizar datos de un administrador

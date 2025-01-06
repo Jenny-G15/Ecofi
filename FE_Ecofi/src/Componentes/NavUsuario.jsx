@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Perfil_Usuario.css';
-import { getProductos } from '../services/productServices';  // Asegúrate de que esta función esté bien definida y exportada
-import Ventana from './Ventana'; // Asegúrate de tener este componente creado
+import { getProductos } from '../services/productServices';
+import Ventana from './Ventana';
+import ContextoEcofi from './Context/EcofiContex'; // Importar el contexto
+import Cookies from 'js-cookie'; // Importar js-cookie
 
 function NavUsuario() {
   const [productos, setProductos] = useState([]);
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const { logout } = useContext(ContextoEcofi); // Obtener la función logout desde el contexto
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -36,6 +40,17 @@ function NavUsuario() {
     setShowModal(false);
   };
 
+  const handleLogout = () => {
+    console.log("Intentando cerrar sesión...");
+    logout(); // Llama a logout desde el contexto
+    
+    // Eliminar el token de las cookies
+    Cookies.remove('auth_token'); // Elimina el token de las cookies
+    console.log("Token después de logout:", Cookies.get('auth_token')); // Verifica si el token se ha eliminado
+
+    navigate("/login");
+  };
+
   return (
     <>
       <nav className="navbar">
@@ -47,7 +62,8 @@ function NavUsuario() {
           <li><Link to="/Perfil">Monedero</Link></li>
           <li><Link to="/ProductosCanje">Productos</Link></li>
           <li><a href="#contacto">Contactenos</a></li>
-          <li><Link to="/Principal">Cerrar Sesion</Link></li>
+          {/* Botón de Cerrar Sesión */}
+          <li><button onClick={handleLogout}>Cerrar Sesion</button></li>
         </ul>
 
         {/* Barra de búsqueda dentro del nav */}

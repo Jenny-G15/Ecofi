@@ -1,11 +1,9 @@
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config');
 
-
-
 const verificarToken = (req, res, next) => {
-    // Obtener el token del header de autorización
-    const token = req.headers['authorization']?.split(' ')[1]; 
+    // Obtener el token desde las cookies (en lugar de los headers)
+    const token = req.cookies.token; 
     
     // Si no hay token, responde con un error
     if (!token) {
@@ -46,8 +44,3 @@ const verificarToken = (req, res, next) => {
 module.exports = {
     verificarToken,
 };
-
-
-
-
-

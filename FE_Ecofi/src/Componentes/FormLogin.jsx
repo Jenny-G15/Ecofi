@@ -5,13 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ContextoEcofi from './Context/EcofiContex';
-import "../styles/login.css";
+import Cookies from 'js-cookie'; // Importar js-cookie
+import "../styles/Login.css";
 
 export default function FormLogin() {
   const { login } = useContext(ContextoEcofi);
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const loguearUsuario = async (event) => {
     event.preventDefault();
 
@@ -22,17 +24,19 @@ export default function FormLogin() {
       });
 
       if (response && response.token) {
-        sessionStorage.setItem("token", response.token);
+        // Guardamos el token en una cookie en lugar de sessionStorage
+        Cookies.set('auth_token', response.token, { expires: 1/24, secure: true, sameSite: 'Strict' }); // Caduca en 1 hora
         console.log('RESPUESTA: ', response);
 
+        // Guarda el rol del usuario en el estado del contexto
         if (response.rol_usuario === 'usuario') {
-          login(response.rol_usuario);
+          login(response.rol_usuario, response.token); // Enviar token al contexto también
           navigate("/Perfil");
         } else if (response.rol_usuario === 'Administrador') {
-          login(response.rol_usuario);
+          login(response.rol_usuario, response.token);
           navigate("/Administracion");
         } else if (response.rol_usuario === 'Recofi') {
-          login(response.rol_usuario);
+          login(response.rol_usuario, response.token);
           navigate("/Recofi");
         } else {
           toast.error("Rol de usuario no reconocido");

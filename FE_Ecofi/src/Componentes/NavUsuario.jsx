@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Perfil_Usuario.css';
-import { getProductos } from '../services/productServices';  // Asegúrate de que esta función esté bien definida y exportada
-import Ventana from './Ventana'; // Asegúrate de tener este componente creado
+import { getProductos } from '../services/productServices';
+import Ventana from './Ventana';
+import ContextoEcofi from './Context/EcofiContex';
 
 function NavUsuario() {
   const [productos, setProductos] = useState([]);
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const { logout } = useContext(ContextoEcofi);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -36,45 +39,45 @@ function NavUsuario() {
     setShowModal(false);
   };
 
+  const handleLogout = () => {
+    const token = localStorage.getItem("token");
+    console.log("Token antes de logout:", token);
+
+    logout();
+
+    const tokenAfterLogout = localStorage.getItem("token");
+    console.log("Token después de logout:", tokenAfterLogout);
+
+    navigate("/login");
+  };
+
   return (
     <>
-      <nav className="navbar">
-        <div className="navbar-logo">
+      <nav id="navbar-ecofi">
+        <div id="navbar-logo">
           <Link to="/" className="logo">ECOFI</Link>
         </div>
-        <ul className="navbar-menu">
+        <ul id="navbar-menu">
           <li><Link to="/Principal">Inicio</Link></li>
           <li><Link to="/Perfil">Monedero</Link></li>
           <li><Link to="/ProductosCanje">Productos</Link></li>
           <li><a href="#contacto">Contactenos</a></li>
-          <li><Link to="/Principal">Cerrar Sesion</Link></li>
+          <li><button id="logout-button" onClick={handleLogout}>Cerrar Sesión</button></li>
         </ul>
 
-        {/* Barra de búsqueda dentro del nav */}
-        <div className="navbar-search">
+        <div id="navbar-search">
           <input
             type="text"
-            id='searchBarText'
+            id="searchBarText"
             value={inputValue}
             onChange={inputEntrada}
-            className="inputSearch"
             placeholder="Buscar productos..."
           />
-          <button
-            onClick={busqueda}
-            className="buttonSearch"
-          >
-            Buscar
-          </button>
+          <button id="buttonSearch" onClick={busqueda}>Buscar</button>
         </div>
       </nav>
 
-      {/* Modal con los resultados de búsqueda */}
-      <Ventana
-        show={showModal}
-        Close={cerrarModal}
-        results={filteredProductos}
-      />
+      <Ventana show={showModal} Close={cerrarModal} results={filteredProductos} />
     </>
   );
 }

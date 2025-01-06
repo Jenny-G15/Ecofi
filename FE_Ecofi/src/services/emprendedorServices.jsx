@@ -84,9 +84,6 @@ export async function updateEmprendedor(id, emprendedorData) {
 }
 
 
-
-
-
 // Eliminar un emprendedor
 export async function deleteEmprendedor(id) {
     try {
@@ -106,4 +103,3 @@ export async function deleteEmprendedor(id) {
         throw error;
     }
 }
-

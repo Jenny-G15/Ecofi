@@ -3,6 +3,27 @@
   margin-top: 1rem;
 }
 
+/*logout*/
+/* Estilos para el botón de cierre de sesión */
+.sidebarLogoutButton {
+  background-color: #f44336; /* Rojo de advertencia */
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease-in-out;
+}
+
+.sidebarLogoutButton:hover {
+  background-color: #d32f2f; /* Rojo más oscuro al pasar el ratón */
+}
+
+
 .sidebarContainer {
   position: fixed;
   top: 0;

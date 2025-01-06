@@ -102,7 +102,9 @@ export async function updateUser(
         Bicolones
       };
 
-      const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+
+      const response = await fetch(`http://192.168.8.108:3000/usuarios/${id}`, {
+
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json',
@@ -120,18 +122,6 @@ export async function updateUser(
       throw error;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 export async function deleteUser(id) {
@@ -180,7 +170,9 @@ export const actualizarBicolones = async (id, restarBicolones) => {
 
   try {
   
-    const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+
+    const response = await fetch(`http://192.168.8.108:3000/usuarios/${id}`, {
+
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ Bicolones: restarBicolones }),

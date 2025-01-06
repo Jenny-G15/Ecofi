@@ -1,6 +1,5 @@
 ## Ecofi: Plataforma de Reciclaje
 
-
 - Ecofi es una aplicación que promueve el reciclaje en comunidades, ofreciendo un sistema de puntos que los usuarios pueden canjear por productos y descuentos de emprendedores locales. El objetivo es fomentar prácticas sostenibles y apoyar economías locales mediante una plataforma accesible y sencilla.
 
 ## Índice

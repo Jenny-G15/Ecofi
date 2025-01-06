@@ -3,7 +3,6 @@ import { getUsers, updateUser } from "../services/userServices";
 import "../styles/Perfil_Usuario.css";
 import { jwtDecode } from "jwt-decode";
 
-
 const ComMonedero = () => {
   const [IdEditando, setIdEditando] = useState("");
   const [Nombre_Usuario, setNombre] = useState("");
@@ -17,39 +16,48 @@ const ComMonedero = () => {
 
   const token = sessionStorage.getItem("token");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (!token) {
-          setError("No se encontró un inicio de sesión valido, inicie sesión.");
-          setIsLoading(false);
-          return;
-        }
-
-        const userData = await getUsers();
-        const decodedToken =  jwtDecode(token);
-        const usuario = userData.find((user) => user.id === decodedToken.id);
-
-        if (usuario) {
-          setIdEditando(usuario.id);
-          setNombre(usuario.Nombre_Usuario);
-          setApellido(usuario.Apellido_Usuario);
-          setEmail(usuario.Email_Usuario);
-          setTelefono(usuario.Telefono_Usuario);
-          setBicolones(usuario.Bicolones);
-        } else {
-          setError("No se encontró el perfil del usuario.");
-        }
-      } catch (err) {
-        setError("Error al cargar los datos del usuario.");
-        console.error("Error en fetchData:", err);
-      } finally {
+  // Función para obtener los datos del usuario
+  const fetchUserData = async () => {
+    try {
+      if (!token) {
+        setError("No se encontró un inicio de sesión válido, inicie sesión.");
         setIsLoading(false);
+        return;
       }
-    };
 
-    fetchData();
-  }, [token]);
+      const userData = await getUsers();
+      const decodedToken = jwtDecode(token);
+      const usuario = userData.find((user) => user.id === decodedToken.id);
+
+      if (usuario) {
+        setIdEditando(usuario.id);
+        setNombre(usuario.Nombre_Usuario);
+        setApellido(usuario.Apellido_Usuario);
+        setEmail(usuario.Email_Usuario);
+        setTelefono(usuario.Telefono_Usuario);
+        setBicolones(usuario.Bicolones);
+      } else {
+        setError("No se encontró el perfil del usuario.");
+      }
+    } catch (err) {
+      setError("Error al cargar los datos del usuario.");
+      console.error("Error en fetchUserData:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Llamar a fetchUserData al cargar el componente
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  // Efecto para actualizar los Bicolones después de guardar cambios
+  useEffect(() => {
+    if (!isEditing) {
+      fetchUserData();
+    }
+  }, [isEditing]);
 
   const ManejarEdicion = () => {
     setIsEditing(true);
@@ -65,7 +73,7 @@ const ComMonedero = () => {
       };
 
       await updateUser(id, actualizarUsuario);
-      setIsEditing(false);
+      setIsEditing(false); // Esto activará el useEffect y actualizará los Bicolones
     } catch (err) {
       setError("Error al guardar los cambios.");
       console.error("Error al actualizar el perfil:", err);
@@ -80,7 +88,7 @@ const ComMonedero = () => {
     <div className="profile-container">
       {error && <p className="error-message">{error}</p>}
       <h2 className="profile-name">Bienvenido! {Nombre_Usuario}</h2>
-      <h3>🌱 Se parte de la solucion 🌱</h3>
+      <h3>🌱 Se parte de la solución 🌱</h3>
       <p>Nombre: {Nombre_Usuario}</p>
       {isEditing ? (
         <div>

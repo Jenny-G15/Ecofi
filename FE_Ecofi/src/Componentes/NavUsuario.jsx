@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Perfil_Usuario.css';
 import { getProductos } from '../services/productServices';
 import Ventana from './Ventana';
@@ -56,11 +58,11 @@ function NavUsuario() {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="navbar-logo">
+      <nav id="navbar-ecofi">
+        <div id="navbar-logo">
           <Link to="/" className="logo">ECOFI</Link>
         </div>
-        <ul className="navbar-menu">
+        <ul id="navbar-menu">
           <li><Link to="/Principal">Inicio</Link></li>
           <li><Link to="/Perfil">Monedero</Link></li>
           <li><Link to="/ProductosCanje">Productos</Link></li>
@@ -69,31 +71,19 @@ function NavUsuario() {
           <li><button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button></li>
         </ul>
 
-        {/* Barra de búsqueda dentro del nav */}
-        <div className="navbar-search">
+        <div id="navbar-search">
           <input
             type="text"
-            id='searchBarText'
+            id="searchBarText"
             value={inputValue}
             onChange={inputEntrada}
-            className="inputSearch"
             placeholder="Buscar productos..."
           />
-          <button
-            onClick={busqueda}
-            className="buttonSearch"
-          >
-            Buscar
-          </button>
+          <button id="buttonSearch" onClick={busqueda}>Buscar</button>
         </div>
       </nav>
 
-      {/* Modal con los resultados de búsqueda */}
-      <Ventana
-        show={showModal}
-        Close={cerrarModal}
-        results={filteredProductos}
-      />
+      <Ventana show={showModal} Close={cerrarModal} results={filteredProductos} />
     </>
   );
 }

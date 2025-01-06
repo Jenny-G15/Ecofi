@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/SideBar.css";
-import ContextoEcofi from '../Componentes/Context/EcofiContex'; 
+import ContextoEcofi from './Context/EcofiContex'; // Importar el contexto
 
 function AdminSideBar() {
   const { logout } = useContext(ContextoEcofi); // Obtener la función logout desde el contexto
@@ -13,14 +13,17 @@ function AdminSideBar() {
   };
 
   const handleLogout = () => {
+    // Verificamos si el token está en localStorage antes de hacer logout
     const token = localStorage.getItem("token");
     console.log("Token antes de logout:", token);
 
     logout(); // Llamar a logout del contexto
 
+    // Verificamos si el token se eliminó correctamente
     const tokenAfterLogout = localStorage.getItem("token");
     console.log("Token después de logout:", tokenAfterLogout);
 
+    // Redirigir a la página de login después de cerrar sesión
     navigate("/login");
   };
 
@@ -34,7 +37,7 @@ function AdminSideBar() {
           ☰
         </button>
       )}
-      <div className={`sidebarContainer ${isOpen ? "open" : ""}`}>
+     <div className={`sidebarContainer ${isOpen ? "open" : ""}`}>
         <button className="closeButton1" onClick={toggleSidebar}>
           ✖
         </button>
@@ -59,6 +62,7 @@ function AdminSideBar() {
           <Link className="sidebarLink" to="/Hrecoleccion">
             Estadísticas de Recolección
           </Link>
+          {/* Botón de Cerrar Sesión */}
           <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
         </nav>
       </div>

@@ -118,46 +118,87 @@ button:active {
   border-radius: 8px;
   background-color: #fff;
 }
-/* Añadir esto a tu archivo Perfil_Usuario.css o donde gestionas los estilos */
-.navbar {
+
+#navbar-ecofi {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: center; /* Alinea todos los elementos verticalmente */
+  justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  background-color: #6af045;
   padding: 10px 20px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
-.navbar-logo {
+#navbar-logo .logo {
   font-size: 24px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
 }
 
-.navbar-menu {
-  list-style: none;
+#navbar-menu {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 30px; /* Espaciado uniforme entre elementos */
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.navbar-search {
+#navbar-menu li a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#logout-button {
+  background-color: #57b846;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 40px; /* Unifica el tamaño con la barra de búsqueda */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logout-button:hover {
+  background-color: #459636;
+}
+
+#navbar-search {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.inputSearch {
+#searchBarText {
   padding: 8px;
-  font-size: 14px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 14px;
+  height: 40px; /* Ajusta la altura para que coincida con los botones */
 }
 
-.buttonSearch {
-  padding: 8px 16px;
+#buttonSearch {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  padding: 8px 12px;
+  border-radius: 5px;
   cursor: pointer;
+  height: 40px; /* Igualar altura de los botones */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.buttonSearch:hover {
+#buttonSearch:hover {
   background-color: #0056b3;
 }

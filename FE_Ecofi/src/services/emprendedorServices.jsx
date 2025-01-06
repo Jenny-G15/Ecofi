@@ -1,6 +1,7 @@
 // Obtener todos los emprendedores
 export async function getEmprendedores() {
     try {
+        const response = await fetch('http://192.168.1.246:3000/emprendedores ', { 
         const response = await fetch('http://192.168.8.108:3000/emprendedores ', { 
             method: 'GET',
             credentials: "include", // Importante para manejar sesiones
@@ -42,6 +43,7 @@ export async function PostEmprendedores(
             Direccion_Exacta,
         };
 
+        const response = await fetch('http://192.168.1.246:3000/emprendedores', {
         const response = await fetch('http://localhost:3000/emprendedores', {
             method: 'POST',
             headers: {
@@ -65,6 +67,17 @@ export async function PostEmprendedores(
 // Actualizar un emprendedor existente
 export async function updateEmprendedor(id, emprendedorData) {
     try {
+        const emprendedorData = {
+            Nombre_Emprendedor,
+            Descripcion,
+            Nombre_Contacto,
+            Producto_Ofrecido,
+            Correo_Emprendedor,
+            Telefono_Empresa,
+            Direccion_Exacta,
+        };
+
+        const response = await fetch(`http://192.168.1.246:3000/emprendedores/${id}`, {
         const response = await fetch(`http://localhost:3000/emprendedores/${id}`, {
             method: 'PUT',
             credentials: "include", // Importante para manejar sesiones
@@ -90,6 +103,7 @@ export async function updateEmprendedor(id, emprendedorData) {
 // Eliminar un emprendedor
 export async function deleteEmprendedor(id) {
     try {
+        const response = await fetch(`http://192.168.1.246:3000/emprendedores/${id}`, {
         const response = await fetch(`http://localhost:3000/emprendedores/${id}`, {
             method: 'DELETE',
             credentials: "include", // Importante para manejar sesiones

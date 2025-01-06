@@ -1,6 +1,6 @@
 export async function getUsers() {
     try {
-        const response = await fetch('http://localhost:3000/usuarios', {
+        const response = await fetch('http://192.168.1.246:3000/usuarios', {
             method: 'GET',
             credentials: "include", // Importante para manejar sesiones
             headers: {
@@ -40,7 +40,7 @@ export async function PostUsers
         Rol_Usuario,
         Bicolones, 
       };
-      const response = await fetch("http://localhost:3000/usuarios/register", {
+      const response = await fetch("http://192.168.1.246:3000/usuarios/register", {
         method: "POST",
         credentials: "include", // Importante para manejar sesiones
         headers: {
@@ -64,7 +64,7 @@ export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
         Contraseña_Usuario
       };
 
-      const response = await fetch("http://localhost:3000/usuarios/login", {
+      const response = await fetch("http://192.168.1.246:3000/usuarios/login", {
         method: "POST",
         credentials: "include", // Importante para manejar sesiones
         headers: {
@@ -106,10 +106,8 @@ export async function updateUser(
       };
 
 
-      const response = await fetch(`"http://localhost:3000/usuarios/${id}`, {
-
-          method: 'PUT',
-          credentials: "include", // Importante para manejar sesiones
+      const response = await fetch(`http://192.168.1.246:3000/usuarios/${id}`, {
+          method: "PUT",
           headers: {
               'Content-Type': 'application/json',
           },
@@ -130,7 +128,7 @@ export async function updateUser(
 
 export async function deleteUser(id) {
   try {
-      const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+      const response = await fetch(`http://192.168.1.246:3000/usuarios/${id}`, {
           method: "DELETE",
           credentials: "include", // Importante para manejar sesiones
           headers: {
@@ -152,7 +150,7 @@ export async function deleteUser(id) {
 
 export const buscarPorCedula = async (cedula) => {
   try {
-    const response = await fetch(`http://localhost:3000/usuarios/${cedula}`);
+    const response = await fetch(`http://192.168.1.246:3000/usuarios/${cedula}`);
     const data = await response.json();
     
     // Verificar que la API esté devolviendo el usuario correctamente
@@ -175,9 +173,7 @@ export const actualizarBicolones = async (id, restarBicolones) => {
 
   try {
   
-
-    const response = await fetch(`"http://localhost:3000/usuarios/${id}`, {
-
+    const response = await fetch(`http://192.168.1.246:3000/usuarios/${id}`, {
       method: 'PUT',
       credentials: "include", // Importante para manejar sesiones
       headers: { 'Content-Type': 'application/json' },

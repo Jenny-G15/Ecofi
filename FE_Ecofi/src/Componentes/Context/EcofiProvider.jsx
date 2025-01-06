@@ -17,6 +17,7 @@ const EcofiProvider = ({ children }) => {
   const logout = () => {
     setRol(null); // Elimina los datos del usuario al cerrar sesión
     localStorage.removeItem('user'); 
+    sessionStorage.removeItem('token'); 
   };
 
   useEffect(() => {

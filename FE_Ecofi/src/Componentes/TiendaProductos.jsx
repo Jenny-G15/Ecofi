@@ -4,16 +4,17 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getProductos, stockActualizado } from "../services/productServices";
 import { actualizarBicolones, getUsers } from "../services/userServices";
-import ContextoEcofi from "../Componentes/Context/EcofiContex";
-import "../styles/ProductosT.css";
+// import ContextoEcofi from "../Componentes/Context/EcofiContex";
+import "../styles/Perfil_Usuario.css";
 import { jwtDecode } from "jwt-decode";
 
 function TiendaProductos() {
   const [productos, setProductos] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
   const [loadingProduct, setLoadingProduct] = useState(null);
-  const { userData } = useContext(ContextoEcofi); // Este es tu contexto
+  // const { userData } = useContext(ContextoEcofi); // Este es tu contexto
 
-  console.log('ESTO TRAE USERDATA DESDE EL CONTEXTO', userData);
+  // console.log('ESTO TRAE USERDATA DESDE EL CONTEXTO', userData);
 
   // Verificar si el token existe en sessionStorage
   const token = sessionStorage.getItem('token');
@@ -50,14 +51,30 @@ function TiendaProductos() {
 
   useEffect(() => loadProductos(), [loadProductos]);
 
+
+  const cargarUsuarios = async () => {
+    try {
+      const response = await getUsers();
+      console.log('Respuesta de getUsers:', response); 
+      setUsuarios(response);
+    } catch (error) {
+      console.error("Error al cargar los productos:", error);
+    }
+  };
+  
+  useEffect(()=> {
+    cargarUsuarios();
+    console.log('devuelve', usuarios);
+  }, [])
+
   const FuncionCanje = async (producto) => {
     if (producto.Stock > 0) {
       if (!userId) {
         toast.error("No se ha encontrado el usuario para realizar el canje.");
         return;
       }
-
-      const usuarios = await getUsers();
+      
+      // const usuarios = await getUsers();
       const encontrarBicolonesxUsuario = usuarios.find((user) => user.id === userId);
 
       const restarBicolones = encontrarBicolonesxUsuario.Bicolones - producto.Bicolones_Producto;
@@ -72,6 +89,7 @@ function TiendaProductos() {
       try {
         // Actualizar bicolones del usuario
         await actualizarBicolones(userId, restarBicolones);
+        cargarUsuarios();
 
         // Restar stock localmente antes de actualizar el backend
         const nuevoStock = producto.Stock - 1;

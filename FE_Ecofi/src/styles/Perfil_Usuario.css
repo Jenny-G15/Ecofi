@@ -7,6 +7,50 @@
   width: 100%; /* Ancho completo */
   background-color: #fdfdfdb7;
   }
+
+  /*xards productos */
+
+ #productosContainer{
+  border: solid red;
+ }
+
+  .productEco {
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .productEco:hover {
+    transform: scale(1.05);
+  }
+  
+  .product-image {
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    height: 200px;
+  }
+  
+  .card-title {
+    color: #388e3c;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    color: #666;
+  }
+  
+  .btn-primary {
+    background-color: #388e3c;
+    border-color: #388e3c;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #4caf50;
+    border-color: #4caf50;
+  }
+  
 /* Estilos generales del contenedor del perfil */
 .profile-container {
   max-width: 600px;

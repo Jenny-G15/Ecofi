@@ -52,13 +52,6 @@ const ComMonedero = () => {
     fetchUserData();
   }, []);
 
-  // Efecto para actualizar los Bicolones después de guardar cambios
-  useEffect(() => {
-    if (!isEditing) {
-      fetchUserData();
-    }
-  }, [isEditing]);
-
   const ManejarEdicion = () => {
     setIsEditing(true);
   };

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ContextoEcofi from './EcofiContex';
 
-
-
 const EcofiProvider = ({ children }) => {
   const [Productos, setProductos] = useState('Prueba'); // Estado para productos
   const [Rol, setRol] = useState(null);
@@ -31,7 +29,6 @@ const EcofiProvider = ({ children }) => {
     } else {
       setRol(null); // Resetea el rol si no hay token
     }
-  }, []); // Solo ejecuta una vez al montar el componente
   }, []); // Solo ejecuta una vez al montar el componente
 
   return (

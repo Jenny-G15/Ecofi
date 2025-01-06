@@ -7,8 +7,6 @@ import { Button } from 'react-bootstrap';
 
 
 
-
-
 const AgregarEmprendedores = () => {
     const [emprendedores, setEmprendedores] = useState([]);
     const [formData, setFormData] = useState({

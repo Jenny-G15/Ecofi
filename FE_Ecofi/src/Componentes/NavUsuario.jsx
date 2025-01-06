@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Perfil_Usuario.css';
 import { getProductos } from '../services/productServices';
 import Ventana from './Ventana';
@@ -12,8 +10,6 @@ function NavUsuario() {
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const { logout } = useContext(ContextoEcofi); // Obtener la función logout desde el contexto
-  const navigate = useNavigate();
   const { logout } = useContext(ContextoEcofi); // Obtener la función logout desde el contexto
   const navigate = useNavigate();
 

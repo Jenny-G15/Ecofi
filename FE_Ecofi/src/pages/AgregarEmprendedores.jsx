@@ -7,13 +7,9 @@ import NavAdmin from '../Componentes/NavAdmin'
 function Emprendedores() {
   return (
     <div id='principalConteiner'>
-      <NavAdmin/>
-      <Row>
-        <Col sm={2} > <AdminSideBar /></Col>
-        <Col sm={10}><AgregarEmpren /></Col>
-      </Row>
-      
-
+        <NavAdmin/>
+        <AdminSideBar />
+        <AgregarEmpren />
     </div>
   )
 }

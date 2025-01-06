@@ -5,6 +5,7 @@
   grid-template: 120px 2fr 300px;
   background-color: #fdfdfdcc;
 }
+
 .navbar {
   position: fixed; 
   top: 0; 
@@ -26,6 +27,8 @@
   color: #124702; 
   text-transform: uppercase;
 }
+
+
  #adminTit{
    color: #fcfffb;
 }
@@ -285,7 +288,7 @@
   background-color: #45a049;
 } 
 
- @media (max-width: 600px) {
+ @media (max-width: 768px) {
   #form-agregar-producto {
     width: 100%;
     padding: 15px;
@@ -313,6 +316,9 @@
   #product-list-container {
     flex-direction: column;
     align-items: center;
+  }
+  .navbar { 
+    display: none !important;
   }
 }
 

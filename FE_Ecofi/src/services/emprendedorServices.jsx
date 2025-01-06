@@ -59,18 +59,11 @@ export async function PostEmprendedores(
     }
 }
 
+
 // Actualizar un emprendedor existente
-export async function updateEmprendedor(
-    id,
-    Nombre_Emprendedor,
-    Descripcion,
-    Nombre_Contacto,
-    Producto_Ofrecido,
-    Correo_Emprendedor,
-    Telefono_Empresa,
-    Direccion_Exacta
-) {
+export async function updateEmprendedor(id, emprendedorData) {
     try {
+
         const emprendedorData = {
             Nombre_Emprendedor,
             Descripcion,
@@ -82,6 +75,7 @@ export async function updateEmprendedor(
         };
 
         const response = await fetch(`http://192.168.8.108:3000/emprendedores/${id}`, {
+        const response = await fetch(`http://localhost:3000/emprendedores/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,7 +84,8 @@ export async function updateEmprendedor(
         });
 
         if (!response.ok) {
-            throw new Error('Error updating emprendedor');
+            const errorDetails = await response.json();
+            throw new Error(`Error updating emprendedor: ${errorDetails.message}`);
         }
 
         return await response.json();
@@ -99,6 +94,10 @@ export async function updateEmprendedor(
         throw error;
     }
 }
+
+
+
+
 
 // Eliminar un emprendedor
 export async function deleteEmprendedor(id) {

@@ -2,6 +2,7 @@ export async function getAdminRecofis() {
     try {
         const response = await fetch('http://localhost:3000/adminRecofi', {
             method: 'GET',
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -32,6 +33,7 @@ export async function postAdminRecofis(Nombre_AdminRecofis, Apellido_AdminRecofi
       };
       const response = await fetch("http://localhost:3000/adminRecofi/register", {
         method: "POST",
+        credentials: "include", // Importante para manejar sesiones
         headers: {
           "Content-Type": "application/json",
         },
@@ -53,6 +55,7 @@ export async function postLoginAdmin(Correo_AdminRecofis, Contraseña_AdminRecof
 
       const response = await fetch("http://localhost:3000/adminRecofi/login", {
         method: "POST",
+        credentials: "include", // Importante para manejar sesiones
         headers: {
           "Content-Type": "application/json",
         },
@@ -77,6 +80,7 @@ export async function updateAdminRecofis(id, Nombre_AdminRecofis, Apellido_Admin
 
       const response = await fetch(`http://localhost:3000/adminRecofi/${id}`, {
           method: "PUT",
+          credentials: "include", // Importante para manejar sesiones
           headers: {
               "Content-Type": "application/json",
           },
@@ -98,6 +102,7 @@ export async function deleteAdminRecofis(id) {
   try {
       const response = await fetch(`http://localhost:3000/adminRecofi/${id}`, {
           method: "DELETE",
+          credentials: "include", // Importante para manejar sesiones
           headers: {
               "Content-Type": "application/json",
           }

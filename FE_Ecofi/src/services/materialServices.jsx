@@ -5,6 +5,7 @@ export async function getMateriales() {
         // Ajusta la URL si el backend está en otro puerto o dirección
         const response = await fetch('http://localhost:3000/material', { //'http://192.168.1.246
             method: 'GET',
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },

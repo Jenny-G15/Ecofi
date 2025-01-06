@@ -32,6 +32,7 @@ const EcofiProvider = ({ children }) => {
       setRol(null); // Resetea el rol si no hay token
     }
   }, []); // Solo ejecuta una vez al montar el componente
+  }, []); // Solo ejecuta una vez al montar el componente
 
   return (
     <ContextoEcofi.Provider value={{ Productos, setProductos, isAuthenticated, login, logout }}>

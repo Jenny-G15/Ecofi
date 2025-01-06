@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/SideBar.css";
 import ContextoEcofi from './Context/EcofiContex'; 
 
@@ -7,7 +9,9 @@ import ContextoEcofi from './Context/EcofiContex';
 
 function AdminSideBar() {
   const { logout } = useContext(ContextoEcofi); // Obtener la función logout desde el contexto
+  const { logout } = useContext(ContextoEcofi); // Obtener la función logout desde el contexto
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
@@ -64,6 +68,8 @@ function AdminSideBar() {
           <Link className="sidebarLink" to="/Hrecoleccion">
             Estadísticas de Recolección
           </Link>
+          {/* Botón de Cerrar Sesión */}
+          <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
           {/* Botón de Cerrar Sesión */}
           <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
         </nav>

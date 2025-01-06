@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ContextoEcofi from './EcofiContex';
 import Cookies from 'js-cookie'; // Importa js-cookie
 
+
+
 const EcofiProvider = ({ children }) => {
   const [Productos, setProductos] = useState('Prueba'); // Estado para productos
   const [Rol, setRol] = useState(null);

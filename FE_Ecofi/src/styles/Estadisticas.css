@@ -1,38 +1,75 @@
 /* Contenedor general */
 #EstadisticasContainer {
-    grid-template-columns: 1/2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f4f4f9;
-    padding: 20px;
-    margin-left: 250px; /* Desplaza el contenido fuera del sidebar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f4f4f9;
+  padding: 20px;
+  margin-left: 250px; /* Ajuste para el sidebar */
+  box-sizing: border-box;
+}
+
+/* Ajuste del contenedor de gráficos */
+#GraficasContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* Espacio entre gráficos */
+  width: 100%;
+  max-width: 800px; /* Limita el ancho para mejor legibilidad */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Estilo individual para las gráficas */
+#RecofiChartContainer, #MaterialesChartContainer {
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Títulos */
+h2#GraficaH2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #2e7d32;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Asegura la responsividad */
+canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+  #EstadisticasContainer {
+      margin-left: 0; /* Elimina el espacio del sidebar */
+      padding: 10px;
   }
-  
-  /* Ajuste del contenedor de gráficos */
+
   #GraficasContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 100%;
+      gap: 30px;
   }
-  
-  /* Sidebar fijo */
-  #Sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: #2e7d32;
-    color: white;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+  #RecofiChartContainer, #MaterialesChartContainer {
+      padding: 15px;
   }
-  
-  /* Asegura que las gráficas no se solapen con el sidebar */
-  #MainContent {
-    margin-left: 250px; /* Espacio para el sidebar */
-    padding: 20px;
+
+  h2#GraficaH2 {
+      font-size: 1.8rem;
   }
-  
+
+  h3 {
+      font-size: 1.2rem;
+  }
+}

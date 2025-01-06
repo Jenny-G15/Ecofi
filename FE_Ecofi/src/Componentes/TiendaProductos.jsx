@@ -7,6 +7,7 @@ import { actualizarBicolones, getUsers } from "../services/userServices";
 import ContextoEcofi from "../Componentes/Context/EcofiContex";
 import "../styles/ProductosT.css";
 import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie"; // Importamos js-cookie
 
 function TiendaProductos() {
   const [productos, setProductos] = useState([]);
@@ -15,11 +16,11 @@ function TiendaProductos() {
 
   console.log('ESTO TRAE USERDATA DESDE EL CONTEXTO', userData);
 
-  // Verificar si el token existe en sessionStorage
-  const token = sessionStorage.getItem('token');
+  // Obtener el token desde las cookies
+  const token = Cookies.get("token"); 
 
   if (!token) {
-    console.error('Token no encontrado en sessionStorage');
+    console.error("Token no encontrado en cookies");
   }
 
   let userId = null;
@@ -28,12 +29,12 @@ function TiendaProductos() {
     if (token) {
       // Decodificar el token solo si es válido
       const decodedToken = jwtDecode(token);
-      console.log('ESTE TOKEN HA SIDO DECODIFICADO', decodedToken);
+      console.log("ESTE TOKEN HA SIDO DECODIFICADO", decodedToken);
       userId = decodedToken.id;
       console.log(userId);
     }
   } catch (error) {
-    console.error('Error al decodificar el token:', error);
+    console.error("Error al decodificar el token:", error);
   }
 
   const loadProductos = useCallback(() => {

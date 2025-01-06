@@ -4,6 +4,7 @@ export async function getProductos() {
     try {
         const response = await fetch('http://192.168.8.108:3000/producto/', {
             method: 'GET',
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -43,6 +44,7 @@ export async function PostProductos(
         
         const response = await fetch('http://192.168.8.108:3000/producto/', {
             method: "POST",
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -93,6 +95,7 @@ export async function deleteProducto(id) {
     try {
         const response = await fetch(`http://192.168.8.108:3000/producto/${id}`, {
             method: "DELETE",
+            credentials: "include", // Importante para manejar sesiones
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -116,6 +119,7 @@ export const stockActualizado = async (id, nuevoStock) => {
     try {
       const response = await fetch( `http://192.168.8.108:3000/producto/${id}`, {
         method: 'PUT',
+        credentials: "include", // Importante para manejar sesiones
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ Stock: nuevoStock }),
       });
@@ -132,22 +136,3 @@ export const stockActualizado = async (id, nuevoStock) => {
     }
   };
 
-// export const stockActualizado = async (id, nuevoStock) => { 
-  
-//     try {
-      
-//       const response = await fetch(`http://192.168.8.105:3000/producto/${id}`, { 
-//         method: 'PUT', headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ Stock: nuevoStock }), 
-        
-//       });
-      
-//        if (!response.ok) throw new Error('Error al actualizar el stock'); 
-//        return await response.json();
-      
-//     } catch (error) { console.error('Error al actualizar el stock:', error); 
-//       throw error; 
-//     } 
-//   };
-  
-  

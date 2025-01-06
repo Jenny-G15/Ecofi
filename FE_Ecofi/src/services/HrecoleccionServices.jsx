@@ -2,6 +2,7 @@ export async function getHrecoleccion() {
   try {
       const response = await fetch('http://localhost:3000/recoleccion/estadisticas', {
           method: 'GET',
+          credentials: "include", // Importante para manejar sesiones
           headers: {
               'Content-Type': 'application/json',
           },

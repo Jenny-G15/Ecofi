@@ -1,58 +1,72 @@
-/* Estilos generales */
+/* Estilo general */
+body {
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #aac5ad);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-
+/* Contenedor principal */
 .containerRegistro {
-  background: rgba(255, 255, 255, 0.815);
+  background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(3, 83, 187, 0.849);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
   width: 400px;
-  padding: 20px;
-  
+  text-align: center;
+  color: #004d40;
 }
 
 header {
-  text-align: center;
-  font-size: 22px;
-  color: #23DD23;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #00695c;
+}
+
+h6 {
+  font-size: 14px;
+  color: #004d40;
   margin-bottom: 20px;
-  font-weight: 600;
 }
 
 /* Barra de progreso */
 .barraProgresoRegistro {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 20px;
 }
 
 .pasoRegistro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
-  color: #999;
+  text-align: center;
 }
 
-.pasoRegistro.activo {
-  color: #23DD23;
+.pasoRegistro p {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #00796b;
 }
 
 .balaRegistro {
   width: 30px;
   height: 30px;
+  background: #a7ffeb;
   border-radius: 50%;
-  background-color: #64D4D4;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  margin-bottom: 5px;
+  color: #004d40;
+  border: 2px solid #00796b;
 }
 
 .pasoRegistro.activo .balaRegistro {
-  background-color: #23DD23;
+  background: #004d40;
+  color: #ffffff;
 }
 
 .checkRegistro {
@@ -61,19 +75,20 @@ header {
 
 /* Formulario */
 .formularioExteriorRegistro {
-  width: 100%;
+  text-align: left;
 }
 
 .paginaRegistro {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 20px;
+  background-color: #ffffff !important;
 }
 
 .tituloRegistro {
   font-size: 18px;
-  font-weight: 500;
   margin-bottom: 10px;
-  color: #64D4D4;
+  color: #00796b;
+  font-weight: bold;
+  text-align: center;
 }
 
 .campoRegistro {
@@ -81,63 +96,90 @@ header {
 }
 
 .etiquetaRegistro {
-  font-size: 14px;
-  margin-bottom: 5px;
   display: block;
-  color: #333;
+  font-size: 14px;
+  color: #004d40;
+  margin-bottom: 5px;
 }
 
-input, select {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #64D4D4;
+  border: 1px solid #80cbc4;
   border-radius: 8px;
   font-size: 14px;
+  color: #004d40;
 }
 
-input:focus, select:focus {
+input:focus {
+  border-color: #004d40;
   outline: none;
-  border-color: #23DD23;
-  box-shadow: 0 0 5px rgba(35, 221, 35, 0.3);
+  box-shadow: 0 0 5px #80cbc4;
 }
 
 /* Botones */
-.botonesRegistro {
-  display: flex;
-  justify-content: space-between;
-}
-
 .botonRegistro {
-  background-color: #64D4D4;
-  color: white;
+  background: #004d40;
+  color: #ffffff;
+  padding: 10px 15px;
   border: none;
   border-radius: 8px;
-  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
+  width: 100%;
 }
 
 .botonRegistro:hover {
-  background-color: #23DD23;
+  background: #00796b;
 }
 
-.anteriorRegistro {
-  background-color: #999999;
+.botonRegistro.anteriorRegistro {
+  background: #80cbc4;
+  color: #004d40;
 }
 
-.anteriorRegistro:hover {
-  background-color: #23DD23;
+.botonRegistro.anteriorRegistro:hover {
+  background: #a7ffeb;
 }
 
-.enviarRegistro {
-  background-color: #23DD23;
+/* Checkbox */
+.campoRegistro input[type="checkbox"] {
+  margin-right: 10px;
 }
 
-.enviarRegistro:hover {
-  opacity: 0.9;
+.campoRegistro label {
+  font-size: 14px;
+  color: #004d40;
 }
 
+/* Mensaje */
+.mensajeRegistro {
+  margin-top: 15px;
+  padding: 10px;
+  background: #e0f2f1;
+  border: 1px solid #80cbc4;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #004d40;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .containerRegistro {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .botonRegistro {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
 
 
 /* @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');

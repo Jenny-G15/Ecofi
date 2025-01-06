@@ -15,6 +15,7 @@ import Admin from "../Pages/AgregarAdministradores";
 import Testimonios from "../Componentes/Testimonios";
 import PrivateRoute from "./PrivateRoute";
 import Beneficio from "../Pages/Beneficio";
+import Perfil_Usuario from "../pages/Perfil_Usuario";
 import Perfil_Usuario from  "../Pages/Perfil_Usuario"
 
 const Routing = () => {
@@ -39,16 +40,25 @@ const Routing = () => {
         <Route path="/HRecoleccion" element={<Recolecciones />} />
         <Route path="/AgregarAdmin" element={<Admin />} />
         <Route path="/Perfil" element={ 
+        
+
+         <Perfil_Usuario />
+    
+           
+        }>
+       
+
           <PrivateRoute>
             <Perfil_Usuario />
           </PrivateRoute>
         }>
           <Route path="/Perfil/Monedero"/>
+
         </Route>
         <Route path="/Administracion" element={ 
-          <PrivateRoute>
+          
             <Administracion />
-          </PrivateRoute>
+         
         } />
       </Routes>
     </Router>

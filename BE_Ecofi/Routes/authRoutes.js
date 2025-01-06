@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { obtenerUsuarios, UsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario, actualizarBicolones } = require('../controllers/authControllers');
 
-
-
-
 router.get('/', obtenerUsuarios); 
 router.get('/:cedula', UsuariosxCedula);
 router.post('/login', iniciarSesion); 

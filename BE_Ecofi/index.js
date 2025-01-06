@@ -52,6 +52,6 @@ app.use('/adminRecofi', AdminRecofiRoutes)
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://192.168.8.108:${PORT}`);
     
 });

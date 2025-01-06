@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com'; 
-import "../styles/Principal.css";
-import Mapa from './Mapa';
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";;
+import "../styles/Footer.css";
+import { FaFacebookSquare, FaInstagramSquare, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -13,31 +10,30 @@ const Footer = () => {
     message: ''
   });
 
+  // Manejar cambios en los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value  //investigar
+      [name]: value
     });
   };
 
+  // Manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // EmailJS
-    //https://www.npmjs.com/package/emailjs
-    //xcs4TCUIUkEEiDpMZ ID emailJs
-
     emailjs.send("service_456is9f", "template_okycsjp", formData, "xcs4TCUIUkEEiDpMZ")
       .then((response) => {
-        console.log('Email sent successfully!', response.status, response.text);
+        console.log('Email enviado con éxito!', response.status, response.text);
         resetForm();
       })
       .catch((error) => {
-        console.error('Failed to send email:', error);
+        console.error('Error al enviar el email:', error);
       });
   };
 
+  // Reiniciar formulario
   const resetForm = () => {
     setFormData({
       name: '',
@@ -47,77 +43,63 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer" id='contacto'>
-      <div className="footer-content">
-        
-        <div className="footer-contact">
+    <>
+      <div className="footer">
+        <div className="contact-section">
           <h2>Contacto</h2>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Nombre:
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Email:
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Mensaje:
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-            </label>
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <label>Nombre:</label>
+            <input 
+              type="text" 
+              name="name" 
+              value={formData.name} 
+              onChange={handleChange} 
+              placeholder="Tu nombre" 
+              required 
+            />
+
+            <label>Email:</label>
+            <input 
+              type="email" 
+              name="email" 
+              value={formData.email} 
+              onChange={handleChange} 
+              placeholder="Tu correo" 
+              required 
+            />
+
+            <label>Mensaje:</label>
+            <textarea 
+              name="message" 
+              value={formData.message} 
+              onChange={handleChange} 
+              placeholder="Escribe tu mensaje" 
+              required
+            ></textarea>
+
             <button type="submit">Enviar</button>
           </form>
         </div>
-        <div className="footer-location">
-          <h2>Ubicación</h2>
-          <p>Puntareas, Puntarenas, Costa Rica</p>
-          <Mapa/>
+
+        <div className="social-section">
+          <h2>Síguenos</h2>
+          <p><a href="#"><FaFacebookSquare /> Facebook</a></p>
+          <p><a href="#"><FaInstagramSquare /> Instagram</a></p>
+          <p><a href="#"><FaWhatsapp /> WhatsApp</a></p>
         </div>
-        <div className="footer-social">
-          <h2>Síguenos</h2><br />
-          {/* Social media links */}
-          <a href="https://www.facebook.com/naricreacionescr?mibextid=JRoKGi" target='_blank' rel='noopener noreferrer' className='icon-p' id='Facebook'>
-              <FaFacebookSquare className='facebook-icon'/>
-              <span className='fa-icon-text'>Facebook</span>
-          </a><br /> <br />
-          <a href="https://www.instagram.com/naricreacionescr?igsh=dnhhZ2RqOWY0c250" target='_blank' rel='noopener noreferrer' className='icon-p' id='Instagram'>
-              <FaInstagramSquare className='Instagram-icon'/>
-              <span className='ins-icon-text'>Instagram</span>
-          </a><br /> <br />
-          <a href="https://wa.me/+50685302622" target='_blank' rel='noopener noreferrer' className='icon-p' id='Whatsapp'>
-              <FaWhatsapp className='Whatsapp-icon'/>
-              <span className='What-icon-text'>Whatsapp</span>
-          </a><br /> <br />
-          <p>Telefonos: +506 80000-0000 <br /> <br />
-             Correo: recofi@gmail.com
-          </p>
-          
+
+        <div className="location-section">
+          <h2>Ubicación</h2>
+          <p>Puntarenas, Puntarenas, Costa Rica</p>
         </div>
       </div>
-      <div className="footer-bottom"> <hr />
+      
+      <div className="footer-bottom"> 
+        <hr />
         <p>&copy; {new Date().getFullYear()} Ecofi. Todos los derechos reservados.</p>
       </div>
-    </footer>
+    </>
   );
 };
 
 export default Footer;
-
-  

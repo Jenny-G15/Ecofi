@@ -1,12 +1,16 @@
 #principalConteiner {
   display: grid;
+
   grid-template-rows: auto auto auto auto auto auto; /* Cada sección tiene su propia fila */
   grid-template-columns: auto auto; /* Dos columnas */
+
   gap: 1rem; /* Espaciado entre filas */
-  height: 100vh; /* Altura de la pantalla */
+  min-height: 100vh; /* Asegura que el contenedor abarque toda la pantalla */
   width: 100%; /* Ancho completo */
+
   background: rgb(25,212,40);
 background: radial-gradient(circle, rgba(2, 255, 23, 0.936) 0%, rgba(71,232,247,0.7091211484593838) 100%);
+
 }
   /* General navbar styling */
   .navbar {
@@ -66,6 +70,7 @@ background: radial-gradient(circle, rgba(2, 255, 23, 0.936) 0%, rgba(71,232,247,
   .navbar-menu li a:hover {
     color: #0025f5a8; /* Hover effect para los enlaces */
   }
+
 
   #footerConteiner {
 
@@ -132,7 +137,6 @@ background: radial-gradient(circle, rgba(2, 255, 23, 0.936) 0%, rgba(71,232,247,
     justify-content: center; 
     margin: 0 auto; 
 }
-
   
   .custom-card {
 

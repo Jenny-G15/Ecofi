@@ -3,6 +3,7 @@ import "../Styles/Perfil_Usuario.css"
 import NavUsuario from '../Componentes/NavUsuario';
 import Footer from '../Componentes/Footer'
 import ComMonedero from '../Componentes/ComMonedero';
+import TiendaProductos from '../Componentes/TiendaProductos';
 
 
 function Perfil_Usuario() {
@@ -10,6 +11,7 @@ function Perfil_Usuario() {
     <div id='principalConteiner'>
     <NavUsuario/>
     <ComMonedero/>
+    <TiendaProductos/>
     <div id='footerConteiner'><Footer /> </div>
     </div>
  

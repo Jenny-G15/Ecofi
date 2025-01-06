@@ -6,6 +6,8 @@
 //       document.body.style.backgroundImage = `url(${background})`;
 //     }
 
+    // Limpieza
+    return () => 
 //     // Limpieza
 //     return () => {
 //       document.body.style.backgroundImage = './src/img/fondo3.jpeg';

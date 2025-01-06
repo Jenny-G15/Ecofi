@@ -1,6 +1,6 @@
 export async function getUsers() {
     try {
-        const response = await fetch('http://192.168.8.108:3000/usuarios', {
+        const response = await fetch('http://localhost:3000/usuarios', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ export async function PostUsers
         Rol_Usuario,
         Bicolones, 
       };
-      const response = await fetch("http://192.168.8.108:3000/usuarios/register", {
+      const response = await fetch("http://localhost:3000/usuarios/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
         Contraseña_Usuario
       };
 
-      const response = await fetch("http://192.168.8.108:3000/usuarios/login", {
+      const response = await fetch("http://localhost:3000/usuarios/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ export async function updateUser(
 
 export async function deleteUser(id) {
   try {
-      const response = await fetch(`http://192.168.8.108:3000/usuarios/${id}`, {
+      const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
           method: "DELETE",
           headers: {
               "Content-Type": "application/json",
@@ -157,7 +157,7 @@ export async function deleteUser(id) {
 
 export const buscarPorCedula = async (cedula) => {
   try {
-    const response = await fetch(`http://192.168.8.108:3000/usuarios/${cedula}`);
+    const response = await fetch(`http://localhost:3000/usuarios/${cedula}`);
     const data = await response.json();
     
     // Verificar que la API esté devolviendo el usuario correctamente

@@ -1,4 +1,4 @@
-const { Producto, sequelize, Op } = require('../models');
+const { Producto, sequelize } = require('../models');
 
 // Obtener todos los productos
 const obtenerProductos = async (req, res) => {
@@ -44,54 +44,38 @@ const crearProducto = async (req, res) => {
   }
 };
 
-// Actualizar un producto
-const actualizarProducto = async (req, res) => {
-  const t = await sequelize.transaction();
-  try {
-    const { id } = req.params;
-    const { Bicolones_Producto, Imagen, Stock, Descripcion_Producto, Nombre_Producto } = req.body;
 
-    if (Stock < 0) {
-      return res.status(400).json({ error: 'El stock no puede ser negativo.' });
+
+// Actualizar un producto existente
+const actualizarProducto = async (req, res) => {
+  try {
+    console.log("Datos recibidos:", req.body); // Para depuración
+
+    const { id } = req.params;
+    const datosActualizados = req.body; // Acceder directamente a req.body
+
+    // Verificar que se hayan enviado datos para actualizar
+    if (!datosActualizados) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el producto.' });
     }
 
-    const producto = await Producto.findByPk(id, { transaction: t });
+    // Buscar el producto por ID
+    const producto = await Producto.findByPk(id);
 
+    // Verificar si el producto existe
     if (!producto) {
-      await t.rollback();
       return res.status(404).json({ error: 'Producto no encontrado.' });
     }
 
-    const productoExistente = await Producto.findOne({
-      where: {
-        id: { [Op.ne]: id },
-        Nombre_Producto,
-        Descripcion_Producto,
-      },
-      transaction: t,
-    });
+    console.log("Datos a actualizar:", datosActualizados);
+    
+    // Actualizar el producto con los datos proporcionados
+    await producto.update(datosActualizados); // Pasar datosActualizados directamente
 
-    if (productoExistente) {
-      await t.rollback();
-      return res.status(400).json({ error: 'Ya existe otro producto con ese Nombre y Descripción.' });
-    }
-
-    await producto.update(
-      {
-        Bicolones_Producto,
-        Imagen,
-        Stock,
-        Descripcion_Producto,
-        Nombre_Producto,
-      },
-      { transaction: t }
-    );
-
-    await t.commit();
+    // Devolver el producto actualizado
     res.status(200).json(producto);
   } catch (error) {
-    await t.rollback();
-    console.error(error);
+    console.error("Error al actualizar el producto:", error);
     res.status(500).json({ error: 'Error al actualizar el producto.' });
   }
 };

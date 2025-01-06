@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com'; 
-import "../styles/Principal.css";
+import "../styles/Footer.css";
 import { FaFacebookSquare, FaInstagramSquare, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {

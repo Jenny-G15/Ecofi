@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 
-const BodyBackground = ({ background }) => {
-  useEffect(() => {
-    if (background) {
-      document.body.style.backgroundImage = `url(${background})`;
-    }
+// const BodyBackground = ({ background }) => {
+//   useEffect(() => {
+//     if (background) {
+//       document.body.style.backgroundImage = `url(${background})`;
+//     }
 
-    // Limpieza
-    return () => {
-      document.body.style.backgroundImage = './src/img/fondo2.jpg';
-    };
-  }, [background]);
+//     // Limpieza
+//     return () => {
+//       document.body.style.backgroundImage = './src/img/fondo2.jpg';
+//     };
+//   }, [background]);
 
-  return null;
-};
+//   return null;
+// };
 
-export default BodyBackground;
+// export default BodyBackground;

@@ -7,7 +7,7 @@ import Historialrecolecciones from '../Componentes/HistorialRecoleccion'
 
 function Recolecciones() {
   return (
-    <div id='principalConteiner'>
+    <div id='EstdisticasContainer'>
       <NavAdmin/>
       <Row>
         <Col sm={2} > <AdminSideBar /></Col>

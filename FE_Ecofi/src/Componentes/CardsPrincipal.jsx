@@ -25,12 +25,12 @@ function CardsPrincipal() {
                 alt="Productos locales"
               />
               <Card.Body>
-                <Card.Title>Productos Disponibles para Canje</Card.Title>
+                <Card.Title>Conoce las historias de nuestros Amigos</Card.Title>
                 <Card.Text>
-                  ¡Conocé lo que podés llevarte con tus puntos! No te quedes sin tus productos Favoritos
+                  ¡Entra y conoce que se han ganado nuestros Particiantes!
                 </Card.Text>
                 <Link to="/Testimonios"> {/* Usa Link para redirigir */}
-                  <Button variant="primary">Ver Productos</Button>
+                  <Button variant="primary">Ver Historias</Button>
                 </Link>
               </Card.Body>
             </Card>

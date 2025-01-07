@@ -7,7 +7,6 @@ import { getMateriales } from '../services/materialServices';
 import { buscarPorCedula } from '../services/userServices';
 import { actualizarBicolones } from '../services/userServices';
 import { toast } from 'react-toastify';
-import RECOFI from '../IMG/RECOFI.png'
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Formularios.css'
 
@@ -343,7 +342,7 @@ const FormularioMateriales = () => {
         </div>
   
         <div className="text-center">
-          <button className="btn btn-success px-4" onClick={manejarEnvio}>
+          <button id='buttonFormularioSuccess' className="btn btn-success px-4" onClick={manejarEnvio}>
             Agregar y Enviar Comprobante
           </button>
         </div>

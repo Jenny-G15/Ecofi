@@ -113,9 +113,10 @@ form select, form input {
   border-radius: 5px;
 }
 
-button {
-  background: #28a745;
+#buttonFormularioSuccess {
+  background: #25c4b6d3;
   color: white;
+  width: 25%;
   font-size: 1rem;
   border: none;
   border-radius: 5px;
@@ -124,8 +125,8 @@ button {
   transition: background 0.3s ease;
 }
 
-button:hover {
-  background: #218838;
+#buttonFormularioSuccess:hover {
+  background: #0ae703;
 }
 
 .error {

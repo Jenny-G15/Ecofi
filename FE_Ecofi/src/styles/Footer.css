@@ -88,8 +88,10 @@
    padding: 10px 0 !important;
    background-color: #2E8B57 !important; /* Asegura que el color se aplique */
    align-items: center !important;
+ }
+ 
 
-}
+
 
 #footer-bottom p {
   display: flex !important;

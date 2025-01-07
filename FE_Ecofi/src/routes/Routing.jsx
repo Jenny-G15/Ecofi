@@ -40,12 +40,10 @@ const Routing = () => {
         <Route path="/QuienesSomos" element={<QuienesSomos />} />
         <Route path="/EditarUsuarios" element={<EditarUsuarios />} />
         <Route path="/Formulario" element={<FormRecofis />} />
+        
         <Route path="/HRecoleccion" element={<Recolecciones />} />
         <Route path="/AgregarAdmin" element={<Admin />} />
-        <Route path="/Perfil" element={ 
-          <PrivateRoute>
-            <Perfil_Usuario />
-          </PrivateRoute>
+        <Route path="/Perfil" element={ <PrivateRoute><Perfil_Usuario /></PrivateRoute>
         }>
           <Route path="/Perfil/Monedero"/>
         </Route>

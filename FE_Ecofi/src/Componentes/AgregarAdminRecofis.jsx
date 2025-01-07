@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import '../styles/AgregarAdministradores.css';
 import { Button } from 'react-bootstrap';
 
+
+
 const AgregarAdminRecofis = () => {
     const [administradores, setAdministradores] = useState([]); // Lista de administradores
     const [formData, setFormData] = useState({
@@ -123,7 +125,7 @@ const AgregarAdminRecofis = () => {
                         onChange={manejarCambio}
                         required
                     />
-                    <Button id="btnAgregarAdministrador" onClick={agregarAdministrador}>
+                    <Button id="btnAgregarAdministradorRecofi" onClick={agregarAdministrador}>
                         Agregar Administrador
                     </Button>
                 </div>

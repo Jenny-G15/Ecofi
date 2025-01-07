@@ -13,6 +13,7 @@ import "../styles/Mapa.css";
 export default function MapaRecofi() {
   const [markers, setMarkers] = useState([]); // Estado para almacenar los marcadores
 
+  
   // Llamada al servicio para obtener los recofis
   useEffect(() => {
     const fetchMarkers = async () => {

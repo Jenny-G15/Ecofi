@@ -5,7 +5,7 @@
   gap: 1rem; /* Espaciado entre filas */
   min-height: 100vh; /* Asegura que el contenedor abarque toda la pantalla */
   width: 100%; /* Ancho completo */
-  background: rgba(158, 219, 163, 0.767);
+  background: radial-gradient(circle, rgba(22,219,22,0.8127626050420168) 14%, rgba(46,146,187,1) 92%) !important;
   margin-bottom: 0%;
   
 

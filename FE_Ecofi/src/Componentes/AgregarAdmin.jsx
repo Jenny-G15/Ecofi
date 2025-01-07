@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getUsers, PostUsers, deleteUser } from '../services/userServices'; 
+import { getUsers, PostUsers, deleteUser, updateUser } from '../services/userServices'; 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import '../styles/AgregarAdministradores.css';
 import { Button } from 'react-bootstrap';
 
 
-// Componente principal para agregar administradores
 const AgregarAdministradores = () => {
-
-    const [administradores, setAdministradores] = useState([]); // Lista de administradores
+    const [administradores, setAdministradores] = useState([]);
     const [formData, setFormData] = useState({
         Nombre_Usuario: '',
         Apellido_Usuario: '',
@@ -18,37 +16,35 @@ const AgregarAdministradores = () => {
         Contraseña_Usuario: '',
         Telefono_Usuario: '',
         Bicolones: 0,
-        Rol_Usuario: 'Administrador' // Rol fijo como Administrador
+        Rol_Usuario: 'Administrador',
     });
 
-    // Cargar administradores al cargar el componente
+    const [editMode, setEditMode] = useState(null); // Estado para manejar el modo de edición
+    const [editData, setEditData] = useState({}); // Estado para los datos en edición
+
     useEffect(() => {
         cargarAdministradores();
     }, []);
 
-    // Función para obtener y cargar los administradores desde la API
     const cargarAdministradores = async () => {
         try {
-            const data = await getUsers(); // Obtener todos los usuarios
-            const admins = data.filter(user => user.Rol_Usuario === 'Administrador'); // Filtrar solo administradores
-            setAdministradores(admins); // Actualizar la lista de administradores
+            const data = await getUsers();
+            const admins = data.filter(user => user.Rol_Usuario === 'Administrador');
+            setAdministradores(admins);
         } catch (error) {
             console.error('Error al cargar administradores:', error);
         }
     };
 
-    // Función para agregar un nuevo administrador
     const agregarAdministrador = async () => {
         const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario, Rol_Usuario, Bicolones } = formData;
 
-        // Verificar que todos los campos estén completos
         if (!Nombre_Usuario || !Apellido_Usuario || !Cedula || !Email_Usuario || !Contraseña_Usuario || !Telefono_Usuario || !Rol_Usuario) {
             toast.error("Por favor, completa todos los campos.");
             return;
         }
 
         try {
-            // Llama al servicio para registrar un nuevo usuario con rol de Administrador
             const nuevoAdministrador = await PostUsers(
                 Nombre_Usuario,
                 Apellido_Usuario,
@@ -58,12 +54,10 @@ const AgregarAdministradores = () => {
                 Telefono_Usuario,
                 Rol_Usuario,
                 Bicolones,
-                "Administrador" // Asegurar el rol de Administrador
+                "Administrador"
             );
 
-            // Actualizar la lista de administradores con el nuevo administrador
-            setAdministradores([...administradores, nuevoAdministrador.usuario]); 
-            // Reiniciar el formulario
+            setAdministradores([...administradores, nuevoAdministrador.usuario]);
             setFormData({
                 Nombre_Usuario: '',
                 Apellido_Usuario: '',
@@ -81,11 +75,10 @@ const AgregarAdministradores = () => {
         }
     };
 
-    // Función para eliminar un administrador por su ID
     const eliminarAdministrador = async (id) => {
         try {
-            await deleteUser(id); // Eliminar administrador
-            setAdministradores(administradores.filter(admin => admin.id !== id)); // Actualizar la lista
+            await deleteUser(id);
+            setAdministradores(administradores.filter(admin => admin.id !== id));
             toast.success("Administrador eliminado exitosamente.");
         } catch (error) {
             console.error('Error al eliminar administrador:', error);
@@ -93,17 +86,64 @@ const AgregarAdministradores = () => {
         }
     };
 
-    // Función para manejar los cambios en los campos del formulario
     const manejarCambio = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value }); // Actualizar los datos del formulario
+        setFormData({ ...formData, [name]: value });
     };
+
+    const activarEdicion = (admin) => {
+        setEditMode(admin.id);
+        setEditData({ ...admin });
+    };
+
+    const manejarCambioEdicion = (e) => {
+        const { name, value } = e.target;
+        setEditData({ ...editData, [name]: value });
+    };
+
+
+    const guardarEdicion = async () => {
+        try {
+            console.log('Datos a enviar:', editMode, editData);
+            const actualizado = await updateUser(
+                editMode,
+                editData.Nombre_Usuario,
+                editData.Apellido_Usuario,
+                editData.Cedula,
+                editData.Email_Usuario,
+                editData.Contraseña_Usuario,
+                editData.Telefono_Usuario,
+                editData.Bicolones
+            );
+            console.log('Usuario actualizado:', actualizado); // Verifica la respuesta
+            
+            // Aquí no verificamos actualizado.usuario, ya que actualizado es directamente el objeto del usuario
+            const nuevosAdministradores = administradores.map(admin => 
+                admin.id === editMode ? actualizado : admin
+            );
+    
+            // Verifica si hay algún objeto undefined en nuevosAdministradores
+            if (nuevosAdministradores.includes(undefined)) {
+                throw new Error('Hay un objeto undefined en la lista de administradores');
+            }
+    
+            setAdministradores(nuevosAdministradores);
+            setEditMode(null);
+            toast.success("Administrador actualizado exitosamente.");
+        } catch (error) {
+            console.error('Error al actualizar administrador:', error);
+            toast.error("Error al actualizar administrador.");
+        }
+    };
+    
+    
 
     return (
         <div className="administradoresContainer">
             <h2 id="h2Titulo">Agregar Administradores</h2>
             <div className="administradoresContainer2">
                 <div className="containerAdministradores">
+                    {/* Formulario de nuevo administrador */}
                     <input
                         type="text"
                         placeholder="Nombre del Administrador"
@@ -152,40 +192,56 @@ const AgregarAdministradores = () => {
                         onChange={manejarCambio}
                         required
                     />
-                    <Button id="btnAgregarAdministrador" onClick={agregarAdministrador}>
+                    <Button id="btnAgregarAdministradorRecofi" onClick={agregarAdministrador}>
                         Agregar Administrador
                     </Button>
                 </div>
                 <div id="contenedorAdministradores">
-    {administradores && administradores.length > 0 ? (
-        administradores.map((admin) => (
-            <div key={admin.id} className="administrador">
-                {admin.Nombre_Usuario && admin.Apellido_Usuario && admin.Cedula ? (
-                    `Administrador: ${admin.Nombre_Usuario} ${admin.Apellido_Usuario} - Cédula: ${admin.Cedula}`
-                ) : (
-                    <p>Administrador con datos incompletos</p>
-                )}
-                <div className="btnContainer">
-                    <Button
-                        id="btnAdministradorDelete"
-                        onClick={() => eliminarAdministrador(admin.id)}
-                    >
-                        Eliminar
-                    </Button>
+                    <h3 className='ListaAdminText'>Lista de Administradores</h3>
+                    {administradores.length > 0 ? (
+                        administradores.map((admin) => (
+                            <div key={admin.id} className="administrador">
+                                {editMode === admin.id ? (
+                                    <>
+                                        <input
+                                            type="text"
+                                            name="Nombre_Usuario"
+                                            value={editData.Nombre_Usuario}
+                                            onChange={manejarCambioEdicion}
+                                        />
+                                        <input
+                                            type="text"
+                                            name="Apellido_Usuario"
+                                            value={editData.Apellido_Usuario}
+                                            onChange={manejarCambioEdicion}
+                                        />
+                                        <input
+                                            type="text"
+                                            name="Cedula"
+                                            value={editData.Cedula}
+                                            onChange={manejarCambioEdicion}
+                                        />
+                                        <Button id='ButtonAdmin' onClick={guardarEdicion}>Guardar</Button>
+                                        <Button onClick={() => setEditMode(null)}>Cancelar</Button>
+                                    </>
+                                ) : (
+                                    <>
+                                        {`Administrador: ${admin.Nombre_Usuario} ${admin.Apellido_Usuario} - Cédula: ${admin.Cedula}`}
+                                        <div className="btnContainer">
+                                            <Button onClick={() => activarEdicion(admin)}>Editar</Button>
+                                            <Button onClick={() => eliminarAdministrador(admin.id)}>Eliminar</Button>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        ))
+                    ) : (
+                        <p>No hay administradores disponibles</p>
+                    )}
                 </div>
-            </div>
-        ))
-    ) : (
-        <p>No hay administradores disponibles</p>
-    )}
-</div>
             </div>
         </div>
     );
 };
 
 export default AgregarAdministradores;
-
-
-
-

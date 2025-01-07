@@ -9,7 +9,7 @@ function FormRecofis() {
     <div id="page-form-recofis">
       <NavFormulario/>
       <div id="form-container">
-        <FormularioMateriales />
+      <FormularioMateriales/>
       </div>
       <div id="carousel-unique-container">
         <TablaConversiones />

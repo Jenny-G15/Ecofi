@@ -1,36 +1,24 @@
 import React, { useState } from "react";
 import "../Styles/Register.css";
-import { PostUsers } from "../services/userServices";
+import { PostUsers, getUsers } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+
 
 const FormularioRegistro = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
-  // Estados para la lógica de registro
   const [username, setUsername] = useState("");
-  const [lastName, setLastName] = useState("")
-  const [dni, setDni] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [cedula, setCedula] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userNumber, setUserNumber] = useState("");
-  const [bicolones, setBicolones] = useState(0);
-  const [rol, setRol] = useState("");
-  const [message, setMessage] = useState("");
-  // const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     try {
-  //       const data = await getUsers();
-  //       setUsers(data);
-  //     } catch (error) {
-  //       console.error("Error al obtener los usuarios:", error);
-  //     }
-  //   };
-  //   fetchUsers();
-  // }, []);
 
   const avanzarPaso = () => {
     if (currentStep < 3) setCurrentStep(currentStep + 1);
@@ -42,44 +30,67 @@ const FormularioRegistro = () => {
 
   const guardarUser = async (e) => {
     e.preventDefault();
-    setMessage("");
-
-    if (!username || !lastName || !dni || !email || !password || !userNumber) {
-      setMessage("No dejes campos en blanco");
+  
+    if (!username || !lastName || !cedula || !email || !password || !userNumber) {
+      toast.error("Por favor, completa todos los campos obligatorios.");
       return;
     }
-
-    // const validarUser = username.find((user) => user.correo === email);
-
-    // if (validarUser) {
-    //   setMessage("El correo ya está registrado");
-    //   return;
-    // }
-
+  
     try {
-      setBicolones(0)
-      setRol('usuario')
-      await PostUsers(username, lastName, dni, email, password, userNumber, bicolones, rol);
-      setMessage("¡Registro exitoso!");
-      navigate("/Login");
-
-
-
-      // Reinicia los campos del formulario
+      // Obtener todos los usuarios del servidor
+      const users = await getUsers();
+      console.log("Usuarios obtenidos:", users); // Verifica qué usuarios se están obteniendo
+  
+      // Verificar si la cédula ya existe
+      const cedulaExists = users.some((user) => user.Cedula === cedula);
+      console.log("Cédula ingresada:", cedula); // Verifica la cédula ingresada
+      console.log("Cédula existente:", users.map(user => user.Cedula)); // Muestra todas las cédulas existentes
+  
+      if (cedulaExists) {
+        toast.error("Ya existe un usuario registrado con esta cédula.");
+        setCurrentStep(1); // Regresar al primer paso
+        return;
+      }
+  
+      // Verificar si el correo ya existe
+      const emailExists = users.some((user) => user.Email_Usuario === email);
+      if (emailExists) {
+        toast.error("Ya existe un usuario registrado con este correo electrónico.");
+        setCurrentStep(1); // Regresar al primer paso
+        return;
+      }
+  
+      // Crear el nuevo usuario
+      const userData = {
+        Nombre_Usuario: username,
+        Apellido_Usuario: lastName,
+        Cedula: cedula,
+        Email_Usuario: email,
+        Contraseña_Usuario: password,
+        Telefono_Usuario: userNumber,
+        Rol_Usuario: "usuario",
+        Bicolones: 0,
+      };
+  
+      const response = await PostUsers(userData);
+      console.log("Respuesta del servidor:", response);
+  
+      toast.success("¡Registro exitoso! Redirigiendo al login...");
+      setTimeout(() => navigate("/Login"), 3000);
+  
+      // Limpiar campos después del registro exitoso
       setUsername("");
+      setLastName("");
+      setCedula("");
       setEmail("");
       setPassword("");
-      setDni("");
-      setLastName("");
       setUserNumber("");
-
-
     } catch (error) {
-      console.error("Error en el Registro", error);
-      setMessage("Error al registrar el usuario");
+      console.error("Error en el registro:", error);
+      toast.error("Error al registrar el usuario. Por favor, inténtalo de nuevo.");
     }
-
   };
+  
 
   return (
     <div className="containerRegistro">
@@ -103,7 +114,6 @@ const FormularioRegistro = () => {
       </div>
       <div className="formularioExteriorRegistro">
         <form onSubmit={guardarUser}>
-          {/* Paso 1 */}
           {currentStep === 1 && (
             <div className="paginaRegistro">
               <div className="tituloRegistro">Información Básica</div>
@@ -124,11 +134,11 @@ const FormularioRegistro = () => {
                 />
               </div>
               <div className="campoRegistro">
-                <label className="etiquetaRegistro">DNI:</label>
+                <label className="etiquetaRegistro">Cédula:</label>
                 <input
                   type="text"
-                  value={dni}
-                  onChange={(e) => setDni(e.target.value)}
+                  value={cedula}
+                  onChange={(e) => setCedula(e.target.value)}
                 />
               </div>
               <div className="campoRegistro">
@@ -142,7 +152,6 @@ const FormularioRegistro = () => {
               </div>
             </div>
           )}
-          {/* Paso 2 */}
           {currentStep === 2 && (
             <div className="paginaRegistro">
               <div className="tituloRegistro">Información de Contacto</div>
@@ -179,8 +188,7 @@ const FormularioRegistro = () => {
                 </button>
               </div>
             </div>
-          )}       
-          {/* Paso 3 */}
+          )}
           {currentStep === 3 && (
             <div className="paginaRegistro">
               <div className="tituloRegistro">Confirmar Datos</div>
@@ -202,13 +210,13 @@ const FormularioRegistro = () => {
                 </button>
                 <button type="submit" className="botonRegistro enviarRegistro">
                   Enviar
-                  </button>
+                </button>
               </div>
             </div>
           )}
         </form>
       </div>
-      {message && <div className="mensajeRegistro">{message}</div>}
+      <ToastContainer />
     </div>
   );
 };

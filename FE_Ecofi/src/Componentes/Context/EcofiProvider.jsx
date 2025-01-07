@@ -16,9 +16,9 @@ const EcofiProvider = ({ children }) => {
     localStorage.setItem('user', JSON.stringify(user)); // Almacena los datos del usuario en localStorage.
   };
 
-  // Función para cerrar sesión del usuario.
+  // Función para cerrar sesión del usuario. Limpia el rol, elimina los datos del LocalStorage y elimina el Token del SessionStorage
   const logout = () => {
-    setRol(null); // Limpia el rol del usuario.
+    setRol(null); 
     localStorage.removeItem('user'); // Elimina los datos del usuario del localStorage.
     sessionStorage.removeItem('token'); // Elimina el token de sesión del sessionStorage.
   };
@@ -34,7 +34,7 @@ const EcofiProvider = ({ children }) => {
   return (
     // Provee los datos y funciones a todos los componentes hijos que lo necesiten.
     <ContextoEcofi.Provider value={{ Productos, setProductos, isAuthenticated, login, logout }}>
-
+   {children}
     </ContextoEcofi.Provider>
   );
 };

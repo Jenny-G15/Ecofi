@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
 import emailjs from 'emailjs-com';
-import { getFormulario, agregarFormulario } from '../services/formularioServices';
+import { agregarFormulario } from '../services/formularioServices';
 import { getRecofis } from '../services/recofiServices';
 import { getMateriales } from '../services/materialServices';
 import { buscarPorCedula } from '../services/userServices';
@@ -17,7 +17,6 @@ import '../styles/Formularios.css'
 
 
 const FormularioMateriales = () => {
-  const [formularios, setFormularios] = useState([]);
   const [direcciones, setDirecciones] = useState([]);
   const [materiales, setMateriales] = useState([]);
   const [datosFormulario, setDatosFormulario] = useState({
@@ -39,14 +38,7 @@ const FormularioMateriales = () => {
     cargarMateriales();
   }, []);
 
-  const cargarFormularios = async () => {
-    try {
-      const datos = await getFormulario();
-      setFormularios(datos);
-    } catch (error) {
-      console.error('Error al cargar formularios:', error);
-    }
-  };
+
 
 
   const cargarDirecciones = async () => {

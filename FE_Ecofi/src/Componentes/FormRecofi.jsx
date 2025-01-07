@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
 import emailjs from 'emailjs-com';
-import { getFormulario, agregarFormulario } from '../services/formularioServices';
+import { agregarFormulario } from '../services/formularioServices';
 import { getRecofis } from '../services/recofiServices';
 import { getMateriales } from '../services/materialServices';
 import { buscarPorCedula } from '../services/userServices';
 import { actualizarBicolones } from '../services/userServices';
 import { toast } from 'react-toastify';
-import RECOFI from '../IMG/RECOFI.png'
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Formularios.css'
 
@@ -18,7 +17,6 @@ import '../styles/Formularios.css'
 
 
 const FormularioMateriales = () => {
-  const [formularios, setFormularios] = useState([]);
   const [direcciones, setDirecciones] = useState([]);
   const [materiales, setMateriales] = useState([]);
   const [datosFormulario, setDatosFormulario] = useState({
@@ -40,14 +38,7 @@ const FormularioMateriales = () => {
     cargarMateriales();
   }, []);
 
-  const cargarFormularios = async () => {
-    try {
-      const datos = await getFormulario();
-      setFormularios(datos);
-    } catch (error) {
-      console.error('Error al cargar formularios:', error);
-    }
-  };
+
 
 
   const cargarDirecciones = async () => {
@@ -188,22 +179,6 @@ const FormularioMateriales = () => {
   
 
 
-  // const generarPDF = () => {
-  //   const doc = new jsPDF();
-  //   doc.setFontSize(14);
-  //   doc.text('Comprobante de Canje', 20, 20);
-  //   doc.text(`Nombre del Usuario: ${usuario.Nombre_Usuario} ${usuario.Apellido_Usuario}`, 20, 30);
-  //   doc.text(`RECOFI: ${materiales.find((m) => m.id === datosFormulario.ID_Material)?.Tipo_Material || 'N/A'}`, 20, 40);
-  //   doc.text(`Dirección: ${direcciones.find((d) => d.id === datosFormulario.ID_Recofi)?.Nombre_Recofi || 'N/A'}`, 20, 50);
-  //   doc.text(`Fecha: ${datosFormulario.Fecha_Formulario}`, 20, 60);
-  //   doc.text(`Bicolones Obtenidos: ${datosFormulario.Bicolnes_Obtenidos}`, 20, 70);
-
-  //   doc.save('Comprobante.pdf');
-  // };
-
-
-
-
 
   const ComprobanteEmail = () => {
     if (!usuario) {
@@ -249,8 +224,9 @@ const FormularioMateriales = () => {
       <h2 className="formulario-titulo">RECOFI</h2>
   
       {/* Sección de búsqueda */}
-      <div className="buscador-cedula d-flex justify-content-center align-items-center mb-4">
+      <div className="buscador-cedula d-flex justify-content-center align-items-center mb-4 flex-column flex-md-row">
         <input
+          id='inputFormulario'
           type="text"
           name="cedula"
           className="form-control w-50 me-2"
@@ -358,7 +334,7 @@ const FormularioMateriales = () => {
         </div>
   
         <div className="text-center">
-          <button className="btn btn-success px-4" onClick={manejarEnvio}>
+          <button id='buttonFormularioSuccess' className="btn btn-success px-4" onClick={manejarEnvio}>
             Agregar y Enviar Comprobante
           </button>
         </div>

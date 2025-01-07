@@ -1,4 +1,5 @@
 #footer-container {
+<<<<<<< HEAD
     background-color: #09c356ba;
     color: white;
     padding: 20px;
@@ -8,11 +9,24 @@
     width: 100%;
     min-height: 200px; /* Ajusta según necesidad */
 
+=======
+  background-color: #09c356ba !important;
+  color: white !important;
+  padding: 20px !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  font-family: 'Arial', sans-serif !important;
+  width: 100% !important;
+  min-height: 30rem !important; /* Ajusta según necesidad */
+  grid-row: 6 !important;
+  grid-column: 1/3 !important;
+>>>>>>> 91172f3b3b055c8d399df5a11ef4b9aa2d211a4e
 }
 
 .footer-contact-section, 
 .footer-social-section, 
 .footer-location-section {
+<<<<<<< HEAD
     text-align: center;
 }
 
@@ -94,10 +108,101 @@
     display: flex;
     justify-content: center;
     color: aliceblue; 
+=======
+  text-align: center !important;
 }
 
+.footer-contact-form {
+  display: flex!important;
+  flex-direction: column !important;
+  align-items: center !important;
+  background-color: rgb(255, 255, 255) !important;
+  border-radius: 20px !important;
+  width: 280px !important;
+  height: 350px !important;
+  
+}
+
+
+.footer-contact-form input, 
+.footer-contact-form textarea {
+  width: 70% !important;
+  border-radius: 5px !important;
+  font-size: 1em !important;
+  border: 0.5px solid #505250 !important;
+}
+
+.footer-contact-form input:focus, 
+.footer-contact-form textarea:focus {
+  border-radius: 10px !important;
+  border: 2px solid #505250 !important;
+}
+
+#footer-submit {
+  border-radius: 5px !important;
+  padding: 10px 20px !important;
+  cursor: pointer !important;
+  font-size: 1em !important;
+  transition: background-color 0.3s !important;
+  background-color: #13fc80 !important;
+  border: solid 0.5px #4f4d4d !important;
+  
+>>>>>>> 91172f3b3b055c8d399df5a11ef4b9aa2d211a4e
+}
+#footer-name{
+  width: 80% !important;
+  border: 0.5px solid rgb(70, 68, 68) !important;
+  border-radius: 5px !important;
+  background-color: white !important;
+
+}
+#footer-email{
+  width: 80% !important;
+  border: 0.5px solid rgb(70, 68, 68) !important;
+  border-radius: 5px !important;
+  background-color: white !important;
+
+<<<<<<< HEAD
 #footer-bottom hr {
     width: 100%;
 }
 
 
+=======
+}
+
+#footer-submit:hover {
+  background-color: #ea8305;
+}
+
+.footer-social-section a {
+  color: white !important;
+  text-decoration: none !important;
+  font-size: 1.2em !important;
+  transition: color 0.3s !important;
+}
+
+.footer-social-section a:hover {
+  color: #000000;
+}
+
+#footer-bottom {
+   width: 100% !important;
+   padding: 10px 0 !important;
+   background-color: #2E8B57 !important; /* Asegura que el color se aplique */
+   align-items: center !important;
+ }
+ 
+
+
+
+#footer-bottom p {
+  display: flex !important;
+  justify-content: center !important;
+  color: aliceblue !important; 
+}
+
+#footer-bottom hr {
+  width: 100% !important;
+}
+>>>>>>> 91172f3b3b055c8d399df5a11ef4b9aa2d211a4e

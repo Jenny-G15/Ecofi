@@ -8,6 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContextoEcofi from './Context/EcofiContex';
 import "../styles/login.css";
 
+
+
+
 export default function FormLogin() {
   const { login } = useContext(ContextoEcofi);
   const navigate = useNavigate();
@@ -107,4 +110,10 @@ export default function FormLogin() {
       />
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+
+
+>>>>>>> 91172f3b3b055c8d399df5a11ef4b9aa2d211a4e

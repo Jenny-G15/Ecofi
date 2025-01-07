@@ -1,3 +1,4 @@
+// Importamos las funciones y componentes necesarios de React y otras librerías
 import React, { useState, useEffect } from 'react';
 import { getEmprendedores, PostEmprendedores, updateEmprendedor, deleteEmprendedor } from '../services/emprendedorServices';
 import { toast } from "react-toastify";
@@ -5,10 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 import '../styles/AgregarEmprendedores.css';
 import { Button } from 'react-bootstrap';
 
-
-
+// Componente principal para agregar emprendedores
 const AgregarEmprendedores = () => {
-    const [emprendedores, setEmprendedores] = useState([]);
+    const [emprendedores, setEmprendedores] = useState([]); // Lista de emprendedores
     const [formData, setFormData] = useState({
         Nombre_Emprendedor: '',
         Descripcion: '',
@@ -18,25 +18,29 @@ const AgregarEmprendedores = () => {
         Telefono_Empresa: '',
         Direccion_Exacta: ''
     });
-    const [isUpdating, setIsUpdating] = useState(false);
-    const [updateId, setUpdateId] = useState(null);
+    const [isUpdating, setIsUpdating] = useState(false); // Estado para saber si se está actualizando un emprendedor
+    const [updateId, setUpdateId] = useState(null); // ID del emprendedor a actualizar
 
+    // Cargar emprendedores al cargar el componente
     useEffect(() => {
         cargarEmprendedores();
     }, []);
 
+    // Función para obtener y cargar los emprendedores desde la API
     const cargarEmprendedores = async () => {
         try {
-            const data = await getEmprendedores();
-            setEmprendedores(data);
+            const data = await getEmprendedores(); // Obtener todos los emprendedores
+            setEmprendedores(data); // Actualizar la lista de emprendedores
         } catch (error) {
             console.error('Error al cargar emprendedores:', error);
         }
     };
 
+    // Función para agregar o actualizar un emprendedor
     const agregarEmprendedor = async () => {
         const { Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor, Telefono_Empresa, Direccion_Exacta } = formData;
         
+        // Verificar que todos los campos estén completos
         if (!Nombre_Emprendedor || !Descripcion || !Nombre_Contacto || !Producto_Ofrecido || !Correo_Emprendedor || !Telefono_Empresa || !Direccion_Exacta) {
             toast.error("Por favor, completa todos los campos.");
             return;
@@ -44,15 +48,18 @@ const AgregarEmprendedores = () => {
 
         try {
             if (isUpdating) {
+                // Actualizar emprendedor existente
                 await updateEmprendedor(updateId, formData);
                 toast.success("Emprendedor actualizado exitosamente.");
                 setIsUpdating(false);
                 setUpdateId(null);
             } else {
+                // Agregar un nuevo emprendedor
                 const nuevoEmprendedor = await PostEmprendedores(formData);
                 setEmprendedores([...emprendedores, nuevoEmprendedor]);
                 toast.success("Emprendedor agregado exitosamente.");
             }
+            // Reiniciar el formulario
             setFormData({
                 Nombre_Emprendedor: '',
                 Descripcion: '',
@@ -62,17 +69,18 @@ const AgregarEmprendedores = () => {
                 Telefono_Empresa: '',
                 Direccion_Exacta: ''
             });
-            cargarEmprendedores();
+            cargarEmprendedores(); // Recargar la lista de emprendedores
         } catch (error) {
             console.error('Error al agregar/actualizar emprendedor:', error);
             toast.error("Error al agregar/actualizar emprendedor.");
         }
     };
 
+    // Función para eliminar un emprendedor por su ID
     const eliminarEmprendedor = async (id) => {
         try {
-            await deleteEmprendedor(id);
-            setEmprendedores(emprendedores.filter(e => e.id !== id));
+            await deleteEmprendedor(id); // Eliminar emprendedor
+            setEmprendedores(emprendedores.filter(e => e.id !== id)); // Actualizar la lista
             toast.success("Emprendedor eliminado exitosamente.");
         } catch (error) {
             console.error('Error al eliminar emprendedor:', error);
@@ -80,6 +88,7 @@ const AgregarEmprendedores = () => {
         }
     };
 
+    // Función para preparar la edición de un emprendedor
     const editarEmprendedor = (emprendedor) => {
         setFormData({
             Nombre_Emprendedor: emprendedor.Nombre_Emprendedor,
@@ -93,11 +102,11 @@ const AgregarEmprendedores = () => {
         setIsUpdating(true);
         setUpdateId(emprendedor.id);
     };
-    
 
+    // Función para manejar los cambios en los campos del formulario
     const manejarCambio = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [name]: value }); // Actualizar los datos del formulario
     };
 
     return (

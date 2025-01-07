@@ -131,7 +131,3 @@ export const stockActualizado = async (id, nuevoStock) => {
       throw error; 
     }
   };
-<<<<<<< HEAD
-
-=======
->>>>>>> 91172f3b3b055c8d399df5a11ef4b9aa2d211a4e

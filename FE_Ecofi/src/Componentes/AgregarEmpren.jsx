@@ -196,6 +196,3 @@ const AgregarEmprendedores = () => {
 
 export default AgregarEmprendedores;
 
-
-
-

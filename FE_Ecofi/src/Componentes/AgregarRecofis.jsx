@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { getRecofis, agregarRecofi, actualizarRecofi, eliminarRecofi } from '../services/recofiServices';
+import { getMateriales } from '../services/materialServices';
+import { getDireccion } from '../services/DireccionServices';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../styles/AgregarRecofi.css'
+import '../styles/AgregarRecofi.css';
 
 
 
-// Componente principal para el formulario de Recofi
+
 const FormularioRecofi = () => {
-
-    const [recofis, setRecofis] = useState([]); // Lista de recofis
+    const [recofis, setRecofis] = useState([]);
+    const [direcciones, setDirecciones] = useState([]);
+    const [materiales, setMateriales] = useState([]);
     const [datosFormulario, setDatosFormulario] = useState({
         ID_Direccion: '',
         ID_Material: '',
@@ -21,25 +24,42 @@ const FormularioRecofi = () => {
         Direccion_Recofi: '',
     });
 
-    const [modoEdicion, setModoEdicion] = useState(false); // Estado para saber si se está editando un recofi
-    const [idRecofiActual, setIdRecofiActual] = useState(null); // ID del recofi actual a editar
+    const [modoEdicion, setModoEdicion] = useState(false);
+    const [idRecofiActual, setIdRecofiActual] = useState(null);
 
-    // Cargar recofis al cargar el componente
     useEffect(() => {
         cargarRecofis();
+        cargarDirecciones();
+        cargarMateriales();
     }, []);
 
-    // Función para obtener y cargar los recofis desde la API
     const cargarRecofis = async () => {
         try {
-            const datos = await getRecofis(); // Obtener todos los recofis
-            setRecofis(datos); // Actualizar la lista de recofis
+            const datos = await getRecofis();
+            setRecofis(datos);
         } catch (error) {
-            console.error('Error al cargar los recofis tigre:', error);
+            console.error('Error al cargar los recofis:', error);
         }
     };
 
-    // Función para manejar los cambios en los campos del formulario
+  const cargarDirecciones = async () => {
+    try {
+      const datos = await getDireccion();
+      setDirecciones(datos);
+    } catch (error) {
+      console.error('Error al cargar direcciones:', error);
+    }
+  };
+
+    const cargarMateriales = async () => {
+        try {
+            const datos = await getMateriales();
+            setMateriales(datos); // Aquí se asume que devuelve un array de objetos con `id` y `nombre`.
+        } catch (error) {
+            console.error('Error al cargar los materiales:', error);
+        }
+    };
+
     const manejarCambio = (e) => {
         setDatosFormulario({
             ...datosFormulario,
@@ -47,21 +67,16 @@ const FormularioRecofi = () => {
         });
     };
 
-    // Función para manejar el envío del formulario
     const manejarEnvio = async () => {
         try {
-            console.log('Datos enviados:', datosFormulario);
             if (modoEdicion) {
-                // Actualizar recofi existente
                 await actualizarRecofi(idRecofiActual, datosFormulario);
                 toast.success('Recofi actualizado exitosamente');
             } else {
-                // Agregar un nuevo recofi
                 await agregarRecofi(datosFormulario);
                 toast.success('Recofi agregado exitosamente');
             }
 
-            // Reiniciar el formulario
             setDatosFormulario({
                 ID_Direccion: '',
                 ID_Material: '',
@@ -74,55 +89,62 @@ const FormularioRecofi = () => {
             });
             setModoEdicion(false);
             setIdRecofiActual(null);
-            cargarRecofis(); // Recargar la lista de recofis
+            cargarRecofis();
         } catch (error) {
             toast.error('Error al guardar el recofi');
             console.error('Error al guardar el recofi:', error);
         }
     };
 
-    // Función para preparar la edición de un recofi
     const editarRecofi = (recofi) => {
         setModoEdicion(true);
         setIdRecofiActual(recofi.id);
         setDatosFormulario(recofi);
     };
 
-    // Función para eliminar un recofi por su ID
     const borrarRecofi = async (id) => {
         try {
-            await eliminarRecofi(id); // Eliminar recofi
+            await eliminarRecofi(id);
             toast.success('Recofi eliminado exitosamente');
-            cargarRecofis(); // Recargar la lista de recofis
+            cargarRecofis();
         } catch (error) {
             toast.error('Error al eliminar el recofi');
             console.error('Error al eliminar el recofi:', error);
         }
     };
 
+
     return (
         <div className="recofi-container">
             <h2>{modoEdicion ? 'Editar Recofi' : 'Agregar Recofi'}</h2>
             <form id='FormRecofi2' onSubmit={(e) => e.preventDefault()}>
-                {/* Campo para ingresar el ID de Dirección */}
-                <input
-                    type="number"
+            <select
                     name="ID_Direccion"
-                    placeholder="ID Dirección"
                     value={datosFormulario.ID_Direccion}
                     onChange={manejarCambio}
                     required
-                />
-                {/* Campo para ingresar el ID de Material */}
-                <input
-                    type="number"
+                >
+                    <option value="">Selecciona una Dirección</option>
+                    {direcciones.map((direccion) => (
+                        <option key={direccion.id} value={direccion.id}>
+                            {`${direccion.Canton} - ${direccion.Distrito}`}
+                        </option>
+                    ))}
+                </select>
+
+                <select
                     name="ID_Material"
-                    placeholder="ID Material"
                     value={datosFormulario.ID_Material}
                     onChange={manejarCambio}
                     required
-                />
-                {/* Campo para ingresar el Nombre del Recofi */}
+                >
+                    <option value="">Selecciona un Material</option>
+                    {materiales.map((material) => (
+                     <option key={material.id} value={material.id}>
+                     {material.Tipo_Material}
+                   </option>
+                    ))}
+                </select>
                 <input
                     type="text"
                     name="Nombre_Recofi"
@@ -131,7 +153,6 @@ const FormularioRecofi = () => {
                     onChange={manejarCambio}
                     required
                 />
-                {/* Campo para ingresar el Horario de Apertura */}
                 <input
                     type="time"
                     name="HorarioApertura"
@@ -140,7 +161,6 @@ const FormularioRecofi = () => {
                     onChange={manejarCambio}
                     required
                 />
-                {/* Campo para ingresar el Horario de Cierre */}
                 <input
                     type="time"
                     name="HorarioCierre"
@@ -149,7 +169,6 @@ const FormularioRecofi = () => {
                     onChange={manejarCambio}
                     required
                 />
-                {/* Campo para ingresar la Latitud */}
                 <input
                     type="number"
                     step="0.0000001"
@@ -159,7 +178,6 @@ const FormularioRecofi = () => {
                     onChange={manejarCambio}
                     required
                 />
-                {/* Campo para ingresar la Longitud */}
                 <input
                     type="number"
                     step="0.0000001"
@@ -169,7 +187,6 @@ const FormularioRecofi = () => {
                     onChange={manejarCambio}
                     required
                 />
-                {/* Campo para ingresar la Dirección del Recofi */}
                 <input
                     type="text"
                     name="Direccion_Recofi"
@@ -183,7 +200,6 @@ const FormularioRecofi = () => {
             <div className="recofi-lista">
                 {recofis.map((recofi) => (
                     <div key={recofi.id} className="recofi-item">
-                        {/* Mostrar el nombre del recofi */}
                         <p>{recofi.Nombre_Recofi}</p>
                         <button onClick={() => editarRecofi(recofi)}>Editar</button>
                         <button onClick={() => borrarRecofi(recofi.id)}>Eliminar</button>

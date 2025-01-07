@@ -1,6 +1,6 @@
 export async function getDireccion() {
     try {
-        const response = await fetch('http://localhost:3000/direccion', {
+        const response = await fetch('http://192.168.1.246:3000/direccion', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

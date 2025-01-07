@@ -3,8 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon, divIcon, point } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import PinReciclaje from "../IMG/PinReciclaje.png"; // Imagen personalizada
-import { getRecofis } from "../services/recofiServices"; // Importa el servicio
+import PinReciclaje from "../IMG/PinReciclaje.png"; 
+import { getRecofis } from "../services/recofiServices"; 
 import "../styles/Mapa.css";
 
 
@@ -58,39 +58,45 @@ export default function MapaRecofi() {
     });
 
   return (
-    <MapContainer
-      center={[9.97691, -84.8379]}
-      zoom={12}
-      style={{
-        border: "solid 2px #ffffff",
-        padding: "5px",
-        height: "200px",
-        width: "100%",
-      }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-
-      {/* Conjunto de Marcadores */}
-      <MarkerClusterGroup
-        chunkedLoading
-        iconCreateFunction={createClusterCustomIcon}
+    <div className="map-container">
+      <h1 className="map-title">Centros de Recolección</h1>
+      <p className="map-description">
+        Este mapa muestra la ubicación de los centros de recolección más cercanos a tu comunidad. 
+        Haz clic en los marcadores para ver información detallada como el horario y los materiales aceptados.
+      </p>
+      <MapContainer
+        center={[9.97691, -84.8379]}
+        zoom={12}
+        style={{
+          border: "solid 2px #ffffff",
+          padding: "5px",
+          height: "400px",
+          width: "100%",
+        }}
       >
-        {markers.map((marker, index) => (
-          <Marker key={index} position={marker.geocode} icon={customIcon}>
-            <Popup>
-              {/* Aquí se usa dangerouslySetInnerHTML para interpretar el HTML */}
-              <div dangerouslySetInnerHTML={{ __html: marker.popUp }} />
-            </Popup>
-          </Marker>
-        ))}
-      </MarkerClusterGroup>
-    </MapContainer>
+        <TileLayer
+          attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        {/* Conjunto de Marcadores */}
+        <MarkerClusterGroup
+          chunkedLoading
+          iconCreateFunction={createClusterCustomIcon}
+        >
+          {markers.map((marker, index) => (
+            <Marker key={index} position={marker.geocode} icon={customIcon}>
+              <Popup>
+                {/* Aquí se usa dangerouslySetInnerHTML para interpretar el HTML */}
+                <div dangerouslySetInnerHTML={{ __html: marker.popUp }} />
+              </Popup>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
+      </MapContainer>
+    </div>
   );
 }
-
 
 
 

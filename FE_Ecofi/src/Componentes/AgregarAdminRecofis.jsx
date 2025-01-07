@@ -1,3 +1,4 @@
+// Importamos las funciones y componentes necesarios de React y otras librerías
 import React, { useState, useEffect } from 'react';
 import { getAdminRecofis, postAdminRecofis, deleteAdminRecofis } from '../services/AdminRecofis';
 import { toast } from "react-toastify";
@@ -5,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import '../styles/AgregarAdministradores.css';
 import { Button } from 'react-bootstrap';
 
+// Componente principal para agregar administradores de Recofis
 const AgregarAdminRecofis = () => {
     const [administradores, setAdministradores] = useState([]); // Lista de administradores
     const [formData, setFormData] = useState({
@@ -20,18 +22,21 @@ const AgregarAdminRecofis = () => {
         cargarAdministradores();
     }, []);
 
+    // Función para obtener y cargar los administradores desde la API
     const cargarAdministradores = async () => {
         try {
             const data = await getAdminRecofis(); // Obtener todos los administradores
-            setAdministradores(data);
+            setAdministradores(data); // Actualizar la lista de administradores
         } catch (error) {
             console.error('Error al cargar administradores:', error);
         }
     };
 
+    // Función para agregar un nuevo administrador
     const agregarAdministrador = async () => {
         const { Nombre_AdminRecofis, Apellido_AdminRecofis, Correo_AdminRecofis, Contraseña_AdminRecofis, Telefono_AdminRecofis } = formData;
 
+        // Verificar que todos los campos estén completos
         if (!Nombre_AdminRecofis || !Apellido_AdminRecofis || !Correo_AdminRecofis || !Contraseña_AdminRecofis || !Telefono_AdminRecofis) {
             toast.error("Por favor, completa todos los campos.");
             return;
@@ -47,7 +52,9 @@ const AgregarAdminRecofis = () => {
                 Telefono_AdminRecofis
             );
 
-            setAdministradores([...administradores, nuevoAdministrador.administrador]); // Actualizar con el nuevo administrador
+            // Actualizar la lista de administradores con el nuevo administrador
+            setAdministradores([...administradores, nuevoAdministrador.administrador]); 
+            // Reiniciar el formulario
             setFormData({
                 Nombre_AdminRecofis: '',
                 Apellido_AdminRecofis: '',
@@ -62,10 +69,11 @@ const AgregarAdminRecofis = () => {
         }
     };
 
+    // Función para eliminar un administrador por su ID
     const eliminarAdministrador = async (id) => {
         try {
             await deleteAdminRecofis(id); // Eliminar administrador
-            setAdministradores(administradores.filter(admin => admin.id !== id));
+            setAdministradores(administradores.filter(admin => admin.id !== id)); // Actualizar la lista
             toast.success("Administrador eliminado exitosamente.");
         } catch (error) {
             console.error('Error al eliminar administrador:', error);
@@ -73,9 +81,10 @@ const AgregarAdminRecofis = () => {
         }
     };
 
+    // Función para manejar los cambios en los campos del formulario
     const manejarCambio = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [name]: value }); // Actualizar los datos del formulario
     };
 
     return (
@@ -123,7 +132,7 @@ const AgregarAdminRecofis = () => {
                         onChange={manejarCambio}
                         required
                     />
-                    <Button id="btnAgregarAdministrador" onClick={agregarAdministrador}>
+                    <Button id="btnAgregarAdministradorRecofi" onClick={agregarAdministrador}>
                         Agregar Administrador
                     </Button>
                 </div>

@@ -6,9 +6,7 @@ import '../styles/AgregarAdministradores.css';
 import { Button } from 'react-bootstrap';
 
 
-
-
-
+// Componente principal para agregar administradores
 const AgregarAdministradores = () => {
 
     const [administradores, setAdministradores] = useState([]); // Lista de administradores
@@ -28,19 +26,22 @@ const AgregarAdministradores = () => {
         cargarAdministradores();
     }, []);
 
+    // Función para obtener y cargar los administradores desde la API
     const cargarAdministradores = async () => {
         try {
             const data = await getUsers(); // Obtener todos los usuarios
             const admins = data.filter(user => user.Rol_Usuario === 'Administrador'); // Filtrar solo administradores
-            setAdministradores(admins);
+            setAdministradores(admins); // Actualizar la lista de administradores
         } catch (error) {
             console.error('Error al cargar administradores:', error);
         }
     };
 
+    // Función para agregar un nuevo administrador
     const agregarAdministrador = async () => {
         const { Nombre_Usuario, Apellido_Usuario, Cedula, Email_Usuario, Contraseña_Usuario, Telefono_Usuario, Rol_Usuario, Bicolones } = formData;
 
+        // Verificar que todos los campos estén completos
         if (!Nombre_Usuario || !Apellido_Usuario || !Cedula || !Email_Usuario || !Contraseña_Usuario || !Telefono_Usuario || !Rol_Usuario) {
             toast.error("Por favor, completa todos los campos.");
             return;
@@ -60,7 +61,9 @@ const AgregarAdministradores = () => {
                 "Administrador" // Asegurar el rol de Administrador
             );
 
-            setAdministradores([...administradores, nuevoAdministrador.usuario]); // Actualizar con el nuevo administrador
+            // Actualizar la lista de administradores con el nuevo administrador
+            setAdministradores([...administradores, nuevoAdministrador.usuario]); 
+            // Reiniciar el formulario
             setFormData({
                 Nombre_Usuario: '',
                 Apellido_Usuario: '',
@@ -78,10 +81,11 @@ const AgregarAdministradores = () => {
         }
     };
 
+    // Función para eliminar un administrador por su ID
     const eliminarAdministrador = async (id) => {
         try {
             await deleteUser(id); // Eliminar administrador
-            setAdministradores(administradores.filter(admin => admin.id !== id));
+            setAdministradores(administradores.filter(admin => admin.id !== id)); // Actualizar la lista
             toast.success("Administrador eliminado exitosamente.");
         } catch (error) {
             console.error('Error al eliminar administrador:', error);
@@ -89,9 +93,10 @@ const AgregarAdministradores = () => {
         }
     };
 
+    // Función para manejar los cambios en los campos del formulario
     const manejarCambio = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [name]: value }); // Actualizar los datos del formulario
     };
 
     return (
@@ -180,6 +185,7 @@ const AgregarAdministradores = () => {
 };
 
 export default AgregarAdministradores;
+
 
 
 

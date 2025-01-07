@@ -19,6 +19,11 @@
   }
   
 
+ #buttonNavFormulario{
+  background-color: #3cdce2de;
+  margin-right: 1rem;
+ }
+
   .productEco {
     flex: 1 1 250px; /* Permite que se ajusten mejor */
     max-width: 300px;

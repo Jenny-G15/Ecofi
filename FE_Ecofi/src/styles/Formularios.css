@@ -6,22 +6,32 @@
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   font-family: 'Arial', sans-serif;
-
+  margin-top: 6rem;
 }
 
-
 #BuscarForm {
-  background-color: #0a6d21; /* Color de fondo principal */
+  background-color: #21c7a3; /* Color de fondo principal */
   color: #ffffff; /* Color del texto */
   border: none; /* Sin bordes */
   padding: 10px 20px; /* Espaciado interno */
-  font-size: 1rem; /* Tamaño del texto */
+  font-size: 0.6rem; /* Tamaño del texto */
   border-radius: 5px; /* Bordes redondeados */
   cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
   transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Animaciones suaves */
   font-family: 'Poppins', sans-serif; /* Fuente moderna (opcional) */
 }
+
+.buscador-cedula input {
+  flex: 1;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 50%; /* Ajuste de ancho */
+}
+
+
 
 #BuscarForm:hover {
   background-color: #1de90a; /* Color más claro al hacer hover */
@@ -34,13 +44,12 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra más pequeña */
 }
 
-
-#imgRecofi{
+#imgRecofi {
   display: block; /* Necesario para que margin auto funcione en imágenes */
   margin: 8px auto; /* Combina los márgenes arriba/abajo y auto para centrar */
   max-width: 100%; /* Opcional: Asegura que la imagen no sea más grande que su contenedor */
   height: auto;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -58,7 +67,6 @@ h2:hover {
   color: #75f169; /* Cambia el color al pasar el mouse */
   text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); /* Sombra más intensa */
 }
-
 
 .buscador-cedula {
   display: flex;
@@ -95,7 +103,7 @@ h2:hover {
 form {
   display: flex;
   flex-direction: column;
-  background-color: #218837a8;
+  background-color: #20b440a8;
 }
 
 form select, form input {
@@ -105,9 +113,10 @@ form select, form input {
   border-radius: 5px;
 }
 
-button {
-  background: #28a745;
+#buttonFormularioSuccess {
+  background: #25c4b6d3;
   color: white;
+  width: 25%;
   font-size: 1rem;
   border: none;
   border-radius: 5px;
@@ -116,8 +125,8 @@ button {
   transition: background 0.3s ease;
 }
 
-button:hover {
-  background: #218838;
+#buttonFormularioSuccess:hover {
+  background: #0ae703;
 }
 
 .error {
@@ -136,7 +145,7 @@ button:hover {
   text-align: center;
 }
 
-#cardFormulario{
+#cardFormulario {
   background-color: #a6ebb5ad;
 }
 
@@ -148,4 +157,20 @@ button:hover {
 .card-usuario p {
   color: #495057;
   margin: 0.3rem 0;
+}
+
+/* Añadido para hacer que el input y el botón se coloquen uno debajo del otro en dispositivos móviles */
+@media (max-width: 600px) {
+  .buscador-cedula {
+    flex-direction: column;
+  }
+
+  .buscador-cedula input {
+    margin: 0 0 0.5rem 0;
+    width: 100%;
+  }
+
+  #BuscarForm {
+    width: 100%;
+  }
 }

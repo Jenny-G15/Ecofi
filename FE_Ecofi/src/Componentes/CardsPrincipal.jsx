@@ -25,12 +25,12 @@ function CardsPrincipal() {
                 alt="Productos locales"
               />
               <Card.Body>
-                <Card.Title>Productos Disponibles para Canje</Card.Title>
+                <Card.Title>Conoce las historias de nuestros Amigos</Card.Title>
                 <Card.Text>
-                  ¡Conocé lo que podés llevarte con tus puntos! No te quedes sin tus productos Favoritos
+                  ¡Entra y conoce que se han ganado nuestros Particiantes!
                 </Card.Text>
                 <Link to="/Testimonios"> {/* Usa Link para redirigir */}
-                  <Button variant="primary">Ver Productos</Button>
+                  <Button variant="primary">Ver Historias</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -113,79 +113,3 @@ export default CardsPrincipal;
 
 
 
-
-// import React from "react";
-// import "../styles/CardsPrincipal.css"; // Importa los estilos
-// import Card from "react-bootstrap/Card";
-// import Button from "react-bootstrap/Button";
-
-
-
-
-
-
-// function CardsPrincipal() {
-//   return (
-//     <div className="container mt-5">
-//       <div className="row">
-
-//         {/* Card de Productos Disponibles */}
-//         <div className="col-md-4">
-//           <Card className="custom-card">
-//             <Card.Img
-//               variant="top"
-//               src="https://via.placeholder.com/300x200?text=Frutas+%26+Artesanías"
-//               alt="Productos locales"
-//             />
-//             <Card.Body>
-//               <Card.Title>Productos Disponibles para Canje</Card.Title>
-//               <Card.Text>
-//                 ¡Conocé lo que podés llevarte con tus puntos!
-//               </Card.Text>
-//               <Button variant="primary">Ver catálogo de recompensas</Button>
-//             </Card.Body>
-//           </Card>
-//         </div>
-
-//         {/* Card  ¿Cómo REciclar? */}
-//         <div className="col-md-4">
-//           <Card className="custom-card">
-//             <Card.Img
-//               variant="top"
-//               src="https://via.placeholder.com/300x200?text=Bolsa+Reciclaje"
-//               alt="Bolsa de reciclaje"
-//             />
-//             <Card.Body>
-//               <Card.Title>Aprendé a Reciclar Correctamente</Card.Title>
-//               <Card.Text>
-//                 Descubrí cómo clasificar tus residuos para ganar más puntos.
-//               </Card.Text>
-//               <Button variant="success">Ver guía de reciclaje</Button>
-//             </Card.Body>
-//           </Card>
-//         </div>
-
-//         {/* Card del Porque REcilar */}
-//         <div className="col-md-4">
-//           <Card className="custom-card">
-//             <Card.Img
-//               variant="top"
-//               src="https://via.placeholder.com/300x200?text=Comunidad+Reciclando"
-//               alt="Comunidad reciclando"
-//             />
-//             <Card.Body>
-//               <Card.Title>Beneficios de Reciclar con Ecofi</Card.Title>
-//               <Card.Text>
-//                 Al reciclar, ayudás a tu comunidad y al planeta. ¡Sumate al
-//                 cambio!
-//               </Card.Text>
-//               <Button variant="warning">Conocé más</Button>
-//             </Card.Body>
-//           </Card>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default CardsPrincipal;

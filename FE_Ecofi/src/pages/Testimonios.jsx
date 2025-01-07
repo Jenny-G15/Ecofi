@@ -1,17 +1,18 @@
 import React from 'react';
 import Nav from '../Componentes/Nav';
 import Footer from '../Componentes/Footer';
-import ClasificarEcofi from '../Componentes/ClasificarResiduos';
+import Testimonios from "../Componentes/Testimonios"
 
-function ClasificarPage() {
+
+function TestimonioPage() {
   return (
-    <div>
-      <Nav/>
-      <ClasificarEcofi/>
+    <div id='principalConteiner'>
+      <Nav />
+      <Testimonios/>
       <div id='footerConteiner'><Footer /> </div>
     </div>
 
   )
 }
 
-export default ClasificarPage;
+export default TestimonioPage;

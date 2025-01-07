@@ -1,0 +1,19 @@
+.Clasificar-container {
+    grid-column: 1/3 !important;
+    grid-row: 3 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+    width: 50%;
+  }
+  
+  .ClasificarResiduos {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Opcional: esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: sombra */
+  }
+  

@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config');
 
-
-
 const verificarToken = (req, res, next) => {
     // Obtener el token del header de autorización
     const token = req.headers['authorization']?.split(' ')[1]; 

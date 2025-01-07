@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+// const verificarToken = require('../Middlewares/authMiddleware.js')
 const { obtenerUsuarios, UsuariosxCedula, registrarUsuario, iniciarSesion, eliminarUsuario, actualizarUsuario, actualizarBicolones } = require('../controllers/authControllers');
 
 router.get('/', obtenerUsuarios); 

@@ -1,3 +1,5 @@
+const token = sessionStorage.getItem('token');
+
 export async function getUsers() {
     try {
         const response = await fetch('http://192.168.1.246:3000/usuarios', {
@@ -91,6 +93,7 @@ export async function deleteUser(id) {
           method: "DELETE",
           headers: {
               "Content-Type": "application/json",
+              "Authorization": 'Bearer ' + token
           }
       });
 

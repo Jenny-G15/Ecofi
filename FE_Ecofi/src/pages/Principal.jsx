@@ -16,11 +16,7 @@ function Principal() {
       <Carrusel />
       <CardsPrincipal/>
       <InfografiaEcofi/>
-<<<<<<< HEAD
-      <div className='FooterP'><Footer /> </div>
-=======
       <Footer/>
->>>>>>> 91172f3b3b055c8d399df5a11ef4b9aa2d211a4e
     </div>
 
   )

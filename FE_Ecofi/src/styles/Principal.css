@@ -1,12 +1,7 @@
 #principalConteiner {
   display: grid;
-<<<<<<< HEAD
-  grid-template-rows: 100px auto auto auto auto auto; /* Cada sección tiene su propia fila */
-  grid-template-columns: 1fr 1fr; /* Dos columnas */
-=======
   grid-template-rows: auto auto auto auto auto auto; /* Cada sección tiene su propia fila */
   grid-template-columns: auto auto; /* Dos columnas */
->>>>>>> 91172f3b3b055c8d399df5a11ef4b9aa2d211a4e
   gap: 1rem; /* Espaciado entre filas */
   min-height: 100vh; /* Asegura que el contenedor abarque toda la pantalla */
   width: 100%; /* Ancho completo */

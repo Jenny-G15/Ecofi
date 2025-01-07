@@ -1,0 +1,59 @@
+#navbarFormulario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#6af045;
+    padding: 10px;
+  }
+  
+  #logoFormulario .logo {
+    color: #fff;
+    font-size: 2.5rem;
+    text-decoration:solid;
+    font-weight: 700;
+    
+  }
+  
+  #menuFormulario {
+    list-style-type: none;
+    display: flex;
+    gap: 10px;
+  }
+  
+  #menuFormulario li {
+    display: flex;
+    align-items: center;
+  }
+  
+  #buttonFormularioLogOut {
+    background-color: rgba(14, 163, 168, 0.897);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 1.6rem;
+  }
+  
+  #buttonFormularioLogOut:hover {
+    background-color: #d00;
+  }
+  
+  @media (max-width: 600px) {
+    #navbarFormulario {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    #menuFormulario {
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
+    }
+  
+    #buttonFormularioLogOut {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  

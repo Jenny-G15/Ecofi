@@ -8,7 +8,7 @@ router.get('/:cedula', UsuariosxCedula);
 router.post('/login', iniciarSesion); 
 router.post('/register', registrarUsuario);
 router.delete('/:id', eliminarUsuario); 
-router.put('/:id', actualizarUsuario); 
+router.put('/:id', verificarToken, actualizarUsuario); 
 router.put('/usuarios/:id/bicolones', actualizarBicolones);
 
 

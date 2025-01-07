@@ -30,7 +30,7 @@ function CardsPrincipal() {
                   ¡Entra y conoce que se han ganado nuestros Particiantes!
                 </Card.Text>
                 <Link to="/Testimonios"> {/* Usa Link para redirigir */}
-                  <Button variant="primary">Ver Historias</Button>
+                  <Button className="ButtonCardsPrincipal" variant="primary">Ver Historias</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -50,7 +50,7 @@ function CardsPrincipal() {
                   Descubrí cómo clasificar tus residuos para ganar más puntos.
                 </Card.Text>
                 <Link to="/Clasificar"> {/* Usa Link para redirigir */}
-                  <Button variant="success">Ver guía de reciclaje</Button>
+                  <Button className="ButtonCardsPrincipal" variant="success">Ver guía de reciclaje</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -70,7 +70,7 @@ function CardsPrincipal() {
                   Al reciclar, ayudás a tu comunidad y al planeta. ¡Sumate al cambio!
                 </Card.Text>
                 <Link to="/Beneficios"> {/* Usa Link para redirigir */}
-                  <Button variant="warning">Conocé más</Button>
+                  <Button className="ButtonCardsPrincipal" variant="warning">Conocé más</Button>
                 </Link>
               </Card.Body>
             </Card>

@@ -6,12 +6,11 @@ import Testimonios from "../Componentes/Testimonios"
 
 function TestimonioPage() {
   return (
-    <div id='principalConteiner'>
-      <Nav />
+    <div>
+       <Nav />
       <Testimonios/>
-      <div id='footerConteiner'><Footer /> </div>
+      <Footer />
     </div>
-
   )
 }
 

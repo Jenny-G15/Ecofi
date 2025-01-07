@@ -60,6 +60,7 @@ export async function PostEmprendedores(
 }
 
 // Actualizar un emprendedor existente
+
 export async function updateEmprendedor(
     id,
     registro,
@@ -71,14 +72,14 @@ export async function updateEmprendedor(
         const emprendedorData =  registro
 
    
-        
 
         const response = await fetch(`http://localhost:3000/emprendedores/${id}/`, {
+
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(emprendedorData),
+            body: JSON.stringify(Nombre_Emprendedor),
         });
 
         if (!response.ok) {

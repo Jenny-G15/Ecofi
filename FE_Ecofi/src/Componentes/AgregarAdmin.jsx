@@ -105,16 +105,7 @@ const AgregarAdministradores = () => {
     const guardarEdicion = async () => {
         try {
             console.log('Datos a enviar:', editMode, editData);
-            const actualizado = await updateUser(
-                editMode,
-                editData.Nombre_Usuario,
-                editData.Apellido_Usuario,
-                editData.Cedula,
-                editData.Email_Usuario,
-                editData.Contraseña_Usuario,
-                editData.Telefono_Usuario,
-                editData.Bicolones
-            );
+            const actualizado = await updateUser(editMode, editData);
             console.log('Usuario actualizado:', actualizado); // Verifica la respuesta
             
             // Aquí no verificamos actualizado.usuario, ya que actualizado es directamente el objeto del usuario

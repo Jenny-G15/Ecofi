@@ -1,6 +1,5 @@
 const token = sessionStorage.getItem('token');
 
-
 export async function getUsers() {
     try {
         const response = await fetch('http://192.168.8.108:3000/usuarios', {
@@ -95,6 +94,7 @@ export async function deleteUser(id) {
           headers: {
               "Content-Type": "application/json",
               "Authorization": "Bearer" + token
+
           }
       });
 

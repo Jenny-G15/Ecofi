@@ -54,7 +54,9 @@ const FormularioRecofi = () => {
     const cargarMateriales = async () => {
         try {
             const datos = await getMateriales();
-            setMateriales(datos); // Aquí se asume que devuelve un array de objetos con `id` y `nombre`.
+
+            setMateriales(datos); // Aquí se asume que devuelve un array de objetos con id y nombre.
+
         } catch (error) {
             console.error('Error al cargar los materiales:', error);
         }

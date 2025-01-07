@@ -93,7 +93,8 @@ export async function deleteUser(id) {
           method: "DELETE",
           headers: {
               "Content-Type": "application/json",
-              "Authorization": 'Bearer ' + token
+              "Authorization": "Bearer" + token
+
           }
       });
 

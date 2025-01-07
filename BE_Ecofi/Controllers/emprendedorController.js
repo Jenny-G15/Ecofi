@@ -65,6 +65,11 @@ const actualizarEmprendedor = async (req, res) => {
       return res.status(404).json({ error: 'Emprendedor no encontrado.' });
     }
 
+    // Verificar si ya existe un emprendedor con el mismo nombre
+    const sameEmprendedor = await Emprendedor.findOne({
+      where: { Nombre_Emprendedor }
+    });
+
 
     // Actualizar el emprendedor
     await emprendedor.update({Nombre_Emprendedor, Descripcion, Nombre_Contacto, Producto_Ofrecido, Correo_Emprendedor,

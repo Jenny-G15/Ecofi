@@ -1,3 +1,5 @@
+const verificarToken = require("../Middlewares/authMiddleware")
+
 const express = require('express');
     const router = express.Router();
     const HRecoleccioController = require('../Controllers/EstadisticasControllers'); // Importar el controlador

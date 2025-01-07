@@ -14,7 +14,7 @@ function Principal() {
       <Carrusel />
       <CardsPrincipal/>
       <InfografiaEcofi/>
-      <div id='footerConteiner'><Footer /> </div>
+      <div className='FooterP'><Footer /> </div>
     </div>
 
   )

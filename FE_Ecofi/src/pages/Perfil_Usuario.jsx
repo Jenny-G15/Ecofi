@@ -12,7 +12,7 @@ function Perfil_Usuario() {
     <NavUsuario/>
     <ComMonedero/>
     <TiendaProductos/>
-    <div id='footerConteiner'><Footer /> </div>
+    <Footer/>
     </div>
  
   

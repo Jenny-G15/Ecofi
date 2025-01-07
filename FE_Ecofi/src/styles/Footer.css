@@ -1,84 +1,103 @@
+#footer-container {
+    background-color: #09c356ba;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    min-height: 200px; /* Ajusta según necesidad */
 
-#footerConteiner{
-  grid-row: 4;
-  grid-column: 1/3;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  background-color: #83fd72af;
-  justify-content: center;
-  align-items: flex-end;
+}
+
+.footer-contact-section, 
+.footer-social-section, 
+.footer-location-section {
+    text-align: center;
+}
+
+.footer-contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    width: 280px;
+    height: 350px;
+    
+}
+
+
+.footer-contact-form input, 
+.footer-contact-form textarea {
+    width: 70%;
+    border-radius: 5px;
+    font-size: 1em;
+    border: 0.5px solid #505250;
+}
+
+.footer-contact-form input:focus, 
+.footer-contact-form textarea:focus {
+    border-radius: 10px;
+    border: 2px solid #505250;
+}
+
+#footer-submit {
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    background-color: #13fc80;
+    border: solid 0.5px #4f4d4d;
+    
+}
+#footer-name{
+    width: 80%;
+    border: 0.5px solid rgb(70, 68, 68);
+    border-radius: 5px;
+    background-color: white;
+
+}
+#footer-email{
+    width: 80%;
+    border: 0.5px solid rgb(70, 68, 68);
+    border-radius: 5px;
+    background-color: white;
+
+}
+
+#footer-submit:hover {
+    background-color: #ea8305;
+}
+
+.footer-social-section a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.footer-social-section a:hover {
+    color: #000000;
+}
+
+#footer-bottom {
+     width: 100%;
+     padding: 10px 0;
+     background-color: #2E8B57 !important; /* Asegura que el color se aplique */
+     align-items: center !important;
   
+}
 
+#footer-bottom p {
+    display: flex;
+    justify-content: center;
+    color: aliceblue; 
+}
+
+#footer-bottom hr {
+    width: 100%;
 }
 
 
-.footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1200px;
-  width: 100%
-
-  
-}
-
-.footer-contact label {
-  margin-bottom: 3px;
-}
-.footer-contact input,
-.footer-contact textarea {
-  padding: 3px; 
-  margin-bottom: 8px; 
-  border: 1px solid #ece9e9;
-  border-radius: 5px;
-  font-size: 12px; 
-  width: 70%; 
-  box-sizing: border-box; 
-  
-}
-
-.footer-contact button {
-  padding: 8px;
-  background-color: #007bff; 
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.footer-contact button:hover {
-  background-color: #0056b3; 
-}
-
-.footer-location,
-.footer-social {
-  flex: 1;
-  margin: 30px; 
-  min-width: 250px;
-}
-
-.footer-social h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.footer-social a {
-  display: flex;
-  align-items: center;
-  margin: 5px 0;
-  text-decoration: none;
-  color: #000;
-}
-
-.footer-social a .fa-icon-text {
-  margin-left: 8px; 
-}
-
-.footer-bottom {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 12px; 
-}
- 

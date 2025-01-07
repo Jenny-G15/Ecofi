@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { PostLogin } from "../services/userServices";
+import { postLoginAdmin } from "../services/AdminRecofis"; 
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,24 +17,31 @@ export default function FormLogin() {
     event.preventDefault();
 
     try {
-      const response = await PostLogin({
+      // Primero intenta loguear como AdminRecofi
+      const adminResponse = await postLoginAdmin(email, password);
+      if (adminResponse && adminResponse.token) {
+        sessionStorage.setItem("token", adminResponse.token);
+        login('Recofi');
+        navigate("/Formulario");
+        return;
+      }
+
+      // Si no es AdminRecofi, intenta loguear como usuario estándar
+      const userResponse = await PostLogin({
         Email_Usuario: email,
         Contraseña_Usuario: password
       });
 
-      if (response && response.token) {
-        sessionStorage.setItem("token", response.token);
-        console.log('RESPUESTA: ', response);
+      if (userResponse && userResponse.token) {
+        sessionStorage.setItem("token", userResponse.token);
+        console.log('RESPUESTA: ', userResponse);
 
-        if (response.rol_usuario === 'usuario') {
-          login(response.rol_usuario);
+        if (userResponse.rol_usuario === 'usuario') {
+          login(userResponse.rol_usuario);
           navigate("/Perfil");
-        } else if (response.rol_usuario === 'Administrador') {
-          login(response.rol_usuario);
+        } else if (userResponse.rol_usuario === 'Administrador') {
+          login(userResponse.rol_usuario);
           navigate("/Administracion");
-        } else if (response.rol_usuario === 'Recofi') {
-          login(response.rol_usuario);
-          navigate("/Recofi");
         } else {
           toast.error("Rol de usuario no reconocido");
         }
@@ -50,26 +58,26 @@ export default function FormLogin() {
         <h2 id="login-subtitle">Ecofi</h2>
         <Form id="login-form" onSubmit={loguearUsuario}>
           <Form.Group className="mb-3">
-            <Form.Label  className="login-form-label">Correo Electrónico</Form.Label>
+            <Form.Label className="login-form-label">Correo Electrónico</Form.Label>
             <Form.Control
               type="email"
               placeholder="Ingresa tu correo"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="login-form-input" // Agrega esta clase
+              className="login-form-input"
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label  className="login-form-label">Contraseña</Form.Label>
+            <Form.Label className="login-form-label">Contraseña</Form.Label>
             <Form.Control
               type="password"
               placeholder="Ingresa tu contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="login-form-input" // Agrega esta clase
+              className="login-form-input"
             />
           </Form.Group>
 

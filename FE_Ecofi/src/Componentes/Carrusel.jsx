@@ -20,7 +20,7 @@ const Carrusel= () => {
 
   return (
     <div className="carousel">
-      <h2>Expericias Ecofi</h2>
+      <h2>Porductos a canjear</h2>
       <Slider {...settings}>
         <div>
           <img src= {isla} alt="" />

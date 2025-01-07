@@ -16,16 +16,16 @@ import Testimonios from "../Componentes/Testimonios";
 import PrivateRoute from "./PrivateRoute";
 import Beneficio from "../Pages/Beneficio";
 import Perfil_Usuario from "../pages/Perfil_Usuario";
+// import Inicio from "../pages/inicio";
 
 const Routing = () => {
   // Definir el fondo para la página Principal
-  const backgroundImage = "../src/img/fondo3.jpeg"; // Ajusta la ruta de la imagen según lo necesario
+  // const backgroundImage = "../src/img/fondo3.jpeg"; // Ajusta la ruta de la imagen según lo necesario
 
   return (
     <Router>
-
-      
       <Routes>
+      {/* <Route path="/" element={<Inicio />} /> */}
         <Route path="/Principal" element={<Principal />} />
         <Route path="/Testimonios" element={<Testimonios/>} />
         <Route path="/Beneficios" element={<Beneficio/>} />

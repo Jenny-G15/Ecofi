@@ -10,7 +10,6 @@ const Footer = () => {
     message: ''
   });
 
-  // Manejar cambios en los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -19,7 +18,6 @@ const Footer = () => {
     });
   };
 
-  // Manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -33,7 +31,6 @@ const Footer = () => {
       });
   };
 
-  // Reiniciar formulario
   const resetForm = () => {
     setFormData({
       name: '',
@@ -44,12 +41,13 @@ const Footer = () => {
 
   return (
     <>
-      <div className="footer">
-        <div className="contact-section">
+      <div id="footer-container" className="footer">
+        <div id="footer-contact" className="footer-contact-section">
           <h2>Contacto</h2>
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <label>Nombre:</label>
+          <form id="footer-contact-form" className="footer-contact-form" onSubmit={handleSubmit}>
+            <label htmlFor="footer-name">Nombre:</label>
             <input 
+              id="footer-name"
               type="text" 
               name="name" 
               value={formData.name} 
@@ -58,8 +56,9 @@ const Footer = () => {
               required 
             />
 
-            <label>Email:</label>
+            <label htmlFor="footer-email">Email:</label>
             <input 
+              id="footer-email"
               type="email" 
               name="email" 
               value={formData.email} 
@@ -68,8 +67,9 @@ const Footer = () => {
               required 
             />
 
-            <label>Mensaje:</label>
+            <label htmlFor="footer-message">Mensaje:</label>
             <textarea 
+              id="footer-message"
               name="message" 
               value={formData.message} 
               onChange={handleChange} 
@@ -77,25 +77,25 @@ const Footer = () => {
               required
             ></textarea>
 
-            <button type="submit">Enviar</button>
+            <button id="footer-submit" type="submit">Enviar</button>
           </form>
         </div>
 
-        <div className="social-section">
+        <div id="footer-social" className="footer-social-section">
           <h2>Síguenos</h2>
           <p><a href="#"><FaFacebookSquare /> Facebook</a></p>
           <p><a href="#"><FaInstagramSquare /> Instagram</a></p>
           <p><a href="#"><FaWhatsapp /> WhatsApp</a></p>
         </div>
 
-        <div className="location-section">
+        <div id="footer-location" className="footer-location-section">
           <h2>Ubicación</h2>
           <p>Puntarenas, Puntarenas, Costa Rica</p>
         </div>
+          
       </div>
+      <div id="footer-bottom" className="footer-bottom"> 
       
-      <div className="footer-bottom"> 
-        <hr />
         <p>&copy; {new Date().getFullYear()} Ecofi. Todos los derechos reservados.</p>
       </div>
     </>

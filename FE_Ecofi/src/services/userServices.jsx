@@ -19,39 +19,6 @@ export async function getUsers() {
     }
 }
 
-// export async function PostUsers
-//       (Nombre_Usuario,
-//         Apellido_Usuario,
-//         Cedula,
-//         Email_Usuario,
-//         Contraseña_Usuario,
-//         Telefono_Usuario,
-//         Rol_Usuario,
-//         Bicolones) {
-//     try {
-//       const userData = {
-//         Nombre_Usuario,
-//         Apellido_Usuario,
-//         Cedula,
-//         Email_Usuario,
-//         Contraseña_Usuario,
-//         Telefono_Usuario, 
-//         Rol_Usuario,
-//         Bicolones, 
-//       };
-//       const response = await fetch("http://192.168.1.246:3000/usuarios/register", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(userData),
-//       });
-//       return await response.json();
-//     } catch (error) {
-//       console.error("Error en el servidor", error);
-//       throw error;
-//     }
-// }
 
 
 export async function PostUsers(userData) {
@@ -96,46 +63,26 @@ export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
     }
 }
 
-export async function updateUser(
-  id,
-  Nombre_Usuario,
-  Apellido_Usuario,
-  Cedula,
-  Email_Usuario,
-  Contraseña_Usuario,
-  Telefono_Usuario,
-  Bicolones
-) {
+export const updateUser = async (id, usuario) => {
   try {
-      const userData = {
-        Nombre_Usuario,
-        Apellido_Usuario,
-        Cedula,
-        Email_Usuario,
-        Contraseña_Usuario,
-        Telefono_Usuario,
-        Bicolones
-      };
+    const response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario), // Serializa el objeto usuario
+    });
 
+    if (!response.ok) {
+      throw new Error("Error al actualizar el Usuario");
+    }
 
-      const response = await fetch(`http://192.168.1.246:3000/usuarios/${id}`, {
-          method: "PUT",
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userData),
-      });
-
-      if (!response.ok) {
-          throw new Error('Error updating Usuario');
-      }
-
-      return await response.json();
+    return await response.json();
   } catch (error) {
-      console.error('Error updating Usuario:', error);
-      throw error;
+    console.error("Error al actualizar el Usuario", error);
+    throw error;
   }
-}
+};
 
 
 export async function deleteUser(id) {

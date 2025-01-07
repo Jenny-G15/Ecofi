@@ -90,6 +90,7 @@ const AgregarEmprendedores = () => {
 
     // Función para preparar la edición de un emprendedor
     const editarEmprendedor = (emprendedor) => {
+        setIsUpdating(true);
         setFormData({
             Nombre_Emprendedor: emprendedor.Nombre_Emprendedor,
             Descripcion: emprendedor.Descripcion,
@@ -99,7 +100,6 @@ const AgregarEmprendedores = () => {
             Telefono_Empresa: emprendedor.Telefono_Empresa,
             Direccion_Exacta: emprendedor.Direccion_Exacta,
         });
-        setIsUpdating(true);
         setUpdateId(emprendedor.id);
     };
 

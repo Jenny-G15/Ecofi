@@ -60,33 +60,14 @@ export async function PostEmprendedores(
 }
 
 // Actualizar un emprendedor existente
-export async function updateEmprendedor(
-    id,
-    Nombre_Emprendedor,
-    Descripcion,
-    Nombre_Contacto,
-    Producto_Ofrecido,
-    Correo_Emprendedor,
-    Telefono_Empresa,
-    Direccion_Exacta
-) {
+export async function updateEmprendedor(id, formData) {
     try {
-        const emprendedorData = {
-            Nombre_Emprendedor,
-            Descripcion,
-            Nombre_Contacto,
-            Producto_Ofrecido,
-            Correo_Emprendedor,
-            Telefono_Empresa,
-            Direccion_Exacta,
-        };
-
         const response = await fetch(`http://192.168.1.246:3000/emprendedores/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(emprendedorData),
+            body: JSON.stringify(formData),
         });
 
         if (!response.ok) {

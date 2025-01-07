@@ -81,7 +81,7 @@ const ComMonedero = () => {
     <div className="profile-container">
       {error && <p className="error-message">{error}</p>}
       <h2 className="profile-name">Bienvenido! {Nombre_Usuario}</h2>
-      <h3>🌱 Se parte de la solución 🌱</h3>
+      <h3> 🌎 Se parte de la solución 🌎</h3>
       <p>Nombre: {Nombre_Usuario}</p>
       {isEditing ? (
         <div>

@@ -1,14 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../Pages/Register";
-import Principal from "../Pages/Principal";
 import Administracion from "../Pages/Administracion";
 import Recofi from "../Pages/Recofi";
 import Emprendedores from "../Pages/AgregarEmprendedores";
 import RecofisPage from "../Pages/AgregarRecofis";
 import QuienesSomos from "../Pages/QuienesSomos";
 import EditarUsuarios from "../Pages/EditarUsuarios";
-import FormRecofis from "../Pages/Formulario";
 import Recolecciones from "../Pages/Hrecoleccion";
 import Admin from "../Pages/AgregarAdministradores";
 import PrivateRoute from "./PrivateRoute";
@@ -16,6 +14,8 @@ import Beneficio from "../Pages/Beneficio";
 import Perfil_Usuario from  "../Pages/Perfil_Usuario"
 import TestimonioPage from "../Pages/Testimonios";
 import ClasificarPage from "../pages/ClasificarResiduos";
+import Principal from "../pages/Principal";
+import FormRecofis from "../pages/Formulario";
 
 
 const Routing = () => {
@@ -23,11 +23,11 @@ const Routing = () => {
 
   return (
     <Router>
-      {/* Aplica el fondo solo en Principal */}
 
       
       
       <Routes>
+      {/* <Route path="/" element={<Inicio />} /> */}
         <Route path="/Principal" element={<Principal />} />
         <Route path="/Testimonios" element={<TestimonioPage/>} />
         <Route path="/Clasificar" element={<ClasificarPage/>} />

@@ -8,7 +8,6 @@ import RecofisPage from "../Pages/AgregarRecofis";
 import QuienesSomos from "../Pages/QuienesSomos";
 import EditarUsuarios from "../Pages/EditarUsuarios";
 import Recolecciones from "../Pages/Hrecoleccion";
-import Admin from "../Pages/AgregarAdministradores";
 import PrivateRoute from "./PrivateRoute";
 import Beneficio from "../Pages/Beneficio";
 import Perfil_Usuario from  "../Pages/Perfil_Usuario"
@@ -16,6 +15,7 @@ import TestimonioPage from "../Pages/Testimonios";
 import ClasificarPage from "../pages/ClasificarResiduos";
 import Principal from "../pages/Principal";
 import FormRecofis from "../pages/Formulario";
+import Admin from "../pages/AgregarAdministradores";
 
 
 const Routing = () => {

@@ -46,7 +46,7 @@ export async function PostEmprendedores(
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                "Authorization": "Bearer" + token
+
             },
             body: JSON.stringify(emprendedorData),
         });
@@ -78,7 +78,7 @@ export async function updateEmprendedor(
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                "Authorization": "Bearer" + token
+
             },
             body: JSON.stringify(Nombre_Emprendedor),
         });

@@ -45,7 +45,7 @@ export async function PostProductos(
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                "Authorization": "Bearer" + token
+
             },
             body: JSON.stringify(productoData),
         });
@@ -72,7 +72,7 @@ export async function updateProducto(
         const response = await fetch(`http://192.168.8.108:3000/producto/${id}`, {
             method: "PUT",
             headers: { 'Content-Type': 'application/json',
-                "Authorization": "Bearer" + token
+                // "Authorization": "Bearer" + token
              },
             body: JSON.stringify(datosActualizados),
         });
@@ -98,7 +98,7 @@ export async function deleteProducto(id) {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                "Authorization": "Bearer" + token
+                // "Authorization": "Bearer" + token
             },
         });
 

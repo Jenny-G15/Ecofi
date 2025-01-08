@@ -1,4 +1,4 @@
-const token = sessionStorage.getItem('token');
+
 
 export async function getAdminRecofis() {
     try {
@@ -34,7 +34,7 @@ export async function postAdminRecofis(Nombre_AdminRecofis, Apellido_AdminRecofi
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer" + token
+
         },
         body: JSON.stringify(adminData),
       });
@@ -80,7 +80,7 @@ export async function updateAdminRecofis(id, Nombre_AdminRecofis, Apellido_Admin
           method: "PUT",
           headers: {
               "Content-Type": "application/json",
-              "Authorization": "Bearer" + token
+
           },
           body: JSON.stringify(adminData),
       });
@@ -102,7 +102,7 @@ export async function deleteAdminRecofis(id) {
           method: "DELETE",
           headers: {
               "Content-Type": "application/json",
-              "Authorization": "Bearer" + token
+
           }
       });
 

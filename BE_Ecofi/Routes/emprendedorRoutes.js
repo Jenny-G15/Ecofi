@@ -1,4 +1,3 @@
-const verificarToken = require("../Middlewares/authMiddleware")
 
 
 const express = require('express');
@@ -7,9 +6,9 @@ const express = require('express');
 
     // Definir las rutas
     router.get('/', EmprendedorController.obtenerEmprendedores); // Obtener todos los emprendedores
-    router.post('/', verificarToken, EmprendedorController.crearEmprendedor);
-    router.put('/:id',verificarToken, EmprendedorController.actualizarEmprendedor);
-    router.delete('/:id',verificarToken, EmprendedorController.eliminarEmprendedor)
+    router.post('/',  EmprendedorController.crearEmprendedor);
+    router.put('/:id', EmprendedorController.actualizarEmprendedor);
+    router.delete('/:id', EmprendedorController.eliminarEmprendedor)
     
 
     module.exports = router;

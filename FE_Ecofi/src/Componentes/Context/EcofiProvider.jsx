@@ -3,7 +3,7 @@ import ContextoEcofi from './EcofiContex';
 
 // Este componente es un proveedor que permite compartir información globalmente en la aplicación.
 const EcofiProvider = ({ children }) => {
-  // Estado para almacenar información sobre los productos (inicia con "Prueba").
+  
   const [Productos, setProductos] = useState('Prueba'); 
   // Estado para guardar el rol del usuario (por ejemplo, administrador o cliente).
   const [Rol, setRol] = useState(null); 

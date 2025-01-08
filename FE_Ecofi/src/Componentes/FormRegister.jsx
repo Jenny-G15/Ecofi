@@ -5,9 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const FormularioRegistro = () => {
-  const [currentStep, setCurrentStep] = useState(1);
 
+
+
+const FormularioRegistro = () => {
+
+  // Estados para manejar los pasos y datos del formulario
+  const [currentStep, setCurrentStep] = useState(1);
   const [username, setUsername] = useState("");
   const [lastName, setLastName] = useState("");
   const [cedula, setCedula] = useState("");
@@ -17,6 +21,7 @@ const FormularioRegistro = () => {
 
   const navigate = useNavigate();
 
+  // Función para avanzar y retroceder entre pasos
   const avanzarPaso = () => {
     if (currentStep < 3) setCurrentStep(currentStep + 1);
   };
@@ -25,6 +30,7 @@ const FormularioRegistro = () => {
     if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
+  // Función para guardar el usuario tras validar datos
   const guardarUser = async (e) => {
     e.preventDefault();
 
@@ -36,20 +42,20 @@ const FormularioRegistro = () => {
     try {
       const users = await getUsers();
 
-      const cedulaExists = users.some((user) => user.Cedula === cedula);
-      if (cedulaExists) {
+      // Verificar si la cédula o el correo ya están registrados
+      if (users.some((user) => user.Cedula === cedula)) {
         toast.error("Ya existe un usuario registrado con esta cédula.");
         setCurrentStep(1);
         return;
       }
 
-      const emailExists = users.some((user) => user.Email_Usuario === email);
-      if (emailExists) {
+      if (users.some((user) => user.Email_Usuario === email)) {
         toast.error("Ya existe un usuario registrado con este correo electrónico.");
         setCurrentStep(1);
         return;
       }
 
+      // Crear objeto de usuario y enviarlo a la API
       const userData = {
         Nombre_Usuario: username,
         Apellido_Usuario: lastName,
@@ -61,11 +67,11 @@ const FormularioRegistro = () => {
         Bicolones: 0,
       };
 
-      const response = await PostUsers(userData);
-
+      await PostUsers(userData);
       toast.success("¡Registro exitoso! Redirigiendo al login...");
       setTimeout(() => navigate("/Login"), 3000);
 
+      // Limpiar los campos del formulario
       setUsername("");
       setLastName("");
       setCedula("");
@@ -78,6 +84,7 @@ const FormularioRegistro = () => {
     }
   };
 
+  // Renderizado del formulario dividido en pasos
   return (
     <div className="contenedorCentro">
       <div className="containerRegistro">
@@ -86,7 +93,11 @@ const FormularioRegistro = () => {
         </div>
         <header>Formulario de Registro</header>
         <div className="barraProgresoRegistro">
-          {["Información", "Contacto", "Confirmar"].map((etiqueta, idx) => (
+          {[
+            "Información",
+            "Contacto",
+            "Confirmar",
+          ].map((etiqueta, idx) => (
             <div
               className={`pasoRegistro ${currentStep > idx ? "activo" : ""}`}
               key={idx}
@@ -210,3 +221,4 @@ const FormularioRegistro = () => {
 };
 
 export default FormularioRegistro;
+

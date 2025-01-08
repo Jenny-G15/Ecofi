@@ -6,7 +6,7 @@ function Nav() {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/" className="logo">ECOFI</Link>
+        <Link to="/Principal" className="logo">ECOFI</Link>
       </div>
       <ul className="navbar-menu">
         <li><Link to="/QuienesSomos">Quienes somos?</Link></li>

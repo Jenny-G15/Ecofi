@@ -1,4 +1,4 @@
-const token = sessionStorage.getItem('token');
+
 
 export async function getUsers() {
     try {
@@ -23,18 +23,42 @@ export async function getUsers() {
 
 
 
+// export async function PostUsers(userData) {
+//   try {
+//       const response = await fetch("http://192.168.8.108:3000/usuarios/register", {
+//           method: "POST",
+//           headers: {
+//               "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify(userData),
+//       });
+//       if (!response.ok) {
+//           throw new Error('Error al registrar el usuario');
+//       }
+//       return await response.json();
+//   } catch (error) {
+//       console.error("Error en el servidor", error);
+//       throw error;
+//   }
+// }
+
 export async function PostUsers(userData) {
   try {
-      const response = await fetch("http://192.168.8.108:3000/usuarios/register", {
+      const response = await fetch("http://localhost:3000/usuarios/register", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
+
           },
-          body: JSON.stringify(userData),
+          body: JSON.stringify(userData)
       });
+
       if (!response.ok) {
-          throw new Error('Error al registrar el usuario');
+          const errorDetails = await response.json(); // Obtén detalles del error del backend
+          console.error('Error en el servidor:', errorDetails);
+          throw new Error(errorDetails.message || 'Error al registrar el usuario');
       }
+
       return await response.json();
   } catch (error) {
       console.error("Error en el servidor", error);
@@ -58,6 +82,7 @@ export async function PostLogin(Email_Usuario, Contraseña_Usuario) {
         },
         body: JSON.stringify(userData),
       });
+      console.log('Response:', response); 
       return await response.json();
     } catch (error) {
       console.error("Error en el servidor", error);
@@ -71,7 +96,6 @@ export const updateUser = async (id, usuario) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer" + token
       },
       body: JSON.stringify(usuario), // Serializa el objeto usuario
     });
@@ -94,7 +118,7 @@ export async function deleteUser(id) {
           method: "DELETE",
           headers: {
               "Content-Type": "application/json",
-              "Authorization": "Bearer" + token
+    
 
           }
       });
@@ -139,7 +163,7 @@ export const actualizarBicolones = async (id, restarBicolones) => {
     const response = await fetch(`http://192.168.8.108:3000/usuarios/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json',
-        "Authorization": "Bearer" + token
+
        },
       body: JSON.stringify({ Bicolones: restarBicolones }),
   

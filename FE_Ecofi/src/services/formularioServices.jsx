@@ -1,3 +1,5 @@
+const token = sessionStorage.getItem('token');
+
 export async function getFormulario() {
     try {
         // Ajusta la URL si el backend está en otro puerto o dirección

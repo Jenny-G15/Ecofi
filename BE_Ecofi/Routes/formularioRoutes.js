@@ -7,7 +7,7 @@ const express = require('express');
 
     // Definir las rutas
     router.get('/', FormularioController.obtenerFormularios); 
-    router.post('/', FormularioController.crearFormulario);
+    router.post('/', verificarToken, FormularioController.crearFormulario);
     router.put('/:id', verificarToken, FormularioController.actualizarFormulario);
     router.delete('/:id', verificarToken, FormularioController.eliminarFormulario)
     

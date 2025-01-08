@@ -1,5 +1,5 @@
-// Obtener todos los productos
-// Obtener todos los productos
+const token = sessionStorage.getItem('token');
+
 export async function getProductos() {
     try {
         const response = await fetch('http://192.168.8.108:3000/producto/', {
@@ -45,6 +45,7 @@ export async function PostProductos(
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                "Authorization": "Bearer" + token
             },
             body: JSON.stringify(productoData),
         });
@@ -70,7 +71,9 @@ export async function updateProducto(
     try {
         const response = await fetch(`http://192.168.8.108:3000/producto/${id}`, {
             method: "PUT",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+                "Authorization": "Bearer" + token
+             },
             body: JSON.stringify(datosActualizados),
         });
         console.log("Respuesta del servidor:", response);
@@ -95,6 +98,7 @@ export async function deleteProducto(id) {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
+                "Authorization": "Bearer" + token
             },
         });
 

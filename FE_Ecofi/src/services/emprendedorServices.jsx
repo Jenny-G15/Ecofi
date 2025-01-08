@@ -1,3 +1,5 @@
+const token = sessionStorage.getItem('token');
+
 // Obtener todos los emprendedores
 export async function getEmprendedores() {
     try {
@@ -44,6 +46,7 @@ export async function PostEmprendedores(
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                "Authorization": "Bearer" + token
             },
             body: JSON.stringify(emprendedorData),
         });
@@ -65,18 +68,15 @@ export async function updateEmprendedor(
     registro,
  
 ) {
-    try {
-       
+    try {  
 
         const emprendedorData =  registro
-
-   
-        
 
         const response = await fetch(`http://localhost:3000/emprendedores/${id}/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                "Authorization": "Bearer" + token
             },
             body: JSON.stringify(emprendedorData),
         });

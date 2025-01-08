@@ -72,6 +72,7 @@ export const updateUser = async (id, usuario) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer" + token
       },
       body: JSON.stringify(usuario), // Serializa el objeto usuario
     });
@@ -137,7 +138,9 @@ export const actualizarBicolones = async (id, restarBicolones) => {
   
     const response = await fetch(`http://192.168.8.108:3000/usuarios/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json',
+        "Authorization": "Bearer" + token
+       },
       body: JSON.stringify({ Bicolones: restarBicolones }),
   
     });

@@ -1,331 +1,149 @@
-/* Estilos generales */
+/* Register.css */
 
-
-.containerRegistro {
-  background: rgba(255, 255, 255, 0.815);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(3, 83, 187, 0.849);
-  width: 400px;
-  padding: 20px;
-  
-}
-
-header {
-  text-align: center;
-  font-size: 22px;
-  color: #23DD23;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-/* Barra de progreso */
-.barraProgresoRegistro {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.pasoRegistro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
-  color: #999;
-}
-
-.pasoRegistro.activo {
-  color: #23DD23;
-}
-
-.balaRegistro {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #64D4D4;
-  color: white;
+.contenedorCentro {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  /* background: linear-gradient(135deg, #34e89e, #0f3443); */
+  background-image: url("../img/Resgister.jpeg");
+  background-size: cover; /* Asegura que la imagen cubra todo el fondo */ 
+  background-position: center; /* Centra la imagen */ 
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.37); /* Blanco con 50% de opacidad */
+  background-blend-mode: overlay; /* Mezcla la imagen con el color */
+  font-family: 'Arial', sans-serif;
+}
+
+.containerRegistro {
+  background-color: rgba(13, 173, 35, 0.568);
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px; /* Reducido de 30px a 20px */
+  width: 350px; /* Ajustado para un diseño más compacto */
+  max-width: 100%;
+  text-align: center;
+}
+
+header {
+  font-size: 1.5rem; /* Reducido ligeramente */
+  color: #0f3443;
+  margin-bottom: 10px;
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
-.pasoRegistro.activo .balaRegistro {
-  background-color: #23DD23;
+h6 {
+  font-size: 1rem; /* Reducido ligeramente */
+  color: #167e53;
+  margin-bottom: 15px; /* Reducido de 20px a 15px */
+  font-weight: 600;
 }
 
-.checkRegistro {
-  display: none;
+.barraProgresoRegistro {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0; /* Reducido de 20px a 15px */
+  position: relative;
 }
 
-/* Formulario */
-.formularioExteriorRegistro {
-  width: 100%;
+.pasoRegistro {
+  text-align: center;
+  position: relative;
+  flex: 1;
+}
+
+.balaRegistro {
+  width: 25px; /* Reducido ligeramente */
+  height: 25px; /* Reducido ligeramente */
+  margin: 0 auto;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0f3443;
+  font-weight: bold;
+}
+
+.activo .balaRegistro {
+  background-color: #34e89e;
+  color: #fff;
 }
 
 .paginaRegistro {
-  display: flex;
-  flex-direction: column;
+  margin-top: 15px; /* Reducido de 20px a 15px */
 }
 
 .tituloRegistro {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 1.2rem; /* Reducido ligeramente */
+  color: #0f3443;
   margin-bottom: 10px;
-  color: #64D4D4;
+  font-weight: bold;
 }
 
 .campoRegistro {
-  margin-bottom: 15px;
+  margin-bottom: 10px; /* Reducido de 15px a 10px */
+  text-align: left;
 }
 
 .etiquetaRegistro {
-  font-size: 14px;
-  margin-bottom: 5px;
-  display: block;
-  color: #333;
+  font-size: 0.85rem; /* Reducido ligeramente */
+  color: #0f3443;
+  font-weight: 500;
 }
 
-input, select {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #64D4D4;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-input:focus, select:focus {
+  padding: 8px; /* Reducido de 10px a 8px */
+  margin-top: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
   outline: none;
-  border-color: #23DD23;
-  box-shadow: 0 0 5px rgba(35, 221, 35, 0.3);
+  font-size: 0.85rem; /* Reducido ligeramente */
 }
 
-/* Botones */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #34e89e;
+  box-shadow: 0 0 5px rgba(52, 232, 158, 0.6);
+}
+
+.botonRegistro {
+  background-color: #34e89e;
+  color: #fff;
+  padding: 8px 10px; /* Reducido de 10px a 8px */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.botonRegistro:hover {
+  background-color: #2ac897;
+}
+
+.anteriorRegistro {
+  background-color: #0f3443;
+}
+
+.anteriorRegistro:hover {
+  background-color: #0b2a36;
+}
+
+.enviarRegistro {
+  background-color: #007bff;
+}
+
+.enviarRegistro:hover {
+  background-color: #0056b3;
+}
+
 .botonesRegistro {
   display: flex;
   justify-content: space-between;
 }
-
-.botonRegistro {
-  background-color: #64D4D4;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.botonRegistro:hover {
-  background-color: #23DD23;
-}
-
-.anteriorRegistro {
-  background-color: #999999;
-}
-
-.anteriorRegistro:hover {
-  background-color: #23DD23;
-}
-
-.enviarRegistro {
-  background-color: #23DD23;
-}
-
-.enviarRegistro:hover {
-  opacity: 0.9;
-}
-
-
-
-/* @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-* {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  font-family: 'Poppins', sans-serif;
-}
-:root {
-  --backgroundImage: url('../img/fondo2.jpg');
-}
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  overflow: hidden;
-  background-image: var(--backgroundImage);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-::selection {
-  color: #fff;
-  background: #42942e;
-}
-.containerRegistro {
-  width: 330px;
-  background: #fff;
-  text-align: center;
-  border-radius: 5px;
-  padding: 50px 35px 10px 35px;
-}
-.containerRegistro headerRegistro {
-  font-size: 35px;
-  font-weight: 600;
-  margin: 0 0 30px 0;
-}
-.containerRegistro .formOuterRegistro {
-  width: 100%;
-  overflow: hidden;
-}
-.containerRegistro .formOuterRegistro form {
-  display: flex;
-  width: 400%;
-}
-.formOuterRegistro form .pageRegistro {
-  width: 25%;
-  transition: margin-left 0.3s ease-in-out;
-}
-.formOuterRegistro form .pageRegistro .titleRegistro {
-  text-align: left;
-  font-size: 25px;
-  font-weight: 500;
-}
-.formOuterRegistro form .pageRegistro .fieldRegistro {
-  width: 330px;
-  height: 45px;
-  margin: 45px 0;
-  display: flex;
-  position: relative;
-}
-form .pageRegistro .fieldRegistro .labelRegistro {
-  position: absolute;
-  top: -30px;
-  font-weight: 500;
-}
-form .pageRegistro .fieldRegistro input {
-  height: 100%;
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  padding-left: 15px;
-  font-size: 18px;
-}
-form .pageRegistro .fieldRegistro select {
-  width: 100%;
-  padding-left: 10px;
-  font-size: 17px;
-  font-weight: 500;
-}
-form .pageRegistro .fieldRegistro button {
-  width: 100%;
-  height: calc(100% + 5px);
-  border: none;
-  background: #d33f8d;
-  margin-top: -20px;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: 0.5s ease;
-}
-form .pageRegistro .fieldRegistro button:hover {
-  background: #000;
-}
-form .pageRegistro .btnsRegistro button {
-  margin-top: -20px !important;
-}
-form .pageRegistro .btnsRegistro button.prevRegistro {
-  margin-right: 3px;
-  font-size: 17px;
-}
-form .pageRegistro .btnsRegistro button.nextRegistro {
-  margin-left: 3px;
-}
-.containerRegistro .progressBarRegistro {
-  display: flex;
-  margin: 40px 0;
-  user-select: none;
-}
-.containerRegistro .progressBarRegistro .stepRegistro {
-  text-align: center;
-  width: 100%;
-  position: relative;
-}
-.containerRegistro .progressBarRegistro .stepRegistro p {
-  font-weight: 500;
-  font-size: 18px;
-  color: #000;
-  margin-bottom: 8px;
-}
-.progressBarRegistro .stepRegistro .bulletRegistro {
-  height: 25px;
-  width: 25px;
-  border: 2px solid #000;
-  display: inline-block;
-  border-radius: 50%;
-  position: relative;
-  transition: 0.2s;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 25px;
-}
-.progressBarRegistro .stepRegistro .bulletRegistro.active {
-  border-color: #d43f8d;
-  background: #d43f8d;
-}
-.progressBarRegistro .stepRegistro .bulletRegistro span {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.progressBarRegistro .stepRegistro .bulletRegistro.active span {
-  display: none;
-}
-.progressBarRegistro .stepRegistro .bulletRegistro:before,
-.progressBarRegistro .stepRegistro .bulletRegistro:after {
-  position: absolute;
-  content: '';
-  bottom: 11px;
-  right: -51px;
-  height: 3px;
-  width: 44px;
-  background: #262626;
-}
-.progressBarRegistro .stepRegistro .bulletRegistro.active:after {
-  background: #d43f8d;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: animateRegistro 0.3s linear forwards;
-}
-@keyframes animateRegistro {
-  100% {
-    transform: scaleX(1);
-  }
-}
-.progressBarRegistro .stepRegistro:last-child .bulletRegistro:before,
-.progressBarRegistro .stepRegistro:last-child .bulletRegistro:after {
-  display: none;
-}
-.progressBarRegistro .stepRegistro p.active {
-  color: #d43f8d;
-  transition: 0.2s linear;
-}
-.progressBarRegistro .stepRegistro .checkRegistro {
-  position: absolute;
-  left: 50%;
-  top: 70%;
-  font-size: 15px;
-  transform: translate(-50%, -50%);
-  display: none;
-}
-.progressBarRegistro .stepRegistro .checkRegistro.active {
-  display: block;
-  color: #fff;
-} */

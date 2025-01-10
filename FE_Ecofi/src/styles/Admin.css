@@ -31,33 +31,43 @@
 }
 #agregar-producto {
   background: #fff;
-  margin-top: 6rem;
-  padding: 10px 20px;
+  margin: 6rem auto; /* Centrado */
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.676);
-  width: 900px;
+  width: 60%; /* Para que no ocupe toda la pantalla */
+  max-width: 900px; /* Ancho máximo */
   text-align: center;
   display: flex;
-  flex-wrap: wrap; /* Permite que las tarjetas se ajusten si hay más de una fila */
-  gap: 1rem; /* Espacio entre las tarjetas */
-  justify-content: center; /* Centra las tarjetas horizontalmente */
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  border: 2px double #4CAF50; /* Borde doble verde */
 }
 
-#agregar-producto > input, select {
-  margin-bottom: 15px;
-
-}
- #form-agregar-producto {
+#form-agregar-producto {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 100%;
   max-width: 500px;
-  margin: auto;
+  margin: 0 auto; /* Centrar */
   padding: 20px;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.548);
-} 
+}
+
+@media (max-width: 768px) {
+  #agregar-producto {
+    width: 90%;
+  }
+
+  #form-agregar-producto {
+    max-width: 100%;
+  }
+}
+
 
 #imagen-producto {
   padding: 10px;

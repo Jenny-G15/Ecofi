@@ -1,17 +1,17 @@
 /* Contenedor principal */
 .emprendedoresContainer {
-    background-color: rgba(136, 238, 110, 0.726) !important; /* Fondo translúcido */
+    background-color: rgba(109, 255, 73, 0.464) !important; /* Fondo translúcido */
     padding: 25px;
     border-radius: 15px;
     border: 8px solid #4CAF50; /* Verde brillante */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #343a40; /* Texto oscuro */
-    width: 100%;
-    display: block;
-    margin-left: 22rem;
-    margin-right: auto;
-    margin-top: 6rem;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Sombra intensa */
+    margin: 6rem auto; /* Centrado */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.93); /* Sombra intensa */
+    border: 2px double #4CAF50; /* Borde doble verde */
+    width: 70%;
+    
+
 }
 
 /* Título */
@@ -24,9 +24,6 @@
     font-weight: bold;
 }
 
-.emprendedoresContainer2 {
-    margin-top: 30px;
-}
 
 /* Campos de entrada */
 .containerEmprendedores input {
@@ -58,7 +55,9 @@
     overflow: hidden;
     display: flex;
     margin: 0 auto;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+    height: 70px;
+    width: 120px;
     padding: 10px 20px;
     border-radius: 8px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s;

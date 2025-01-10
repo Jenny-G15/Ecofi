@@ -47,7 +47,7 @@
 }
 
 .card-title {
-  color: #0b2a11;
+  color: #075446;
   font-weight: bold;
   font-size: 18px;
   text-align: center;
@@ -57,6 +57,7 @@
   color: #202121;
   font-size: 14px;
   padding: auto;
+  font-weight: bold;
 }
 
 .btn-primary {
@@ -131,6 +132,7 @@
 /* Estilos para los párrafos */
 .profile-container p {
   font-size: 16px;
+  font-weight: bold;
   color: #555;
   margin: 5px 0;
 }
@@ -221,11 +223,25 @@ button:active {
   z-index: 1000;
 }
 
-#navbar-logo .logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
+.logo {
+    font-size: 2.2rem !important;
+        font-weight: bold;
+        text-decoration: none;
+        color: #e4e1ac !important; 
+        text-transform: uppercase;
+        font-weight: 800 !important;
+        text-shadow: 0 1px 0 #34b81a, 
+                   0 2px 0 #599763,
+                   0 3px 0 #83fff5,
+                   0 4px 0 #b9b9b9,
+                   0 5px 0 #aaa,
+                   0 6px 1px rgba(0,0,0,.1),
+                   0 0 5px rgba(0,0,0,.1),
+                   0 1px 3px rgba(0,0,0,.3),
+                   0 3px 5px rgba(0,0,0,.2),
+                   0 5px 10px rgba(0,0,0,.25),
+                   0 10px 10px rgba(0,0,0,.2),
+                   0 20px 20px rgba(0,0,0,.15) !important;
 }
 
 #navbar-menu {
@@ -239,16 +255,16 @@ button:active {
 
 #navbar-menu li a {
   text-decoration: none;
-  color: black;
-  font-size: 16px;
+  color: #03806b;;
+  font-size: 1rem;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 #logout-button {
-  background-color: #98f588;
+  background-color: #178c06;
   color: white;
   padding: 8px 12px;
-  border: 0.5px solid rgb(94, 94, 94);
   cursor: pointer;
   border-radius: 5px;
   height: 40px; /* Unifica el tamaño con la barra de búsqueda */

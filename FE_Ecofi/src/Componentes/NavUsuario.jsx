@@ -59,10 +59,10 @@ function NavUsuario() {
         </div>
         <ul id="navbar-menu">
           <li><Link to="/Principal">Inicio</Link></li>
-          <li><Link to="/Perfil">Monedero</Link></li>
-          <li><Link to="/ProductosCanje">Productos</Link></li>
-          <li><a href="#contacto">Contactenos</a></li>
-          <li><button id="logout-button" onClick={handleLogout}>Cerrar Sesión</button></li>
+          <li><a href="#productosContainer">Productos</a></li>
+          <li><a href="#footer-contact">Contactenos</a></li>
+          <li><Link to="/Recofi">Recofi</Link></li>
+          <li><button id="logout-button" onClick={handleLogout}>Cerrar</button></li>
         </ul>
 
         <div id="navbar-search">

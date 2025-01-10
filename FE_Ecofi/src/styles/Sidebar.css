@@ -1,19 +1,19 @@
-/* Estilo básico */
-.AdminSidebarContainer {
-  margin-top: 1rem;
-}
-
+/* Estilo del contenedor del sidebar */
 .sidebarContainer {
   position: fixed;
-  top: 0;
-  left: -250px; /* Posición inicial fuera de la vista */
-  width: 8rem;
+  left: -250px; /* Posición inicial oculta */
+  width: 250px;
   height: 100%;
   background: rgba(10, 168, 142, 0.855);
   color: white;
   transition: left 0.3s ease-in-out;
-  z-index: 500; /* Menor z-index para estar debajo del navbar */
-  margin-top: 3.8rem;
+  z-index: 500;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 20px; /* Espacio para el botón */
+  overflow-y: auto;
 }
 
 .sidebarContainer.open {
@@ -25,6 +25,7 @@
   flex-direction: column;
   padding: 20px;
   font-size: 1rem;
+  flex-grow: 1;
 }
 
 /* Enlaces de la barra lateral */
@@ -46,54 +47,64 @@
 
 /* Animación de gradiente */
 @keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Botones */
+/* Botón de menú (para abrir el sidebar) */
 .menuButton1 {
   position: fixed;
   top: 10px;
+  left: 10px;
   font-size: 24px;
   background: none;
   border: none;
   color: #06ff12;
   cursor: pointer;
   padding: 5px;
-  display: none; /* Oculto por defecto */
+  display: block;
 }
 
 .menuButton1:hover {
   background-color: #1cffec69;
 }
 
-#tituloSideBar {
-  justify-self: center;
-}
-
+/* Botón de cerrar el sidebar */
 .closeButton1 {
-  display: none;
   font-size: 24px;
   color: white;
   background: none;
   border: none;
   cursor: pointer;
-  margin-bottom: 20px;
   align-self: flex-end;
+  margin-bottom: 20px;
+  display: none;
 }
 
 .sidebarContainer.open .closeButton1 {
   display: block;
 }
 
-/* Responsive Design */
+/* Botón de cerrar sesión */
+.logout-button {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: center;
+  width: 80%;
+  text-align: center;
+}
+
+.logout-button:hover {
+  background-color: #ff0000;
+}
+
+/* Diseño responsivo */
 @media (max-width: 768px) {
   .menuButton1 {
     display: block;
@@ -101,11 +112,7 @@
 
   .sidebarContainer {
     width: 250px;
-    margin-top: 0; /* Ajustar el margen superior para pantallas pequeñas */
-  }
-
-  .sidebarContainer.open {
-    left: 0; /* Mostrar la barra lateral en pantallas pequeñas */
+    margin-top: 0;
   }
 }
 
@@ -117,6 +124,5 @@
   .sidebarContainer {
     left: 0;
     width: 250px;
-    margin-top: 3.8rem;
   }
 }

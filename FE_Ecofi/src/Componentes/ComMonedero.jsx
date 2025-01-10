@@ -4,6 +4,7 @@ import "../styles/Perfil_Usuario.css";
 import { jwtDecode } from "jwt-decode";
 
 const ComMonedero = () => {
+  // Inicializa los estados del componente
   const [IdEditando, setIdEditando] = useState("");
   const [Nombre_Usuario, setNombre] = useState("");
   const [Apellido_Usuario, setApellido] = useState("");
@@ -25,11 +26,15 @@ const ComMonedero = () => {
         return;
       }
 
+      // Obtiene datos de usuarios
       const userData = await getUsers();
+      // Decodifica el token del usuario
       const decodedToken = jwtDecode(token);
+      // Encuentra el usuario correspondiente
       const usuario = userData.find((user) => user.id === decodedToken.id);
 
       if (usuario) {
+        // Establece los estados con los datos del usuario
         setIdEditando(usuario.id);
         setNombre(usuario.Nombre_Usuario);
         setApellido(usuario.Apellido_Usuario);
@@ -52,10 +57,12 @@ const ComMonedero = () => {
     fetchUserData();
   }, []);
 
+  // Función para manejar la edición del perfil
   const ManejarEdicion = () => {
     setIsEditing(true);
   };
 
+  // Función para guardar los cambios en el perfil del usuario
   const GuardarEdicion = async (id) => {
     try {
       const actualizarUsuario = {
@@ -66,7 +73,7 @@ const ComMonedero = () => {
       };
 
       await updateUser(id, actualizarUsuario);
-      setIsEditing(false); // Esto activará el useEffect y actualizará los Bicolones
+      setIsEditing(false); // Esto desactivará el modo de edición
     } catch (err) {
       setError("Error al guardar los cambios.");
       console.error("Error al actualizar el perfil:", err);

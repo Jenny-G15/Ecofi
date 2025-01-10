@@ -1,6 +1,6 @@
 export async function getHrecoleccion() {
   try {
-      const response = await fetch('http://192.168.8.108:3000/recoleccion/estadisticas', {
+      const response = await fetch('http://192.168.1.246:3000/recoleccion/estadisticas', {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',

@@ -1,10 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const AdminRecofiControllers = require('../Controllers/AdminRecofiControllers')
-const verificarToken = require("../Middlewares/authMiddleware")
-
-
-
 
 router.get('/', AdminRecofiControllers.getAdminRecofis); 
 router.get('/:correo', AdminRecofiControllers.AdminRecofisPorCorreo);

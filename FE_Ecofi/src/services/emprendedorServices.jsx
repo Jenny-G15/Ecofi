@@ -1,8 +1,8 @@
+const token = sessionStorage.getItem('token');
 // Obtener todos los emprendedores
 export async function getEmprendedores() {
     try {
-       
-        const response = await fetch('http://192.168.8.108:3000/emprendedores ', { 
+        const response = await fetch('http://192.168.1.246:3000/emprendedores', { 
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -12,8 +12,7 @@ export async function getEmprendedores() {
             throw new Error('Error fetching emprendedores');
         }
 
-        const emprendedores = await response.json();
-        return emprendedores;
+        return await response.json();
     } catch (error) {
         console.error('Error fetching emprendedores:', error);
         throw error;
@@ -41,11 +40,11 @@ export async function PostEmprendedores(
             Direccion_Exacta,
         };
 
-        
-        const response = await fetch('http://http://192.168.8.108:3000/emprendedores', {
+        const response = await fetch('http://192.168.1.246:3000/emprendedores', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+      
             },
             body: JSON.stringify(emprendedorData),
         });
@@ -62,26 +61,14 @@ export async function PostEmprendedores(
 }
 
 // Actualizar un emprendedor existente
-
-export async function updateEmprendedor(
-    id,
-    registro,
- 
-) {
+export async function updateEmprendedor(id, registro) {
     try {
-       
-
-        const emprendedorData =  registro
-
-   
-
-       
-        const response = await fetch(`http://192.168.8.108:3000/emprendedores/${id}`, {
+        const response = await fetch(`http://192.168.1.246:3000/emprendedores/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(Nombre_Emprendedor),
+            body: JSON.stringify(registro),
         });
 
         if (!response.ok) {
@@ -98,8 +85,7 @@ export async function updateEmprendedor(
 // Eliminar un emprendedor
 export async function deleteEmprendedor(id) {
     try {
-       
-        const response = await fetch(`http://192.168.8.108:3000/emprendedores/${id}`, {
+        const response = await fetch(`http://192.168.1.246:3000/emprendedores/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

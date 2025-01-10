@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getUsers, updateUser, deleteUser } from "../services/userServices"; 
 import '../styles/Editusuarios.css';
 
-
-
-
-
 const TablaUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]); // Lista de usuarios
   const [editandoUsuarioId, setEditandoUsuarioId] = useState(null); // ID del usuario que se está editando
@@ -193,11 +189,3 @@ const TablaUsuarios = () => {
 };
 
 export default TablaUsuarios;
-
-
-
-
-
-
-
-

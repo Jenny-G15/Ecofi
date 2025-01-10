@@ -7,6 +7,12 @@
   flex-wrap: wrap;
   height: 100vh;
   padding: 20px;
+  background-image: url("../img/Resgister.jpeg");
+  background-size: cover; /* Asegura que la imagen cubra todo el fondo */ 
+  background-position: center; /* Centra la imagen */ 
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.37); /* Blanco con 50% de opacidad */
+  background-blend-mode: overlay; /* Mezcla la imagen con el color */
 }
 
 /* Caja del formulario */

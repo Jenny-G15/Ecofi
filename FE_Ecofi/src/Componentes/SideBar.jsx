@@ -42,14 +42,11 @@ function AdminSideBar() {
           ✖
         </button>
         <nav className="sidebarNav">
-          <h4 id="tituloSideBar">Menú</h4>
           <hr id="hrSideBar" />
           <Link id="SideText" className="sidebarLink" to="/Administracion">
             Agregar Productos
           </Link>
-          <Link className="sidebarLink" to="/AgregarAdmin">
-            Agregar Administradores
-          </Link>
+
           <Link className="sidebarLink" to="/AgregarRecofi">
             Agregar Recofis
           </Link>
@@ -58,6 +55,9 @@ function AdminSideBar() {
           </Link>
           <Link className="sidebarLink" to="/Editarusuarios">
             Edición de Usuarios
+          </Link>
+          <Link className="sidebarLink" to="/AgregarAdmin">
+            Agregar Administradores
           </Link>
           <Link className="sidebarLink" to="/Hrecoleccion">
             Estadísticas de Recolección

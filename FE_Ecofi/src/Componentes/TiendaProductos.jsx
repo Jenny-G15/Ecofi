@@ -58,11 +58,14 @@ function TiendaProductos() {
     }
   };
 
+  // Función que obtiene la lista de emprendedores y crea un mapa de sus IDs
+  //  a nombres, actualizando el estado
+
   const cargarNombresEmprendedores = async () => {
     const emprendedores = await getEmprendedores();
     const nombresMap = {};
   
-    // Create a map of entrepreneur IDs to their names
+   
     emprendedores.find((emprendedor) => {
       nombresMap[emprendedor.id] = emprendedor.Nombre_Emprendedor;
     });
@@ -77,6 +80,9 @@ function TiendaProductos() {
     cargarUsuarios();
     cargarNombresEmprendedores();
   }, []); 
+
+  // Crea un archivo PDF que actúa como comprobante de canje, incluyendo información del usuario,
+  //  producto, fecha y bicolones gastados.
 
   const generarPDF = (producto, usuario) => {
     const doc = new jsPDF();
@@ -106,7 +112,8 @@ function TiendaProductos() {
 
     doc.save("Comprobante.pdf");
   };
-
+  // Envía un correo electrónico al usuario con los detalles 
+  // del canje utilizando el servicio emailjs.
   const enviarCorreoComprobante = (producto, usuario) => {
     const emailParams = {
       to_name: usuario.nombre,
@@ -176,6 +183,11 @@ function TiendaProductos() {
       toast.error(`El producto "${producto.Nombre_Producto}" no tiene stock disponible.`);
     }
   };
+
+  // se renderiza un contenedor que muestra una tarjeta (Card) para cada producto. 
+  // Cada tarjeta incluye la imagen del producto, su nombre, el nombre del emprendedor, 
+  // la cantidad de bicolones requeridos, la descripción,
+  //  el stock disponible y un botón para canjear el producto.
 
   return (
     <Container className="ctn-productos py-5" id="productosContainer">

@@ -1,8 +1,5 @@
 const { Material } = require('../models');
 
-
-
-
 // Obtener todos los materiales
 
 const obtenerMateriales = async (req, res) => {
@@ -14,13 +11,6 @@ const obtenerMateriales = async (req, res) => {
     res.status(500).json({ error: 'Error al obtener los materiales.' });
   }
 };
-
-
-
-
-
-
-
 
 // Crear un nuevo material
 const crearMaterial = async (req, res) => {

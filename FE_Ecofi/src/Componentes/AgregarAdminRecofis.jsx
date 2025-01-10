@@ -120,7 +120,7 @@ const AgregarAdminRecofis = () => {
     };
 
     return (
-        <div className="administradoresContainer">
+        <div className="administradorContainer">
             <h2 id="h2Titulo">Agregar Administradores de Recofis</h2>
             <div className="administradoresContainer2">
                 <div className="containerAdministradores">

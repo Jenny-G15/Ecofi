@@ -8,10 +8,10 @@ import "../Styles/PageBeneficio.css"
 
 function Beneficio() {
   return (
-    <div id='principalConteiner'>
-      <div id='Nav'> <Nav/></div>
-       <div id='DivBeneficio'><BeneficioReciclar/></div>
-      <div id='footerConteiner'><Footer /> </div>
+    <div id='BeneficioConteiner'>
+       <Nav/>
+       <BeneficioReciclar/>
+      <Footer /> 
     </div>
 
   )

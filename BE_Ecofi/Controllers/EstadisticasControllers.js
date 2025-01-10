@@ -1,12 +1,6 @@
 const { Historial_Recoleccion, Formulario, Recofi, Material } = require('../models');
 const { Sequelize } = require('sequelize');
 
-
-
-
-
-
-
 // Obtener todos los Historiales de Recolección
 
 const obtenerHistorialesRecoleccion = async (req, res) => {

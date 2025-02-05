@@ -71,7 +71,7 @@ const TablaUsuarios = () => {
 
   // Función para cancelar la edición del usuario
   const cancelarEdicion = () => {
-    setEditandoUsuarioId(null); // Salir del modo de edición
+    setEditandoUsuarioId(null); 
   };
 
   // Función para eliminar un usuario

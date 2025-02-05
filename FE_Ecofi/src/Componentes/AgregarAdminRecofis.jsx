@@ -22,6 +22,7 @@ const AgregarAdminRecofis = () => {
         cargarAdministradores();
     }, []);
 
+    // Se obtienen todos los administradores y se almacenan en el estado.
     const cargarAdministradores = async () => {
         try {
             const data = await getAdminRecofis(); // Obtener todos los administradores
@@ -31,6 +32,8 @@ const AgregarAdminRecofis = () => {
         }
     };
 
+    
+    // Validaciones de campo antes de llamar al servicio para agregar un nuevo administrador y actualizar la lista.
     const agregarAdministrador = async () => {
         const { Nombre_AdminRecofis, Apellido_AdminRecofis, Correo_AdminRecofis, Contraseña_AdminRecofis, Telefono_AdminRecofis } = formData;
 
@@ -64,6 +67,7 @@ const AgregarAdminRecofis = () => {
         }
     };
 
+    // Eliminar administrador
     const eliminarAdministrador = async (id) => {
         try {
             await deleteAdminRecofis(id); // Eliminar administrador
@@ -75,6 +79,7 @@ const AgregarAdminRecofis = () => {
         }
     };
 
+    // Se actualizan los datos del formulario conforme el usuario va ingresando información.
     const manejarCambio = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });

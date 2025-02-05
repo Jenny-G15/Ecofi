@@ -2,7 +2,7 @@
 
 export async function getAdminRecofis() {
     try {
-        const response = await fetch('http://192.168.8.108:3000/adminRecofi', {
+        const response = await fetch('http://192.168.0.4:3000/adminRecofi', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ export async function postAdminRecofis(Nombre_AdminRecofis, Apellido_AdminRecofi
         Contraseña_AdminRecofis,
         Telefono_AdminRecofis
       };
-      const response = await fetch("http://192.168.8.108:3000/adminRecofi/register", {
+      const response = await fetch("http://192.168.0.4:3000/adminRecofi/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export async function postLoginAdmin(Correo_AdminRecofis, Contraseña_AdminRecof
         Contraseña_AdminRecofis
       };
 
-      const response = await fetch("http://192.168.8.108:3000/adminRecofi/login", {
+      const response = await fetch("http://192.168.0.4:3000/adminRecofi/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export async function updateAdminRecofis(id, Nombre_AdminRecofis, Apellido_Admin
           Telefono_AdminRecofis
       };
 
-      const response = await fetch(`http://192.168.8.108:3000/adminRecofi/${id}`, {
+      const response = await fetch(`http://192.168.0.4:3000/adminRecofi/${id}`, {
           method: "PUT",
           headers: {
               "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export async function updateAdminRecofis(id, Nombre_AdminRecofis, Apellido_Admin
 
 export async function deleteAdminRecofis(id) {
   try {
-      const response = await fetch(`http://192.168.8.108:3000/adminRecofi/${id}`, {
+      const response = await fetch(`http://192.168.0.4:3000/adminRecofi/${id}`, {
           method: "DELETE",
           headers: {
               "Content-Type": "application/json",

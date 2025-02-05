@@ -33,6 +33,8 @@ const FormularioRecofi = () => {
         cargarMateriales();
     }, []);
 
+
+    //Se obtienen los datos de recofis, direcciones y materiales desde los servicios y los guardan en los estados.
     const cargarRecofis = async () => {
         try {
             const datos = await getRecofis();
@@ -62,6 +64,7 @@ const FormularioRecofi = () => {
         }
     };
 
+    // actualiza los datos del formulario conforme el usuario va ingresando información
     const manejarCambio = (e) => {
         setDatosFormulario({
             ...datosFormulario,
@@ -69,6 +72,9 @@ const FormularioRecofi = () => {
         });
     };
 
+
+    // Se maneja la lógica para agregar o actualizar un recofi basado en si el modo de edición está activo. 
+    // Luego reinicia el formulario y recarga la lista de recofis.
     const manejarEnvio = async () => {
         try {
             if (modoEdicion) {
@@ -98,12 +104,14 @@ const FormularioRecofi = () => {
         }
     };
 
+    // Editar Formulario
     const editarRecofi = (recofi) => {
         setModoEdicion(true);
         setIdRecofiActual(recofi.id);
         setDatosFormulario(recofi);
     };
 
+    // Borrar Formulario
     const borrarRecofi = async (id) => {
         try {
             await eliminarRecofi(id);

@@ -3,7 +3,7 @@
 export async function getMateriales() {
     try {
         // Ajusta la URL si el backend está en otro puerto o dirección
-        const response = await fetch('http://192.168.8.108:3000/material', { //'http://192.168.8.108
+        const response = await fetch('http://192.168.0.4:3000/material', { //'http://192.168.0.4
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

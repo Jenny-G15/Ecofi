@@ -3,7 +3,7 @@ const token = sessionStorage.getItem('token');
 export async function getFormulario() {
     try {
         // Ajusta la URL si el backend está en otro puerto o dirección
-        const response = await fetch('http://192.168.8.108:3000/formularios', {
+        const response = await fetch('http://192.168.0.4:3000/formularios', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export async function getFormulario() {
 // Agregar un nuevo Formulario
 export async function agregarFormulario(data) {
     try {
-        const response = await fetch('http://192.168.8.108:3000/formularios', {
+        const response = await fetch('http://192.168.0.4:3000/formularios', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export async function agregarFormulario(data) {
 // Actualizar un Formulario existente
 export async function actualizaFormulario(id, data) {
     try {
-        const response = await fetch(`http://192.168.8.108:3000/formularios/${id}`, {
+        const response = await fetch(`http://192.168.0.4:3000/formularios/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export async function actualizaFormulario(id, data) {
 // Eliminar un Formulario
 export async function eliminarFormulario(id) {
     try {
-        const response = await fetch(`http://192.168.8.108:3000/formularios/${id}`, {
+        const response = await fetch(`http://192.168.0.4:3000/formularios/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

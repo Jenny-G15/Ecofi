@@ -2,7 +2,7 @@ const token = sessionStorage.getItem('token');
 
 export async function getProductos() {
     try {
-        const response = await fetch('http://192.168.8.108:3000/producto/', {
+        const response = await fetch('http://192.168.0.4:3000/producto/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export async function PostProductos(
 
         console.log("Enviando producto:", productoData);
         
-        const response = await fetch('http://192.168.8.108:3000/producto/', {
+        const response = await fetch('http://192.168.0.4:3000/producto/', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export async function updateProducto(
     datosActualizados
 ) {
     try {
-        const response = await fetch(`http://192.168.8.108:3000/producto/${id}`, {
+        const response = await fetch(`http://192.168.0.4:3000/producto/${id}`, {
             method: "PUT",
             headers: { 'Content-Type': 'application/json',
                 // "Authorization": "Bearer" + token
@@ -94,7 +94,7 @@ export async function updateProducto(
 // Eliminar un producto
 export async function deleteProducto(id) {
     try {
-        const response = await fetch(`http://192.168.8.108:3000/producto/${id}`, {
+        const response = await fetch(`http://192.168.0.4:3000/producto/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ export async function deleteProducto(id) {
 
 export const stockActualizado = async (id, nuevoStock) => {
     try {
-      const response = await fetch( `http://192.168.8.108:3000/producto/${id}`, {
+      const response = await fetch( `http://192.168.0.4:3000/producto/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ Stock: nuevoStock }),

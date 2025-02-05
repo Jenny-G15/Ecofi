@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
-    const sequelize = new Sequelize('Ecofi', 'marila', 'Paz12', {
-            host: '192.168.8.108',
+    const sequelize = new Sequelize('Ecofi', 'root', 'Paz12', {
+            host: '192.168.0.4',
             dialect: 'mysql'
     });
 

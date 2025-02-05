@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "marila",
+    "username": "root",
     "password": "Paz12",
     "database": "Ecofi",
-    "host": "192.168.8.108",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
